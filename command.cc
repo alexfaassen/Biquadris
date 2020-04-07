@@ -7,3 +7,5 @@ int Command::longestSubstring(String playerInput) const {
 		if (name.compare(0, i, playerInput)) return i + 1;
 	}
 }
+
+//test
