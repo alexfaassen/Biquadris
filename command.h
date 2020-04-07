@@ -7,7 +7,7 @@ class Command {
 	std::string name;
 	public:
 	std::string getName() const;
-	bool hasSubstring(String playerInput) const;
+	int longestSubstring(string playerInput) const;
 	virtual void run(Player *player, const int times) const = 0;
 };
 
