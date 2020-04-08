@@ -10,14 +10,14 @@ CommandList::CommandList(){
 
 void CommandList::fillNormalCommands(){
     normalCommands.clear();
-    //add new commands as they are implemented
+    //add new commands here as they are implemented
     //normalCommands.emplace_back(new Command);
 }
 
 void CommandList::fillSACommands(){
     SACommands.clear();
-    //add new commands as they are implemented
-    //SACommands.emplcae_back(new Command);
+    //add new commands here as they are implemented
+    //SACommands.emplace_back(new Command);
 }
 
 vector<Command*>& CommandList::selectVector(InputState inputState){

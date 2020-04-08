@@ -1,6 +1,7 @@
 #include "gamestate.h"
 
 #include <utility>
+#include <string>
 
 using namespace std;
 
@@ -29,7 +30,7 @@ GameState::~GameState(){
     nonActivePlayer = nullptr;
 }
 
-bool GameState::runInput(String input, int multiplier){
+bool GameState::runInput(String input, int multiplier = 1){
 
     //commandList figures out which vector of commands to loop through
     vector<Command*> &commands = commandList.selectVector(activePlayer->getInputState());
@@ -58,6 +59,35 @@ bool GameState::runInput(String input, int multiplier){
     return false;
 }
 
+bool GameState::runInputOnNAP(String input, int multiplier = 1){
+    //switch activePlayer, call runInput, then switch back
+    switchActive();
+    bool success = runInput(input, multiplier);
+    switchActive();
+    return success;
+}
+
+bool GameState::runInputOnBoth(String input, int multiplier = 1){
+    Player* oldActivePlayer = activePlayer;
+    bool success1 = runInput(input, multiplier);
+
+    //determine if runInput won't automatically caused activePlayer to switch
+    bool noSwitch = false;      
+    if(oldActivePlayer == activePlayer){
+        noSwitch = true;
+    }
+
+    //switch activePlayer, call runInput, then switch back
+    if(noSwitch){
+        switchActive();
+    }
+    bool success2 = runInput(input, multiplier);
+    if(noSwitch){
+        switchActive();
+    }
+    return success1 && success2;
+}
+
 void GameState::cleanup(){
     //move effects over
     while(!activePlayer->outgoingIsEmpty()){
@@ -70,14 +100,36 @@ void GameState::cleanup(){
     //switch active player if turn has ended
     if(activePlayer->getInputState() == END_TURN){
         switchActive();
-        activePlayer->startTurn();
+        activePlayer->startTurn();  //note: this is where startTurn() is called
     }
+}
+
+// prints everything until the first \n in str and removes everything up to and including that \n
+// returns false if there are no \n left in str
+bool printAndRemoveLine(string &str){
+    size_t linepos = str.find_first_of('\n');
+    if(linepos != string::npos){
+        cout << str.substr(0, linepos);
+        str.erase(0, ++linepos);
+        return true;
+    }
+    return false;
 }
 
 void GameState::printGame(){
     string lp = leftplayer.printToString();
     string rp = rightplayer.printToString();
-    //TODO: finish print
+
+    while(true){
+        if(!printAndRemoveLine(lp)){    //breaks out of loop once either string runs out of lines
+            break;
+        }
+        cout < "     ";
+        if(!printAndRemoveLine(rp)){    //note: weird things will happen if strings have different # of lines
+            break;
+        }
+        cout < endl;
+    }
 }
 
 void GameState::restart(){

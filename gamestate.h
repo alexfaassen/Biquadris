@@ -31,10 +31,12 @@ class GameState {
     Player& getLeftPlayer() {return leftPlayer};
     Player& getRightPlayer() {return rightPlayer};
 
-    bool runInput(string, int)   // tries to run given input
-    void cleanup();                 // checks for and handles end-of-turn
-    void printGame();               // prints the game to textdisplay
-    void restart();                 // resets everything
+    bool runInput(string, int=1)        // tries to interpret and run given input
+    bool runInputOnNAP(string, int=1)   // calls runInput while pretending that NAP is activePlayer
+    bool runInputOnBoth(string, int=1)  // calls runInput sequentially on both players as if they were activePlayer
+    void cleanup();                     // checks for and handles end-of-turn
+    void printGame();                   // prints the game to textdisplay
+    void restart();                     // resets everything
     
     // compares score to highscore and updates highscore if needed; returns if update happened
     bool updateHighscore(int score);    
