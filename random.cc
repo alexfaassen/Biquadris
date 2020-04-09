@@ -2,6 +2,6 @@
 #include <fstream>
 using namespace std;
 
-void Random::run(GameState *game, const int times) const override {
-	if (player.getLevel() == 3 || player.getLevel() == 4) game->getActivePlayer().setFileInput(NULL);
+void Random::run(GameState &game, const int times) const override {
+	if (game.getActivePlayer().getLevel() == 3 || game.getActivePlayer().getLevel() == 4) game.getActivePlayer().setFileInput(NULL);
 }

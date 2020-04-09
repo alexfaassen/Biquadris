@@ -6,7 +6,7 @@ class Blind : public Command {
 	public:
 	Blind() : {}
 	private:
-	void run(GameState *game, const int times = 1) const override;
+	void run(GameState &game, const int times = 1) const override;
 };
 
 #endif

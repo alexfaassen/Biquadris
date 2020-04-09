@@ -6,7 +6,7 @@ class Force : public Command {
 	public:
 	Force() : {}
 	private:
-	void run(GameState *game, const int times = 1) const override;
+	void run(GameState &game, const int times = 1) const override;
 };
 
 #endif

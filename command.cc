@@ -10,9 +10,9 @@ int Command::longestSubstring(const string playerInput) const {
 	}
 }
 
-void Command::execute(GameState *game, const int times) const {	
+void Command::execute(GameState &game, const int times) const {	
 	run(game, times);
-	game->cleanup();
+	game.cleanup();
 }
 
 //test
