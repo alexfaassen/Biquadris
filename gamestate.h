@@ -1,6 +1,8 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
+#include <istream>
+
 #include "player.h"
 #include "window.h"
 #include "commandlist.h"
@@ -30,6 +32,9 @@ class GameState {
     Player& getNAP() {return *nonActivePlayer};
     Player& getLeftPlayer() {return leftPlayer};
     Player& getRightPlayer() {return rightPlayer};
+
+    bool beginReadLoop(std::istream&)   // starts a read loop with given input stream
+                                        // returns true once input stream is exhausted
 
     bool runInput(string, int=1)        // tries to interpret and run given input
     bool runInputOnNAP(string, int=1)   // calls runInput while pretending that NAP is activePlayer
