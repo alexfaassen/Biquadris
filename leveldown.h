@@ -5,7 +5,8 @@
 class LevelDown : public Command {
 	public:
 	LevelDown() : {}
-	void run(Player *player, const int times) const override;
+	private:
+	void run(Player &player, const int times = 1) const override;
 };
 
 #endif
