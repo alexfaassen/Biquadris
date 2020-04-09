@@ -6,7 +6,7 @@ class DownCmd : public Command {
 	public:
 	DownCmd() : {}
 	private:
-	void run(Player &player, const int times = 1) const override;
+	void run(GameState *game, const int times = 1) const override;
 };
 
 #endif

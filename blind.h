@@ -1,10 +1,10 @@
-#ifndef DROP_H
-#define DROP_H
+#ifndef BLIND_H
+#define BLIND_H
 #include "command.h"
 
-class DropCmd : public Command {
+class Blind : public Command {
 	public:
-	DropCmd() : {}
+	Blind() : {}
 	private:
 	void run(GameState *game, const int times = 1) const override;
 };

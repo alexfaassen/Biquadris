@@ -11,7 +11,8 @@ int Command::longestSubstring(const string playerInput) const {
 }
 
 void Command::execute(GameState *game, const int times) const {	
-	run(game->getActivePlayer(), times);
+	run(game, times);
+	game->cleanup();
 }
 
 //test

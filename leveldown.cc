@@ -1,3 +1,3 @@
 #include "leveldown.h"
 
-void LevelDown::run(Player &player, const int times) const override { player.changeLevel(-1 * times); }
+void LevelDown::run(GameState *game, const int times) const override { game->getActivePlayer().changeLevel(-1 * times); }

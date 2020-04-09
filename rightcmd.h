@@ -6,7 +6,7 @@ class RightCmd : public Command {
 	public:
 	RightCmd() : {}
 	private:
-	void run(Player &player, const int times = 1) const override;
+	void run(GameState *game, const int times = 1) const override;
 };
 
 #endif

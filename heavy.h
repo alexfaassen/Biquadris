@@ -1,10 +1,10 @@
-#ifndef DROP_H
-#define DROP_H
+#ifndef HEAVY_H
+#define HEAVY_H
 #include "command.h"
 
-class DropCmd : public Command {
+class Heavy : public Command {
 	public:
-	DropCmd() : {}
+	Heavy() : {}
 	private:
 	void run(GameState *game, const int times = 1) const override;
 };
