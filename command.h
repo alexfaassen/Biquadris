@@ -5,6 +5,7 @@
 
 class Command {
 	std::string name;
+	bool needClean = 1;
 	public:
 	std::string getName() const;
 
