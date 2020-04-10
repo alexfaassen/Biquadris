@@ -14,7 +14,7 @@ class GameState {
     Player rightPlayer;
     Player* activePlayer = nullptr;
     Player* nonActivePlayer = nullptr;
-    XWindow* window;
+    XWindow* window = nullptr;
     CommandList commandList;
 
     const int loffsetX, loffsetY, roffsetX, roffsetY;
