@@ -25,7 +25,9 @@ GameState::GameState(bool hasWindow)
 }
 
 GameState::~GameState(){
-    delete window;
+    if(window){
+        delete window;
+    }
     activePlayer = nullptr;
     nonActivePlayer = nullptr;
 }
