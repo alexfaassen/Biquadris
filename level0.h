@@ -5,7 +5,7 @@
 
 class Level0 : public Level {
 	public:
-	Level0() : Level(), 
+	Level0(int seed = 0, int identifier = 0, fstream *file = NULL) : Level(seed, identifier, file) {}
 
 	Block *CreateBlock() override;
 };
