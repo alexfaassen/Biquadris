@@ -1,10 +1,10 @@
-#ifndef CW_H
-#define CW_H
+#ifndef NORAND_H
+#define NORAND_H
 #include "command.h"
 
-class ClockwiseCmd : public Command {
+class NoRandom : public Command {
 	public:
-	ClockwiseCmd() : {}
+	NoRandom() : {}
 	private:
 	void run(GameState &game, const int times = 1) const override;
 };

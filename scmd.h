@@ -1,10 +1,10 @@
-#ifndef CW_H
-#define CW_H
+#ifndef SCMD_H
+#define SCMD_H
 #include "command.h"
 
-class ClockwiseCmd : public Command {
+class SCmd : public Command {
 	public:
-	ClockwiseCmd() : {}
+	SCmd() : {}
 	private:
 	void run(GameState &game, const int times = 1) const override;
 };

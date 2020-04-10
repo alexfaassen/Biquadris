@@ -5,7 +5,8 @@
 class CounterClockwiseCmd : public Command {
 	public:
 	CounterClockwiseCmd() : {}
-	void run(Player *player, const int times) const override;
+	private:
+	void run(GameState &game, const int times = 1) const override;
 };
 
 #endif

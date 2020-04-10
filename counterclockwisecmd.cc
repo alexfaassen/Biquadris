@@ -1,3 +1,3 @@
 #include "counterclockwisecmd.h"
 
-void CounterClockwiseCmd::run(Player *player, const int times) const override { player->rotateCounterClockwise(times, 1); }
+void CounterClockwiseCmd::run(GameState &game, const int times) const override { game.getActivePlayer().rotateCounterClockwise(times, 1); }
