@@ -7,7 +7,7 @@ class HeavyEffect : public Effect {
 	public:
 	HeavyEffect(int down = 2) : down{down} {}
 
-	notify(const enum Event, const int linesCleared) override;
+	void notify(const enum Event, const int linesCleared) override;
 };
 
 #endif

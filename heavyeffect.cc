@@ -1,3 +1,3 @@
 #include "heavyeffect.h"
 
-void HeavyEffect::notify(const enum Event, 
+void HeavyEffect::notify(const enum Event, const int linesCleared) {
