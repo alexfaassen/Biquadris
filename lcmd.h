@@ -4,7 +4,7 @@
 
 class LCmd : public Command {
 	public:
-	LCmd() : {}
+	LCmd(const std::string name = "L", bool needClean = 1) : name{name}, needClean{needClean} {}
 	private:
 	void run(GameState &game, const int times = 1) const override;
 };

@@ -4,7 +4,7 @@
 
 class Blind : public Command {
 	public:
-	Blind() : {}
+	Blind(const std::string name = "blind", bool needClean = 1) : name{name}, needClean{needClean} {}
 	private:
 	void run(GameState &game, const int times = 1) const override;
 };

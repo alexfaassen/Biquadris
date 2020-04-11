@@ -4,7 +4,7 @@
 
 class CounterClockwiseCmd : public Command {
 	public:
-	CounterClockwiseCmd() : {}
+	CounterClockwiseCmd(const std::string name = "counterclockwise", bool needClean = 1) : name{name}, needClean{needClean} {}
 	private:
 	void run(GameState &game, const int times = 1) const override;
 };
