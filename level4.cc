@@ -3,7 +3,7 @@
 #include <ctime>
 #include <iostream>
 
-Level4::Level4(bool customSeed, int seed, int identifier, ifstream *file, const int playerID, Effect *heavy, Effect *centreDrop) : Level(customSeed, seed, identifier, file, playerID), heavy{new HeavyEffect(1)}, centreDrop{new CentreDropEffect()} { identifier = 4; }
+Level4::Level4(bool customSeed, int seed, int identifier, ifstream *file, const int playerID, Effect *heavy, Effect *centreDrop) : Level(customSeed, seed, identifier, file, playerID), heavy{new HeavyEffect(1)}, centreDrop{new CentreDropEffect()} {}
 
 void Level4::generateEffects() { //TODO }
 

@@ -3,7 +3,7 @@
 #include <ctime>
 #include <iostream>
 
-Level3::Level3(bool customSeed, int seed, int identifier, ifstream *file, const int playerID, Effect *heavy) : Level(customSeed, seed, identifier, file, playerID), heavy{new HeavyEffect(1)} { identifier = 3; }
+Level3::Level3(bool customSeed, int seed, int identifier, ifstream *file, const int playerID, Effect *heavy) : Level(customSeed, seed, identifier, file, playerID), heavy{new HeavyEffect(1)} {}
 
 void Level3::generateEffects() { //TODO }
 
