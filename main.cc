@@ -52,7 +52,7 @@ int main(int argc, char *argv[]) {
         }
     }
     
-    gamestate.beginReadLoop(cin);
+    gamestate.beginReadLoop();
     
     return 0;
 }
