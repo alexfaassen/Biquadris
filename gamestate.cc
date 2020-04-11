@@ -14,6 +14,15 @@ void GameState::createPlayers(){
     leftPlayer = Player(window, roffsetX, roffsetY);
 }
 
+int GameState::cleanStreams(){
+    int n = 0;
+    while(!istreams.empty() && istreams.back().eof){
+        istreams.pop_back();
+        ++n;
+    }
+    return n;
+}
+
 GameState::GameState(bool hasWindow)
 : highscore{0} {
     if(hasWindow){
@@ -32,9 +41,24 @@ GameState::~GameState(){
     nonActivePlayer = nullptr;
 }
 
-bool GameState::beginReadLoop(istream& in){
+void GameState::pushToStreams(istream& stream){
+    cleanStreams();
+    reference_wrapper<istream> in(stream);
+    istreams.emplace_back(in);
+}
+
+istream& GameState::getStream(){
+    cleanStreams();
+    if(istreams.empty()){
+        return cin;
+    } else {
+        return istreams.back();
+    }
+}
+
+bool GameState::beginReadLoop(){
     string s;
-    while (in >> s) {
+    while (getStream() >> s) {
         int multiplier = 1;
         
         if(isdigit(s[0])){          // test if s starts with an int
@@ -159,6 +183,16 @@ void GameState::restart(){
     createPlayers();
     activePlayer = &leftPlayer;
     nonActivePlayer = &rightPlayer;
+}
+
+int GameState::getActiveSide(){
+    if(activePlayer == &leftPlayer){
+        return -1;
+    } else if (activePlayer == &rightPlayer){
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 bool GameState::updateHighscore(int score){
