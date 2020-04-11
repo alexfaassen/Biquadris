@@ -1,5 +1,16 @@
 #include "level0.h"
-using namespace std;
 
-Block *Level0::CreateBlock() override {
-	ifstream 
+Level0::Level0(int seed, int identifier, std::ifstream *file, const int playerID) : Level(seed, identifier, file, playerID) {
+	identifier = 0;
+	if (playerID == 1) {
+		file{new biquadris_sequence2.txt};
+	} else {
+		file{new biquadris_sequence1.txt};
+	}
+}
+
+Block *Level0::CreateBlock() override {	
+	char b;
+	file >> b;
+	return new Block(b);
+}

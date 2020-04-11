@@ -1,5 +1,5 @@
-#include "level.h"
+#include "level.h" 
 
-int Level::getIdentifier() { return identifier; }
+void Level::updateSeed(const int newSeed) { seed = newSeed; }
 
-void Level::updateSeed(const int newSeed) {}
+int Level::getIdentifier() const { return identifier; }

@@ -6,10 +6,13 @@
 class Level {
 	int seed;
 	int identifier;
-	fstream *file;
+	std::ifstream *file;
+	const int playerID;
 	public:
-	Level(int seed = 0, int identifier = 0, fstream *file = NULL) : seed{seed}, identifier{identifier}, file{file} {}
+	Level(int seed = 1, int identifier = 0, std::fstream *file = NULL, const int playerID) : seed{seed}, identifier{identifier}, file{file}, playerID{playerID} {}
 
+	// getters/setters
+	int getIdentifier() const;
 	void updateSeed(const int newSeed);
 
 	virtual Block *CreateBlock() = 0;
