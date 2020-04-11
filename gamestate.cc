@@ -161,6 +161,16 @@ void GameState::restart(){
     nonActivePlayer = &rightPlayer;
 }
 
+int GameState::getActiveSide(){
+    if(activePlayer == &leftPlayer){
+        return -1;
+    } else if (activePlayer == &rightPlayer){
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
 bool GameState::updateHighscore(int score){
     if(score > highscore){
         highscore = score;
