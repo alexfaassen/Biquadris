@@ -3,11 +3,11 @@
 #include "effect.h"
 
 class HeavyEffect : public Effect {
-	int down;
+	int numDown;
 	public:
-	HeavyEffect(int down = 2) : down{down} {}
+	HeavyEffect(Player *player, bool alive = 1, int numDown = 2) : Observer(player, alive), numDown{numDown} {}
 
-	void notify(const enum Event, const int linesCleared) override;
+	void notify(const Event currEvent, const int linesCleared) override;
 };
 
 #endif
