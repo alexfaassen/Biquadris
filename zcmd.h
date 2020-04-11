@@ -4,7 +4,7 @@
 
 class ZCmd : public Command {
 	public:
-	ZCmd(const std::string name = "Z", bool needClean = 1) : name{name}, needClean{needClean} {}
+	ZCmd(const std::string name = "Z", bool needClean) : Command(name, needClean) {}
 	private:
 	void run(GameState &game, const int times = 1) const override;
 };

@@ -4,7 +4,7 @@
 
 class NoRandom : public Command {
 	public:
-	NoRandom(const std::string name = "norandom", bool needClean = 1) : name{name}, needClean{needClean} {}
+	NoRandom(const std::string name = "norandom", bool needClean) : Command(name, needClean) {}
 	private:
 	void run(GameState &game, const int times = 1) const override;
 };
