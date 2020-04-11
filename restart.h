@@ -4,7 +4,7 @@
 
 class Restart : public Command {
 	public:
-	Restart() : {}
+	Restart(const std::string name = "restart", bool needClean = 0) : name{name}, needClean{needClean} {}
 	private:
 	void run(GameState *game, const int times = 1) const override;
 };
