@@ -25,24 +25,28 @@ int main(int argc, char *argv[]) {
         } else if (argv[i] == "-seed"){
             if(++i >= argc){
                 cout << "Error: Wrong number of command line arguements" << endl; 
+                return 1;
             }
             string seed = argv[i];
             //TODO
         } else if (argv[i] == "-scriptfile1"){
             if(++i >= argc){
                 cout << "Error: Wrong number of command line arguements" << endl; 
+                return 1;
             }
             string source = argv[i];
             //TODO
         } else if (argv[i] == "-scriptfile2"){
             if(++i >= argc){
                 cout << "Error: Wrong number of command line arguements" << endl; 
+                return 1;
             }
             string source = argv[i];
             //TODO
         } else if (argv[i] == "-startlevel"){
             if(++i >= argc){
                 cout << "Error: Wrong number of command line arguements" << endl; 
+                return 1;
             }
             string level = argv[i];
             //TODO
