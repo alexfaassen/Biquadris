@@ -6,6 +6,10 @@
 class Command {
 	std::string name;
 	bool needClean;
+
+	// abstract ctor
+	Command(const std::string name, const bool needClean = 1) : name{name}, needClean{needClean} {}
+
 	public:
 	std::string getName() const;
 

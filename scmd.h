@@ -4,7 +4,7 @@
 
 class SCmd : public Command {
 	public:
-	SCmd(const std::string name = "S", bool needClean = 1) : name{name}, needClean{needClean} {}
+	SCmd(const std::string name = "S", bool needClean) : Command(name, needClean) {}
 	private:
 	void run(GameState &game, const int times = 1) const override;
 };

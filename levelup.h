@@ -4,7 +4,7 @@
 
 class LevelUp : public Command {
 	public:
-	LevelUp(const std::string name = "levelup", bool needClean = 1) : name{name}, needClean{needClean} {}
+	LevelUp(const std::string name = "levelup", bool needClean) : Command(name, needClean) {}
 	private:
 	void run(GameState &game, const int times = 1) const override;
 };
