@@ -17,7 +17,7 @@ class Player {
     private:
     int side, score = 0;
     Board board;
-    Level* level;
+    Level* level = new Level0();
     PlayerWindow window;
     std::vector<Observer*> observers;
     InputState inputState = NORMAL;
@@ -26,6 +26,9 @@ class Player {
     int cleanObservers();           //removes all dead observers from the vector
     void notifyObservers(Event, int = 0);      //calls notify() with the given parameters on all observers
     void notifyObservers(Event, char[][]&);
+
+    void preMove();     //called right before movement
+    void postMoveClean();    //called after movement. Handles cleaning and stuff
 
     public:
     Player(Xwindow*, int offsetX, int offsetY, int side);
@@ -45,12 +48,11 @@ class Player {
     bool incLevel(int);
 
     //turn triggers
-    void startTurn();
-    void endTurn(); 
+    void startTurn();   // executes start of turn procedures
+    void endTurn();     // executes end of turn procedures
     
     //other stuff
     bool setLevel(int);
-    void setNextBlock();
     bool setFileInput(fstream*);
     void specialAction();               //queries special action
     void pushToObservers(Observer*);

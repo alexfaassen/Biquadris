@@ -4,7 +4,7 @@
 using namespace std;
 
 void Player::initGraphicsObservers(){
-    //TODO
+    //TODO once GraphicsObserver is implemented
 }
 
 int Player::cleanObservers(){
@@ -27,6 +27,15 @@ void Player::notifyObservers(Event ev, char[][]& arr){
     for(auto p : observers){
         p->notify(ev, arr);
     }
+}
+
+void Player::preMove(){
+    notifyObservers(beforeMove);
+}
+
+void Player::postMoveClean(){
+    notifyObservers(afterMove);
+    //TODO once board is implemented
 }
 
 Player::Player(Xwindow* w, int offsetX, int offsetY, int side)
@@ -69,9 +78,35 @@ void Player::startTurn(){
 }
 
 void Player::endTurn(){
-    notifyObservers(onTurnEnd);
     setInputState(END_TURN);
+    notifyObservers(onTurnEnd);
 }
 
-bool Player::setLevel(int){
+bool Player::setLevel(int n){
+    //TODO
+}
+
+bool Player::setFileInput(fstream* stream){
+    //TODO
+}
+
+void Player::specialAction(){
+    setInputState(SA);
+}   
+
+void Player::pushToObservers(Observer* obs){
+    observers.emplace_back(obs);
+    obs->attach(this);
+}
+
+void Player::changeCurrentBlock(Block* block){
+    //TODO once board is implemented
+}
+
+string Player::printToString(){
+    //TODO
+}
+
+void Player::forceTopTile(Tile* tile){
+    //TODO once board is implemented
 }
