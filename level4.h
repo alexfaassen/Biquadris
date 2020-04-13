@@ -5,6 +5,8 @@
 class Level4 : public Level {
 	public:
 	Level4(bool customSeed, int seed, int identifier = 4, std::ifstream *file, const int playerSide, Effect *heavy, Effect *centreDrop);
+	Level4(Level &&other);
+	~Level4();
 
 	void generateEffects(); //TODO
 

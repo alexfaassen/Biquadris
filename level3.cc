@@ -3,6 +3,13 @@
 #include <ctime>
 #include <iostream>
 
+Level3::~Level3() {
+	delete heavy;
+	delete this;
+}
+
+Level3::Level3(Level &&other) : Level(other), heavy{other.heavy} { other.heavy = NULL; }
+
 Level3::Level3(bool customSeed, int seed, int identifier, ifstream *file, const int playerSide, Effect *heavy) : Level(customSeed, seed, identifier, file, playerSide), heavy{new HeavyEffect(1)} {}
 
 void Level3::generateEffects() { //TODO }

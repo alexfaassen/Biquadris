@@ -5,6 +5,8 @@
 class Level2 : public Level {
 	public:
 	Level2(bool customSeed, int seed, int identifier = 2, std::ifstream *file, const int playerSide);
+	Level2(Level &&other);
+	~Level2();
 
 	Block *CreateBlock() override;
 };
