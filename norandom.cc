@@ -8,7 +8,7 @@ void NoRandom::run(GameState &game, const int times) const override {
 		std::istream &in = game.getStream();
 		std::string s;
 		in >> s;
-		std::ifstream *file{new s};
-		game.getActivePlayer().setFileInput(file);
+		std::ifstream *newFile{new s};
+		game.getActivePlayer().setFileInput(newFile);
 	}
 }
