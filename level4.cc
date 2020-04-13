@@ -6,7 +6,6 @@
 Level4::~Level4() {
 	delete heavy;
 	delete centreDrop;
-	delete this;
 }
 
 Level4::Level4(Level &&other) : Level(other), heavy{other.heavy}, centreDrop{other.centreDrop} {

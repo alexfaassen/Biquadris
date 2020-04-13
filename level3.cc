@@ -3,10 +3,7 @@
 #include <ctime>
 #include <iostream>
 
-Level3::~Level3() {
-	delete heavy;
-	delete this;
-}
+Level3::~Level3() { delete heavy; }
 
 Level3::Level3(Level &&other) : Level(other), heavy{other.heavy} { other.heavy = NULL; }
 

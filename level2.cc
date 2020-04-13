@@ -2,7 +2,7 @@
 #include <stdlib>
 #include <ctime>
 
-Level2::~Level2() { delete this; }
+Level2::~Level2() {}
 
 Level2::Level2(Level &&other) : Level(other) {}
 
