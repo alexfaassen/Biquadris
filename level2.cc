@@ -2,7 +2,7 @@
 #include <stdlib>
 #include <ctime>
 
-Level2::Level2(bool customSeed, int seed, int identifier, ifstream *file, const int playerID) : Level(customSeed, seed, identifier, file, playerID) {}
+Level2::Level2(bool customSeed, int seed, int identifier, ifstream *file, const int playerSide) : Level(customSeed, seed, identifier, file, playerSide) {}
 
 Block *Level2::CreateBlock() {	
 	if (customSeed) {
