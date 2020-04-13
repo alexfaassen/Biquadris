@@ -4,8 +4,9 @@
 
 class HeavyEffect : public Effect {
 	int numDown;
+
 	public:
-	HeavyEffect(Player *player, bool alive = 1, int numDown = 2) : Observer(player, alive), numDown{numDown} {}
+	HeavyEffect(Player *player, bool alive, int numDown = 2) : Effect(player, alive), numDown{numDown} {}
 
 	void notify(const Event currEvent, const int linesCleared) override;
 };
