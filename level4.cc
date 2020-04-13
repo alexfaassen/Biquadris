@@ -3,15 +3,9 @@
 #include <ctime>
 #include <iostream>
 
-Level4::~Level4() {
-	delete heavy;
-	delete centreDrop;
-}
+Level4::~Level4() { delete heavy; delete centreDrop; delete file; }
 
-Level4::Level4(Level &&other) : Level(other), heavy{other.heavy}, centreDrop{other.centreDrop} {
-	other.heavy = NULL;
-	other.centreDrop = NULL;
-}
+Level4::Level4(Level &&other) : Level(other), heavy{other.heavy}, centreDrop{other.centreDrop} { other.heavy = NULL; other.centreDrop = NULL; }
 
 Level4::Level4(bool customSeed, int seed, int identifier, ifstream *file, const int playerSide, Effect *heavy, Effect *centreDrop) : Level(customSeed, seed, identifier, file, playerSide), heavy{new HeavyEffect(1)}, centreDrop{new CentreDropEffect()} {}
 

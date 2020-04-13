@@ -1,7 +1,7 @@
 #include "level0.h"
 #include <iostream>
 
-Level0::~Level0() {}
+Level0::~Level0() { delete file; }
 
 Level0::Level0(Level &&other) : Level(other) {}
 
