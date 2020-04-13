@@ -8,10 +8,10 @@ class Level {
 	int seed;
 	int identifier;
 	std::ifstream *file;
-	const int playerID;
+	const int playerSide;
 	
 	// abstract ctor
-	Level(bool customSeed = 0; int seed = 1, int identifier = 0, std::fstream *file = NULL, const int playerID) : customSeed{customSeed}, seed{seed}, identifier{identifier}, file{file}, playerID{playerID} {}
+	Level(bool customSeed = 0; int seed = 1, int identifier = 0, std::fstream *file = NULL, const int playerSide) : customSeed{customSeed}, seed{seed}, identifier{identifier}, file{file}, playerSide{playerSide} {}
 
 	public:
 
