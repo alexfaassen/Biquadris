@@ -4,8 +4,9 @@
 
 class ForceEffect : public Effect {
 	Block *newBlock;
+
 	public:
-	ForceEffect(Player *player, bool alive = 1, Block *newBlock) : Observer(player, alive), newBlock{newBlock} {}
+	ForceEffect(Player *player, bool alive, Block *newBlock) : Effect(player, alive), newBlock{newBlock} {}
 
 	void notify(const Event currEvent, const int linesCleared) override;
 };
