@@ -10,6 +10,7 @@ class Observer {
 	Observer(Player *player, bool alive = 1) : player{player}, alive{alive} {}
 
 	bool isAlive() const;
+	void attach(const Player *newPlayer);
 
 	void kill();
 
