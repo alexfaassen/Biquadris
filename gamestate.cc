@@ -10,8 +10,8 @@ void GameState::switchActive(){
 }
 
 void GameState::createPlayers(){
-    leftPlayer = Player(window, loffsetX, loffsetY);
-    leftPlayer = Player(window, roffsetX, roffsetY);
+    leftPlayer = Player(window, loffsetX, loffsetY, -1);
+    leftPlayer = Player(window, roffsetX, roffsetY, 1);
 }
 
 int GameState::cleanStreams(){
@@ -183,16 +183,6 @@ void GameState::restart(){
     createPlayers();
     activePlayer = &leftPlayer;
     nonActivePlayer = &rightPlayer;
-}
-
-int GameState::getActiveSide(){
-    if(activePlayer == &leftPlayer){
-        return -1;
-    } else if (activePlayer == &rightPlayer){
-        return 1;
-    } else {
-        return 0;
-    }
 }
 
 bool GameState::updateHighscore(int score){

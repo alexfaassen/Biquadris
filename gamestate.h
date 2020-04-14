@@ -50,9 +50,6 @@ class GameState {
     void cleanup();                     // checks for and handles end-of-turn
     void printGame();                   // prints the game to textdisplay
     void restart();                     // resets everything
-
-    // returns which side the current activePlayer is on. -1 for left and 1 for right
-    int getActiveSide();
     
     // compares score to highscore and updates highscore if needed; returns if update happened
     bool updateHighscore(int score);    
