@@ -11,7 +11,7 @@ Level3::Level3(const Level4 &other) : Level(other), heavy{other.heavy} {}
 
 Level3::Level3(bool customSeed, int seed, int identifier, ifstream *file, const int playerSide, Effect *heavy) : Level(customSeed, seed, identifier, file, playerSide), heavy{new HeavyEffect(1)} {}
 
-void Level3::generateEffects() { //TODO }
+void Level3::generateEffects(std::vector<Observer*> &vec) const override { vec.emplace_back(heavy); }
 
 Block *Level3::CreateBlock() {	
 	if (file) {

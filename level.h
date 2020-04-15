@@ -1,6 +1,8 @@
 #ifndef LEVEL_H
 #define LEVEL_H
 #include <fstream>
+#include <vector>
+#include "observer.h"
 #include "block.h"
 
 class Level {
@@ -21,6 +23,7 @@ class Level {
 	int getIdentifier() const;
 	void updateSeed(const int newSeed);
 
+	virtual void generateEffects(std::vector<Observer*> &vec) const = 0;
 	virtual Block *CreateBlock() = 0;
 };
 

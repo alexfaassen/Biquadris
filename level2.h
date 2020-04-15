@@ -8,6 +8,7 @@ class Level2 : public Level {
 	Level2(const Level &other);
 	~Level2();
 
+	void generateEffects(std::vector<Observer*> &vec) const override {}
 	Block *CreateBlock() override;
 };
 

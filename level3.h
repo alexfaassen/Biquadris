@@ -9,8 +9,7 @@ class Level3 : public Level {
 	Level3(const Level4 &other);
 	~Level3();
 
-	void generateEffects(); //TODO
-
+	void generateEffects(std::vector<Observer*> &vec) const override;
 	Block *CreateBlock() override;
 };
 
