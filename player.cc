@@ -1,5 +1,7 @@
 #include "player.h"
 #include "observer.h"
+#include "level.h"
+#include <sstream>
 #include <iostream>
 #include <array>
 
@@ -11,9 +13,9 @@ void Player::initGraphicsObservers(){
 
 int Player::cleanObservers(){
     for(int i = 0; i < observers.size(); i++){
-        if(!observers.get(i)->isAlive()){
-            delete observers.get(i);
-            observers.erase(i);
+        if(!observers.at(i)->isAlive()){
+            delete observers.at(i);
+            observers.erase(observers.begin()+i);
             i--;
         }
     }
@@ -40,10 +42,14 @@ void Player::postMoveClean(){
     //TODO once board is implemented
 }
 
-Player::Player(Xwindow* w, int offsetX, int offsetY, int side)
-: window{PlayerWindow(w, offsetX, offsetY)}, side{side} {
+Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptfile, int startlevel)
+: window{PlayerWindow(w, offsetX, offsetY)}, side{side}, scriptFile {scriptfile} {
     if(window.hasWindow()){
         initGraphicsObservers();
+    }
+    if(!setLevel(startlevel)){
+        cout << "Error: invalid startlevel. Using Level 0 instead" << endl;
+        setLevel(0);
     }
 }
 
@@ -76,7 +82,7 @@ void Player::drop(bool isInput = false){
     board.dropCurrent();
 }
 
-bool Player::incLevel(int n){
+int Player::incLevel(int n){
     if (level) {
 	    return setLevel(level->getIdentifier() + n);
     } else {
@@ -164,13 +170,13 @@ void Player::changeCurrentBlock(Block* block){
     board.changeCurrent(block);
 }
 
-string charArrToString(const char[][]& arr){
+string charArrToString(const char[18][11]& arr){
     stringstream ss;
     for(auto y : arr){
         for(auto x : y){
             ss << x;
         }
-        ss < '\n';
+        ss << '\n';
     }
     return ss.str();
 }
@@ -179,13 +185,13 @@ string Player::printToString(){
     stringstream ss;
     ss << "Level:" << setw(5) << level->getIdentifier() << '\n';
     ss << "Score:" << setw(5) << score << '\n';
-    ss < "-----------" << '\n';
-    char[][] boardarr = board.renderCharArray();
+    ss << "-----------" << '\n';
+    char[18][11] boardarr = board.renderCharArray();
     notifyObservers(beforeTextDisplay, boardarr);
     ss << charArrToString(boardarr);
-    ss < "-----------" << '\n';
-    ss < "Next:      " << '\n';
-    ss < board.printNextBlock();
+    ss << "-----------" << '\n';
+    ss << "Next:      " << '\n';
+    ss << board.printNextBlock();
     return ss.str();
 }
 

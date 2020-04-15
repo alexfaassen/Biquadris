@@ -21,6 +21,7 @@ class Player {
     PlayerWindow window;
     std::vector<Observer*> observers;
     InputState inputState = NORMAL;
+    std::string scriptFile;
 
     void initGraphicsObservers();   //creates and attaches all of the graphicObserver objects
     int cleanObservers();           //removes all dead observers from the vector
@@ -31,7 +32,7 @@ class Player {
     void postMoveClean();    //called after movement. Handles cleaning and stuff
 
     public:
-    Player(Xwindow*, int offsetX, int offsetY, int side);
+    Player(Xwindow*, int offsetX, int offsetY, int side, std::string scriptfile, int startlevel);
     ~Player();
 
     //accessors
@@ -40,6 +41,8 @@ class Player {
     int getScore() {return score;};
     int incScore(int n) {score += n; return score;};
     void setInputState(InputState state) {inputState = state;};
+    std::string getScriptFile() {return scriptFile;};
+    void setScriptFile(std::string s) {scriptFile = s;};
 
     //movement commands
     int moveBlock(Direction, int, bool = false);
@@ -54,7 +57,7 @@ class Player {
     
     //other stuff
     bool setLevel(int);
-    bool setFileInput(fstream*);
+    bool setFileInput(std::ifstream*);
     void specialAction();               //queries special action
     void pushToObservers(Observer*);
     void changeCurrentBlock(Block*);
