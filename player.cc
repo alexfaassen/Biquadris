@@ -27,7 +27,7 @@ void Player::notifyObservers(Event ev, int n = 0){
     }
 }
 
-void Player::notifyObservers(Event ev, char[][]& arr){
+void Player::notifyObservers(Event ev, vector<vector<char>>& arr){
     for(auto p : observers){
         p->notify(ev, arr);
     }
@@ -170,7 +170,7 @@ void Player::changeCurrentBlock(Block* block){
     board.changeCurrent(block);
 }
 
-string charArrToString(const char[18][11]& arr){
+string charArrToString(const vector<vector<char>>& arr){
     stringstream ss;
     for(auto y : arr){
         for(auto x : y){
@@ -186,7 +186,7 @@ string Player::printToString(){
     ss << "Level:" << setw(5) << level->getIdentifier() << '\n';
     ss << "Score:" << setw(5) << score << '\n';
     ss << "-----------" << '\n';
-    char[18][11] boardarr = board.renderCharArray();
+    vector<vector<char>>& boardarr = board.renderCharArray();
     notifyObservers(beforeTextDisplay, boardarr);
     ss << charArrToString(boardarr);
     ss << "-----------" << '\n';
