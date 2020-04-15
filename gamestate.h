@@ -11,7 +11,7 @@
 
 class GameState {
     private:
-    int highscore;
+    int highscore = 0;
     Player leftPlayer;
     Player rightPlayer;
     Player* activePlayer = nullptr;
@@ -29,6 +29,7 @@ class GameState {
     public:
     //constructors and destrutors
     GameState(bool hasWindow = true);
+    Gamestate(bool hasWindow, std::string scriptfile1, std::string scriptfile2, int startlevel);
     ~GameState();
 
     //accessors

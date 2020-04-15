@@ -38,11 +38,12 @@ void Player::postMoveClean(){
     //TODO once board is implemented
 }
 
-Player::Player(Xwindow* w, int offsetX, int offsetY, int side)
-: window{PlayerWindow(w, offsetX, offsetY)}, side{side} {
+Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptfile, int startlevel)
+: window{PlayerWindow(w, offsetX, offsetY)}, side{side}, scriptFile {scriptfile} {
     if(window.hasWindow()){
         initGraphicsObservers();
     }
+    setLevel(startlevel);
 }
 
 Player::~Player(){

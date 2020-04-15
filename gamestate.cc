@@ -23,14 +23,20 @@ int GameState::cleanStreams(){
     return n;
 }
 
-GameState::GameState(bool hasWindow)
-: highscore{0} {
+GameState::GameState(bool hasWindow) {
     if(hasWindow){
         window = new Xwindow();
     }
     createPlayers();
     activePlayer = &leftPlayer;
     nonActivePlayer = &rightPlayer;
+}
+
+GameState::Gamestate(bool hasWindow, string scriptfile1, string scriptfile2, int startlevel){
+    if(hasWindow){
+        window = new Xwindow();
+    }
+
 }
 
 GameState::~GameState(){

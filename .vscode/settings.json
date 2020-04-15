@@ -5,6 +5,7 @@
         "iterator": "cpp",
         "iostream": "cpp",
         "memory": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "filesystem": "cpp"
     }
 }
