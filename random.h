@@ -4,7 +4,7 @@
 
 class Random : public Command {
 	public:
-	Random(const std::string name = "random", bool needClean) : Command(name, needClean) {}
+	Random(const std::string name = "random", bool needClean = 1) : Command(name, needClean) {}
 	private:
 	void run(GameState &game, const int times = 1) const override;
 };
