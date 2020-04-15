@@ -110,15 +110,15 @@ void Player::endTurn(){
 bool Player::setLevel(int n){
     if (!level) {
 	    if (n == 0) {
-		    level = new Level0();
+		    level = new Level0(side);
 	    } else if (n == 1) {
-        	    level = new Level1();
+        	    level = new Level1(side);
 	    } else if (n == 2) {
-		    level = new Level2();
+		    level = new Level2(side);
 	    } else if (n == 3) {
-	            level = new Level3();
+	            level = new Level3(side);
 	    } else if (n == 4) {
-		    level = new Level4();
+		    level = new Level4(side);
 	    } else {
 	 	    // Error, Invalid Input
 		    return 0;
