@@ -57,20 +57,26 @@ int Player::moveBlock(Direction dir, int times, bool isInput = false){
 }
 
 int Player::rotateClockWise(int times, bool isInput = false){
-    board.clockwiseCurrent(times);
+    for (int i = 0; i < times; ++i) {
+	    if (!board.clockwiseCurrent()) return i + 1;
+    }
+    return times;
 }
 
 int Player::rotateCounterClockwise(int times, bool isInput = false){
-    board.counterClockwiseCurrent(times);
+    for (int i = 0; i < times; ++i) {
+	    if (!board.counterClockwiseCurrent()) return i + 1;
+    }
+    return times;
 }
 
-int Player::drop(bool isInput = false){
+void Player::drop(bool isInput = false){
     board.dropCurrent();
 }
 
 bool Player::incLevel(int n){
     if (level) {
-	    return setLevel(level->getLevel() + n);
+	    return setLevel(level->getIdentifier() + n);
     } else {
 	    // Error, level not set
 	    return 0;
@@ -88,30 +94,47 @@ void Player::endTurn(){
 }
 
 bool Player::setLevel(int n){
-    if (n < 0 || n > 4 || n == level->getLevel()) {
-            // Error, Invalid Input
-	    return 0;
-    } else {
-	    Level *temp = level;
+    if (!level) {
 	    if (n == 0) {
-		    level = new Level0(temp);
+		    level = new Level0();
 	    } else if (n == 1) {
-		    level = new Level1(temp);
+        	    level = new Level1();
 	    } else if (n == 2) {
-		    level = new Level2(temp);
+		    level = new Level2();
 	    } else if (n == 3) {
-		    level = new Level3(temp);
+	            level = new Level3();
 	    } else if (n == 4) {
-		    level = new Level4(temp);
-	    }
-	    delete temp;
-	    temp = NULL;
+		    level = new Level4();
+	    } else {
+	 	    // Error, Invalid Input
+		    return 0;
+    	    }
+     } else {
+	     if (n < 0 || n > 4 || n == level->getIdentifier()) {
+		     // Error, Invalid Input
+	             return 0;
+ 	     } else {
+		     Level *temp = level;
+	     if (n == 0) {
+		     level = new Level0(temp);
+	     } else if (n == 1) {
+	             level = new Level1(temp);
+	     } else if (n == 2) {
+	      	     level = new Level2(temp);
+	     } else if (n == 3) {
+		     level = new Level3(temp);
+	     } else if (n == 4) {
+		     level = new Level4(temp);
+	     }
+             delete temp;
+	     temp = NULL;
+	     }
     }
     return 1;
 }
 
 bool Player::setFileInput(ifstream* stream){
-    return level->setFile(stream);
+    return level ? level->setFile(stream) : 0;
 }
 
 void Player::specialAction(){
