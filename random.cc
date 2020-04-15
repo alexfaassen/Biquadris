@@ -3,5 +3,5 @@
 using namespace std;
 
 void Random::run(GameState &game, const int times) const override {
-	if (game.getActivePlayer().getLevel() == 3 || game.getActivePlayer().getLevel() == 4) game.getActivePlayer().setFileInput(NULL);
+	if (game.getActivePlayer().isLevel() == 3 || game.getActivePlayer().isLevel() == 4) game.getActivePlayer().setFileInput(NULL);
 }

@@ -36,6 +36,7 @@ class Player {
     ~Player();
 
     //accessors
+    int isLevel() {return level ? level->getIdentifier() : 0;};
     int getSide() {return side;};
     int getScore() {return score;};
     int incScore(int n) {score += n; return score;};

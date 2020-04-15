@@ -4,7 +4,7 @@
 
 class Heavy : public Command {
 	public:
-	Heavy(const std::string name = "heavy", bool needClean) : Command(name, needClean) {}
+	Heavy(const std::string name = "heavy", bool needClean = 1) : Command(name, needClean) {}
 	private:
 	void run(GameState &game, const int times = 1) const override;
 };
