@@ -9,7 +9,7 @@ Level3::Level3(const Level &other) : Level(other), heavy{new HeavyEffect(1)} {}
 
 Level3::Level3(const Level4 &other) : Level(other), heavy{other.heavy} {}
 
-Level3::Level3(bool customSeed, int seed, int identifier, ifstream *file, const int playerSide, Effect *heavy) : Level(customSeed, seed, identifier, file, playerSide), heavy{new HeavyEffect(1)} {}
+Level3::Level3(bool customSeed, int seed, ifstream *file, const int playerSide, Effect *heavy, int identifier) : Level(playerSide, identifier, customSeed, seed, file), heavy{new HeavyEffect(1)} {}
 
 void Level3::generateEffects(std::vector<Observer*> &vec) const override { vec.emplace_back(heavy); }
 
