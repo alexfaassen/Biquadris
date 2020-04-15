@@ -32,7 +32,7 @@ class Player {
     void postMoveClean();    //called after movement. Handles cleaning and stuff
 
     public:
-    Player(Xwindow*, int offsetX, int offsetY, int side, string scriptfile, int startlevel);
+    Player(Xwindow*, int offsetX, int offsetY, int side, std::string scriptfile, int startlevel);
     ~Player();
 
     //accessors
@@ -47,7 +47,7 @@ class Player {
     int moveBlock(Direction, int, bool = false);
     int rotateClockWise(int, bool = false);
     int rotateCounterClockwise(int, bool = false);
-    int drop(bool = false);
+    void drop(bool = false);
     int incLevel(int);
 
     //turn triggers
@@ -56,7 +56,7 @@ class Player {
     
     //other stuff
     bool setLevel(int);
-    bool setFileInput(fstream*);
+    bool setFileInput(std::ifstream*);
     void specialAction();               //queries special action
     void pushToObservers(Observer*);
     void changeCurrentBlock(Block*);

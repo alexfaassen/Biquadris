@@ -10,8 +10,8 @@ void GameState::switchActive(){
 }
 
 void GameState::createPlayers(){
-    leftPlayer = Player(window, loffsetX, loffsetY, -1);
-    leftPlayer = Player(window, roffsetX, roffsetY, 1);
+    leftPlayer = Player(window, loffsetX, loffsetY, -1, scriptfile1, startlevel);
+    rightPlayer = Player(window, roffsetX, roffsetY, 1, scriptfile2, startlevel);
 }
 
 int GameState::cleanStreams(){
@@ -23,20 +23,14 @@ int GameState::cleanStreams(){
     return n;
 }
 
-GameState::GameState(bool hasWindow) {
+GameState::Gamestate(bool hasWindow, string scriptfile1, string scriptfile2, int startlevel)
+: scriptFile1{scriptfile1}, scriptFile2{scriptFile2}, startlevel{startlevel} 
     if(hasWindow){
         window = new Xwindow();
     }
     createPlayers();
     activePlayer = &leftPlayer;
     nonActivePlayer = &rightPlayer;
-}
-
-GameState::Gamestate(bool hasWindow, string scriptfile1, string scriptfile2, int startlevel){
-    if(hasWindow){
-        window = new Xwindow();
-    }
-
 }
 
 GameState::~GameState(){
