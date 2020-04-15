@@ -129,8 +129,15 @@ bool Player::setLevel(int n){
     return 1;
 }
 
-bool Player::setFileInput(fstream* stream){
-    level->setFile(stream);
+bool Player::setFileInput(ifstream* stream){
+    if (level) {
+	    level->setFile(stream);
+	    return 1;
+    } else {
+	    // Error, level not set
+	    // TODO
+	    return 0;
+    }
 }
 
 void Player::specialAction(){
