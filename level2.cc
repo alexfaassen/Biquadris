@@ -2,6 +2,10 @@
 #include <stdlib>
 #include <ctime>
 
+Level2::~Level2() { delete file; }
+
+Level2::Level2(const Level &other) : Level(other) {}
+
 Level2::Level2(bool customSeed, int seed, int identifier, ifstream *file, const int playerSide) : Level(customSeed, seed, identifier, file, playerSide) {}
 
 Block *Level2::CreateBlock() {	
