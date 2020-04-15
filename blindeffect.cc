@@ -1,7 +1,7 @@
 #include "blindeffect.h"
 
 void BlindEffect::notify(const Event currEvent, vector<vector<char>> &boardPrint) override {
-	if (currEvent != onTurnEnd) {
+	if (currEvent != beforeTextDisplay) {
 		bool blindRow = 0;
 		for (int r = 3; r < 18; ++c) {
 			if (c >= 5 && c < 15) {
