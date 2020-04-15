@@ -1,5 +1,7 @@
 #include "player.h"
 #include "observer.h"
+#include <iostream>
+#include <array>
 
 using namespace std;
 
@@ -81,6 +83,18 @@ bool Player::incLevel(int n){
 	    // Error, level not set
 	    return 0;
     }
+    int successes = 0;
+    if(n < 0){
+        n *= -1;
+        for(int i = 0; i < n; i++){
+            successes += setLevel(level->getIdentifier() - 1);
+        }
+    } else if (n > 0){
+        for(int i = 0; i < n; i++){
+            successes += setLevel(level->getIdentifier() + 1);
+        }
+    }
+    return successes;
 }
 
 void Player::startTurn(){
@@ -150,8 +164,29 @@ void Player::changeCurrentBlock(Block* block){
     board.changeCurrent(block);
 }
 
+string charArrToString(const char[][]& arr){
+    stringstream ss;
+    for(auto y : arr){
+        for(auto x : y){
+            ss << x;
+        }
+        ss < '\n';
+    }
+    return ss.str();
+}
+
 string Player::printToString(){
-    //TODO
+    stringstream ss;
+    ss << "Level:" << setw(5) << level->getIdentifier() << '\n';
+    ss << "Score:" << setw(5) << score << '\n';
+    ss < "-----------" << '\n';
+    char[][] boardarr = board.renderCharArray();
+    notifyObservers(beforeTextDisplay, boardarr);
+    ss << charArrToString(boardarr);
+    ss < "-----------" << '\n';
+    ss < "Next:      " << '\n';
+    ss < board.printNextBlock();
+    return ss.str();
 }
 
 void Player::forceTopTile(Tile* tile){
