@@ -69,7 +69,39 @@ int Player::drop(bool isInput = false){
 }
 
 bool Player::incLevel(int n){
-    //TODO
+       int currlvl = level->getLevel();
+       int newlvl = currlvl + n;
+       if (newlvl == currlvl) {
+	       return 0;
+       } else if (newlvl >= 4) {
+	       if (currlvl == 4) return 0;
+	       Level *temp{level};
+	       level = new Level4(level);
+	       delete temp;
+	       temp = NULL;
+       } else if (newlvl <= 0) {
+	       if (currlvl == 0) return 0;
+	       Level *temp{level};
+	       level = new Level0(level);
+	       delete temp;
+	       temp = NULL;
+       } else if (newlvl == 1) {
+	       Level *temp{level};
+	       level = new Level1(level);
+	       delete temp;
+	       temp = NULL;
+       } else if (newlvl == 2) {
+	       Level *temp{level};
+	       level = new Level2{level};
+	       delete temp;
+	       temp = NULL;
+       } else if (newlvl == 3) {
+	       Level *temp{level};
+	       level = new Level3{level};
+	       delete temp;
+	       temp = NULL;
+       }
+       return 1;
 }
 
 void Player::startTurn(){
@@ -108,5 +140,5 @@ string Player::printToString(){
 }
 
 void Player::forceTopTile(Tile* tile){
-    //TODO once board is implemented
+	board->forceTopColumnTile(tile);
 }
