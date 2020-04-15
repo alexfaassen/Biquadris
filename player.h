@@ -35,6 +35,7 @@ class Player {
     ~Player();
 
     //accessors
+    int isLevel() {return level ? level->getIdentifier() : 0;};
     int getSide() {return side;};
     int getScore() {return score;};
     int incScore(int n) {score += n; return score;};
@@ -44,7 +45,7 @@ class Player {
     int moveBlock(Direction, int, bool = false);
     int rotateClockWise(int, bool = false);
     int rotateCounterClockwise(int, bool = false);
-    int drop(bool = false);
+    void drop(bool = false);
     int incLevel(int);
 
     //turn triggers
