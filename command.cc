@@ -2,10 +2,17 @@
 
 std::string Command::getName() const { return name; }
 
-int Command::longestSubstring(String playerInput) const {
+bool Command::hasSubstring(const string playerInput) const { return playerInput == name.substr(0, playerInput.size()); }
+
+int Command::longestSubstring(const string playerInput) const {
 	for (int i = 0; i < name.size(); --i) {
 		if (name.compare(0, i, playerInput)) return i + 1;
 	}
+}
+
+void Command::execute(GameState &game, const int times) const {	
+	run(game, times);
+	if (needClean) game.cleanup();
 }
 
 //test

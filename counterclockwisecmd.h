@@ -4,8 +4,9 @@
 
 class CounterClockwiseCmd : public Command {
 	public:
-	CounterClockwiseCmd() : {}
-	void run(Player *player, const int times) const override;
+	CounterClockwiseCmd(const std::string name = "counterclockwise", bool needClean) : Command(name, needClean) {}
+	private:
+	void run(GameState &game, const int times = 1) const override;
 };
 
 #endif

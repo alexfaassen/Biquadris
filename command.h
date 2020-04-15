@@ -1,14 +1,24 @@
 #ifndef CMD_H
 #define CMD_H
 #include <string>
-#include "player.h"
+#include "gamestate.h"
 
 class Command {
 	std::string name;
+	bool needClean;
+
+	// abstract ctor
+	Command(const std::string name, const bool needClean = 1) : name{name}, needClean{needClean} {}
+
 	public:
 	std::string getName() const;
-	int longestSubstring(string playerInput) const;
-	virtual void run(Player *player, const int times) const = 0;
+
+	int longestSubstring(const string playerInput) const; // returns length of longest matching substring of name wtih playerinput
+	bool hasSubstring(const string playerInput) const; // returns whether playerInput is a substring
+
+	void execute(GameState &game, const int times) const;
+	private:
+	virtual void run(GameState &game, const int times = 1) const = 0;
 };
 
 #endif

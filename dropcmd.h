@@ -4,8 +4,9 @@
 
 class DropCmd : public Command {
 	public:
-	DropCmd() : {}
-	void run(Player *player, const int times = 1) const override;
+	DropCmd(const std::string name = "drop", bool needClean) : Command(name, needClean) {}
+	private:
+	void run(GameState &game, const int times = 1) const override;
 };
 
 #endif
