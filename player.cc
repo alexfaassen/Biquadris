@@ -75,7 +75,10 @@ bool Player::incLevel(int n){
 	    return 0;
     } else if (newlvl >= 4) {
 	    if (currlvl == 4) return 0;
-	    Level4 *temp{level};
+	    Level *temp{level};
+	    level = new Level4(temp);
+	    delete temp;
+	    temp = NULL;
     } else if (newlvl <= 0) {
             if (currlvl == 0) return 0;
             Level *temp{level};
