@@ -6,6 +6,7 @@ class Level3 : public Level {
 	public:
 	Level3(bool customSeed, int seed, int identifier = 3, std::ifstream *file, const int playerID, Effect *heavy);
 	Level3(const Level &other);
+	Level3(const Level4 &other);
 	~Level3();
 
 	void generateEffects(); //TODO
