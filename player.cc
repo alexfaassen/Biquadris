@@ -69,39 +69,33 @@ int Player::drop(bool isInput = false){
 }
 
 bool Player::incLevel(int n){
-       int currlvl = level->getLevel();
-       int newlvl = currlvl + n;
-       if (newlvl == currlvl) {
-	       return 0;
-       } else if (newlvl >= 4) {
-	       if (currlvl == 4) return 0;
-	       Level *temp{level};
-	       level = new Level4(level);
-	       delete temp;
-	       temp = NULL;
-       } else if (newlvl <= 0) {
-	       if (currlvl == 0) return 0;
-	       Level *temp{level};
-	       level = new Level0(level);
-	       delete temp;
-	       temp = NULL;
-       } else if (newlvl == 1) {
-	       Level *temp{level};
-	       level = new Level1(level);
-	       delete temp;
-	       temp = NULL;
-       } else if (newlvl == 2) {
-	       Level *temp{level};
-	       level = new Level2{level};
-	       delete temp;
-	       temp = NULL;
-       } else if (newlvl == 3) {
-	       Level *temp{level};
-	       level = new Level3{level};
-	       delete temp;
-	       temp = NULL;
-       }
-       return 1;
+    int currlvl = level->getLevel();
+    int newlvl = currlvl + n;
+    if (newlvl == currlvl) {
+	    return 0;
+    } else if (newlvl >= 4) {
+	    if (currlvl == 4) return 0;
+	    Level4 *temp{level};
+    } else if (newlvl <= 0) {
+            if (currlvl == 0) return 0;
+            Level *temp{level};
+    } else if (newlvl == 1) {
+            Level *temp{level};
+            level = new Level1(level);
+            delete temp;
+            temp = NULL;
+    } else if (newlvl == 2) {
+            Level *temp{level};
+            level = new Level2{level};
+            delete temp;
+            temp = NULL;
+    } else if (newlvl == 3) {
+            Level *temp{level};
+            level = new Level3{level};
+            delete temp;
+            temp = NULL;
+    }
+    return 1;
 }
 
 void Player::startTurn(){
@@ -119,7 +113,7 @@ bool Player::setLevel(int n){
 }
 
 bool Player::setFileInput(fstream* stream){
-    //TODO
+    level->setFile(stream);
 }
 
 void Player::specialAction(){
