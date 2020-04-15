@@ -7,9 +7,10 @@ class Observer {
 	bool alive;
 
 	public:
-	Observer(Player *player, bool alive = 1) : player{player}, alive{alive} {}
+	Observer(Player *player = NULL, bool alive = 1) : player{player}, alive{alive} {}
 
 	bool isAlive() const;
+	void attach(const Player *newPlayer);
 
 	void kill();
 
