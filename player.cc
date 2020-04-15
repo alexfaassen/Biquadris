@@ -136,15 +136,15 @@ bool Player::setLevel(int n){
  	     } else {
 		     Level *temp = level;
 	     if (n == 0) {
-		     level = new Level0(temp);
+		     level = new Level0(*temp);
 	     } else if (n == 1) {
-	             level = new Level1(temp);
+	             level = new Level1(*temp);
 	     } else if (n == 2) {
-	      	     level = new Level2(temp);
+	      	     level = new Level2(*temp);
 	     } else if (n == 3) {
-		     level = new Level3(temp);
+		     level = new Level3(*temp);
 	     } else if (n == 4) {
-		     level = new Level4(temp);
+		     level = new Level4(*temp);
 	     }
              delete temp;
 	     temp = NULL;
