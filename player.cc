@@ -69,36 +69,13 @@ int Player::drop(bool isInput = false){
 }
 
 bool Player::incLevel(int n){
-    int currlvl = level->getLevel();
-    int newlvl = currlvl + n;
-    if (newlvl == currlvl) {
+    if (level) {
+	    return setLevel(level->getLevel() + n);
+    } else {
+	    // Error, level not set
+	    // TODO
 	    return 0;
-    } else if (newlvl >= 4) {
-	    if (currlvl == 4) return 0;
-	    Level *temp{level};
-	    level = new Level4(temp);
-	    delete temp;
-	    temp = NULL;
-    } else if (newlvl <= 0) {
-            if (currlvl == 0) return 0;
-            Level *temp{level};
-    } else if (newlvl == 1) {
-            Level *temp{level};
-            level = new Level1(level);
-            delete temp;
-            temp = NULL;
-    } else if (newlvl == 2) {
-            Level *temp{level};
-            level = new Level2{level};
-            delete temp;
-            temp = NULL;
-    } else if (newlvl == 3) {
-            Level *temp{level};
-            level = new Level3{level};
-            delete temp;
-            temp = NULL;
     }
-    return 1;
 }
 
 void Player::startTurn(){
@@ -112,7 +89,44 @@ void Player::endTurn(){
 }
 
 bool Player::setLevel(int n){
-    //TODO
+    if (!level) {
+	    if (n == 0) {
+		    level = new Level0();
+	    } else if (n == 1) {
+		    level = new Level1();
+	    } else if (n == 2) {
+		    level = new Level2();
+	    } else if (n == 3) {
+		    level = new Level3();
+	    } else if (n == 4) {
+		    level = new Level4();
+	    } else {
+		    // Error, Invalid Input
+		    // TODO
+		    return 0;
+    } else {
+	    if (n < 0 || n > 4 || n == level->getLevel()) {
+		    // Error, Invalid Input
+		    // TODO
+		    return 0;
+	    } else {
+		    Level *temp = level;
+		    if (n == 0) {
+			    level = new Level0(temp);
+		    } else if (n == 1) {
+			    level = new Level1(temp);
+		    } else if (n == 2) {
+			    level = new Level2(temp);
+		    } else if (n == 3) {
+			    level = new Level3(temp);
+		    } else if (n == 4) {
+			    level = new Level4(temp);
+		    }
+		    delete temp;
+		    temp = NULL;
+	    }
+    }
+    return 1;
 }
 
 bool Player::setFileInput(fstream* stream){
