@@ -4,7 +4,7 @@
 
 class Level3 : public Level {
 	public:
-	Level3(bool customSeed = 0, int seed = 1, int identifier = 3, std::ifstream *file = NULL, const int playerID, Effect *heavy);
+	Level3(bool customSeed, int seed, int identifier = 3, std::ifstream *file, const int playerID, Effect *heavy);
 	Level3(const Level &other);
 	~Level3();
 
