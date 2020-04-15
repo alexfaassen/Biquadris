@@ -3,7 +3,7 @@
 #include "observer.h"
 
 class Effect : public Observer {
-	private:
+	public:
 	Effect(Player *player, bool alive) : Observer(player, alive) {}
 };
 
