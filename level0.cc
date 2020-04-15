@@ -5,7 +5,7 @@ Level0::~Level0() { delete file; }
 
 Level0::Level0(const Level &other) : Level(other) {}
 
-Level0::Level0(bool customSeed, int seed, std::ifstream *file, const int playerSide, int identifier) : Level(playerSide, identifier, customSeed, seed, file) {
+Level0::Level0(const int playerSide, bool customSeed, int seed, std::ifstream *file, int identifier) : Level(playerSide, identifier, customSeed, seed, file) {
 	if (playerSide == 1) {
 		file{new biquadris_sequence2.txt};
 	} else {
