@@ -70,14 +70,24 @@ int Player::drop(bool isInput = false){
     //TODO once board is implemented
 }
 
-bool Player::incLevel(int n){
-    if (level) {
-	    return setLevel(level->getLevel() + n);
-    } else {
-	    // Error, level not set
+int Player::incLevel(int n){
+    if(!level){
+        // Error, level not set
 	    // TODO
 	    return 0;
     }
+    int successes = 0;
+    if(n < 0){
+        n *= -1;
+        for(int i = 0; i < n; i++){
+            successes += setLevel(level->getIdentifier() - 1);
+        }
+    } else if (n > 0){
+        for(int i = 0; i < n; i++){
+            successes += setLevel(level->getIdentifier() + 1);
+        }
+    }
+    return successes;
 }
 
 void Player::startTurn(){

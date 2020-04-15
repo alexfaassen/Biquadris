@@ -45,7 +45,7 @@ class Player {
     int rotateClockWise(int, bool = false);
     int rotateCounterClockwise(int, bool = false);
     int drop(bool = false);
-    bool incLevel(int);
+    int incLevel(int);
 
     //turn triggers
     void startTurn();   // executes start of turn procedures
