@@ -5,7 +5,7 @@
 
 Level3::~Level3() { delete heavy; delete file; }
 
-Level3::Level3(Level &&other) : Level(other), heavy{other.heavy} { other.heavy = NULL; }
+Level3::Level3(const Level &other) : Level(other), heavy{new HeavyEffect(1)} {}
 
 Level3::Level3(bool customSeed, int seed, int identifier, ifstream *file, const int playerSide, Effect *heavy) : Level(customSeed, seed, identifier, file, playerSide), heavy{new HeavyEffect(1)} {}
 

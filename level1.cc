@@ -4,7 +4,7 @@
 
 Level1::~Level1() { delete file; }
 
-Level1::Level1(Level &&other) : Level(other) {}
+Level1::Level1(const Level &other) : Level(other) {}
 
 Level1::Level1(bool customSeed, int seed, int identifier, ifstream *file, const int playerSide) : Level(customSeed, seed, identifier, file, playerSide) {}
 
