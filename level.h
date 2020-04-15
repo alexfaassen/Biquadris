@@ -12,11 +12,10 @@ class Level {
 	std::ifstream *file;
 	const int playerSide;
 	
+	public:
 	// abstract ctor
 	Level(const int playerSide, int identifier, bool customSeed = 0, int seed = 1, std::fstream *file = NULL) : customSeed{customSeed}, seed{seed}, identifier{identifier}, file{file}, playerSide{playerSide} {}
 	Level(const Level &other) : customSeed{other.customSeed}, seed{other.seed}, identifier{other.identifier}, file{other.file}, playerSide{other.playerSide} {}
-
-	public:
 	virtual ~Level();
 
 	// getters/setters
