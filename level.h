@@ -21,7 +21,7 @@ class Level {
 
 	// getters/setters
 	int getIdentifier() const;
-	void setFile(std::ifstream *newFile);
+	bool setFile(std::ifstream *newFile);
 	void updateSeed(const int newSeed);
 
 	virtual void generateEffects(std::vector<Observer*> &vec) const = 0;
