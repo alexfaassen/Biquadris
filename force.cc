@@ -6,5 +6,5 @@ void Force::run(GameState &game, const int times) const override {
 	std::istream &in = game.getStream();
 	char b;
 	in >> b;
-	game.getNAP().pushToObservers(new ForceEffect(new Block(b), game.getActivePlayer().getLevel()));
+	game.getNAP().pushToObservers(new ForceEffect(new Block(b), game.getActivePlayer().isLevel()));
 }

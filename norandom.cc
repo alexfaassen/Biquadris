@@ -4,7 +4,8 @@
 #include <sstream>
 
 void NoRandom::run(GameState &game, const int times) const override {
-	if (player.getLevel() == 3 || player.getLevel() == 4) {
+	Player &player = game.getActivePlayer();
+	if (player.isLevel() == 3 || player.isLevel() == 4) {
 		std::istream &in = game.getStream();
 		std::string s;
 		in >> s;
