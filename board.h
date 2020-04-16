@@ -4,6 +4,7 @@
 #include <string>
 #include "block.h"
 #include "tile.h"
+#include "direction.h"
 
 class Board {
 	Block *currentBlock;
@@ -15,16 +16,14 @@ class Board {
 	int eotClean(int *score);
 	void changeCurrent(Block *cur);
 	void setNext(Block *nex);
-	int moveCurrent(Direction, int amount, bool );
+	int moveCurrent(Direction, int amount);
 	void clockwiseCurrent();
-	void counterclockwiseCurrent();
+	void counterClockwiseCurrent();
 	void dropCurrent();
 	bool isBlocked(int x, int y);
-	std::vector<std::vector<char>>& renderCharArray();
+	std::vector<std::vector<char>> renderCharArray();
 	void forceTopColumnTile(Tile *colTile);
-	std::string printNextBlock(Block *block); 
-}
+	std::string printNextBlock();
+};
 
 #endif
-
-

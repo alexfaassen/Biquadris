@@ -4,6 +4,7 @@
 
 using namespace std;
 
+//TODO: needs some rewriting
 int Board::eotClean(int *score, int *level) {
 	int rowsRemoved = 0;
 	bool fullRow = true;
@@ -40,27 +41,29 @@ int Board::eotClean(int *score, int *level) {
 	return rowsRemoved;
 }
 
+//TODO: needs some rewriting
 void Board::changeCurrent(Block *cur) {
 	int minX = 11, minY = 15;
 	for(int i = 0; i < 4; i++) {
 		if(cur.tiles[i].getX() < minX) minX = cur.tiles[i].getX();
 		if(cur.tiles[i].getY() < minY) minY = cur.tiles[i].getX();
 	}
-	if(cur.type == 'i')cur.iBlock(minX, minY);
-	else if(cur.type == 'j')cur.jBlock(minX, minY);
-	else if(cur.type == 'l')cur.lBlock(minX, minY);
-	else if(cur.type == 'o')cur.oBlock(minX, minY);
-	else if(cur.type == 's')cur.sBlock(minX, minY);
-	else if(cur.type == 'z')cur.zBlock(minX, minY);
-	else if(cur.type == 't')cur.tBlock(minX, minY);	
+	if(cur->getType() == 'i') cur->iBlock(minX, minY);
+	else if(cur->getType() == 'j') cur->jBlock(minX, minY);
+	else if(cur->getType() == 'l') cur->lBlock(minX, minY);
+	else if(cur->getType() == 'o') cur->oBlock(minX, minY);
+	else if(cur->getType() == 's') cur->sBlock(minX, minY);
+	else if(cur->getType() == 'z') cur->zBlock(minX, minY);
+	else if(cur->getType() == 't') cur->tBlock(minX, minY);	
 }
 
+//TODO: needs some rewriting
 int Board::moveCurrent(Direction dir, int amount) {
 	int deltaX = 0, deltaY = 0;
 	switch(dir) {
-		case left: deltaX = -1;
-		case right: deltaX = 1;
-		case down: deltaY = -1; 
+		case Left: deltaX = -1;
+		case Right: deltaX = 1;
+		case Down: deltaY = -1; 
 	}
 	int moveCount = 0, newX, newY;
 	while(moveCount < amount) {
@@ -70,40 +73,40 @@ int Board::moveCurrent(Direction dir, int amount) {
 			if(isBlocked(newX, newY))break;
 		}
 		if(isBlocked(newX, newY))break;
-		else currentBlock.move(deltaX, deltaY);
+		else currentBlock->move(deltaX, deltaY);
 		moveCount++;
 	}	
 }
 
 void Board::clockwiseCurrent() {
-	currentBlock.clockwise();
+	currentBlock->clockwise();
 }
 
 void Board::counterClockwiseCurrent() {
-	currentBlock.counterClockwise();
+	currentBlock->counterClockwise();
 }
 
 void Board::dropCurrent() {
 	bool atBottom = false;
 	while(true) {
 		for(int i = 0; i < 4; i++) {
-			atBottom = isBlocked(currentBlock.getX(), currentBlock.getY() - 1)
+			atBottom = isBlocked(currentBlock->getX(), currentBlock->getY() - 1);
 			if(atBottom)break;
 		}
 		if(atBottom)break;
 		for(int i = 0; i < 4; i++) {
-			currentBlock.setY(currentBlock.getY() - 1);
+			currentBlock->setY(currentBlock->getY() - 1);
 		}
 	}
 }
 
-void Board::isBlocked(int x, int y) {
+bool Board::isBlocked(int x, int y) {
 	if(immobileTiles[x][y].getLetter() == ' ')return false;
 	return true;	
 }
 
-char[15][11] Board::renderCharArray() {
-	char[15][11] renderArray; 
+vector<vector<char>> Board::renderCharArray() {
+	vector<vector<char>> renderArray; 
 	for(int i = 0; i < 15; i++) {
 		for(int j = 0; j < 11; j++) {
 			renderArray[i][j] = immobileTiles[i][j].getLetter();
@@ -114,7 +117,7 @@ char[15][11] Board::renderCharArray() {
 		currX = currentBlock.getX();
 		currY = currentBlock.getY();
 		if(currX >= 0 && currX < 11 & currY >= 0 && currY < 15) {
-			renderArray[currY][currX] = currentBlock.getLetter();
+			renderArray[currY][currX] = currentBlock->getLetter();
 		}
 	}
 	return renderArray;
@@ -127,13 +130,14 @@ void Board::forceTopColumnTile(Tile *colTile) {
 	immobileTile[colTile.getY()][colTiles.getX()].setLetter('*');
 }
 
+//TODO: needs some rewriting
 string Board::printNextBlock() {	
 	string str = "";
 	bool isTile = false;
 	for(int i = 2; i > 0; i++) {
 		for(int j = 0; j < 11; j++) {
 			for(int k = 0; k < 4; k++) {
-				if(nextBlock.tiles[k].getX() == j && nextBlocktiles[k].getY() == i) {
+				if(nextBlock->tiles[k].getX() == j && nextBlocktiles[k].getY() == i) {
 					str += nextBlock.type;
 					isTile = true;
 					break;

@@ -6,24 +6,33 @@
 class Block {
 	char type;
 	int initLevel;
-	Tile[4] tiles;
+	Tile tiles[4];
 
 	public:
+	//constructors
 	Block(string type);
 	Block(char type, int initLevel, int x, int y);
-	Tile[4] iBlock(int x, int y);
-	Tile[4] jBlock(int x, int y);
-	Tile[4] lBlock(int x, int y);
-	Tile[4] oBlock(int x, int y);
-	Tile[4] sBlock(int x, int y);
-	Tile[4] zBlock(int x, int y);
-	Tile[4] tBlock(int x, int y);
-	Block(char type, initLevel, tiles);
+
+	//set block types
+	void iBlock(int x, int y);
+	void jBlock(int x, int y);
+	void lBlock(int x, int y);
+	void oBlock(int x, int y);
+	void sBlock(int x, int y);
+	void zBlock(int x, int y);
+	void tBlock(int x, int y);
+
+	//movement
 	void move(int deltaX, int deltaY);
 	void clockwise();
 	void counterClockwise();
+
+	//accessors
+	char getType() const {return type;};
+
+	//maintainence
 	bool alive();
-}
+};
 
 
 #endif

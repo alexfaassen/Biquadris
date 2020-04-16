@@ -6,35 +6,35 @@ using namespace std;
 
 void Block::iBlock(int initX, int initY) {
 	tiles[0].setX(initX + 0);
-        tiles[0].setY(initY + 0);
-        tiles[1].setX(initX + 1);
-        tiles[1].setY(initY + 0);
-        tiles[2].setX(initX + 2);
-        tiles[2].setY(initY + 0);
-        tiles[3].setX(initX + 3);
-        tiles[3].setY(initY + 0);
+    tiles[0].setY(initY + 0);
+    tiles[1].setX(initX + 1);
+    tiles[1].setY(initY + 0);
+    tiles[2].setX(initX + 2);
+    tiles[2].setY(initY + 0);
+    tiles[3].setX(initX + 3);
+    tiles[3].setY(initY + 0);
 }
 
 void Block::jBlock(int initX, int initY) {
 	tiles[0].setX(initX + 0);
-        tiles[0].setY(initY + 1);
-        tiles[1].setX(initX + 0);
-        tiles[1].setY(initY + 0);
-        tiles[2].setX(initX + 1);
-        tiles[2].setY(initY + 0);
-        tiles[3].setX(initX + 2);
-        tiles[3].setY(initY + 0);
+    tiles[0].setY(initY + 1);
+    tiles[1].setX(initX + 0);
+    tiles[1].setY(initY + 0);
+    tiles[2].setX(initX + 1);
+    tiles[2].setY(initY + 0);
+    tiles[3].setX(initX + 2);
+    tiles[3].setY(initY + 0);
 }
 
 void Block::lBlock(int initX, int initY) {
 	tiles[0].setX(initX + 0);
-        tiles[0].setY(intiY + 0);
-        tiles[1].setX(initX + 1);
-        tiles[1].setY(initY + 0);
-        tiles[2].setX(initX + 2);
-        tiles[2].setY(initY + 0);
-        tiles[3].setX(initX + 2);
-        tiles[3].setY(initY + 1);
+    tiles[0].setY(initY + 0);
+    tiles[1].setX(initX + 1);
+    tiles[1].setY(initY + 0);
+    tiles[2].setX(initX + 2);
+    tiles[2].setY(initY + 0);
+    tiles[3].setX(initX + 2);
+    tiles[3].setY(initY + 1);
 }
 
 void Block::oBlock(int initX, int initY) {
@@ -61,35 +61,35 @@ void Block::sBlock(int initX, int initY) {
 
 void Block::zBlock(int initX, int initY) {
 	tiles[0].setX(initX + 0);
-        tiles[0].setY(initY + 1);
-        tiles[1].setX(initX + 1);
-        tiles[1].setY(initY + 1);
-        tiles[2].setX(initX + 1);
-        tiles[2].setY(initY + 0);
-        tiles[3].setX(initX + 2);
-        tiles[3].setY(initY + 0);
+    tiles[0].setY(initY + 1);
+    tiles[1].setX(initX + 1);
+    tiles[1].setY(initY + 1);
+    tiles[2].setX(initX + 1);
+    tiles[2].setY(initY + 0);
+    tiles[3].setX(initX + 2);
+    tiles[3].setY(initY + 0);
 }
 
 void Block::tBlock(int initX, int initY) {
 	tiles[0].setX(initX + 0);
-        tiles[0].setY(initY + 1);
-        tiles[1].setX(initX + 1);
-        tiles[1].setY(initY + 1);
-        tiles[2].setX(initX + 1);
-        tiles[2].setY(initY + 0);
-        tiles[3].setX(initX + 2);
-        tiles[3].setY(initY + 1);
+    tiles[0].setY(initY + 1);
+    tiles[1].setX(initX + 1);
+    tiles[1].setY(initY + 1);
+    tiles[2].setX(initX + 1);
+    tiles[2].setY(initY + 0);
+    tiles[3].setX(initX + 2);
+    tiles[3].setY(initY + 1);
 }
 
 Block::Block(char type, int initLevel, int x, int y):
 type{type}, initLevel{initLevel} {
-	if(type == 'i')this.iBlock(x, y);
-	else if(type == 'j')this.jBlock(x, y);
-	else if(type == 'l')this.lBlock(x, y);
-	else if(type == 'o')this.oBlock(x, y);
-	else if(type == 's')this.sBlock(x, y);
-	else if(type == 'z')this.zBlock(x, y);
-	else if(type == 't')this.tBlock(x, y);	
+	if(type == 'i') iBlock(x, y);
+	else if(type == 'j') jBlock(x, y);
+	else if(type == 'l') lBlock(x, y);
+	else if(type == 'o') oBlock(x, y);
+	else if(type == 's') sBlock(x, y);
+	else if(type == 'z') zBlock(x, y);
+	else if(type == 't') tBlock(x, y);	
 }
 
 void Block::move(int deltaX, int deltaY) {
@@ -139,7 +139,7 @@ void Block::counterClockwise() {
 	int newX;
 	for(int i = 0; i < 4; i++) {
                 if(i > upperMid) {
-                        newY = lowerMid - tiles[i].getX + upperMid;
+                        newX = lowerMid - tiles[i].getX + upperMid;
                         tiles[i].setX(newX);
                 }
                 else if(i < lowerMid) {
@@ -151,11 +151,12 @@ void Block::counterClockwise() {
 }
 
 bool Block::alive() {
-	int bottom = 0;
-	for(int i = 0; i < 4; i++) {
-		if(tiles[i] < bottom)return false;
+	for(auto t : tiles){
+		if(t.isAlive()){
+			return true;
+		}
 	}
-	return true;
+	return false;
 }
 
 
