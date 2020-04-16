@@ -1,30 +1,32 @@
-#ifdef _BOARD_H_
+#ifndef _BOARD_H_
 #define _BOARD_H_
 #include <vector>
 #include <string>
-#include "block.h"
 #include "tile.h"
+#include "direction.h"
+
+class Block;
+class Level;
 
 class Board {
 	Block *currentBlock;
 	Block *nextBlock;
-	Tiles immobileTiles[15][11];
+	Tile immobileTiles[15][11];
 	std::vector <Block *> placed;
+	Level* level;
 	
 	public:
 	int eotClean(int *score);
 	void changeCurrent(Block *cur);
 	void setNext(Block *nex);
-	int moveCurrent(Direction, int amount, bool );
+	int moveCurrent(Direction, int amount);
 	void clockwiseCurrent();
-	void counterclockwiseCurrent();
+	void counterClockwiseCurrent();
 	void dropCurrent();
 	bool isBlocked(int x, int y);
-	char[][] renderCharArray();
+	std::vector<std::vector<char>> renderCharArray();
 	void forceTopColumnTile(Tile *colTile);
-	std::string printNextBlock(Block *block); 
-}
+	std::string printNextBlock();
+};
 
 #endif
-
-
