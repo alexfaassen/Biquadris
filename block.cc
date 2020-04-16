@@ -92,6 +92,9 @@ type{type}, initLevel{initLevel} {
 	else if(type == 't') tBlock(x, y);	
 }
 
+Block::~Block(){
+}
+
 void Block::move(int deltaX, int deltaY) {
 	for(int i = 0; i < 4; i++) {
 		tiles[i].setX(tiles[i].getX + deltaX);

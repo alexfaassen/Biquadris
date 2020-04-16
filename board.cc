@@ -6,6 +6,16 @@
 
 using namespace std;
 
+Board::Board(){}
+
+Board::~Board(){
+	delete currentBlock;
+	delete nextBlock;
+	for(auto p : placed){
+		delete p;
+	}
+}
+
 //TODO: needs some rewriting
 int Board::eotClean(int *score, int *level) {
 	int rowsRemoved = 0;
@@ -148,7 +158,7 @@ string Board::printNextBlock() {
 			if(!isTile)str += " ";
 			isTile = false;
 		}
-		str += "\n"
+		str += "\n";
 	}
 }
 

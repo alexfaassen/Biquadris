@@ -12,6 +12,7 @@ class Block {
 	//constructors
 	Block(string type);
 	Block(char type, int initLevel, int x, int y);
+	~Block();
 
 	//set block types
 	void iBlock(int x, int y);

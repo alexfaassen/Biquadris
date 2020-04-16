@@ -11,11 +11,16 @@ class Level;
 class Board {
 	Block *currentBlock;
 	Block *nextBlock;
-	Tile immobileTiles[15][11];
+	Tile* immobileTiles[15][11];
 	std::vector <Block *> placed;
 	Level* level;
 	
 	public:
+	//constructor and destructor
+	Board();
+	~Board();
+
+
 	int eotClean(int *score);
 	void changeCurrent(Block *cur);
 	void setNext(Block *nex);
