@@ -1,3 +1,4 @@
+#include "tile.h"
 
 char Tile::getLetter() {
 	return letter;

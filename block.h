@@ -1,4 +1,4 @@
-#ifdef _BLOCK_H_
+#ifndef _BLOCK_H_
 #define _BLOCK_H_
 #include <string>
 #include "tile.h"
@@ -6,10 +6,11 @@
 class Block {
 	char type;
 	int initLevel;
-	Tile tiles[4];
+	Tile[4] tiles;
 
 	public:
 	Block(string type);
+	Block(char type, int initLevel, int x, int y);
 	Tile[4] iBlock(int x, int y);
 	Tile[4] jBlock(int x, int y);
 	Tile[4] lBlock(int x, int y);

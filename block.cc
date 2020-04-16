@@ -1,11 +1,12 @@
 #include <string>
+#include "block.h"
 #include "tile.h"
 
 using namespace std;
 
-void Block::iBlock(int x, int y) {
+void Block::iBlock(int initX, int initY) {
 	tiles[0].setX(initX + 0);
-        tiles[0].setY(intiY + 0);
+        tiles[0].setY(initY + 0);
         tiles[1].setX(initX + 1);
         tiles[1].setY(initY + 0);
         tiles[2].setX(initX + 2);
@@ -14,9 +15,9 @@ void Block::iBlock(int x, int y) {
         tiles[3].setY(initY + 0);
 }
 
-void Block::jBlock(int x, int y) {
+void Block::jBlock(int initX, int initY) {
 	tiles[0].setX(initX + 0);
-        tiles[0].setY(intiY + 1);
+        tiles[0].setY(initY + 1);
         tiles[1].setX(initX + 0);
         tiles[1].setY(initY + 0);
         tiles[2].setX(initX + 1);
@@ -25,7 +26,7 @@ void Block::jBlock(int x, int y) {
         tiles[3].setY(initY + 0);
 }
 
-void Block::lBlock(int x, int y) {
+void Block::lBlock(int initX, int initY) {
 	tiles[0].setX(initX + 0);
         tiles[0].setY(intiY + 0);
         tiles[1].setX(initX + 1);
@@ -36,20 +37,20 @@ void Block::lBlock(int x, int y) {
         tiles[3].setY(initY + 1);
 }
 
-void Block::oBlock(int x, int y) {
+void Block::oBlock(int initX, int initY) {
 	tiles[0].setX(initX + 0);
-        tiles[0].setY(intiY + 0);
-        tiles[1].setX(initX + 1);
-        tiles[1].setY(initY + 0);
-        tiles[2].setX(initX + 1);
-        tiles[2].setY(initY + 1);
-        tiles[3].setX(initX + 2);
-        tiles[3].setY(initY + 1);
+    tiles[0].setY(initY + 0);
+    tiles[1].setX(initX + 1);
+    tiles[1].setY(initY + 0);
+    tiles[2].setX(initX + 1);
+    tiles[2].setY(initY + 1);
+    tiles[3].setX(initX + 2);
+    tiles[3].setY(initY + 1);
 }
 
 void Block::sBlock(int initX, int initY) {
 	tiles[0].setX(initX + 0);     
-	tiles[0].setY(intiY + 0);
+	tiles[0].setY(initY + 0);
 	tiles[1].setX(initX + 0);
 	tiles[1].setY(initY + 1);
 	tiles[2].setX(initX + 1);
@@ -58,9 +59,9 @@ void Block::sBlock(int initX, int initY) {
 	tiles[3].setY(initY + 0);
 }
 
-void Block::zBlock(int x, int y) {
+void Block::zBlock(int initX, int initY) {
 	tiles[0].setX(initX + 0);
-        tiles[0].setY(intiY + 1);
+        tiles[0].setY(initY + 1);
         tiles[1].setX(initX + 1);
         tiles[1].setY(initY + 1);
         tiles[2].setX(initX + 1);
@@ -69,9 +70,9 @@ void Block::zBlock(int x, int y) {
         tiles[3].setY(initY + 0);
 }
 
-void Block::tBlock(int x, int y) {
+void Block::tBlock(int initX, int initY) {
 	tiles[0].setX(initX + 0);
-        tiles[0].setY(intiY + 1);
+        tiles[0].setY(initY + 1);
         tiles[1].setX(initX + 1);
         tiles[1].setY(initY + 1);
         tiles[2].setX(initX + 1);

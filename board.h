@@ -1,4 +1,4 @@
-#ifdef _BOARD_H_
+#ifndef _BOARD_H_
 #define _BOARD_H_
 #include <vector>
 #include <string>
@@ -8,7 +8,7 @@
 class Board {
 	Block *currentBlock;
 	Block *nextBlock;
-	Tiles immobileTiles[15][11];
+	Tile immobileTiles[15][11];
 	std::vector <Block *> placed;
 	
 	public:
@@ -20,7 +20,7 @@ class Board {
 	void counterclockwiseCurrent();
 	void dropCurrent();
 	bool isBlocked(int x, int y);
-	char[][] renderCharArray();
+	std::vector<std::vector<char>>& renderCharArray();
 	void forceTopColumnTile(Tile *colTile);
 	std::string printNextBlock(Block *block); 
 }

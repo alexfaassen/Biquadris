@@ -1,13 +1,12 @@
 #include <vector>
 #include <string>
-#include "block.h"
-#include "tile.h"
+#include "board.h"
 
 using namespace std;
 
 int Board::eotClean(int *score, int *level) {
-	int rowsRemoved = 0
-	bool fullRow = true
+	int rowsRemoved = 0;
+	bool fullRow = true;
 	while(fullRow) {
 		for(int i =0; i < 11; i++) {
 			if(immobileTiles[14][i].getLetter() == ' ') {
