@@ -2,15 +2,18 @@
 #define _BOARD_H_
 #include <vector>
 #include <string>
-#include "block.h"
 #include "tile.h"
 #include "direction.h"
+
+class Block;
+class Level;
 
 class Board {
 	Block *currentBlock;
 	Block *nextBlock;
 	Tile immobileTiles[15][11];
 	std::vector <Block *> placed;
+	Level* level;
 	
 	public:
 	int eotClean(int *score);

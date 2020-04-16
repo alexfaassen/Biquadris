@@ -1,6 +1,8 @@
 #include <vector>
 #include <string>
 #include "board.h"
+#include "block.h"
+#include "level.h"
 
 using namespace std;
 
