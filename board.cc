@@ -24,9 +24,8 @@ void Board::pushNextBlock(){
 
 void Board::placeCurrent(){
 	placed.emplace_back(currentBlock);
-	vector<Tile*> vec = currentBlock->getTilePointers();
-	for (auto p : vec){
-		immobileTiles[p->getX()][p->getY()] = p;
+	for (auto p : currentBlock->getTiles()){
+		immobileTiles[p.getX()][p.getY()] = &p;
 	}
 }
 
