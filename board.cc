@@ -6,6 +6,30 @@
 
 using namespace std;
 
+bool Board::rowIsFull(int row){
+	for(int x = 0; x < 11; ++x){
+		if(!immobileTiles[x][row]) return false;
+	}
+	return true;
+}
+
+void Board::clearRow(int row){
+	//kill every tile on that row
+	for(int x = 0; x < 11; ++x){
+		if(immobileTiles[x][row]) immobileTiles[x][row]->kill();
+	}
+	//move everything above it down
+	for(int y = row; y > 0; --y){
+		for(int x = 0; x < 11; ++x){
+			immobileTiles[x][y] = immobileTiles[x][y+1];
+		}
+	}
+	//make top row empty
+	for(int x = 0; x < 11; ++x){
+		immobileTiles[x][0] = nullptr;
+	}
+}
+
 Board::Board(){}
 
 Board::~Board(){
@@ -23,50 +47,43 @@ void Board::pushNextBlock(){
 }
 
 void Board::placeCurrent(){
-	placed.emplace_back(currentBlock);
-	for (auto p : currentBlock->getTiles()){
+	placeBlock(currentBlock);
+}
+
+void Board::placeBlock(Block* b){
+	placed.emplace_back(b);
+	for (auto p : b->getTiles()){
 		immobileTiles[p.getX()][p.getY()] = &p;
 	}
 }
 
-//TODO: needs some rewriting
 int Board::eotClean(int *score) {
 	int rowsRemoved = 0;
-	bool fullRow = true;
-	while(fullRow) {
-		for(int i =0; i < 11; i++) {
-			if(immobileTiles[14][i]->getLetter() == ' ') {
-				fullRow = false;
-				break;
-			}
-		}
-		if(!fullRow)break;
-		rowsRemoved++;
-		for(int i = 13; i > 0; i--) {
-			for(int j = 0; j < 11; j++) {
-				char newLetter = immobileTiles[i][j]->getLetter();
-				immobileTiles[i + 1][j]->setLetter(newLetter);
-			}
-		}
-		for(int i = 0; i < 11; i++) {
-			immobileTiles[0][i]->setLetter(' ');
-		}
-		for(auto b : placed) {
-			b.move(0,-1);
-			if(!b.alive()) {
-				int blockScore = (b.initLevel + 1) * (b.initLevel + 1);
-				score = score + blockScore;
-			}
-			b.erase();
-		}
 
+	//remove completed rows
+	for(int y = 0; y < 15; y++){
+		if(rowIsFull(y)){
+			clearRow(y);
+			rowsRemoved++;
+		}
 	}
+
+	//erase dead blocks and score them
+	for(int i = 0; i < placed.size(); i++){
+        if(!placed.at(i)->alive()){
+			score += (placed.at(i)->getInitLevel() + 1) * (placed.at(i)->getInitLevel() + 1);
+            delete placed.at(i);
+            placed.erase(placed.begin()+i);
+            i--;
+        }
+    }
+
+	//scores removed rows
 	int rowsScore = (rowsRemoved * level->getIdentifier()) * (rowsRemoved * level->getIdentifier());
-       	score = score + rowsScore;	
+    score += rowsScore;	
 	return rowsRemoved;
 }
 
-//TODO: needs some rewriting
 void Board::changeCurrent(char newType) {
 	Block *newBlock = new Block{newType, level->getIdentifier(), 0, 2};
 	Block *oldCurrBlock = currentBlock;
@@ -74,25 +91,22 @@ void Board::changeCurrent(char newType) {
 	delete oldCurrBlock;
 }
 
-//TODO: needs some rewriting
 int Board::moveCurrent(Direction dir, int amount) {
 	int deltaX = 0, deltaY = 0;
 	switch(dir) {
 		case Left: deltaX = -1;
 		case Right: deltaX = 1;
-		case Down: deltaY = -1; 
+		case Down: deltaY = 1; 
 	}
-	int moveCount = 0, newX, newY;
+	int moveCount = 0;
 	while(moveCount < amount) {
-		for(int i = 0; i < 4; i++) {
-			newX = currentBlock.tiles[i].getX() + deltaX;
-			newY = currentBlock.tiles[i].getY() + deltaY;
-			if(isBlocked(newX, newY))break;
+		if(isMoveBlocked(deltaX, deltaY)){
+			break;
 		}
-		if(isBlocked(newX, newY))break;
-		else currentBlock->move(deltaX, deltaY);
+		currentBlock->move(deltaX, deltaY);
 		moveCount++;
-	}	
+	}
+	return moveCount;	
 }
 
 bool Board::clockwiseCurrent() {
@@ -104,47 +118,56 @@ bool Board::counterClockwiseCurrent() {
 }
 
 void Board::dropCurrent() {
-	bool atBottom = false;
-	while(true) {
-		for(int i = 0; i < 4; i++) {
-			atBottom = isBlocked(currentBlock->getX(), currentBlock->getY() - 1);
-			if(atBottom)break;
-		}
-		if(atBottom)break;
-		for(int i = 0; i < 4; i++) {
-			currentBlock->setY(currentBlock->getY() - 1);
-		}
-	}
+	while(moveCurrent(Down, 1)){}
+	placeCurrent();
 }
 
-bool Board::isBlocked(int x, int y) {
-	if(immobileTiles[x][y]->getLetter() == ' ')return false;
-	return true;	
+
+bool Board::isMoveBlocked(int deltaX, int deltaY){
+	for (int i = 0; i < 4; ++i) {
+		if (!isEmpty(currentBlock->getTiles[i].getX() + deltaX, currentBlock->getTiles()[i].getY() + deltaY)) return true;
+	}
+	return false;
+}
+
+bool Board::isEmpty(int x, int y) {
+	if(x < 0 || x > 10 || y > 14 || y < -3) return false;	//bounds checking sides
+	if(y >= -3 && y < 0) return true;						//exception for the 3 extra lines on top
+	if(!immobileTiles[x][y])return true;					//checking for empty tile within bounds
+	return false;											//otherwise fail
 }
 
 vector<vector<char>> &Board::renderCharArray() {
-	vector<vector<char>> renderArray; 
-	for(int i = 0; i < 15; i++) {
-		for(int j = 0; j < 11; j++) {
-			renderArray[i][j] = immobileTiles[i][j]->getLetter();
+	vector<vector<char>> vec; 
+	for(int i = 0; i < 3; i ++){
+		vec.emplace_back(vector<char>(11, ' '));
+	}
+	for(int y = 0; y < 15; y++) {
+		for(int x = 0; x < 11; x++) {
+			if(!immobileTiles[x][y]){ 
+				vec.at(x).emplace_back(' ');
+			} else {
+				vec.at(x).emplace_back(immobileTiles[x][y]->getLetter());
+			}
 		}
+		vec.emplace_back(vector<char>());
 	}
 	int currX, currY;
 	for(int i = 0; i < 4; i++) {
-		currX = currentBlock->getX();
-		currY = currentBlock->getY();
-		if(currX >= 0 && currX < 11 & currY >= 0 && currY < 15) {
-			renderArray[currY][currX] = currentBlock->getType();
-		}
+		currX = currentBlock->getTiles[i].getX();
+		currY = currentBlock->getTiles[i].getY();
+		vec.at(currX + 3).at(currY) = currentBlock->getType();
 	}
-	return renderArray;
+	return vec;
 }
 
-void Board::forceTopColumnTile(Tile *colTile) {
-	if(isBlocked(colTile.getX(), colTile.getY() + 1))return;
-	immobileTile[colTile.getY()][colTiles.getX()].setLetter(' ');
-	colTile.setY(colTile.getY() + 1);
-	immobileTile[colTile.getY()][colTiles.getX()].setLetter('*');
+void Board::forceTopColumnTile(const char b, const int col) {
+	if (!isEmpty(5, 0)) alive = false; 
+	int row = 0;
+	for (int i = 1; i < 15; ++i) {
+		if (!isEmpty(5, i)) row = i - 1;
+	}
+	placeBlock(new Block(b, -1, col, row));
 }
 
 //TODO: needs some rewriting

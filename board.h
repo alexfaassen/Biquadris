@@ -17,6 +17,12 @@ class Board {
 	//Board DOES NOT have ownership of the following. DO NOT call delete on these
 	Tile* immobileTiles[15][11];
 	Level* level;
+
+	
+	bool rowIsFull(int row);	//checks if the given row is complete
+	void clearRow(int row);		//kills all the tiles in the row drops everything down
+
+	bool alive = 1;
 	
 	public:
 	//constructor and destructor
@@ -29,6 +35,9 @@ class Board {
 	// moves currentBlock into placed and its tiles into immobileTiles
 	void placeCurrent();
 
+	//moves the given block into placed and its tiles into immobileTiles
+	void placeBlock(Block*);
+
 	// handles everything that needs to be called at end of turn
 	int eotClean(int *score);
 
@@ -40,10 +49,13 @@ class Board {
 	void dropCurrent();
 
 	//will moving currentBlock by the given coords cause it to collide with a tile?
-	bool isBlocked(int x, int y);	
+	bool isMoveBlocked(int deltaX, int deltaY);	
+
+	// returns if the given coord isn't occupied by a tile
+	bool isEmpty(int x, int y);
 
 	std::vector<std::vector<char>> &renderCharArray();
-	void forceTopColumnTile(Tile *colTile);
+	void forceTopColumnTile(const char b, const int col);
 	std::string printNextBlock();
 };
 

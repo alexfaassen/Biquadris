@@ -202,8 +202,8 @@ void Player::pushToObservers(Observer* obs){
     obs->attach(this);
 }
 
-void Player::changeCurrentBlock(Block* block){
-    board.changeCurrent(block);
+void Player::changeCurrentBlock(char c){
+    board.changeCurrent(c);
 }
 
 string charArrToString(const vector<vector<char>>& arr){
@@ -232,5 +232,5 @@ string Player::printToString(){
 }
 
 void Player::forceTopTile(const char b, const int col){
-	board->forceTopColumnTile(b, col);
+	board.forceTopColumnTile(b, col);
 }

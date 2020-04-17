@@ -81,6 +81,14 @@ void Block::tBlock(int initX, int initY) {
     tiles[3].setY(initY + 1);
 }
 
+void Block::tileDropBlock(int initX, int initY) {
+	tiles[0].setX(initX);
+	tiles[0].setY(initY);
+	tiles[1].kill();
+	tiles[2].kill();
+	tiles[3].kill();
+}
+
 Block::Block(char type, int initLevel, int x, int y):
 type{type}, initLevel{initLevel} {
 	if(type == 'i') iBlock(x, y);
@@ -90,6 +98,7 @@ type{type}, initLevel{initLevel} {
 	else if(type == 's') sBlock(x, y);
 	else if(type == 'z') zBlock(x, y);
 	else if(type == 't') tBlock(x, y);	
+	else if(type == '*') tileDropBlock(x, y);
 }
 
 Block::~Block(){
@@ -150,14 +159,6 @@ void Block::counterClockwise() {
                         tiles[i].setX(newX);
                 }
 	}
-}
-
-vector<Tile*> Block::getTilePointers() const {
-	vector<Tile*> vec;
-	for(auto &p : tiles){
-		vec.emplace_back(&p);
-	}
-	return vec;
 }
 
 bool Block::alive() {
