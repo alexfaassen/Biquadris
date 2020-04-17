@@ -82,7 +82,7 @@ int Board::moveCurrent(Direction dir, int amount) {
 	}
 	int moveCount = 0;
 	while(moveCount < amount) {
-		if(isBlocked(deltaX, deltaY)){
+		if(isMoveBlocked(deltaX, deltaY)){
 			break;
 		}
 		currentBlock->move(deltaX, deltaY);
@@ -106,7 +106,7 @@ void Board::dropCurrent() {
 
 bool Board::isMoveBlocked(int deltaX, int deltaY){
 	for (int i = 0; i < 4; ++i) {
-		if (!isEmpty(currentBlock->getTiles[i].getX() + deltaX, currentBlock->getTiles()[i].getY() + deltaY) return true;
+		if (!isEmpty(currentBlock->getTiles[i].getX() + deltaX, currentBlock->getTiles()[i].getY() + deltaY)) return true;
 	}
 	return false;
 }
