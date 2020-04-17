@@ -4,7 +4,7 @@
 
 class Effect : public Observer {
 	public:
-	Effect(Player *player = NULL, bool alive = 1) : Observer(player, alive) {}
+	Effect(Player *player = NULL, bool alive = true) : Observer(player, alive) {}
 };
 
 #endif

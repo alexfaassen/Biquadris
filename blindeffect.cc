@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void BlindEffect::notify(const Event currEvent, vector<vector<char>> &boardPrint) {
+void BlindEffect::notify(const Event currEvent, vector<vector<char>> &boardPrint) override {
 	if (currEvent == beforeTextDisplay) {
 		bool blindRow = 0;
 		for (int r = 3; r < 18; ++r) {
@@ -26,7 +26,7 @@ void BlindEffect::notify(const Event currEvent, vector<vector<char>> &boardPrint
 	}
 }
 
-void BlindEffect::notify(const Event currEvent, int n){
+void BlindEffect::notify(const Event currEvent, int clearedLines) override {
 	if(currEvent == onTurnEnd){
 		kill();
 	}
