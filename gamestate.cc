@@ -10,12 +10,21 @@ void GameState::switchActive(){
 }
 
 void GameState::createPlayers(){
-    leftPlayer = Player(window, loffsetX, loffsetY);
-    leftPlayer = Player(window, roffsetX, roffsetY);
+    leftPlayer = Player(window, loffsetX, loffsetY, -1, scriptfile1, startlevel);
+    rightPlayer = Player(window, roffsetX, roffsetY, 1, scriptfile2, startlevel);
 }
 
-GameState::GameState(bool hasWindow)
-: highscore{0} {
+int GameState::cleanStreams(){
+    int n = 0;
+    while(!istreams.empty() && istreams.back().eof){
+        istreams.pop_back();
+        ++n;
+    }
+    return n;
+}
+
+GameState::Gamestate(bool hasWindow, string scriptfile1, string scriptfile2, int startlevel)
+: scriptFile1{scriptfile1}, scriptFile2{scriptFile2}, startlevel{startlevel} 
     if(hasWindow){
         window = new Xwindow();
     }
@@ -32,9 +41,24 @@ GameState::~GameState(){
     nonActivePlayer = nullptr;
 }
 
-bool GameState::beginReadLoop(istream& in){
+void GameState::pushToStreams(istream& stream){
+    cleanStreams();
+    reference_wrapper<istream> in(stream);
+    istreams.emplace_back(in);
+}
+
+istream& GameState::getStream(){
+    cleanStreams();
+    if(istreams.empty()){
+        return cin;
+    } else {
+        return istreams.back();
+    }
+}
+
+bool GameState::beginReadLoop(){
     string s;
-    while (in >> s) {
+    while (getStream() >> s) {
         int multiplier = 1;
         
         if(isdigit(s[0])){          // test if s starts with an int

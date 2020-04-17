@@ -7,6 +7,9 @@ class BlindEffect : public Effect {
 	BlindEffect(Player *player = NULL, bool alive = 1) : Effect(player, alive) {}
 
 	void notify(const Event currEvent, std::vector<std::vector<char>> &boardPrint) override;
+
+	void notify(const Event currEvent, int n = 0) override;
+
 };
 
 #endif

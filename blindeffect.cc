@@ -1,6 +1,9 @@
 #include "blindeffect.h"
 
-void BlindEffect::notify(const Event currEvent, std::vector<std::vector<char>> &boardPrint) override {
+
+using namespace std;
+
+void BlindEffect::notify(const Event currEvent, vector<vector<char>> &boardPrint) {
 	if (currEvent == beforeTextDisplay) {
 		bool blindRow = 0;
 		for (int r = 3; r < 18; ++r) {
@@ -20,7 +23,11 @@ void BlindEffect::notify(const Event currEvent, std::vector<std::vector<char>> &
 				}
 			}
 		}
-	} else if (currEvent == onTurnEnd) {
-		this->kill();
+	}
+}
+
+void BlindEffect::notify(const Event currEvent, int n){
+	if(currEvent == onTurnEnd){
+		kill();
 	}
 }
