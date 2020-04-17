@@ -67,19 +67,11 @@ int Board::eotClean(int *score) {
 }
 
 //TODO: needs some rewriting
-void Board::changeCurrent(Block *cur) {
-	int minX = 11, minY = 15;
-	for(int i = 0; i < 4; i++) {
-		if(cur.tiles[i].getX() < minX) minX = cur.tiles[i].getX();
-		if(cur.tiles[i].getY() < minY) minY = cur.tiles[i].getX();
-	}
-	if(cur->getType() == 'i') cur->iBlock(minX, minY);
-	else if(cur->getType() == 'j') cur->jBlock(minX, minY);
-	else if(cur->getType() == 'l') cur->lBlock(minX, minY);
-	else if(cur->getType() == 'o') cur->oBlock(minX, minY);
-	else if(cur->getType() == 's') cur->sBlock(minX, minY);
-	else if(cur->getType() == 'z') cur->zBlock(minX, minY);
-	else if(cur->getType() == 't') cur->tBlock(minX, minY);	
+void Board::changeCurrent(char newType) {
+	Block *newBlock = new Block{newType, level->getIdentifier(), 0, 2};
+	Block *oldCurrBlock = currentBlock;
+	currentBlock = newBlock;
+	delete oldCurrBlock;
 }
 
 //TODO: needs some rewriting
@@ -125,7 +117,14 @@ void Board::dropCurrent() {
 
 
 bool Board::isBlocked(int deltaX, int deltaY){
-
+	Tile &tiles[4] = currentBlock->getTiles();
+	int x, y;
+	for (int i = 0; i < 4; ++i) {
+		x = tiles[i].getX();
+		y = tiles[i].getY();
+		if (x + deltaX < 0 || x + deltaX > 10 || y + deltaY < 0 || y + deltaY > 14 || immobileTiles[x + deltaX][y + deltaY]) return true;
+	}
+	return false;
 }
 
 bool Board::isEmpty(int x, int y) {
