@@ -29,6 +29,8 @@ class Board {
 	Board();
 	~Board();
 
+	bool isAlive() const{return alive;};
+
 	// moves currentBlock into placed, nextBlock into currentBlock, and generates nextBlock
 	void pushNextBlock();
 
@@ -48,10 +50,13 @@ class Board {
 	bool counterClockwiseCurrent();
 	void dropCurrent();
 
+	// are any of currentBlock's tiles on an occupied tile?
+	bool isCurrentBlocked();
+
 	//will moving currentBlock by the given coords cause it to collide with a tile?
 	bool isMoveBlocked(int deltaX, int deltaY);	
 
-	// returns if the given coord isn't occupied by a tile
+	// returns if the given coord isn't occupied by a tile and isn't out of bounds
 	bool isEmpty(int x, int y);
 
 	std::vector<std::vector<char>> &renderCharArray();

@@ -122,10 +122,16 @@ void Board::dropCurrent() {
 	placeCurrent();
 }
 
+bool Board::isCurrentBlocked(){
+	for(auto t : currentBlock->getTiles()){
+		if(!isEmpty(t.getX(),t.getY())) return true;
+	}
+	return false;
+}
 
 bool Board::isMoveBlocked(int deltaX, int deltaY){
-	for (int i = 0; i < 4; ++i) {
-		if (!isEmpty(currentBlock->getTiles[i].getX() + deltaX, currentBlock->getTiles()[i].getY() + deltaY)) return true;
+	for (auto t : currentBlock->getTiles()) {
+		if (!isEmpty(t.getX() + deltaX, t.getY() + deltaY)) return true;
 	}
 	return false;
 }
