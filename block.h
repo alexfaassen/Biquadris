@@ -11,7 +11,6 @@ class Block {
 
 	public:
 	//constructors
-	Block(string type);
 	Block(char type, int initLevel, int x, int y);
 	~Block();
 
