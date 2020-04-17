@@ -125,6 +125,7 @@ void Board::dropCurrent() {
 	}
 }
 
+
 bool Board::isBlocked(int deltaX, int deltaY){
 
 }
@@ -135,21 +136,27 @@ bool Board::isEmpty(int x, int y) {
 }
 
 vector<vector<char>> &Board::renderCharArray() {
-	vector<vector<char>> renderArray; 
-	for(int i = 0; i < 15; i++) {
-		for(int j = 0; j < 11; j++) {
-			renderArray[i][j] = immobileTiles[i][j]->getLetter();
+	vector<vector<char>> vec; 
+	for(int i = 0; i < 3; i ++){
+		vec.emplace_back(vector<char>(11, ' '));
+	}
+	for(int x = 0; x < 15; x++) {
+		for(int y = 0; y < 11; y++) {
+			if(!immobileTiles[x][y]){ 
+				vec.at(x).emplace_back(' ');
+			} else {
+				vec.at(x).emplace_back(immobileTiles[x][y]->getLetter());
+			}
 		}
+		vec.emplace_back(vector<char>());
 	}
 	int currX, currY;
 	for(int i = 0; i < 4; i++) {
-		currX = currentBlock->getX();
-		currY = currentBlock->getY();
-		if(currX >= 0 && currX < 11 & currY >= 0 && currY < 15) {
-			renderArray[currY][currX] = currentBlock->getType();
-		}
+		currX = currentBlock->getTiles[i].getX();
+		currY = currentBlock->getTiles[i].getY();
+		vec.at(currX + 3).at(currY) = currentBlock->getType();
 	}
-	return renderArray;
+	return vec;
 }
 
 void Board::forceTopColumnTile(Tile *colTile) {
