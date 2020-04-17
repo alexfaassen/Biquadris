@@ -126,7 +126,14 @@ void Board::dropCurrent() {
 }
 
 bool Board::isBlocked(int deltaX, int deltaY){
-
+	Tile &tiles[4] = currentBlock->getTiles();
+	int x, y;
+	for (int i = 0; i < 4; ++i) {
+		x = tiles[i].getX();
+		y = tiles[i].getY();
+		if (x + deltaX < 0 || x + deltaX > 10 || y + deltaY < 0 || y + deltaY > 14 || immobileTiles[x + deltaX][y + deltaY]) return true;
+	}
+	return false;
 }
 
 bool Board::isEmpty(int x, int y) {
