@@ -18,6 +18,10 @@ class Board {
 	Tile* immobileTiles[15][11];
 	Level* level;
 
+	
+	bool rowIsFull(int row);	//checks if the given row is complete
+	void clearRow(int row);		//kills all the tiles in the row drops everything down
+
 	bool alive = 1;
 	
 	public:
@@ -30,6 +34,9 @@ class Board {
 
 	// moves currentBlock into placed and its tiles into immobileTiles
 	void placeCurrent();
+
+	//moves the given block into placed and its tiles into immobileTiles
+	void placeBlock(Block*);
 
 	// handles everything that needs to be called at end of turn
 	int eotClean(int *score);

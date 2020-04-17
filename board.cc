@@ -6,6 +6,30 @@
 
 using namespace std;
 
+bool Board::rowIsFull(int row){
+	for(int x = 0; x < 11; ++x){
+		if(!immobileTiles[x][row]) return false;
+	}
+	return true;
+}
+
+void Board::clearRow(int row){
+	//kill every tile on that row
+	for(int x = 0; x < 11; ++x){
+		if(immobileTiles[x][row]) immobileTiles[x][row]->kill();
+	}
+	//move everything above it down
+	for(int y = row; y > 0; --y){
+		for(int x = 0; x < 11; ++x){
+			immobileTiles[x][y] = immobileTiles[x][y+1];
+		}
+	}
+	//make top row empty
+	for(int x = 0; x < 11; ++x){
+		immobileTiles[x][0] = nullptr;
+	}
+}
+
 Board::Board(){}
 
 Board::~Board(){
@@ -23,46 +47,40 @@ void Board::pushNextBlock(){
 }
 
 void Board::placeCurrent(){
-	placed.emplace_back(currentBlock);
-	for (auto p : currentBlock->getTiles()){
+	placeBlock(currentBlock);
+}
+
+void Board::placeBlock(Block* b){
+	placed.emplace_back(b);
+	for (auto p : b->getTiles()){
 		immobileTiles[p.getX()][p.getY()] = &p;
 	}
 }
 
-//TODO: needs some rewriting
 int Board::eotClean(int *score) {
 	int rowsRemoved = 0;
-	bool fullRow = true;
-	while(fullRow) {
-		for(int i =0; i < 11; i++) {
-			if(immobileTiles[14][i]->getLetter() == ' ') {
-				fullRow = false;
-				break;
-			}
-		}
-		if(!fullRow)break;
-		rowsRemoved++;
-		for(int i = 13; i > 0; i--) {
-			for(int j = 0; j < 11; j++) {
-				char newLetter = immobileTiles[i][j]->getLetter();
-				immobileTiles[i + 1][j]->setLetter(newLetter);
-			}
-		}
-		for(int i = 0; i < 11; i++) {
-			immobileTiles[0][i]->setLetter(' ');
-		}
-		for(auto b : placed) {
-			b.move(0,-1);
-			if(!b.alive()) {
-				int blockScore = (b.initLevel + 1) * (b.initLevel + 1);
-				score = score + blockScore;
-			}
-			b.erase();
-		}
 
+	//remove completed rows
+	for(int y = 0; y < 15; y++){
+		if(rowIsFull(y)){
+			clearRow(y);
+			rowsRemoved++;
+		}
 	}
+
+	//erase dead blocks and score them
+	for(int i = 0; i < placed.size(); i++){
+        if(!placed.at(i)->alive()){
+			score += (placed.at(i)->getInitLevel() + 1) * (placed.at(i)->getInitLevel() + 1);
+            delete placed.at(i);
+            placed.erase(placed.begin()+i);
+            i--;
+        }
+    }
+
+	//scores removed rows
 	int rowsScore = (rowsRemoved * level->getIdentifier()) * (rowsRemoved * level->getIdentifier());
-       	score = score + rowsScore;	
+    score += rowsScore;	
 	return rowsRemoved;
 }
 
