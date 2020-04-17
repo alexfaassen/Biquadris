@@ -143,10 +143,12 @@ vector<vector<char>> &Board::renderCharArray() {
 }
 
 void Board::forceTopColumnTile(Tile *colTile) {
-	if(isBlocked(colTile.getX(), colTile.getY() + 1))return;
-	immobileTile[colTile.getY()][colTiles.getX()].setLetter(' ');
-	colTile.setY(colTile.getY() + 1);
-	immobileTile[colTile.getY()][colTiles.getX()].setLetter('*');
+	if (!isEmpty(5, 0)) alive = 0; 
+	int row = 0;
+	for (int i = 1; i < 15; ++i) {
+		if (!isEmpty(5, i)) row = i - 1;
+	}
+	placed.emplace_back(new Block('*', -1, 5, row));
 }
 
 //TODO: needs some rewriting

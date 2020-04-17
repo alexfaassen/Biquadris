@@ -17,6 +17,8 @@ class Board {
 	//Board DOES NOT have ownership of the following. DO NOT call delete on these
 	Tile* immobileTiles[15][11];
 	Level* level;
+
+	bool alive = 1;
 	
 	public:
 	//constructor and destructor

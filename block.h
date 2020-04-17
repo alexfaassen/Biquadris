@@ -11,7 +11,7 @@ class Block {
 
 	public:
 	//constructors
-	Block(char type, int initLevel, int x, int y);
+	Block(char type, int initLevel, int x = 0, int y = 0);
 	~Block();
 
 	//set block types
@@ -22,6 +22,7 @@ class Block {
 	void sBlock(int x, int y);
 	void zBlock(int x, int y);
 	void tBlock(int x, int y);
+	void tileDropBlock(int x, int y);
 
 	//movement
 	void move(int deltaX, int deltaY);
