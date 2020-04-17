@@ -161,13 +161,13 @@ vector<vector<char>> &Board::renderCharArray() {
 	return vec;
 }
 
-void Board::forceTopColumnTile(Tile *colTile) {
+void Board::forceTopColumnTile(const char b, const int col) {
 	if (!isEmpty(5, 0)) alive = false; 
 	int row = 0;
 	for (int i = 1; i < 15; ++i) {
 		if (!isEmpty(5, i)) row = i - 1;
 	}
-	placeBlock(new Block('*', -1, 5, row));
+	placed.emplace_back(new Block(b, -1, col, row));
 }
 
 //TODO: needs some rewriting
