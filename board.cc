@@ -71,7 +71,7 @@ void Board::changeCurrent(char newType) {
 	Block *newBlock = new Block{newType, level->getIdentifier(), 0, 2};
 	Block *oldCurrBlock = currentBlock;
 	currentBlock = newBlock;
-	delete oldCurrBlock;	
+	delete oldCurrBlock;
 }
 
 //TODO: needs some rewriting
