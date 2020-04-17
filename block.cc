@@ -150,7 +150,14 @@ void Block::counterClockwise() {
                         tiles[i].setX(newX);
                 }
 	}
+}
 
+vector<Tile*> Block::getTilePointers() const {
+	vector<Tile*> vec;
+	for(auto &p : tiles){
+		vec.emplace_back(&p);
+	}
+	return vec;
 }
 
 bool Block::alive() {

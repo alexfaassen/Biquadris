@@ -9,10 +9,13 @@ class Block;
 class Level;
 
 class Board {
-	Block *currentBlock;
+	// Board has ownership of the following
+	Block *currentBlock;	
 	Block *nextBlock;
-	Tile* immobileTiles[15][11];
 	std::vector <Block *> placed;
+
+	//Board DOES NOT have ownership of the following. DO NOT call delete on these
+	Tile* immobileTiles[15][11];
 	Level* level;
 	
 	public:
@@ -20,15 +23,25 @@ class Board {
 	Board();
 	~Board();
 
+	// moves currentBlock into placed, nextBlock into currentBlock, and generates nextBlock
+	void pushNextBlock();
 
+	// moves currentBlock into placed and its tiles into immobileTiles
+	void placeCurrent();
+
+	// handles everything that needs to be called at end of turn
 	int eotClean(int *score);
+
 	void changeCurrent(Block *cur);
 	void setNext(Block *nex);
 	int moveCurrent(Direction, int amount);
-	void clockwiseCurrent();
-	void counterClockwiseCurrent();
+	bool clockwiseCurrent();
+	bool counterClockwiseCurrent();
 	void dropCurrent();
-	bool isBlocked(int x, int y);
+
+	//will moving currentBlock by the given coords cause it to collide with a tile?
+	bool isBlocked(int x, int y);	
+
 	std::vector<std::vector<char>> renderCharArray();
 	void forceTopColumnTile(Tile *colTile);
 	std::string printNextBlock();

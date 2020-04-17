@@ -1,6 +1,7 @@
 #ifndef _BLOCK_H_
 #define _BLOCK_H_
 #include <string>
+#include <vector>
 #include "tile.h"
 
 class Block {
@@ -30,6 +31,8 @@ class Block {
 
 	//accessors
 	char getType() const {return type;};
+	// returns a vector containing the address of each Tile in tiles
+	std::vector<Tile*> getTilePointers() const; 
 
 	//maintainence
 	bool alive();

@@ -80,6 +80,7 @@ int Player::rotateCounterClockwise(int times, bool isInput = false){
 
 void Player::drop(bool isInput = false){
     board.dropCurrent();
+    endTurn();
 }
 
 int Player::incLevel(int n){
@@ -110,6 +111,7 @@ void Player::startTurn(){
 
 void Player::endTurn(){
     setInputState(END_TURN);
+    board.eotClean(&score);
     notifyObservers(onTurnEnd);
 }
 
