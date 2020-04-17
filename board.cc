@@ -52,7 +52,7 @@ int Board::eotClean(int *score) {
 		for(int i = 0; i < 11; i++) {
 			immobileTiles[0][i]->setLetter(' ');
 		}
-		for(vector<Block *>::iterator b = placed.begin() ; b != placed.end(); ++b) {
+		for(auto b : placed) {
 			b.move(0,-1);
 			if(!b.alive()) {
 				int blockScore = (b.initLevel + 1) * (b.initLevel + 1);
