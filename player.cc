@@ -1,6 +1,11 @@
 #include "player.h"
 #include "observer.h"
 #include "level.h"
+#include "level0.h"
+#include "level1.h"
+#include "level2.h"
+#include "level3.h"
+#include "level4.h"
 #include <sstream>
 #include <iostream>
 #include <array>
@@ -80,6 +85,7 @@ int Player::rotateCounterClockwise(int times, bool isInput = false){
 
 void Player::drop(bool isInput = false){
     board.dropCurrent();
+    endTurn();
 }
 
 int Player::incLevel(int n){
@@ -109,8 +115,12 @@ void Player::startTurn(){
 }
 
 void Player::endTurn(){
+    int linescleared = board.eotClean(&score);
     setInputState(END_TURN);
-    notifyObservers(onTurnEnd);
+    if(linescleared >= 2) {
+        setInputState(SA);
+    }
+    notifyObservers(onTurnEnd, linescleared);
 }
 
 bool Player::setLevel(int n){
@@ -118,11 +128,11 @@ bool Player::setLevel(int n){
 	    if (n == 0) {
 		    level = new Level0(side);
 	    } else if (n == 1) {
-        	    level = new Level1(side);
+        	level = new Level1(side);
 	    } else if (n == 2) {
 		    level = new Level2(side);
 	    } else if (n == 3) {
-	            level = new Level3(side);
+	        level = new Level3(side);
 	    } else if (n == 4) {
 		    level = new Level4(side);
 	    } else {
@@ -136,15 +146,15 @@ bool Player::setLevel(int n){
  	     } else {
 		     Level *temp = level;
 	     if (n == 0) {
-		     level = new Level0(*temp);
+		    level = new Level0(*temp);
 	     } else if (n == 1) {
-	             level = new Level1(*temp);
+	        level = new Level1(*temp);
 	     } else if (n == 2) {
-	      	     level = new Level2(*temp);
+	      	level = new Level2(*temp);
 	     } else if (n == 3) {
-		     level = new Level3(*temp);
+		    level = new Level3(*temp);
 	     } else if (n == 4) {
-		     level = new Level4(*temp);
+		    level = new Level4(*temp);
 	     }
              delete temp;
 	     temp = NULL;

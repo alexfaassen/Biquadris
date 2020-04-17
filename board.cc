@@ -6,13 +6,37 @@
 
 using namespace std;
 
+Board::Board(){}
+
+Board::~Board(){
+	delete currentBlock;
+	delete nextBlock;
+	for(auto p : placed){
+		delete p;
+	}
+}
+
+void Board::pushNextBlock(){
+	placeCurrent();
+	currentBlock = nextBlock;
+	nextBlock = level->CreateBlock();
+}
+
+void Board::placeCurrent(){
+	placed.emplace_back(currentBlock);
+	vector<Tile*> vec = currentBlock->getTilePointers();
+	for (auto p : vec){
+		immobileTiles[p->getX()][p->getY()] = p;
+	}
+}
+
 //TODO: needs some rewriting
-int Board::eotClean(int *score, int *level) {
+int Board::eotClean(int *score) {
 	int rowsRemoved = 0;
 	bool fullRow = true;
 	while(fullRow) {
 		for(int i =0; i < 11; i++) {
-			if(immobileTiles[14][i].getLetter() == ' ') {
+			if(immobileTiles[14][i]->getLetter() == ' ') {
 				fullRow = false;
 				break;
 			}
@@ -21,12 +45,12 @@ int Board::eotClean(int *score, int *level) {
 		rowsRemoved++;
 		for(int i = 13; i > 0; i--) {
 			for(int j = 0; j < 11; j++) {
-				char newLetter = immobileTiles[i][j].getLetter();
-				immobileTiles[i + 1][j].setLetter(newLetter);
+				char newLetter = immobileTiles[i][j]->getLetter();
+				immobileTiles[i + 1][j]->setLetter(newLetter);
 			}
 		}
 		for(int i = 0; i < 11; i++) {
-			immobileTiles[0][i].setLetter(' ');
+			immobileTiles[0][i]->setLetter(' ');
 		}
 		for(vector<Block *>::iterator b = placed.begin() ; b != placed.end(); ++b) {
 			b.move(0,-1);
@@ -38,7 +62,7 @@ int Board::eotClean(int *score, int *level) {
 		}
 
 	}
-	int rowsScore = (rowsRemoved * level) * (rowsRemoved * level);
+	int rowsScore = (rowsRemoved * level->getIdentifier()) * (rowsRemoved * level->getIdentifier());
        	score = score + rowsScore;	
 	return rowsRemoved;
 }
@@ -80,11 +104,11 @@ int Board::moveCurrent(Direction dir, int amount) {
 	}	
 }
 
-void Board::clockwiseCurrent() {
+bool Board::clockwiseCurrent() {
 	currentBlock->clockwise();
 }
 
-void Board::counterClockwiseCurrent() {
+bool Board::counterClockwiseCurrent() {
 	currentBlock->counterClockwise();
 }
 
@@ -103,7 +127,7 @@ void Board::dropCurrent() {
 }
 
 bool Board::isBlocked(int x, int y) {
-	if(immobileTiles[x][y].getLetter() == ' ')return false;
+	if(immobileTiles[x][y]->getLetter() == ' ')return false;
 	return true;	
 }
 
@@ -111,15 +135,15 @@ vector<vector<char>> Board::renderCharArray() {
 	vector<vector<char>> renderArray; 
 	for(int i = 0; i < 15; i++) {
 		for(int j = 0; j < 11; j++) {
-			renderArray[i][j] = immobileTiles[i][j].getLetter();
+			renderArray[i][j] = immobileTiles[i][j]->getLetter();
 		}
 	}
 	int currX, currY;
 	for(int i = 0; i < 4; i++) {
-		currX = currentBlock.getX();
-		currY = currentBlock.getY();
+		currX = currentBlock->getX();
+		currY = currentBlock->getY();
 		if(currX >= 0 && currX < 11 & currY >= 0 && currY < 15) {
-			renderArray[currY][currX] = currentBlock->getLetter();
+			renderArray[currY][currX] = currentBlock->getType();
 		}
 	}
 	return renderArray;
@@ -139,8 +163,8 @@ string Board::printNextBlock() {
 	for(int i = 2; i > 0; i++) {
 		for(int j = 0; j < 11; j++) {
 			for(int k = 0; k < 4; k++) {
-				if(nextBlock->tiles[k].getX() == j && nextBlocktiles[k].getY() == i) {
-					str += nextBlock.type;
+				if(nextBlock->tiles[k]->getX() == j && nextBlocktiles[k]->getY() == i) {
+					str += nextBlock->getType();
 					isTile = true;
 					break;
 				}
@@ -148,7 +172,7 @@ string Board::printNextBlock() {
 			if(!isTile)str += " ";
 			isTile = false;
 		}
-		str += "\n"
+		str += "\n";
 	}
 }
 

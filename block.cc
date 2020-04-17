@@ -92,6 +92,9 @@ type{type}, initLevel{initLevel} {
 	else if(type == 't') tBlock(x, y);	
 }
 
+Block::~Block(){
+}
+
 void Block::move(int deltaX, int deltaY) {
 	for(int i = 0; i < 4; i++) {
 		tiles[i].setX(tiles[i].getX + deltaX);
@@ -147,7 +150,14 @@ void Block::counterClockwise() {
                         tiles[i].setX(newX);
                 }
 	}
+}
 
+vector<Tile*> Block::getTilePointers() const {
+	vector<Tile*> vec;
+	for(auto &p : tiles){
+		vec.emplace_back(&p);
+	}
+	return vec;
 }
 
 bool Block::alive() {
