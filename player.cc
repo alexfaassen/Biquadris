@@ -44,7 +44,6 @@ void Player::preMove(){
 
 void Player::postMoveClean(){
     notifyObservers(afterMove);
-    //TODO once board is implemented
 }
 
 Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptfile, int startlevel)
@@ -66,26 +65,53 @@ Player::~Player(){
 }
 
 int Player::moveBlock(Direction dir, int times, bool isInput = false){
-    return board.moveCurrent(dir, times);
+    if(isInput){
+        preMove();
+    }
+    int moves = board.moveCurrent(dir, times);
+    if(isInput){
+        postMoveClean();
+    }
+    return moves;
 }
 
 int Player::rotateClockWise(int times, bool isInput = false){
-    for (int i = 0; i < times; ++i) {
-	    if (!board.clockwiseCurrent()) return i + 1;
+    if(isInput){
+        preMove();
     }
-    return times;
+    int successes = 0;
+    for (int i = 0; i < times; ++i) {
+	    if (board.clockwiseCurrent()) ++successes;
+    }
+    if(isInput){
+        postMoveClean();
+    }
+    return successes;
 }
 
 int Player::rotateCounterClockwise(int times, bool isInput = false){
-    for (int i = 0; i < times; ++i) {
-	    if (!board.counterClockwiseCurrent()) return i + 1;
+    if(isInput){
+        preMove();
     }
-    return times;
+    int successes = 0;
+    for (int i = 0; i < times; ++i) {
+	    if (board.counterClockwiseCurrent()) ++successes;
+    }
+    if(isInput){
+        postMoveClean();
+    }
+    return successes;
 }
 
 void Player::drop(bool isInput = false){
+    if(isInput){
+        preMove();
+    }
     board.dropCurrent();
-    endTurn();
+    if(isInput){
+        postMoveClean();
+        endTurn();
+    }
 }
 
 int Player::incLevel(int n){

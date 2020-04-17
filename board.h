@@ -32,7 +32,7 @@ class Board {
 	// handles everything that needs to be called at end of turn
 	int eotClean(int *score);
 
-	void changeCurrent(Block *cur);
+	void changeCurrent(char newType);
 	void setNext(Block *nex);
 	int moveCurrent(Direction, int amount);
 	bool clockwiseCurrent();
@@ -42,7 +42,7 @@ class Board {
 	//will moving currentBlock by the given coords cause it to collide with a tile?
 	bool isBlocked(int x, int y);	
 
-	std::vector<std::vector<char>> renderCharArray();
+	std::vector<std::vector<char>> &renderCharArray();
 	void forceTopColumnTile(Tile *colTile);
 	std::string printNextBlock();
 };

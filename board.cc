@@ -24,9 +24,8 @@ void Board::pushNextBlock(){
 
 void Board::placeCurrent(){
 	placed.emplace_back(currentBlock);
-	vector<Tile*> vec = currentBlock->getTilePointers();
-	for (auto p : vec){
-		immobileTiles[p->getX()][p->getY()] = p;
+	for (auto p : currentBlock->getTiles()){
+		immobileTiles[p.getX()][p.getY()] = &p;
 	}
 }
 
@@ -52,7 +51,7 @@ int Board::eotClean(int *score) {
 		for(int i = 0; i < 11; i++) {
 			immobileTiles[0][i]->setLetter(' ');
 		}
-		for(vector<Block *>::iterator b = placed.begin() ; b != placed.end(); ++b) {
+		for(auto b : placed) {
 			b.move(0,-1);
 			if(!b.alive()) {
 				int blockScore = (b.initLevel + 1) * (b.initLevel + 1);
@@ -68,19 +67,11 @@ int Board::eotClean(int *score) {
 }
 
 //TODO: needs some rewriting
-void Board::changeCurrent(Block *cur) {
-	int minX = 11, minY = 15;
-	for(int i = 0; i < 4; i++) {
-		if(cur.tiles[i].getX() < minX) minX = cur.tiles[i].getX();
-		if(cur.tiles[i].getY() < minY) minY = cur.tiles[i].getX();
-	}
-	if(cur->getType() == 'i') cur->iBlock(minX, minY);
-	else if(cur->getType() == 'j') cur->jBlock(minX, minY);
-	else if(cur->getType() == 'l') cur->lBlock(minX, minY);
-	else if(cur->getType() == 'o') cur->oBlock(minX, minY);
-	else if(cur->getType() == 's') cur->sBlock(minX, minY);
-	else if(cur->getType() == 'z') cur->zBlock(minX, minY);
-	else if(cur->getType() == 't') cur->tBlock(minX, minY);	
+void Board::changeCurrent(char newType) {
+	Block *newBlock = new Block{newType, level->getIdentifier(), 0, 2};
+	Block *oldCurrBlock = currentBlock;
+	currentBlock = newBlock;
+	delete oldCurrBlock;
 }
 
 //TODO: needs some rewriting
@@ -131,7 +122,7 @@ bool Board::isBlocked(int x, int y) {
 	return true;	
 }
 
-vector<vector<char>> Board::renderCharArray() {
+vector<vector<char>> &Board::renderCharArray() {
 	vector<vector<char>> renderArray; 
 	for(int i = 0; i < 15; i++) {
 		for(int j = 0; j < 11; j++) {
@@ -163,7 +154,7 @@ string Board::printNextBlock() {
 	for(int i = 2; i > 0; i++) {
 		for(int j = 0; j < 11; j++) {
 			for(int k = 0; k < 4; k++) {
-				if(nextBlock->tiles[k]->getX() == j && nextBlocktiles[k]->getY() == i) {
+				if(nextBlock.getTiles()[k]->getX() == j && nextBlock.getTiles[k]->getY() == i) {
 					str += nextBlock->getType();
 					isTile = true;
 					break;
