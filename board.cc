@@ -47,8 +47,12 @@ void Board::pushNextBlock(){
 }
 
 void Board::placeCurrent(){
-	placed.emplace_back(currentBlock);
-	for (auto p : currentBlock->getTiles()){
+	placeBlock(currentBlock);
+}
+
+void Board::placeBlock(Block* b){
+	placed.emplace_back(b);
+	for (auto p : b->getTiles()){
 		immobileTiles[p.getX()][p.getY()] = &p;
 	}
 }
@@ -162,7 +166,7 @@ void Board::forceTopColumnTile(Tile *colTile) {
 	for (int i = 1; i < 15; ++i) {
 		if (!isEmpty(5, i)) row = i - 1;
 	}
-	placed.emplace_back(new Block('*', -1, 5, row));
+	placeBlock(new Block('*', -1, 5, row));
 }
 
 //TODO: needs some rewriting

@@ -35,6 +35,9 @@ class Board {
 	// moves currentBlock into placed and its tiles into immobileTiles
 	void placeCurrent();
 
+	//moves the given block into placed and its tiles into immobileTiles
+	void placeBlock(Block*);
+
 	// handles everything that needs to be called at end of turn
 	int eotClean(int *score);
 
