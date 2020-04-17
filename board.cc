@@ -71,7 +71,7 @@ void Board::changeCurrent(char newType) {
 	Block *newBlock = new Block{newType, level->getIdentifier(), 0, 2};
 	Block *oldCurrBlock = currentBlock;
 	currentBlock = newBlock;
-	delete oldCurrBlock;	
+	delete oldCurrBlock;
 }
 
 //TODO: needs some rewriting
@@ -80,19 +80,17 @@ int Board::moveCurrent(Direction dir, int amount) {
 	switch(dir) {
 		case Left: deltaX = -1;
 		case Right: deltaX = 1;
-		case Down: deltaY = -1; 
+		case Down: deltaY = 1; 
 	}
-	int moveCount = 0, newX, newY;
+	int moveCount = 0;
 	while(moveCount < amount) {
-		for(int i = 0; i < 4; i++) {
-			newX = currentBlock.tiles[i].getX() + deltaX;
-			newY = currentBlock.tiles[i].getY() + deltaY;
-			if(isBlocked(newX, newY))break;
+		if(isBlocked(deltaX, deltaY)){
+			break;
 		}
-		if(isBlocked(newX, newY))break;
-		else currentBlock->move(deltaX, deltaY);
+		currentBlock->move(deltaX, deltaY);
 		moveCount++;
-	}	
+	}
+	return moveCount;	
 }
 
 bool Board::clockwiseCurrent() {
@@ -138,8 +136,8 @@ vector<vector<char>> &Board::renderCharArray() {
 	for(int i = 0; i < 3; i ++){
 		vec.emplace_back(vector<char>(11, ' '));
 	}
-	for(int x = 0; x < 15; x++) {
-		for(int y = 0; y < 11; y++) {
+	for(int y = 0; y < 15; y++) {
+		for(int x = 0; x < 11; x++) {
 			if(!immobileTiles[x][y]){ 
 				vec.at(x).emplace_back(' ');
 			} else {
