@@ -31,10 +31,11 @@ class Board {
 
 	bool isAlive() const{return alive;};
 
-	// moves currentBlock into placed, nextBlock into currentBlock, and generates nextBlock
-	void pushNextBlock();
+	// moves currentBlock into placed, nextBlock into currentBlock, and generates nextBlock. 
+	// Returns if successful. If safe, will not do anything if currentBlock is not nullptr
+	bool pushNextBlock(bool safe = true);
 
-	// moves currentBlock into placed and its tiles into immobileTiles
+	// moves currentBlock into placed and its tiles into immobileTiles. Sets currentBlock to nullptr
 	void placeCurrent();
 
 	//moves the given block into placed and its tiles into immobileTiles

@@ -40,14 +40,16 @@ Board::~Board(){
 	}
 }
 
-void Board::pushNextBlock(){
-	placeCurrent();
+bool Board::pushNextBlock(bool safe = true){
+	if(safe && currentBlock) return false;
 	currentBlock = nextBlock;
 	nextBlock = level->CreateBlock();
+	return true;
 }
 
 void Board::placeCurrent(){
 	placeBlock(currentBlock);
+	currentBlock = nullptr;
 }
 
 void Board::placeBlock(Block* b){
@@ -183,7 +185,7 @@ string Board::printNextBlock() {
 	for(int i = 2; i > 0; i++) {
 		for(int j = 0; j < 11; j++) {
 			for(int k = 0; k < 4; k++) {
-				if(nextBlock.getTiles()[k]->getX() == j && nextBlock.getTiles[k]->getY() == i) {
+				if(nextBlock->getTiles()[k].getX() == j && nextBlock->getTiles[k]->getY() == i) {
 					str += nextBlock->getType();
 					isTile = true;
 					break;

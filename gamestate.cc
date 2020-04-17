@@ -138,15 +138,15 @@ void GameState::cleanup(){
     while(!activePlayer->outgoingIsEmpty()){
         nonActivePlayer->pushToObservers(activePlayer->popFromOutgoing());
     }
-
-    //handle textDisplay
-    printGame();
     
     //switch active player if turn has ended
     if(activePlayer->getInputState() == END_TURN){
         switchActive();
         activePlayer->startTurn();  //note: this is where startTurn() is called
     }
+
+    //handle textDisplay
+    printGame();
 }
 
 // prints everything until the first \n in str and removes everything up to and including that \n

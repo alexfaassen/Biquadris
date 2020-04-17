@@ -137,6 +137,7 @@ int Player::incLevel(int n){
 
 void Player::startTurn(){
     setInputState(NORMAL);
+    board.pushNextBlock();
     notifyObservers(onTurnStart);
 }
 
