@@ -10,5 +10,7 @@ void CentreDropEffect::notify(const Event currEvent, const int linesCleared) {
 		} else {
 			++blocksSinceClear;
 		}
+	} else if (currEvent == onLinesCleared) {
+		blocksSinceCleared = 0;
 	}
 }
