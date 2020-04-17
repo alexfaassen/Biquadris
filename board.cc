@@ -66,7 +66,6 @@ int Board::eotClean(int *score) {
 	return rowsRemoved;
 }
 
-//TODO: needs some rewriting
 void Board::changeCurrent(char newType) {
 	Block *newBlock = new Block{newType, level->getIdentifier(), 0, 2};
 	Block *oldCurrBlock = currentBlock;
@@ -74,7 +73,6 @@ void Board::changeCurrent(char newType) {
 	delete oldCurrBlock;
 }
 
-//TODO: needs some rewriting
 int Board::moveCurrent(Direction dir, int amount) {
 	int deltaX = 0, deltaY = 0;
 	switch(dir) {
@@ -102,17 +100,7 @@ bool Board::counterClockwiseCurrent() {
 }
 
 void Board::dropCurrent() {
-	bool atBottom = false;
-	while(true) {
-		for(int i = 0; i < 4; i++) {
-			atBottom = isBlocked(currentBlock->getX(), currentBlock->getY() - 1);
-			if(atBottom)break;
-		}
-		if(atBottom)break;
-		for(int i = 0; i < 4; i++) {
-			currentBlock->setY(currentBlock->getY() - 1);
-		}
-	}
+	while(moveCurrent(Down, 1)){}
 }
 
 
