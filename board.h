@@ -40,7 +40,7 @@ class Board {
 	void dropCurrent();
 
 	//will moving currentBlock by the given coords cause it to collide with a tile?
-	bool isBlocked(int deltaX, int deltaY);	
+	bool isMoveBlocked(int deltaX, int deltaY);	
 
 	// returns if the given coord isn't occupied by a tile
 	bool isEmpty(int x, int y);
