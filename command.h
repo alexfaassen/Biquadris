@@ -5,14 +5,16 @@
 
 class Command {
 	std::string name;
-	bool needClean = 1;
+	bool needClean;
+
 	public:
+	Command(const std::string name, const bool needClean = 1) : name{name}, needClean{needClean} {}
+
 	std::string getName() const;
 
-	int longestSubstring(const string playerInput) const; // returns length of longest matching substring of name wtih playerinput
-	bool hasSubstring(const string playerInput) const; // returns whether playerInput is a substring
+	bool hasSubstring(const string playerInput) const; // returns whether playerInput is a substring of name
 
-	void execute(GameState &game, const int times) const;
+	virtual void execute(GameState &game, const int times) const;
 	private:
 	virtual void run(GameState &game, const int times = 1) const = 0;
 };

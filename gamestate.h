@@ -11,7 +11,7 @@
 
 class GameState {
     private:
-    int highscore;
+    int highscore = 0;
     Player leftPlayer;
     Player rightPlayer;
     Player* activePlayer = nullptr;
@@ -21,6 +21,8 @@ class GameState {
     std::vector<std::reference_wrapper<std::istream>> istreams;
 
     const int loffsetX, loffsetY, roffsetX, roffsetY;
+    const std::string scriptFile1, scriptFile2;
+    const int startlevel;
 
     void switchActive();    //rotates the active player
     void createPlayers();   //creates the two players
@@ -28,7 +30,7 @@ class GameState {
 
     public:
     //constructors and destrutors
-    GameState(bool hasWindow = true);
+    Gamestate(bool hasWindow, std::string scriptfile1, std::string scriptfile2, int startlevel);
     ~GameState();
 
     //accessors

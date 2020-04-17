@@ -2,14 +2,14 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-using namespace std;
 
 void NoRandom::run(GameState &game, const int times) const override {
-	if (player.getLevel() == 3 || player.getLevel() == 4) {
-		istream &in = game.getStream();
-		string s;
+	Player &player = game.getActivePlayer();
+	if (player.isLevel() == 3 || player.isLevel() == 4) {
+		std::istream &in = game.getStream();
+		std::string s;
 		in >> s;
-		ifstream *file{new s};
-		game.getActivePlayer().setFileInput(file);
+		std::ifstream *newFile{new s};
+		game.getActivePlayer().setFileInput(newFile);
 	}
 }

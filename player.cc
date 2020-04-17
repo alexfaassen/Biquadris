@@ -1,5 +1,12 @@
 #include "player.h"
 #include "observer.h"
+#include "level.h"
+#include "level0.h"
+#include "level1.h"
+#include "level2.h"
+#include "level3.h"
+#include "level4.h"
+#include <sstream>
 #include <iostream>
 #include <array>
 
@@ -11,9 +18,9 @@ void Player::initGraphicsObservers(){
 
 int Player::cleanObservers(){
     for(int i = 0; i < observers.size(); i++){
-        if(!observers.get(i)->isAlive()){
-            delete observers.get(i);
-            observers.erase(i);
+        if(!observers.at(i)->isAlive()){
+            delete observers.at(i);
+            observers.erase(observers.begin()+i);
             i--;
         }
     }
@@ -25,7 +32,7 @@ void Player::notifyObservers(Event ev, int n = 0){
     }
 }
 
-void Player::notifyObservers(Event ev, char[][]& arr){
+void Player::notifyObservers(Event ev, vector<vector<char>>& arr){
     for(auto p : observers){
         p->notify(ev, arr);
     }
@@ -37,13 +44,16 @@ void Player::preMove(){
 
 void Player::postMoveClean(){
     notifyObservers(afterMove);
-    //TODO once board is implemented
 }
 
-Player::Player(Xwindow* w, int offsetX, int offsetY, int side)
-: window{PlayerWindow(w, offsetX, offsetY)}, side{side} {
+Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptfile, int startlevel)
+: window{PlayerWindow(w, offsetX, offsetY)}, side{side}, scriptFile {scriptfile} {
     if(window.hasWindow()){
         initGraphicsObservers();
+    }
+    if(!setLevel(startlevel)){
+        cout << "Error: invalid startlevel. Using Level 0 instead" << endl;
+        setLevel(0);
     }
 }
 
@@ -55,28 +65,56 @@ Player::~Player(){
 }
 
 int Player::moveBlock(Direction dir, int times, bool isInput = false){
-    return board.moveCurrent(dir, times);
+    if(isInput){
+        preMove();
+    }
+    int moves = board.moveCurrent(dir, times);
+    if(isInput){
+        postMoveClean();
+    }
+    return moves;
 }
 
 int Player::rotateClockWise(int times, bool isInput = false){
-    for (int i = 0; i < times; ++i) {
-	    if (!board.clockwiseCurrent()) return i + 1;
+    if(isInput){
+        preMove();
     }
-    return times;
+    int successes = 0;
+    for (int i = 0; i < times; ++i) {
+	    if (board.clockwiseCurrent()) ++successes;
+    }
+    if(isInput){
+        postMoveClean();
+    }
+    return successes;
 }
 
 int Player::rotateCounterClockwise(int times, bool isInput = false){
-    for (int i = 0; i < times; ++i) {
-	    if (!board.counterClockwiseCurrent()) return i + 1;
+    if(isInput){
+        preMove();
     }
-    return times;
+    int successes = 0;
+    for (int i = 0; i < times; ++i) {
+	    if (board.counterClockwiseCurrent()) ++successes;
+    }
+    if(isInput){
+        postMoveClean();
+    }
+    return successes;
 }
 
 void Player::drop(bool isInput = false){
+    if(isInput){
+        preMove();
+    }
     board.dropCurrent();
+    if(isInput){
+        postMoveClean();
+        endTurn();
+    }
 }
 
-bool Player::incLevel(int n){
+int Player::incLevel(int n){
     if (level) {
 	    return setLevel(level->getIdentifier() + n);
     } else {
@@ -103,8 +141,12 @@ void Player::startTurn(){
 }
 
 void Player::endTurn(){
+    int linescleared = board.eotClean(&score);
     setInputState(END_TURN);
-    notifyObservers(onTurnEnd);
+    if(linescleared >= 2) {
+        setInputState(SA);
+    }
+    notifyObservers(onTurnEnd, linescleared);
 }
 
 bool Player::setLevel(int n){
@@ -112,11 +154,11 @@ bool Player::setLevel(int n){
 	    if (n == 0) {
 		    level = new Level0(side);
 	    } else if (n == 1) {
-        	    level = new Level1(side);
+        	level = new Level1(side);
 	    } else if (n == 2) {
 		    level = new Level2(side);
 	    } else if (n == 3) {
-	            level = new Level3(side);
+	        level = new Level3(side);
 	    } else if (n == 4) {
 		    level = new Level4(side);
 	    } else {
@@ -130,15 +172,15 @@ bool Player::setLevel(int n){
  	     } else {
 		     Level *temp = level;
 	     if (n == 0) {
-		     level = new Level0(*temp);
+		    level = new Level0(*temp);
 	     } else if (n == 1) {
-	             level = new Level1(*temp);
+	        level = new Level1(*temp);
 	     } else if (n == 2) {
-	      	     level = new Level2(*temp);
+	      	level = new Level2(*temp);
 	     } else if (n == 3) {
-		     level = new Level3(*temp);
+		    level = new Level3(*temp);
 	     } else if (n == 4) {
-		     level = new Level4(*temp);
+		    level = new Level4(*temp);
 	     }
              delete temp;
 	     temp = NULL;
@@ -164,13 +206,13 @@ void Player::changeCurrentBlock(Block* block){
     board.changeCurrent(block);
 }
 
-string charArrToString(const char[][]& arr){
+string charArrToString(const vector<vector<char>>& arr){
     stringstream ss;
     for(auto y : arr){
         for(auto x : y){
             ss << x;
         }
-        ss < '\n';
+        ss << '\n';
     }
     return ss.str();
 }
@@ -179,13 +221,13 @@ string Player::printToString(){
     stringstream ss;
     ss << "Level:" << setw(5) << level->getIdentifier() << '\n';
     ss << "Score:" << setw(5) << score << '\n';
-    ss < "-----------" << '\n';
-    char[][] boardarr = board.renderCharArray();
+    ss << "-----------" << '\n';
+    vector<vector<char>>& boardarr = board.renderCharArray();
     notifyObservers(beforeTextDisplay, boardarr);
     ss << charArrToString(boardarr);
-    ss < "-----------" << '\n';
-    ss < "Next:      " << '\n';
-    ss < board.printNextBlock();
+    ss << "-----------" << '\n';
+    ss << "Next:      " << '\n';
+    ss << board.printNextBlock();
     return ss.str();
 }
 

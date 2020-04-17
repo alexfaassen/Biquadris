@@ -1,3 +1,3 @@
 #include "levelup.h"
 
-void LevelUp::run(GameState &game, const int times) const override { game.getActivePlayer().changeLevel(times); }
+void LevelUp::run(GameState &game, const int times) const override { game.getActivePlayer().incLevel(times); }

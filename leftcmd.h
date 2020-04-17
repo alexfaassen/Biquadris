@@ -4,7 +4,7 @@
 
 class LeftCmd : public Command {
 	public:
-	LeftCmd() : {}
+	LeftCmd(const std::string name = "left", bool needClean = 1) : Command(name, needClean) {}
 	private:
 	void run(GameState &game, const int times = 1) const override;
 };
