@@ -143,7 +143,7 @@ vector<vector<char>> &Board::renderCharArray() {
 }
 
 void Board::forceTopColumnTile(Tile *colTile) {
-	if (!isEmpty(5, 0)) alive = 0; 
+	if (!isEmpty(5, 0)) alive = false; 
 	int row = 0;
 	for (int i = 1; i < 15; ++i) {
 		if (!isEmpty(5, i)) row = i - 1;
