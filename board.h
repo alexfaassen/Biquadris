@@ -17,6 +17,11 @@ class Board {
 	//Board DOES NOT have ownership of the following. DO NOT call delete on these
 	Tile* immobileTiles[15][11];
 	Level* level;
+
+	
+	bool rowIsFull(int row);	//checks if the given row is complete
+	void clearRow(int row);		//kills all the tiles in the row drops everything down
+
 	
 	public:
 	//constructor and destructor

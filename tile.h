@@ -13,6 +13,7 @@ class Tile {
 	int getX();
 	int getY();
 	bool isAlive() {return alive;};
+	void kill();
 	void setX(int newX);
 	void setY(int newY);
 	void invert();

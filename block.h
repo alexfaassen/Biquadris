@@ -30,6 +30,7 @@ class Block {
 
 	//accessors
 	char getType() const {return type;};
+	int getInitLevel() const {return initLevel;};
 	Tile (&getTiles())[4] {return tiles;};
 
 	//maintainence
