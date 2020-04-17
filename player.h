@@ -12,6 +12,7 @@
 
 class Observer;
 class Level;
+class Level0;
 
 class Player {
     private:
