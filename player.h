@@ -63,7 +63,7 @@ class Player {
     void pushToObservers(Observer*);
     void changeCurrentBlock(char);
     std::string printToString();
-    void forceTopTile(Tile*);
+    void forceTopTile(const char b, const int col);
 }
 
 #endif

@@ -167,7 +167,7 @@ void Board::forceTopColumnTile(const char b, const int col) {
 	for (int i = 1; i < 15; ++i) {
 		if (!isEmpty(5, i)) row = i - 1;
 	}
-	placed.emplace_back(new Block(b, -1, col, row));
+	placeBlock(new Block(b, -1, col, row));
 }
 
 //TODO: needs some rewriting

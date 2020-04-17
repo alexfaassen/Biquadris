@@ -55,7 +55,7 @@ class Board {
 	bool isEmpty(int x, int y);
 
 	std::vector<std::vector<char>> &renderCharArray();
-	void forceTopColumnTile(Tile *colTile);
+	void forceTopColumnTile(const char b, const int col);
 	std::string printNextBlock();
 };
 
