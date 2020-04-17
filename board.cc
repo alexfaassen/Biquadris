@@ -130,7 +130,7 @@ bool Board::isBlocked(int x, int y) {
 	return true;	
 }
 
-vector<vector<char>> Board::renderCharArray() {
+vector<vector<char>> &Board::renderCharArray() {
 	vector<vector<char>> renderArray; 
 	for(int i = 0; i < 15; i++) {
 		for(int j = 0; j < 11; j++) {
