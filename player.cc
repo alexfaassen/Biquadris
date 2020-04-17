@@ -189,6 +189,6 @@ string Player::printToString(){
     return ss.str();
 }
 
-void Player::forceTopTile(Tile* tile){
-	board->forceTopColumnTile(tile);
+void Player::forceTopTile(const char b, const int col){
+	board->forceTopColumnTile(b, col);
 }
