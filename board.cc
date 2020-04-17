@@ -125,9 +125,13 @@ void Board::dropCurrent() {
 	}
 }
 
-bool Board::isBlocked(int x, int y) {
-	if(immobileTiles[x][y]->getLetter() == ' ')return false;
-	return true;	
+bool Board::isBlocked(int deltaX, int deltaY){
+
+}
+
+bool Board::isEmpty(int x, int y) {
+	if(!immobileTiles[x][y])return true;
+	return false;	
 }
 
 vector<vector<char>> &Board::renderCharArray() {
