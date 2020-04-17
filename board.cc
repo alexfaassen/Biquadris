@@ -82,7 +82,7 @@ int Board::moveCurrent(Direction dir, int amount) {
 	}
 	int moveCount = 0;
 	while(moveCount < amount) {
-		if(isBlocked(deltaX, deltaY)){
+		if(isMoveBlocked(deltaX, deltaY)){
 			break;
 		}
 		currentBlock->move(deltaX, deltaY);
