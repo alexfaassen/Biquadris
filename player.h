@@ -61,7 +61,7 @@ class Player {
     bool setFileInput(std::ifstream*);
     void specialAction();               //queries special action
     void pushToObservers(Observer*);
-    void changeCurrentBlock(Block*);
+    void changeCurrentBlock(char);
     std::string printToString();
     void forceTopTile(Tile*);
 }

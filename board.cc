@@ -119,6 +119,7 @@ bool Board::counterClockwiseCurrent() {
 
 void Board::dropCurrent() {
 	while(moveCurrent(Down, 1)){}
+	placeCurrent();
 }
 
 
