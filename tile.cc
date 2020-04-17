@@ -34,4 +34,4 @@ void Tile::invert() {
 	y = hold;
 }
 
-
+void Tile::kill() { alive = false; }
