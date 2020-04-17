@@ -9,7 +9,7 @@ class Observer {
 	bool alive;
 
 	public:
-	Observer(Player *player = NULL, bool alive = 1) : player{player}, alive{alive} {}
+	Observer(Player *player = NULL, bool alive = true) : player{player}, alive{alive} {}
 
 	bool isAlive() const;
   
@@ -17,7 +17,7 @@ class Observer {
 
 	void kill();
 
-	virtual void notify(const Event currEvent, const int clearedLines) = 0;
+	virtual void notify(const Event currEvent, const int linesCleared) = 0;
 	virtual void notify(const Event currEvent, std::vector<std::vector<char>> &boardPrint) = 0;
 };
 
