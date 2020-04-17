@@ -6,7 +6,7 @@ class Tile {
 	char letter;
 	int x;
 	int y;
-asdf
+
 	public:
 	char getLetter();
 	void setLetter(char newLetter);
