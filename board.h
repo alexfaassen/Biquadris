@@ -32,7 +32,7 @@ class Board {
 	// handles everything that needs to be called at end of turn
 	int eotClean(int *score);
 
-	void changeCurrent(Block *cur);
+	void changeCurrent(char newType);
 	void setNext(Block *nex);
 	int moveCurrent(Direction, int amount);
 	bool clockwiseCurrent();
