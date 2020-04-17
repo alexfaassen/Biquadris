@@ -127,7 +127,7 @@ void Board::dropCurrent() {
 }
 
 bool Board::isBlocked(int x, int y) {
-	if(immobileTiles[x][y].getLetter() == ' ')return false;
+	if(immobileTiles[x][y]->getLetter() == ' ')return false;
 	return true;	
 }
 
@@ -135,15 +135,15 @@ vector<vector<char>> Board::renderCharArray() {
 	vector<vector<char>> renderArray; 
 	for(int i = 0; i < 15; i++) {
 		for(int j = 0; j < 11; j++) {
-			renderArray[i][j] = immobileTiles[i][j].getLetter();
+			renderArray[i][j] = immobileTiles[i][j]->getLetter();
 		}
 	}
 	int currX, currY;
 	for(int i = 0; i < 4; i++) {
-		currX = currentBlock.getX();
-		currY = currentBlock.getY();
+		currX = currentBlock->getX();
+		currY = currentBlock->getY();
 		if(currX >= 0 && currX < 11 & currY >= 0 && currY < 15) {
-			renderArray[currY][currX] = currentBlock->getLetter();
+			renderArray[currY][currX] = currentBlock->getType();
 		}
 	}
 	return renderArray;
@@ -163,8 +163,8 @@ string Board::printNextBlock() {
 	for(int i = 2; i > 0; i++) {
 		for(int j = 0; j < 11; j++) {
 			for(int k = 0; k < 4; k++) {
-				if(nextBlock->tiles[k].getX() == j && nextBlocktiles[k].getY() == i) {
-					str += nextBlock.type;
+				if(nextBlock->tiles[k]->getX() == j && nextBlocktiles[k]->getY() == i) {
+					str += nextBlock->getType();
 					isTile = true;
 					break;
 				}
