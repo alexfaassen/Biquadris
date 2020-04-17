@@ -15,7 +15,7 @@ class Command {
 
 	bool hasSubstring(const string playerInput) const; // returns whether playerInput is a substring of name
 
-	void execute(GameState &game, const int times) const;
+	virtual void execute(GameState &game, const int times) const;
 	private:
 	virtual void run(GameState &game, const int times = 1) const = 0;
 };
