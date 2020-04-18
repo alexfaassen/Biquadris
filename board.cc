@@ -87,10 +87,11 @@ int Board::eotClean(int *score) {
 }
 
 void Board::changeCurrent(char newType) {
-	Block *newBlock = new Block{newType, level->getIdentifier(), 0, 2};
+	Block *newBlock = new Block(newType, level->getIdentifier());
 	Block *oldCurrBlock = currentBlock;
 	currentBlock = newBlock;
 	delete oldCurrBlock;
+	if (isCurrentBlocked()) alive = false;
 }
 
 int Board::moveCurrent(Direction dir, int amount) {
