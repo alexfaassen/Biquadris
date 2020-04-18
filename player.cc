@@ -176,12 +176,12 @@ bool Player::setLevel(int n){
 		level->generateEffects(observers);
 	    } else {
 	 	    // Error, Invalid Input
-		    return 0;
+		    return false;
     	    }
      } else {
 	     if (n < 0 || n > 4 || n == level->getIdentifier()) {
 		     // Error, Invalid Input
-	             return 0;
+	             return false;
  	     } else {
 		     Level *temp = level;
 	     	     if (n == 0) {
@@ -201,7 +201,7 @@ bool Player::setLevel(int n){
 	             temp = NULL;
 	     }
     }
-    return 1;
+    return true;
 }
 
 bool Player::setFileInput(ifstream* stream){
