@@ -158,7 +158,7 @@ bool Board::isEmpty(int x, int y) {
 
 vector<vector<char>> Board::renderCharArray() {
 	vector<vector<char>> vec; 
-	for(int i = 0; i < 3; i ++){
+	for(int i = 0; i < 4; i ++){
 		vec.emplace_back(vector<char>(11, ' '));
 	}
 	for(int y = 0; y < 15; y++) {
