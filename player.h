@@ -19,7 +19,7 @@ class Player {
     private:
     PlayerWindow window;
     int side, score = 0;
-    Board board();
+    Board board;
     Level* level = nullptr;
     std::vector<Observer*> observers;
     InputState inputState = NORMAL;
