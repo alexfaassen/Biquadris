@@ -32,9 +32,9 @@ void Board::clearRow(int row){
 }
 
 Board::Board(){
-	for (int y = 0; y < 15; ++y) {
-		for (int x = 0; x < 11; ++x) {
-			immobileTiles[y][x] = nullptr;
+	for(auto &x : immobileTiles){
+		for(auto p : x){
+			p = nullptr;
 		}
 	}
 }
