@@ -4,6 +4,7 @@
 #include <istream>
 #include <vector>
 #include <functional>
+#include <string>
 
 #include "player.h"
 #include "window.h"
