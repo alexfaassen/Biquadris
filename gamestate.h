@@ -23,7 +23,7 @@ class GameState {
 
     const int loffsetX = 0, loffsetY = 0, roffsetX = 0, roffsetY = 0;
     const std::string scriptFile1, scriptFile2;
-    const int startlevel;
+    const int startlevel = 0;
     bool running = true;
 
     void switchActive();    //rotates the active player
