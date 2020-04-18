@@ -34,6 +34,7 @@ class Player {
     void postMoveClean();    //called after movement. Handles cleaning and stuff
 
     public:
+    Player();
     Player(Xwindow*, int offsetX, int offsetY, int side, std::string scriptfile, int startlevel);
     ~Player();
 

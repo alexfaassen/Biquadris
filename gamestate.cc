@@ -22,7 +22,7 @@ void GameState::createPlayers(){
 
 int GameState::cleanStreams(){
     int n = 0;
-    while(!istreams.empty() && istreams.back().eof){
+    while(!istreams.empty() && istreams.back().eof()){
         istreams.pop_back();
         ++n;
     }
@@ -204,8 +204,8 @@ bool printAndRemoveLine(string &str){
 }
 
 void GameState::printGame(){
-    string lp = leftplayer.printToString();
-    string rp = rightplayer.printToString();
+    string lp = leftPlayer.printToString();
+    string rp = rightPlayer.printToString();
 
     while(true){
         if(!printAndRemoveLine(lp)){    //breaks out of loop once either string runs out of lines
