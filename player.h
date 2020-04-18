@@ -20,7 +20,7 @@ class Player {
     PlayerWindow window;
     int side, score = 0;
     Board board;
-    Level* level = new Level0(side);
+    Level* level = nullptr;
     std::vector<Observer*> observers;
     InputState inputState = NORMAL;
     std::string scriptFile;
