@@ -1,6 +1,7 @@
 #ifndef DOWN_H
 #define DOWN_H
 #include "command.h"
+#include "gamestate.h"
 
 class DownCmd : public Command {
 	public:
