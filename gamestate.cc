@@ -22,7 +22,7 @@ void GameState::createPlayers(){
 
 int GameState::cleanStreams(){
     int n = 0;
-    while(!istreams.empty() && istreams.back().eof(){
+    while(!istreams.empty() && istreams.back().eof){
         istreams.pop_back();
         ++n;
     }
@@ -126,7 +126,7 @@ bool GameState::runInput(string input, int multiplier = 1){
     Command* cmd = nullptr;
     bool duplicate_found = false;
     for(const auto &p : commands){     // loops through commands vector to find a match
-        if(p->hasSubstring(s)){
+        if(p->hasSubstring(input)){
             if(!cmd){
                  cmd = p;
             } else {                    //if multiple matches are found then it fails
@@ -208,8 +208,8 @@ bool printAndRemoveLine(string &str){
 }
 
 void GameState::printGame(){
-    string lp = leftPlayer.printToString();
-    string rp = rightPlayer.printToString();
+    string lp = leftplayer.printToString();
+    string rp = rightplayer.printToString();
 
     while(true){
         if(!printAndRemoveLine(lp)){    //breaks out of loop once either string runs out of lines
