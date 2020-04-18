@@ -8,13 +8,13 @@ class Player;
 
 class Observer {
 	protected:
-	Player *player;
-	bool alive;
+	Player *player = NULL;
+	bool alive = 1;
 	
 	virtual ~Observer();
 
 	public:
-	Observer(Player *player = NULL, bool alive = true) : player{player}, alive{alive} {}
+	Observer() {}
 
 	bool isAlive() const;
   
