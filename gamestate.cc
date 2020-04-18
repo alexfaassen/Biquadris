@@ -215,11 +215,11 @@ void GameState::printGame(){
         if(!printAndRemoveLine(lp)){    //breaks out of loop once either string runs out of lines
             break;
         }
-        cout < "     ";
+        cout << "     ";
         if(!printAndRemoveLine(rp)){    //note: weird things will happen if strings have different # of lines
             break;
         }
-        cout < endl;
+        cout << endl;
     }
 }
 
