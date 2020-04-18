@@ -63,6 +63,7 @@ class Board {
 	std::vector<std::vector<char>> &renderCharArray();
 	void forceTopColumnTile(const char b, const int col);
 	std::string printNextBlock();
+	void kill();
 };
 
 #endif
