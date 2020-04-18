@@ -1,4 +1,6 @@
 #include "force.h"
+#include "forceeffect.h"
+
 #include <iostream>
 #include <fstream>
 

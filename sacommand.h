@@ -8,7 +8,7 @@ class SACommand : public Command {
 	bool needClean;
 
 	// abstract ctor
-	SACommand(const std::string name, const bool needClean = 1) : name{name}, needClean{needClean} {}
+	SACommand(const std::string name, const bool needClean = 1) : Command(name, needClean) {}
 
 	public:
 	std::string getName() const;
