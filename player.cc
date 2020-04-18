@@ -159,15 +159,17 @@ void Player::endTurn(){
 bool Player::setLevel(int n){
     if (!level) {
 	    if (n == 0) {
-		    level = new Level0(side);
+		level = new Level0(side);
 	    } else if (n == 1) {
         	level = new Level1(side);
 	    } else if (n == 2) {
-		    level = new Level2(side);
+		level = new Level2(side);
 	    } else if (n == 3) {
-	        level = new Level3(side);
+	    	level = new Level3(side);
+		level->generateEffects(observers);
 	    } else if (n == 4) {
-		    level = new Level4(side);
+		level = new Level4(side);
+		level->generateEffects(observers);
 	    } else {
 	 	    // Error, Invalid Input
 		    return 0;
@@ -178,19 +180,21 @@ bool Player::setLevel(int n){
 	             return 0;
  	     } else {
 		     Level *temp = level;
-	     if (n == 0) {
-		    level = new Level0(*temp);
-	     } else if (n == 1) {
-	        level = new Level1(*temp);
-	     } else if (n == 2) {
-	      	level = new Level2(*temp);
-	     } else if (n == 3) {
-		    level = new Level3(*temp);
-	     } else if (n == 4) {
-		    level = new Level4(*temp);
-	     }
-             delete temp;
-	     temp = NULL;
+	     	     if (n == 0) {
+			     level = new Level0(*temp);
+	             } else if (n == 1) {
+	                     level = new Level1(*temp);
+	     	     } else if (n == 2) {
+	     		     level = new Level2(*temp);
+	     	     } else if (n == 3) {
+		   	     level = new Level3(*temp);
+		    	     level->generateEffects(observers);
+	     	     } else if (n == 4) {
+		  	     level = new Level4(*temp);
+		   	     level->generateEffects(observers);
+	    	     }
+                     delete temp;
+	             temp = NULL;
 	     }
     }
     return 1;
