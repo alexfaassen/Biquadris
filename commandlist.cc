@@ -34,6 +34,15 @@ CommandList::CommandList(){
     fillSACommands();
 }
 
+CommandList::~CommandList(){
+    for(auto p : normalCommands){
+        delete p;
+    }
+    for (auto p : SACommands){
+        delete p;
+    }
+}
+
 void CommandList::fillNormalCommands(){
     normalCommands.clear();
     // Normal Commands
