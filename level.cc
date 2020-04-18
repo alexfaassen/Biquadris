@@ -18,3 +18,5 @@ bool Level::setFile(std::ifstream *newFile) {
 	file = newFile;
 	return true;
 }
+
+void Level::generateEffects(std::vector<Observer*> &vec) const {}
