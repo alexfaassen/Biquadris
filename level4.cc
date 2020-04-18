@@ -9,7 +9,7 @@ Level4::Level4(const Level &other) : Level(other), heavy{new HeavyEffect()}, cen
 
 Level4::Level4(const Level3 &other) : Level(other), heavy{other.heavy}, centreDrop{new CentreDropEffect()} { identifier = 4; }
 
-Level4::Level4(const int playerSide, int identifier) : Level(playerSide, identifier) { heavy = new HeavyEffect(); centreDrop = new CentreDropEffect(); }
+Level4::Level4(const int playerSide, int identifier) : Level(playerSide, identifier) {}
 
 void Level4::generateEffects(std::vector<Observer*> &vec) const { vec.emplace_back(heavy); vec.emplace_back(centreDrop); }
 
