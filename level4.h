@@ -3,6 +3,7 @@
 #include "level.h"
 #include "heavyeffect.h"
 #include "centredropeffect.h"
+#include "level3.h"
 
 class Level4 : public Level {
 	HeavyEffect *heavy = new HeavyEffect();
