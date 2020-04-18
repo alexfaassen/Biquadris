@@ -198,4 +198,9 @@ string Board::printNextBlock() {
 	}
 }
 
+void Board::kill() {
+	alive = false;
+}
+
+
 
