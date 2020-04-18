@@ -180,7 +180,6 @@ vector<vector<char>> Board::renderCharArray() {
 				vec.at(y + 3).emplace_back(' ');
 			} else {
 				cout << "test: else" << endl;
-				cout << string(1,immobileTiles[y][x]->getLetter()) << endl;
 				vec.at(y + 3).emplace_back(immobileTiles[y][x]->getLetter());
 			}
 		}
