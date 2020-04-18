@@ -1,6 +1,5 @@
 #ifndef SACOMMAND_H
 #define SACOMMAND_H
-#include <string>
 #include "command.h"
 
 class SACommand : public Command {
@@ -15,7 +14,6 @@ class SACommand : public Command {
 	bool hasSubstring(const std::string playerInput) const; // returns whether playerInput is a substring of name
 
 	void execute(GameState &game, const int times) const;
-	private:
 };
 
 #endif
