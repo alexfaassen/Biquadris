@@ -1,6 +1,6 @@
 #include "level.h" 
 
-Level::Level(const int playerSide, int identifier, bool customSeed, int seed, std::ifstream* file) 
+Level::Level(const int playerSide, int identifier, bool customSeed = 0, int seed = 1, std::ifstream* file = nullptr) 
 : playerSide{playerSide}, identifier{identifier}, customSeed{customSeed}, seed {seed}, file{file} {
 }
 
