@@ -163,8 +163,8 @@ vector<vector<char>> &Board::renderCharArray() {
 	}
 	int currX, currY;
 	for(int i = 0; i < 4; i++) {
-		currX = currentBlock->getTiles[i].getX();
-		currY = currentBlock->getTiles[i].getY();
+		currX = currentBlock->getTiles()[i].getX();
+		currY = currentBlock->getTiles()[i].getY();
 		vec.at(currX + 3).at(currY) = currentBlock->getType();
 	}
 	return vec;
@@ -186,7 +186,7 @@ string Board::printNextBlock() {
 	for(int i = 2; i > 0; i++) {
 		for(int j = 0; j < 11; j++) {
 			for(int k = 0; k < 4; k++) {
-				if(nextBlock->getTiles[i].getX() == j && nextBlock->getTiles[k].getY() == i) {
+				if(nextBlock->getTiles()[i].getX() == j && nextBlock->getTiles()[k].getY() == i) {
 					str += nextBlock->getType();
 					isTile = true;
 					break;
