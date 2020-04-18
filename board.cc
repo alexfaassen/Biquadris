@@ -145,8 +145,6 @@ bool Board::isEmpty(int x, int y) {
 	return false;											//otherwise fail
 }
 
-bool Board::isAlive() const { return alive; }
-
 vector<vector<char>> &Board::renderCharArray() {
 	vector<vector<char>> vec; 
 	for(int i = 0; i < 3; i ++){

@@ -50,7 +50,6 @@ class Board {
 	bool clockwiseCurrent();
 	bool counterClockwiseCurrent();
 	void dropCurrent();
-	bool isAlive() const;
 
 	// are any of currentBlock's tiles on an occupied tile?
 	bool isCurrentBlocked();
