@@ -151,6 +151,7 @@ void Player::endTurn(){
         setInputState(SA);
     }
     notifyObservers(onTurnEnd, linescleared);
+    if (!board.isAlive()) setInputState(LOSS);
 }
 
 bool Player::setLevel(int n){
