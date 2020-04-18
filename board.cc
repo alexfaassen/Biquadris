@@ -40,7 +40,7 @@ Board::~Board(){
 	}
 }
 
-bool Board::pushNextBlock(bool safe = true){
+bool Board::pushNextBlock(bool safe){
 	if(safe && currentBlock) return false;
 	currentBlock = nextBlock;
 	nextBlock = level->CreateBlock();
