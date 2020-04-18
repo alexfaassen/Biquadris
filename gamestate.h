@@ -31,6 +31,7 @@ class GameState {
 
     int getLoser();         //returns side of loser. 0 if no one has lost yet
     bool handleGameOver();  //checks for and handles gameover. Returns whether to continue running the game
+    bool beginGameOverLoop();   //starts game over read loop. Returns whether to continue running the game
 
     public:
     //constructors and destrutors

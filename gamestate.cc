@@ -31,8 +31,30 @@ int GameState::getLoser(){
 
 bool GameState::handleGameOver(){
     int loser = getLoser();
-    if(loser == 0) return true;     //if nobody loses
+    if(loser == 0) return true;     //if nobody loses, return true
     int winner = (loser == -1 ? 1 : 2);
+    cout << "Player" << winner << " wins!" << endl;
+    cout << "The highscore is " << highscore << endl;
+    return beginGameOverLoop();
+}
+
+bool GameState::beginGameOverLoop(){
+    cout << "Player again? y/n" << endl;
+    string s;
+    while(getStream() >> s){
+        if (s == "y" || s == "Y"){
+            cout << "Restarting game..." << endl;
+            restart();
+            return true;
+        } else if (s == "n" || s == "N"){
+            cout << "Thank you for playing!" << endl;
+            return false;
+        } else {
+            cout << "Error: Invalid Input" << endl;
+            cout << "Player again? y/n" << endl;
+        }
+    }
+    return false;
 }
 
 GameState::Gamestate(bool hasWindow, string scriptfile1, string scriptfile2, int startlevel)
