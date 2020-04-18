@@ -36,7 +36,7 @@ class PlayerWindow{
         void drawStringFont(int x, int y, std::string msg, std::string font, int colour = Black);
 
 	// Draws a rectangle
-	void fillRectangle(int x, int y, int width, int height, int colour=Black);
+	void fillRectangle(int x, int y, int width, int height, int colour = Black);
 
 	// Draw a polygon with the first vertex at (x, y) with num vertices, side length side
 	//     and rotated rotate radians. The second vertex is (x + side, y) rotated by
