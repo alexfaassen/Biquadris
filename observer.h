@@ -1,5 +1,6 @@
 #ifndef OBSERVER_H
 #define OBSERVER_H
+#include "event.h"
 
 #include <vector>
 
@@ -9,6 +10,8 @@ class Observer {
 	protected:
 	Player *player;
 	bool alive;
+
+	virtual ~Observer();
 
 	public:
 	Observer(Player *player = NULL, bool alive = true) : player{player}, alive{alive} {}
