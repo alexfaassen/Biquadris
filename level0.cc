@@ -16,5 +16,5 @@ Level0::Level0(const int playerSide, int identifier, bool customSeed, int seed, 
 Block *Level0::CreateBlock() override {	
 	char b;
 	file >> b;
-	return new Block{b, identifier};
+	return new Block(b, identifier);
 }
