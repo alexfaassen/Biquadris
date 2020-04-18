@@ -23,12 +23,7 @@ Block *Level4::CreateBlock() {
 		return new Block(b, identifier);
 	} else {
 		// Random
-		if (customSeed) {
-			srand(seed);
-		} else {
-			srand(time(0));
-		}
-			int num = 1 + (rand() % 9);
+		int num = 1 + (rand() % 9);
 		if (num == 1 || num == 2) {
 			return new Block('Z', identifier);
 		} else if (num == 3 || num == 4) {
