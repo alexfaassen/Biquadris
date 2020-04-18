@@ -240,6 +240,7 @@ void GameState::restart(){
     activePlayer = &leftPlayer;
     nonActivePlayer = &rightPlayer;
     cout << "test : printing" << endl;
+    activePlayer->startTurn();
     printGame();
 }
 
