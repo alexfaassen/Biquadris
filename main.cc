@@ -85,7 +85,11 @@ int main(int argc, char *argv[]) {
         srand(seed);
     }
 
+    cout << "test: before gamestate" << endl;
+
     GameState gamestate(hasWindow, scriptfile1, scriptfile2, startlevel);
+
+    cout << "test: before beginReadLoop" << endl;
     
     gamestate.beginReadLoop();
     
