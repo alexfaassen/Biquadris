@@ -5,13 +5,13 @@
 
 Level3::~Level3() { delete heavy; delete file; }
 
-Level3::Level3(const Level &other) : Level(other), heavy{new HeavyEffect(1)} { identifier = 3; }
+Level3::Level3(const Level &other) : Level(other), heavy{new HeavyEffect()} { identifier = 3; }
 
 Level3::Level3(const Level4 &other) : Level(other), heavy{other.heavy} { identifier = 3; }
 
-Level3::Level3(const int playerSide, int identifier, bool customSeed, int seed, ifstream *file, Effect *heavy) : Level(playerSide, identifier, customSeed, seed, file), heavy{new HeavyEffect(1)} {}
+Level3::Level3(const int playerSide, int identifier, bool customSeed, int seed, ifstream *file, Effect *heavy) : Level(playerSide, identifier, customSeed, seed, file), heavy{new HeavyEffect()} {}
 
-void Level3::generateEffects(std::vector<Observer*> &vec) const override { vec.emplace_back(heavy); }
+void Level3::generateEffects(std::vector<Observer*> &vec) const { vec.emplace_back(heavy); }
 
 Block *Level3::CreateBlock() {	
 	if (file) {
