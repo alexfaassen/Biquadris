@@ -2,6 +2,9 @@
 #define LEVEL4_H
 #include "level.h"
 
+class HeavyEffect;
+class CentreDropEffect;
+
 class Level4 : public Level {
 	HeavyEffect *heavy = new HeavyEffect();
 	CentreDropEffect *centreDrop = new CentreDropEffect();
