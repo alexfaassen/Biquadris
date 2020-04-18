@@ -47,8 +47,14 @@ Board::~Board(){
 	}
 }
 
+void Board::initLevel(Level* l){
+	level = l;
+	nextBlock = level->CreateBlock();
+}
+
 bool Board::pushNextBlock(bool safe){
 	if(safe && currentBlock) return false;
+	if(!nextBlock) level->CreateBlock();
 	currentBlock = nextBlock;
 	nextBlock = level->CreateBlock();
 	return true;
