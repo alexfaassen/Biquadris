@@ -74,6 +74,7 @@ GameState::GameState(bool hasWindow, string scriptfile1, string scriptfile2, int
     if(hasWindow){
         window = new Xwindow();
     }
+    cout << "test: before restart" << endl;
     restart();
 }
 
@@ -212,8 +213,10 @@ bool printAndRemoveLine(string &str){
 }
 
 void GameState::printGame(){
+    cout << "test: before player.printToString" << endl;
     string lp = leftPlayer.printToString();
     string rp = rightPlayer.printToString();
+    cout << "test: after player.printToString" << endl;
 
     while(true){
         if(!printAndRemoveLine(lp)){    //breaks out of loop once either string runs out of lines
@@ -225,14 +228,18 @@ void GameState::printGame(){
         }
         cout << endl;
     }
+
+    cout << "test: after printing" << endl;
 }
 
 void GameState::restart(){
     activePlayer = nullptr;
     nonActivePlayer = nullptr;
+    cout << "test: before createPlayers" << endl;
     createPlayers();
     activePlayer = &leftPlayer;
     nonActivePlayer = &rightPlayer;
+    cout << "test: before printGame" << endl;
     printGame();
 }
 
