@@ -7,6 +7,7 @@
 #include <vector>
 
 class Level {
+	protected:
 	const int playerSide;
 	const int identifier;
 	bool customSeed = 0;

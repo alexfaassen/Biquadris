@@ -4,7 +4,7 @@
 
 class Level0 : public Level {
 	public:
-	Level0(const int playerSide, int identifier = 0, bool customSeed = false, int seed = 1, std::ifstream *file = NULL);
+	Level0(const int playerSide, int identifier = 0);
 	Level0(const Level &other);
 	~Level0();
 
