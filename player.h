@@ -9,6 +9,7 @@
 #include "playerwindow.h"
 #include "board.h"
 #include "event.h"
+#include "level0.h"
 
 class Observer;
 class Level;
@@ -18,7 +19,7 @@ class Player {
     private:
     int side, score = 0;
     Board board;
-    Level* level = new Level0();
+    Level* level = new Level0(side);
     PlayerWindow window;
     std::vector<Observer*> observers;
     InputState inputState = NORMAL;
@@ -61,9 +62,9 @@ class Player {
     bool setFileInput(std::ifstream*);
     void specialAction();               //queries special action
     void pushToObservers(Observer*);
-    void changeCurrentBlock(Block*);
+    void changeCurrentBlock(char);
     std::string printToString();
-    void forceTopTile(Tile*);
-}
+    void forceTopTile(const char b, const int col);
+};
 
 #endif
