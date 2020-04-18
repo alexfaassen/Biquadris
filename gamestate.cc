@@ -45,7 +45,7 @@ bool GameState::handleGameOver(){
 }
 
 bool GameState::beginGameOverLoop(){
-    cout << "Player again? y/n" << endl;
+    cout << "Play again? y/n" << endl;
     string s;
     while(getStream() >> s){
         if (s == "y" || s == "Y"){
@@ -57,7 +57,7 @@ bool GameState::beginGameOverLoop(){
             return false;
         } else {
             cout << "Error: Invalid Input" << endl;
-            cout << "Player again? y/n" << endl;
+            cout << "Play again? y/n" << endl;
         }
     }
     return false;
