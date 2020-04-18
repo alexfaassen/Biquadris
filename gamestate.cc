@@ -74,9 +74,7 @@ GameState::GameState(bool hasWindow, string scriptfile1, string scriptfile2, int
     if(hasWindow){
         window = new Xwindow();
     }
-    createPlayers();
-    activePlayer = &leftPlayer;
-    nonActivePlayer = &rightPlayer;
+    restart();
 }
 
 GameState::~GameState(){
@@ -231,6 +229,7 @@ void GameState::restart(){
     createPlayers();
     activePlayer = &leftPlayer;
     nonActivePlayer = &rightPlayer;
+    printGame();
 }
 
 bool GameState::updateHighscore(int score){
