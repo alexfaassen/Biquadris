@@ -49,6 +49,7 @@ Board::~Board(){
 
 void Board::initLevel(Level* l){
 	level = l;
+	currentBlock = level->createBlock();
 	nextBlock = level->CreateBlock();
 }
 
