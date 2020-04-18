@@ -1,5 +1,5 @@
 #include "level2.h"
-#include <stdlib>
+#include <cstdlib>
 #include <ctime>
 
 Level2::Level2(const Level &other) : Level(other) { identifier = 2; }
