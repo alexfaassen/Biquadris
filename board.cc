@@ -1,5 +1,6 @@
 #include <vector>
 #include <string>
+#include <iostream>
 #include "board.h"
 #include "block.h"
 #include "level.h"
@@ -158,9 +159,11 @@ bool Board::isEmpty(int x, int y) {
 
 vector<vector<char>> Board::renderCharArray() {
 	vector<vector<char>> vec; 
-	for(int i = 0; i < 4; i ++){
+	cout << "test: before first for loop" << endl;
+	for(int i = 0; i < 3; i ++){
 		vec.emplace_back(vector<char>(11, ' '));
 	}
+	cout << "test: before second for loop" << endl;
 	for(int y = 0; y < 15; y++) {
 		for(int x = 0; x < 11; x++) {
 			if(!immobileTiles[y][x]){ 
@@ -172,6 +175,7 @@ vector<vector<char>> Board::renderCharArray() {
 		vec.emplace_back(vector<char>());
 	}
 	int currX, currY;
+	cout << "test: third second for loop" << endl;
 	for(int i = 0; i < 4; i++) {
 		currX = currentBlock->getTiles()[i].getX();
 		currY = currentBlock->getTiles()[i].getY();
