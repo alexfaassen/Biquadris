@@ -31,7 +31,13 @@ void Board::clearRow(int row){
 	}
 }
 
-Board::Board(){}
+Board::Board(){
+	for(auto &x : immobileTiles){
+		for(auto p : x){
+			p = nullptr;
+		}
+	}
+}
 
 Board::~Board(){
 	delete currentBlock;
