@@ -4,8 +4,9 @@
 
 class DownCmd : public Command {
 	public:
-	DownCmd() : {}
-	void run(Player *player, const int times) const override;
+	DownCmd(const std::string name = "down", bool needClean = 1) : Command(name, needClean) {}
+	private:
+	void run(GameState &game, const int times = 1) const override;
 };
 
 #endif

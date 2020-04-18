@@ -4,8 +4,9 @@
 
 class RightCmd : public Command {
 	public:
-	RightCmd() : {}
-	void run(Player *player, const int times) const override;
+	RightCmd(const std::string name = "right", bool needClean = 1) : Command(name, needClean) {}
+	private:
+	void run(GameState &game, const int times = 1) const override;
 };
 
 #endif
