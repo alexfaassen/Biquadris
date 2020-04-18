@@ -2,8 +2,6 @@
 #include <stdlib>
 #include <ctime>
 
-Level2::~Level2() { delete file; }
-
 Level2::Level2(const Level &other) : Level(other) { identifier = 2; }
 
 Level2::Level2(const int playerSide, int identifier) : Level(playerSide, identifier) {}

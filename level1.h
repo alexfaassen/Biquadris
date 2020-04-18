@@ -6,7 +6,6 @@ class Level1 : public Level {
 	public:
 	Level1(const int playerSide, int identifier = 1);
 	Level1(const Level &other);
-	~Level1();
 
 	Block *CreateBlock() override;
 };
