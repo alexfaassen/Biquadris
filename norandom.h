@@ -1,8 +1,5 @@
 #ifndef NORAND_H
 #define NORAND_H
-#include <iostream>
-#include <fstream>
-#include <sstream>
 #include "command.h"
 
 class NoRandom : public Command {
