@@ -188,12 +188,13 @@ vector<vector<char>> Board::renderCharArray() {
 		vec.emplace_back(vector<char>());
 	}
 	int currX, currY;
-	cout << "test: third second for loop" << endl;
+	cout << "test: before third for loop" << endl;
 	for(int i = 0; i < 4; i++) {
 		currX = currentBlock->getTiles()[i].getX();
 		currY = currentBlock->getTiles()[i].getY();
 		vec.at(currY + 3).at(currX) = currentBlock->getType();
 	}
+	cout << "test: about to return vec" << endl;
 	return vec;
 }
 
