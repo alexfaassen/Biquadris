@@ -19,7 +19,7 @@ class CommandList {
     public:
     CommandList();
     std::vector<Command*>& selectVector(InputState); 
-}
+};
 
 
 #endif
