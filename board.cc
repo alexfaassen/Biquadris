@@ -33,7 +33,7 @@ void Board::clearRow(int row){
 
 Board::Board(){
 	for(auto &x : immobileTiles){
-		for(auto p : x){
+		for(auto &p : x){
 			p = nullptr;
 		}
 	}
@@ -164,11 +164,6 @@ bool Board::isEmpty(int x, int y) {
 }
 
 vector<vector<char>> Board::renderCharArray() {
-	for(auto &x : immobileTiles){
-		for(auto p : x){
-			p = nullptr;
-		}
-	}
 	vector<vector<char>> vec; 
 	cout << "test: before first for loop" << endl;
 	for(int i = 0; i < 3; i ++){
