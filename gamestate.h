@@ -23,10 +23,14 @@ class GameState {
     const int loffsetX, loffsetY, roffsetX, roffsetY;
     const std::string scriptFile1, scriptFile2;
     const int startlevel;
+    bool running = true;
 
     void switchActive();    //rotates the active player
     void createPlayers();   //creates the two players
     int cleanStreams();     //pops all exauhsted istreams off istreams and returns # popped
+
+    int getLoser();         //returns side of loser. 0 if no one has lost yet
+    bool handleGameOver();  //checks for and handles gameover. Returns whether to continue running the game
 
     public:
     //constructors and destrutors

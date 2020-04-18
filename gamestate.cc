@@ -23,6 +23,18 @@ int GameState::cleanStreams(){
     return n;
 }
 
+int GameState::getLoser(){
+    if(activePlayer->getInputState() == LOSS) return activePlayer->getSide();
+    if(nonActivePlayer->getInputState() == LOSS) return nonActivePlayer->getSide();
+    return 0;
+}
+
+bool GameState::handleGameOver(){
+    int loser = getLoser();
+    if(loser == 0) return true;     //if nobody loses
+    int winner = (loser == -1 ? 1 : 2);
+}
+
 GameState::Gamestate(bool hasWindow, string scriptfile1, string scriptfile2, int startlevel)
 : scriptFile1{scriptfile1}, scriptFile2{scriptFile2}, startlevel{startlevel} 
     if(hasWindow){
@@ -60,7 +72,6 @@ bool GameState::beginReadLoop(){
     string s;
     while (getStream() >> s) {
         int multiplier = 1;
-        
         if(isdigit(s[0])){          // test if s starts with an int
             multiplier = atoi(s);   // http://www.cplusplus.com/reference/cstdlib/atoi/
 
@@ -70,8 +81,12 @@ bool GameState::beginReadLoop(){
             }
         }
         gamestate.runInput(s, multiplier);
-    }
 
+        //game over stuff
+        if(!handleGameOver()){
+            break;
+        }
+    }
     return true;
 }
 
@@ -138,6 +153,9 @@ void GameState::cleanup(){
     while(!activePlayer->outgoingIsEmpty()){
         nonActivePlayer->pushToObservers(activePlayer->popFromOutgoing());
     }
+
+    //update highscore
+    updateHighscore(activePlayer->getScore());
     
     //switch active player if turn has ended
     if(activePlayer->getInputState() == END_TURN){
