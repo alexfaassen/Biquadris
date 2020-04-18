@@ -7,7 +7,7 @@ class BlindEffect : public Effect {
 	BlindEffect() : Effect() {}
 
 	void notify(const Event currEvent, std::vector<std::vector<char>> &boardPrint) override;
-	void notify(const Event currEvent, int clearedLines) override;
+	void notify(const Event currEvent, int linesCleared) override;
 };
 
 #endif
