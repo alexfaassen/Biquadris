@@ -108,7 +108,7 @@ bool GameState::beginReadLoop(){
                 s.erase(s[0]);
             }
         }
-        gamestate.runInput(s, multiplier);
+        runInput(s, multiplier);
 
         //game over stuff
         if(!handleGameOver()){
@@ -177,10 +177,6 @@ bool GameState::runInputOnBoth(string input, int multiplier = 1){
 }
 
 void GameState::cleanup(){
-    //move effects over
-    while(!activePlayer->outgoingIsEmpty()){
-        nonActivePlayer->pushToObservers(activePlayer->popFromOutgoing());
-    }
 
     //update highscore
     updateHighscore(activePlayer->getScore());
