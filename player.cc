@@ -235,10 +235,13 @@ string charArrToString(const vector<vector<char>>& arr){
 
 string Player::printToString(){
     stringstream ss;
+    cout << "test: before level->getIdentifier" << endl;
     ss << "Level:" << setw(5) << level->getIdentifier() << '\n';
     ss << "Score:" << setw(5) << score << '\n';
     ss << "-----------" << '\n';
+    cout << "test: before board.renderCharArray" << endl;
     vector<vector<char>> boardarr = board.renderCharArray();
+    cout << "test: before notifyObservers(boardarr)" << endl;
     notifyObservers(beforeTextDisplay, boardarr);
     ss << charArrToString(boardarr);
     ss << "-----------" << '\n';
