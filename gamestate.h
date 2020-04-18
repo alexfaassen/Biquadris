@@ -19,7 +19,7 @@ class GameState {
     Player* nonActivePlayer = nullptr;
     Xwindow* window = nullptr;
     CommandList commandList;
-    std::vector<std::reference_wrapper<std::istream>> istreams;
+    std::vector<std::reference_wrapper<std::ifstream>> ifstreams;
 
     const int loffsetX = 0, loffsetY = 0, roffsetX = 0, roffsetY = 0;
     const std::string scriptFile1, scriptFile2;
@@ -28,7 +28,7 @@ class GameState {
 
     void switchActive();    //rotates the active player
     void createPlayers();   //creates the two players
-    int cleanStreams();     //pops all exauhsted istreams off istreams and returns # popped
+    int cleanStreams();     //pops all exauhsted ifstreams off ifstreams and returns # popped
 
     int getLoser();         //returns side of loser. 0 if no one has lost yet
     bool handleGameOver();  //checks for and handles gameover. Returns whether to continue running the game
@@ -45,16 +45,16 @@ class GameState {
     Player& getLeftPlayer() {return leftPlayer;};
     Player& getRightPlayer() {return rightPlayer;};
 
-    void pushToStreams(std::istream&);      // pushes istream to istreams
+    void pushToStreams(std::ifstream&);      // pushes ifstream to ifstreams
 
-    // returns the top non-exauhsted istream in istreams. Returns cin if istreams is empty
+    // returns the top non-exauhsted istream in ifstreams. Returns cin if ifstreams is empty
     std::istream& getStream();              
 
     bool beginReadLoop();               // starts the read loop
 
-    bool runInput(std::string input, int multipler = 1);        // tries to interpret and run given input
-    bool runInputOnNAP(std::string input, int multipler = 1);   // calls runInput while pretending that NAP is activePlayer
-    bool runInputOnBoth(std::string input, int multipler = 1);  // calls runInput sequentially on both players as if they were activePlayer
+    bool runInput(std::string input, int=1);        // tries to interpret and run given input
+    bool runInputOnNAP(std::string input, int=1);   // calls runInput while pretending that NAP is activePlayer
+    bool runInputOnBoth(std::string input, int=1);  // calls runInput sequentially on both players as if they were activePlayer
     void cleanup();                     // checks for and handles end-of-turn
     void printGame();                   // prints the game to textdisplay
     void restart();                     // resets everything
