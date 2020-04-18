@@ -197,6 +197,7 @@ string Board::printNextBlock() {
 		}
 		str += "\n";
 	}
+	return str;
 }
 
 void Board::kill() {
