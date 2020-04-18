@@ -71,7 +71,7 @@ int Board::eotClean(int *score) {
 	}
 
 	//erase dead blocks and score them
-	for(int i = 0; i < placed.size(); i++){
+	for(size_t i = 0; i < placed.size(); i++){
         if(!placed.at(i)->alive()){
 			score += (placed.at(i)->getInitLevel() + 1) * (placed.at(i)->getInitLevel() + 1);
             delete placed.at(i);
