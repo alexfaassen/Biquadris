@@ -139,6 +139,7 @@ int Player::incLevel(int n){
 
 void Player::startTurn(){
     setInputState(NORMAL);
+    board.pushNextBlock();
     notifyObservers(onTurnStart);
     if (!board.isAlive()) setInputState(LOSS);
 }
@@ -236,5 +237,5 @@ string Player::printToString(){
 }
 
 void Player::forceTopTile(const char b, const int col){
-	board->forceTopColumnTile(b, col);
+	board.forceTopColumnTile(b, col);
 }
