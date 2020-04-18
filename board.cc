@@ -229,5 +229,4 @@ void Board::kill() {
 	alive = false;
 }
 
-
-
+void Board::setLevel(Level *newLevel) { level = newLevel; }
