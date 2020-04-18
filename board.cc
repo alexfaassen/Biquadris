@@ -179,9 +179,9 @@ vector<vector<char>> Board::renderCharArray() {
 				cout << "0";
 				vec.at(y + 3).emplace_back(' ');
 			} else {
-				cout << "x" << endl;
-				vec.at(y + 3).emplace_back('x');
-				//vec.at(y + 3).emplace_back(immobileTiles[y][x]->getLetter());
+				cout << "x";
+				//vec.at(y + 3).emplace_back('x');
+				vec.at(y + 3).emplace_back(immobileTiles[y][x]->getLetter());
 			}
 		}
 		cout << endl;
