@@ -164,15 +164,12 @@ vector<vector<char>> Board::renderCharArray() {
 		vec.emplace_back(vector<char>(11, ' '));
 	}
 	cout << "test: before second for loop" << endl;
-	for(int y = 0; y < 15; y++) {
-		cout << "test: in second nested for loop" << endl;
+	for(int y = 3; y < 18; y++) {
 		for(int x = 0; x < 11; x++) {
-			if(!immobileTiles[x][y]){ 
-				cout << "test: if(!immobileTiles[x][y])" << endl;
-				vec.at(x).emplace_back(' ');
+			if(!immobileTiles[y][x]){ 
+				vec.at(y).emplace_back(' ');
 			} else {
-				cout << "test: else" << endl;
-				vec.at(x).emplace_back(immobileTiles[x][y]->getLetter());
+				vec.at(y).emplace_back(immobileTiles[x][y]->getLetter());
 			}
 		}
 		vec.emplace_back(vector<char>());
