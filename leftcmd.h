@@ -1,6 +1,7 @@
 #ifndef LEFT_H
 #define LEFT_H
 #include "command.h"
+#include "gamestate.h"
 
 class LeftCmd : public Command {
 	public:
