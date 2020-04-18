@@ -7,11 +7,6 @@ Level1::Level1(const Level &other) : Level(other) { identifier = 1; }
 Level1::Level1(const int playerSide, int identifier) : Level(playerSide, identifier) {}
 
 Block *Level1::CreateBlock() {	
-	if (customSeed) {
-		srand(seed);
-	} else {
-		srand(time(0));
-	}
 	int num = 1 + (rand() % 12);
 	if (num == 1) {
 		return new Block('Z', identifier);
