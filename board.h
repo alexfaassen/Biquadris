@@ -60,7 +60,7 @@ class Board {
 	// returns if the given coord isn't occupied by a tile and isn't out of bounds
 	bool isEmpty(int x, int y);
 
-	std::vector<std::vector<char>> &renderCharArray();
+	std::vector<std::vector<char>> renderCharArray();
 	void forceTopColumnTile(const char b, const int col);
 	std::string printNextBlock();
 	void kill();

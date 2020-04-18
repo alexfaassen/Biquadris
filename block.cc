@@ -151,11 +151,11 @@ void Block::counterClockwise() {
 	int newX;
 	for(int i = 0; i < 4; i++) {
                 if(i > upperMid) {
-                        newX = lowerMid - tiles[i].getX + upperMid;
+                        newX = lowerMid - tiles[i].getX() + upperMid;
                         tiles[i].setX(newX);
                 }
                 else if(i < lowerMid) {
-                        newX = upperMid + tiles[i].getX - upperMid;
+                        newX = upperMid + tiles[i].getX() - upperMid;
                         tiles[i].setX(newX);
                 }
 	}

@@ -150,7 +150,7 @@ bool Board::isEmpty(int x, int y) {
 	return false;											//otherwise fail
 }
 
-vector<vector<char>> &Board::renderCharArray() {
+vector<vector<char>> Board::renderCharArray() {
 	vector<vector<char>> vec; 
 	for(int i = 0; i < 3; i ++){
 		vec.emplace_back(vector<char>(11, ' '));
