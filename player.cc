@@ -234,7 +234,7 @@ string Player::printToString(){
     ss << "Level:" << setw(5) << level->getIdentifier() << '\n';
     ss << "Score:" << setw(5) << score << '\n';
     ss << "-----------" << '\n';
-    vector<vector<char>>& boardarr = board.renderCharArray();
+    vector<vector<char>> boardarr = board.renderCharArray();
     notifyObservers(beforeTextDisplay, boardarr);
     ss << charArrToString(boardarr);
     ss << "-----------" << '\n';
