@@ -18,13 +18,16 @@ void Player::initGraphicsObservers(){
 }
 
 int Player::cleanObservers(){
+    int cleaned = 0;
     for(size_t i = 0; i < observers.size(); i++){
         if(!observers.at(i)->isAlive()){
             delete observers.at(i);
             observers.erase(observers.begin()+i);
+            cleaned = 0;
             i--;
         }
     }
+    return cleaned;
 }
 
 void Player::notifyObservers(Event ev, int n = 0){
