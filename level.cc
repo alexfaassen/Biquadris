@@ -1,5 +1,7 @@
 #include "level.h" 
 
+Level::~Level() { delete file; }
+
 void Level::updateSeed(const int newSeed) { seed = newSeed; }
 
 int Level::getIdentifier() const { return identifier; }
