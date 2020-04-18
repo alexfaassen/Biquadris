@@ -13,6 +13,7 @@ class PlayerWindow{
 
     public:
     //constructors and destructors
+	PlayerWindow();
 	PlayerWindow(Xwindow*, int offsetX, int offsetY, int width = 200, int height = 400);  
 	~PlayerWindow();              
 
