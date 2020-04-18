@@ -246,6 +246,7 @@ string Player::printToString(){
     ss << charArrToString(boardarr);
     ss << "-----------" << '\n';
     ss << "Next:      " << '\n';
+    cout << "test: before printNextBlock()" << endl;
     ss << board.printNextBlock();
     return ss.str();
 }
