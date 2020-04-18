@@ -1,22 +1,33 @@
 #include "blindeffect.h"
 
-void BlindEffect::notify(const Event currEvent, char[][] &boardPrint) override {
-	if (currEvent != endTurn) {
-		bool blindCol = 0;
-		for (int c = 0; c < 11; ++c) {
-			if (c >= 2 && c < 9) {
-				blindCol = 1;
+
+using namespace std;
+
+void BlindEffect::notify(const Event currEvent, vector<vector<char>> &boardPrint) override {
+	if (currEvent == beforeTextDisplay) {
+		bool blindRow = 0;
+		for (int r = 3; r < 18; ++r) {
+			if (r >= 5 && r < 15) {
+				blindRow = 1;
 			} else {
-				blindCol = 0;
+				blindRow = 0;
 			}
 			// Blind board
-			for (int r = 0; r < 15; ++r) {
-				if (blindCol || (r >= 2 && r < 12)) {
-					char[c][r] = '?';
+			for (int c = 0; c < 11; ++c) {
+				if (blindRow || (c >= 2 && r < 9)) {
+					try {
+						boardPrint.at(r).at(c) = '?';
+					} catch (...) {
+						break;
+					}
 				}
 			}
 		}
-	} else {
-		this->kill();
+	}
+}
+
+void BlindEffect::notify(const Event currEvent, int clearedLines) override {
+	if(currEvent == onTurnEnd){
+		kill();
 	}
 }

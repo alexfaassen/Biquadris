@@ -1,14 +1,16 @@
 #include "centredropeffect.h"
 
-void CentreDropEffect::notify(const Event currEvent, const int linesCleared) override {
-	if (currEvent == endTurn) {
+void CentreDropEffect::notify(const Event currEvent, const int linesCleared) {
+	if (currEvent == onTurnEnd) {
 		if (linesCleared > 0) {
-			blocksSinceCleared = 0;
-		} else if (blocksSinceCleared == 4) {
-			player->forceTile(Tile(1, 0, '*', 7, 0));
-			blocksSinceCleared = 0;
+			blocksSinceClear = 0;
+		} else if (blocksSinceClear == 4) {
+			player->forceTopTile('*', 5);
+			blocksSinceClear = 0;
 		} else {
-			++blocksSinceCleared;
+			++blocksSinceClear;
 		}
+	} else if (currEvent == onLinesCleared) {
+		blocksSinceCleared = 0;
 	}
 }

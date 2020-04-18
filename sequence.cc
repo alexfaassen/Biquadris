@@ -2,12 +2,11 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-using namespace std;
 
 void Sequence::run(Gamestate &game, const int times) const override {
-	istream &in = game.getStream();
-	string fileName;
+	std::istream &in = game.getStream();
+	std::string fileName;
 	in >> fileName;	
-	ifstream &file{new fileName};
+	std::ifstream &file{new fileName};
 	game.pushToStreams(file);
 }

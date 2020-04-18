@@ -4,9 +4,12 @@
 
 class BlindEffect : public Effect {
 	public:
-	BlindEffect(Player *player, bool alive = 1) : Observer(player, alive) {}
+	BlindEffect(Player *player = NULL, bool alive = true) : Effect(player, alive) {}
 
-	void notify(const Event currEvent, char[][] &boardPrint) override;
+	void notify(const Event currEvent, std::vector<std::vector<char>> &boardPrint) override;
+
+	void notify(const Event currEvent, int clearedLines) override;
+
 };
 
 #endif
