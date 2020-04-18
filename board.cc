@@ -164,9 +164,9 @@ vector<vector<char>> Board::renderCharArray() {
 	for(int y = 0; y < 15; y++) {
 		for(int x = 0; x < 11; x++) {
 			if(!immobileTiles[y][x]){ 
-				vec.at(x).emplace_back(' ');
+				vec.at(y).emplace_back(' ');
 			} else {
-				vec.at(x).emplace_back(immobileTiles[x][y]->getLetter());
+				vec.at(y).emplace_back(immobileTiles[x][y]->getLetter());
 			}
 		}
 		vec.emplace_back(vector<char>());
