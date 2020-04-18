@@ -43,6 +43,7 @@ class Player {
     int getScore() {return score;};
     int incScore(int n) {score += n; return score;};
     void setInputState(InputState state) {inputState = state;};
+    InputState getInputState() {return inputState;};
     std::string getScriptFile() {return scriptFile;};
     void setScriptFile(std::string s) {scriptFile = s;};
 
