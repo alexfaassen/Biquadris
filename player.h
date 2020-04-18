@@ -27,7 +27,7 @@ class Player {
 
     void initGraphicsObservers();   //creates and attaches all of the graphicObserver objects
     int cleanObservers();           //removes all dead observers from the vector
-    void notifyObservers(Event, int = 0);      //calls notify() with the given parameters on all observers
+    void notifyObservers(Event, int);      //calls notify() with the given parameters on all observers
     void notifyObservers(Event, std::vector<std::vector<char>>&);
 
     void preMove();     //called right before movement
@@ -50,8 +50,8 @@ class Player {
 
     //movement commands
     int moveBlock(Direction, int, bool);
-    int rotateClockwise(int, bool = false);
-    int rotateCounterClockwise(int, bool = false);
+    int rotateClockwise(int, bool);
+    int rotateCounterClockwise(int, bool);
     void drop(bool = false);
     int incLevel(int);
 
