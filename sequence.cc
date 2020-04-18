@@ -3,7 +3,7 @@
 #include <fstream>
 #include <sstream>
 
-void Sequence::run(Gamestate &game, const int times) const {
+void Sequence::run(GameState &game, const int times) const {
 	std::istream &in = game.getStream();
 	std::string fileName;
 	in >> fileName;
