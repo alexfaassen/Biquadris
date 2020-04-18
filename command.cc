@@ -1,8 +1,6 @@
 #include "command.h"
 #include "gamestate.h"
 
-Command::~Command() { delete this; }
-
 std::string Command::getName() const { return name; }
 
 bool Command::hasSubstring(const std::string playerInput) const { return playerInput == name.substr(0, playerInput.size()); }
