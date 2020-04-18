@@ -6,8 +6,8 @@
 #include "block.h"
 
 class Level {
-	int playerSide;
-	int identifier;
+	const int playerSide;
+	const int identifier;
 	bool customSeed;
 	int seed;
 	std::ifstream *file;
