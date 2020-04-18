@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string>
+#include <string.h>
 #include <cstdlib>
 #include <ctype.h>
 #include <iostream>
@@ -19,10 +20,10 @@ int main(int argc, char *argv[]) {
 
     //command line inputs
     for(int i = 1; i < argc; i++){
-        if(argv[i] == "-text"){
+        if(strcmp(argv[i], "-text") == 0){
             hasWindow = false;
 
-        } else if (argv[i] == "-seed"){
+        } else if (strcmp(argv[i], "-seed") == 0){
 
             //error handling out of range
             if(++i >= argc){
@@ -38,7 +39,7 @@ int main(int argc, char *argv[]) {
                 return 1;
             }
 
-        } else if (argv[i] == "-scriptfile1"){
+        } else if (strcmp(argv[i], "-scriptfile1") == 0){
             
             //error handling out of range
             if(++i >= argc){
@@ -48,7 +49,7 @@ int main(int argc, char *argv[]) {
             //read into scriptfile
             scriptfile1 = argv[i];
 
-        } else if (argv[i] == "-scriptfile2"){
+        } else if (strcmp(argv[i], "-scriptfile2") == 0){
             //error handling out of range
             if(++i >= argc){
                 cout << "Error: Wrong number of command line arguements" << endl; 
@@ -57,7 +58,7 @@ int main(int argc, char *argv[]) {
             //read into scriptfile
             scriptfile2 = argv[i];
 
-        } else if (argv[i] == "-startlevel"){
+        } else if (strcmp(argv[i], "-startlevel") == 0){
             //error handling out of range
             if(++i >= argc){
                 cout << "Error: Wrong number of command line arguements" << endl; 
