@@ -1,7 +1,7 @@
 #include "gamestate.h"
 
 #include <iostream>
-#include <ifstream>
+#include <fstream>
 #include <vector>
 #include <functional>
 #include <string>
