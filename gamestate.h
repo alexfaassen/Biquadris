@@ -52,9 +52,9 @@ class GameState {
 
     bool beginReadLoop();               // starts the read loop
 
-    bool runInput(std::string input, int=1);        // tries to interpret and run given input
-    bool runInputOnNAP(std::string input, int=1);   // calls runInput while pretending that NAP is activePlayer
-    bool runInputOnBoth(std::string input, int=1);  // calls runInput sequentially on both players as if they were activePlayer
+    bool runInput(std::string input, int multipler = 1);        // tries to interpret and run given input
+    bool runInputOnNAP(std::string input, int multipler = 1);   // calls runInput while pretending that NAP is activePlayer
+    bool runInputOnBoth(std::string input, int multipler = 1);  // calls runInput sequentially on both players as if they were activePlayer
     void cleanup();                     // checks for and handles end-of-turn
     void printGame();                   // prints the game to textdisplay
     void restart();                     // resets everything
