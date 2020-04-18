@@ -7,10 +7,9 @@ class SACommand : public Command {
 	std::string name;
 	bool needClean;
 
-	// abstract ctor
+	public:
 	SACommand(const std::string name, const bool needClean = 1) : Command(name, needClean) {}
 
-	public:
 	std::string getName() const;
 
 	bool hasSubstring(const std::string playerInput) const; // returns whether playerInput is a substring of name
