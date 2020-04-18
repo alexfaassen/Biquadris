@@ -1,7 +1,6 @@
 #ifndef RIGHT_H
 #define RIGHT_H
 #include "command.h"
-#include "gamestate.h"
 
 class RightCmd : public Command {
 	public:
