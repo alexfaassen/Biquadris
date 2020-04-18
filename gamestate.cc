@@ -23,6 +23,40 @@ int GameState::cleanStreams(){
     return n;
 }
 
+int GameState::getLoser(){
+    if(activePlayer->getInputState() == LOSS) return activePlayer->getSide();
+    if(nonActivePlayer->getInputState() == LOSS) return nonActivePlayer->getSide();
+    return 0;
+}
+
+bool GameState::handleGameOver(){
+    int loser = getLoser();
+    if(loser == 0) return true;     //if nobody loses, return true
+    int winner = (loser == -1 ? 1 : 2);
+    cout << "Player" << winner << " wins!" << endl;
+    cout << "The highscore is " << highscore << endl;
+    return beginGameOverLoop();
+}
+
+bool GameState::beginGameOverLoop(){
+    cout << "Player again? y/n" << endl;
+    string s;
+    while(getStream() >> s){
+        if (s == "y" || s == "Y"){
+            cout << "Restarting game..." << endl;
+            restart();
+            return true;
+        } else if (s == "n" || s == "N"){
+            cout << "Thank you for playing!" << endl;
+            return false;
+        } else {
+            cout << "Error: Invalid Input" << endl;
+            cout << "Player again? y/n" << endl;
+        }
+    }
+    return false;
+}
+
 GameState::Gamestate(bool hasWindow, string scriptfile1, string scriptfile2, int startlevel)
 : scriptFile1{scriptfile1}, scriptFile2{scriptFile2}, startlevel{startlevel} 
     if(hasWindow){
@@ -60,7 +94,6 @@ bool GameState::beginReadLoop(){
     string s;
     while (getStream() >> s) {
         int multiplier = 1;
-        
         if(isdigit(s[0])){          // test if s starts with an int
             multiplier = atoi(s);   // http://www.cplusplus.com/reference/cstdlib/atoi/
 
@@ -70,8 +103,12 @@ bool GameState::beginReadLoop(){
             }
         }
         gamestate.runInput(s, multiplier);
-    }
 
+        //game over stuff
+        if(!handleGameOver()){
+            break;
+        }
+    }
     return true;
 }
 
@@ -138,6 +175,9 @@ void GameState::cleanup(){
     while(!activePlayer->outgoingIsEmpty()){
         nonActivePlayer->pushToObservers(activePlayer->popFromOutgoing());
     }
+
+    //update highscore
+    updateHighscore(activePlayer->getScore());
     
     //switch active player if turn has ended
     if(activePlayer->getInputState() == END_TURN){
