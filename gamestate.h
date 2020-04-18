@@ -17,11 +17,11 @@ class GameState {
     Player rightPlayer;
     Player* activePlayer = nullptr;
     Player* nonActivePlayer = nullptr;
-    XWindow* window = nullptr;
+    Xwindow* window = nullptr;
     CommandList commandList;
     std::vector<std::reference_wrapper<std::istream>> istreams;
 
-    const int loffsetX, loffsetY, roffsetX, roffsetY;
+    const int loffsetX = 0, loffsetY = 0, roffsetX = 0, roffsetY = 0;
     const std::string scriptFile1, scriptFile2;
     const int startlevel;
     bool running = true;

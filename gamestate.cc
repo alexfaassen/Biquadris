@@ -64,7 +64,7 @@ bool GameState::beginGameOverLoop(){
 }
 
 GameState::Gamestate(bool hasWindow, string scriptfile1, string scriptfile2, int startlevel)
-: scriptFile1{scriptfile1}, scriptFile2{scriptFile2}, startlevel{startlevel} 
+: scriptFile1{scriptfile1}, scriptFile2{scriptFile2}, startlevel{startlevel} {
     if(hasWindow){
         window = new Xwindow();
     }
