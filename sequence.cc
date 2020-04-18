@@ -7,5 +7,5 @@ void Sequence::run(Gamestate &game, const int times) const {
 	std::istream &in = game.getStream();
 	std::string fileName;
 	in >> fileName;
-	game.pushToStreams(new ifstream{fileName});
+	game.pushToStreams(new std::ifstream{fileName});
 }
