@@ -6,11 +6,11 @@
 #include "block.h"
 
 class Level {
+	int playerSide;
+	int identifier;
 	bool customSeed;
 	int seed;
-	int identifier;
 	std::ifstream *file;
-	const int playerSide;
 	
 	public:
   Level(const int playerSide, int identifier, bool customSeed = false, int seed = 1, std::ifstream *file = NULL) : playerSide{playerSide}, identifier{identifier}, customSeed{customSeed}, seed{seed}, file{file} {}

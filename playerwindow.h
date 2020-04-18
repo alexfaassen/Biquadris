@@ -21,7 +21,7 @@ class PlayerWindow{
     int getOffsetY() {return offsetY;};
     int getWidth() {return width;};
     int getHeight() {return height;};   
-    bool hasWindow() {return hasWindow};             
+    bool hasWindow() {return hasWindow;};             
 
 	enum { White = 0, Black, Red, Green, Blue, Cyan, Yellow, Magenta,
 		Orange, Brown, DarkGreen }; // Available colours.
@@ -32,7 +32,7 @@ class PlayerWindow{
 	void drawBigString(int x, int y, std::string msg, int colour = Black);
 
 	// if you use this function, make sure font exists on the undergrad environment
-    void drawStringFont(int x, int y, std::string msg, std::string font, int colour = Black);
+        void drawStringFont(int x, int y, std::string msg, std::string font, int colour = Black);
 
 	// Draws a rectangle
 	void fillRectangle(int x, int y, int width, int height, int colour=Black);
@@ -54,8 +54,8 @@ class PlayerWindow{
 	// Draws a circle centered at (x, y) with diameter d
 	void fillCircle(int x, int y, int d, int colour = Black);
 
-  void showAvailableFonts();
-}
+        void showAvailableFonts();
+};
 
 
 #endif
