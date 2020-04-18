@@ -2,6 +2,7 @@
 #define GAMESTATE_H
 
 #include <istream>
+#include <fstream>
 #include <vector>
 #include <functional>
 #include <string>
