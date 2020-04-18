@@ -1,4 +1,6 @@
 #include "sequence.h"
+#include "gamestate.h"
+
 #include <iostream>
 #include <fstream>
 #include <sstream>

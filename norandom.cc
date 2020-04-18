@@ -1,4 +1,6 @@
 #include "norandom.h"
+#include "gamestate.h"
+
 #include <iostream>
 #include <sstream>
 #include <fstream>

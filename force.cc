@@ -1,5 +1,6 @@
 #include "force.h"
 #include "forceeffect.h"
+#include "gamestate.h"
 
 #include <iostream>
 #include <fstream>
