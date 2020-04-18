@@ -213,8 +213,8 @@ void Player::pushToObservers(Observer* obs){
     obs->attach(this);
 }
 
-void Player::changeCurrentBlock(Block* block){
-    board.changeCurrent(block);
+void Player::changeCurrentBlock(char c){
+    board.changeCurrent(c);
     if (!board.isAlive()) setInputState(LOSS);
 }
 
