@@ -1,6 +1,7 @@
 #ifndef CMD_H
 #define CMD_H
 #include <string>
+
 #include "gamestate.h"
 
 class Command {
@@ -12,7 +13,7 @@ class Command {
 
 	std::string getName() const;
 
-	bool hasSubstring(const string playerInput) const; // returns whether playerInput is a substring of name
+	bool hasSubstring(const std::string playerInput) const; // returns whether playerInput is a substring of name
 
 	virtual void execute(GameState &game, const int times) const;
 	private:
