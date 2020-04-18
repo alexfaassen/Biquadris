@@ -3,7 +3,7 @@
 #include "effect.h"
 
 class ForceEffect : public Effect {
-	Block *newBlock;
+	char newBlock;
 
 	public:
 	ForceEffect(const char newBlock, Player *player = NULL, bool alive = true) : Effect(player, alive), newBlock{newBlock} {}

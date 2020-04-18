@@ -10,7 +10,7 @@ class Observer {
 	protected:
 	Player *player;
 	bool alive;
-
+	
 	virtual ~Observer();
 
 	public:
