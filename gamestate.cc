@@ -8,6 +8,7 @@
 #include "player.h"
 #include "window.h"
 #include "commandlist.h"
+#include "command.h"
 
 using namespace std;
 
