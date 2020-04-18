@@ -31,8 +31,7 @@ class Block {
 
 	//accessors
 	char getType() const {return type;};
-	// returns a vector containing the address of each Tile in tiles
-	std::vector<Tile*> getTilePointers() const; 
+	Tile (&getTiles())[4] {return tiles;};
 
 	//maintainence
 	bool alive();

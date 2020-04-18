@@ -28,7 +28,7 @@ Block *Level3::CreateBlock() {
 		}
 			int num = 1 + (rand() % 9);
 		if (num == 1 || num == 2) {
-			return new Block{'Z', identifier};
+      return new Block{'Z', identifier};
 		} else if (num == 3 || num == 4) {
 			return new Block{'S', identifier};
 		} else if (num == 5) {
