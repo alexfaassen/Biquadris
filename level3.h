@@ -1,8 +1,7 @@
 #ifndef LEVEL3_H
 #define LEVEL3_H
 #include "level.h"
-
-class HeavyEffect;
+#include "heavyeffect.h"
 
 class Level3 : public Level {
 	HeavyEffect *heavy = new HeavyEffect();

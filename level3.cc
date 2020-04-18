@@ -1,5 +1,4 @@
 #include "level3.h"
-#include "heavyeffect.h"
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
