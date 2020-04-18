@@ -25,7 +25,7 @@ void BlindEffect::notify(const Event currEvent, vector<vector<char>> &boardPrint
 	}
 }
 
-void BlindEffect::notify(const Event currEvent, int clearedLines) {
+void BlindEffect::notify(const Event currEvent, int lineCleared) {
 	if(currEvent == onTurnEnd){
 		kill();
 	}

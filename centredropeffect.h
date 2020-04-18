@@ -8,7 +8,7 @@ class CentreDropEffect : public Effect {
 	public:
 	CentreDropEffect(int blocksSinceClear = 0) : Effect(), blocksSinceClear{blocksSinceClear} {}
 
-	void notify(const Event currEvent, const int clearedLines) override;
+	void notify(const Event currEvent, const int linesCleared) override;
 };
 
 #endif
