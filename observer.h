@@ -22,8 +22,8 @@ class Observer {
 
 	void kill();
 
-	virtual void notify(const Event currEvent, const int linesCleared) = 0;
-	virtual void notify(const Event currEvent, std::vector<std::vector<char>> &boardPrint) = 0;
+	virtual void notify(const Event currEvent, const int linesCleared);
+	virtual void notify(const Event currEvent, std::vector<std::vector<char>> &boardPrint);
 };
 
 #endif
