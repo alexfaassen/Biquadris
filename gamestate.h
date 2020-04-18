@@ -17,7 +17,7 @@ class GameState {
     Player rightPlayer;
     Player* activePlayer = nullptr;
     Player* nonActivePlayer = nullptr;
-    XWindow* window = nullptr;
+    Xwindow* window = nullptr;
     CommandList commandList;
     std::vector<std::reference_wrapper<std::istream>> istreams;
 
