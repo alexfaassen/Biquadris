@@ -6,7 +6,7 @@ class ForceEffect : public Effect {
 	Block *newBlock;
 
 	public:
-	ForceEffect(Block *newBlock, Player *player = NULL, bool alive = true) : Effect(player, alive), newBlock{newBlock} {}
+	ForceEffect(const char newBlock, Player *player = NULL, bool alive = true) : Effect(player, alive), newBlock{newBlock} {}
 
 	void notify(const Event currEvent, const int linesCleared) override;
 };
