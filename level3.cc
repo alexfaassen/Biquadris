@@ -17,7 +17,7 @@ Block *Level3::CreateBlock() {
 	if (file) {
 		// No random
 		char b;
-		file >> b;
+		*file >> b;
 		return new Block(b, identifier);
 	} else {
 		// Random
