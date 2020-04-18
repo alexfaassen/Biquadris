@@ -16,7 +16,7 @@ int Tile::getY() {
 	return y;
 }
 
-void Tile::kill(){
+void Tile::kill() {
 	alive = false;
 }
 
@@ -33,5 +33,3 @@ void Tile::invert() {
 	x = y;
 	y = hold;
 }
-
-void Tile::kill() { alive = false; }
