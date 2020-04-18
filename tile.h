@@ -17,7 +17,6 @@ class Tile {
 	void setX(int newX);
 	void setY(int newY);
 	void invert();
-	void kill();
 };
 
 #endif
