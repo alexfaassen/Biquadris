@@ -5,7 +5,7 @@ using namespace std;
 
 PlayerWindow::PlayerWindow(){}
 
-PlayerWindow::PlayerWindow(Xwindow* window, int offsetX, int offsetY, int width = 200, int height = 400)
+PlayerWindow::PlayerWindow(Xwindow* window, int offsetX, int offsetY, int width, int height)
 : window{window}, offsetX{offsetX}, offsetY{offsetY}, width{width}, height{height} {
     if(window){
         thisHasWindow = true;
