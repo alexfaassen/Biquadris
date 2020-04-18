@@ -10,6 +10,7 @@ class Command {
 
 	public:
 	Command(const std::string name, const bool needClean = 1) : name{name}, needClean{needClean} {}
+	virtual ~Command();
 
 	std::string getName() const;
 
