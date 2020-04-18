@@ -84,7 +84,7 @@ int main(int argc, char *argv[]) {
         srand(seed);
     }
 
-    GameState gamestate(hasWindow, scriptfile1, scriptfile2, startlevel);
+    GameState gamestate = Gamestate(hasWindow, scriptfile1, scriptfile2, startlevel);
     
     gamestate.beginReadLoop();
     
