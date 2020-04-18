@@ -165,11 +165,11 @@ bool Board::isEmpty(int x, int y) {
 
 vector<vector<char>> Board::renderCharArray() {
 	vector<vector<char>> vec; 
-	cout << "test: before first for loop" << endl;
+	//cout << "test: before first for loop" << endl;
 	for(int i = 0; i < 3; i ++){
 		vec.emplace_back(vector<char>(11, ' '));
 	}
-	cout << "test: before second for loop" << endl;
+	//cout << "test: before second for loop" << endl;
 	vec.emplace_back(vector<char>());
 	for(int y = 0; y < 15; y++) {
 		for(int x = 0; x < 11; x++) {
@@ -179,11 +179,10 @@ vector<vector<char>> Board::renderCharArray() {
 				vec.at(y + 3).emplace_back(immobileTiles[y][x]->getLetter());
 			}
 		}
-		cout << endl;
 		vec.emplace_back(vector<char>());
 	}
 	int currX, currY;
-	cout << "test: before third for loop" << endl;
+	//cout << "test: before third for loop" << endl;
 	if(currentBlock){
 		for(int i = 0; i < 4; i++) {
 			currX = currentBlock->getTiles()[i].getX();
@@ -191,7 +190,7 @@ vector<vector<char>> Board::renderCharArray() {
 			vec.at(currY + 3).at(currX) = currentBlock->getType();
 		}
 	}
-	cout << "test: about to return vec" << endl;
+	//cout << "test: about to return vec" << endl;
 	return vec;
 }
 
