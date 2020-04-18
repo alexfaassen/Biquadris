@@ -17,7 +17,7 @@ void Player::initGraphicsObservers(){
 }
 
 int Player::cleanObservers(){
-    for(int i = 0; i < observers.size(); i++){
+    for(size_t i = 0; i < observers.size(); i++){
         if(!observers.at(i)->isAlive()){
             delete observers.at(i);
             observers.erase(observers.begin()+i);
@@ -213,8 +213,8 @@ void Player::pushToObservers(Observer* obs){
     obs->attach(this);
 }
 
-void Player::changeCurrentBlock(char block){
-    board.changeCurrent(block);
+void Player::changeCurrentBlock(char c){
+    board.changeCurrent(c);
     if (!board.isAlive()) setInputState(LOSS);
 }
 
