@@ -40,15 +40,21 @@ Board::~Board(){
 	}
 }
 
-void Board::pushNextBlock(){
-	placeCurrent();
+bool Board::pushNextBlock(bool safe = true){
+	if(safe && currentBlock) return false;
 	currentBlock = nextBlock;
 	nextBlock = level->CreateBlock();
+	return true;
 }
 
 void Board::placeCurrent(){
-	placed.emplace_back(currentBlock);
-	for (auto p : currentBlock->getTiles()){
+	placeBlock(currentBlock);
+	currentBlock = nullptr;
+}
+
+void Board::placeBlock(Block* b){
+	placed.emplace_back(b);
+	for (auto p : b->getTiles()){
 		immobileTiles[p.getX()][p.getY()] = &p;
 	}
 }
@@ -115,12 +121,19 @@ bool Board::counterClockwiseCurrent() {
 
 void Board::dropCurrent() {
 	while(moveCurrent(Down, 1)){}
+	placeCurrent();
 }
 
+bool Board::isCurrentBlocked(){
+	for(auto t : currentBlock->getTiles()){
+		if(!isEmpty(t.getX(),t.getY())) return true;
+	}
+	return false;
+}
 
 bool Board::isMoveBlocked(int deltaX, int deltaY){
-	for (int i = 0; i < 4; ++i) {
-		if (!isEmpty(currentBlock->getTiles[i].getX() + deltaX, currentBlock->getTiles()[i].getY() + deltaY)) return true;
+	for (auto t : currentBlock->getTiles()) {
+		if (!isEmpty(t.getX() + deltaX, t.getY() + deltaY)) return true;
 	}
 	return false;
 }
@@ -156,13 +169,13 @@ vector<vector<char>> &Board::renderCharArray() {
 	return vec;
 }
 
-void Board::forceTopColumnTile(Tile *colTile) {
+void Board::forceTopColumnTile(const char b, const int col) {
 	if (!isEmpty(5, 0)) alive = false; 
 	int row = 0;
 	for (int i = 1; i < 15; ++i) {
 		if (!isEmpty(5, i)) row = i - 1;
 	}
-	placed.emplace_back(new Block('*', -1, 5, row));
+	placeBlock(new Block(b, -1, col, row));
 }
 
 //TODO: needs some rewriting

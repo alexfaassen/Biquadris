@@ -5,11 +5,11 @@
 
 Level4::~Level4() { delete heavy; delete centreDrop; delete file; }
 
-Level4::Level4(const Level &other) : Level(other), heavy{new HeavyEffect(1)}, centreDrop{new CentreDropEffect()} {}
+Level4::Level4(const Level &other) : Level(other), heavy{new HeavyEffect(1)}, centreDrop{new CentreDropEffect()} { identifier = 4; }
 
-Level4::Level4(const Level3 &other) : Level(other), heavy{other.heavy}, centreDrop{new CentreDropEffect()} {}
+Level4::Level4(const Level3 &other) : Level(other), heavy{other.heavy}, centreDrop{new CentreDropEffect()} { identifier = 4; }
 
-Level4::Level4(const int playerSide, bool customSeed, int seed, std::ifstream *file, Effect *heavy, Effect *centreDrop, int identifier) : Level(playerSide, identifier, customSeed, seed, file), heavy{new HeavyEffect(1)}, centreDrop{new CentreDropEffect()} {}
+Level4::Level4(const int playerSide, int identifier, bool customSeed, int seed, ifstream *file, Effect *heavy, Effect *centreDrop) : Level(playerSide, identifier, customSeed, seed, file), heavy{new HeavyEffect(1)}, centreDrop{new CentreDropEffect()} {}
 
 void Level4::generateEffects(std::vector<Observer*> &vec) const override { vec.emplace_back(heavy); vec.emplace_back(centreDrop); }
 
@@ -18,7 +18,7 @@ Block *Level4::CreateBlock() {
 		// No random
 		char b;
 		file >> b;
-		return new Block(b, identifier);
+		return new Block{b, identifier};
 	} else {
 		// Random
 		if (customSeed) {
@@ -28,19 +28,19 @@ Block *Level4::CreateBlock() {
 		}
 			int num = 1 + (rand() % 9);
 		if (num == 1 || num == 2) {
-			return new Block('Z', identifier);
+			return new Block{'Z', identifier};
 		} else if (num == 3 || num == 4) {
-			return new Block('S', identifier);
+			return new Block{'S', identifier};
 		} else if (num == 5) {
-			return new Block('I', identifier);
+			return new Block{'I', identifier};
 		} else if (num == 6) {
-			return new Block('J', identifier);
+			return new Block{'J', identifier};
 		} else if (num == 7) {
-			return new Block('O', identifier);
+			return new Block{'O', identifier};
 		} else if (num == 8) {
-			return new Block('L', identifier);
+			return new Block{'L', identifier};
 		} else {
-			return new Block('T', identifier);
+			return new Block{'T', identifier};
 		}
 	}
 }

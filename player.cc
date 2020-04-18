@@ -137,6 +137,7 @@ int Player::incLevel(int n){
 
 void Player::startTurn(){
     setInputState(NORMAL);
+    board.pushNextBlock();
     notifyObservers(onTurnStart);
 }
 
@@ -202,8 +203,8 @@ void Player::pushToObservers(Observer* obs){
     obs->attach(this);
 }
 
-void Player::changeCurrentBlock(Block* block){
-    board.changeCurrent(block);
+void Player::changeCurrentBlock(char c){
+    board.changeCurrent(c);
 }
 
 string charArrToString(const vector<vector<char>>& arr){
@@ -231,6 +232,6 @@ string Player::printToString(){
     return ss.str();
 }
 
-void Player::forceTopTile(Tile* tile){
-	board->forceTopColumnTile(tile);
+void Player::forceTopTile(const char b, const int col){
+	board.forceTopColumnTile(b, col);
 }
