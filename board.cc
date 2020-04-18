@@ -172,15 +172,10 @@ vector<vector<char>> Board::renderCharArray() {
 	cout << "test: before second for loop" << endl;
 	vec.emplace_back(vector<char>());
 	for(int y = 0; y < 15; y++) {
-		//cout << "test: y = " << y << endl;
 		for(int x = 0; x < 11; x++) {
-			//cout << "test: x = " << x << endl;
 			if(!immobileTiles[y][x]){ 
-				cout << "0";
 				vec.at(y + 3).emplace_back(' ');
 			} else {
-				cout << "x";
-				//vec.at(y + 3).emplace_back('x');
 				vec.at(y + 3).emplace_back(immobileTiles[y][x]->getLetter());
 			}
 		}
@@ -189,10 +184,12 @@ vector<vector<char>> Board::renderCharArray() {
 	}
 	int currX, currY;
 	cout << "test: before third for loop" << endl;
-	for(int i = 0; i < 4; i++) {
-		currX = currentBlock->getTiles()[i].getX();
-		currY = currentBlock->getTiles()[i].getY();
-		vec.at(currY + 3).at(currX) = currentBlock->getType();
+	if(currentBlock){
+		for(int i = 0; i < 4; i++) {
+			currX = currentBlock->getTiles()[i].getX();
+			currY = currentBlock->getTiles()[i].getY();
+			vec.at(currY + 3).at(currX) = currentBlock->getType();
+		}
 	}
 	cout << "test: about to return vec" << endl;
 	return vec;
