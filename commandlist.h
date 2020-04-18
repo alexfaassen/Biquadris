@@ -18,6 +18,7 @@ class CommandList {
 
     public:
     CommandList();
+    ~CommandList();
     std::vector<Command*>& selectVector(InputState); 
 };
 
