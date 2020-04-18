@@ -13,11 +13,12 @@ class Level {
 	bool customSeed = 0;
 	int seed = 1;
 	std::ifstream *file = NULL;
-	
-	public:
+
+	virtual ~Level(); 
+
 	Level(const int playerSide, int identifier) : playerSide{playerSide}, identifier{identifier} {}
 	Level(const Level &other) : playerSide{other.playerSide}, identifier{other.identifier}, customSeed{other.customSeed}, seed{other.seed}, file{other.file} {}
-	virtual ~Level();
+	public:
 
 	// getters/setters
 	int getIdentifier() const;

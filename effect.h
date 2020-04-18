@@ -3,7 +3,7 @@
 #include "observer.h"
 
 class Effect : public Observer {
-	public:
+	protected:
 	Effect() : Observer() {}
 };
 
