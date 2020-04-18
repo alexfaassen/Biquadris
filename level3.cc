@@ -18,7 +18,7 @@ Block *Level3::CreateBlock() {
 		// No random
 		char b;
 		file >> b;
-		return new Block{b, identifier};
+		return new Block(b, identifier);
 	} else {
 		// Random
 		if (customSeed) {
@@ -28,19 +28,19 @@ Block *Level3::CreateBlock() {
 		}
 			int num = 1 + (rand() % 9);
 		if (num == 1 || num == 2) {
-      return new Block{'Z', identifier};
+                        return new Block('Z', identifier);
 		} else if (num == 3 || num == 4) {
-			return new Block{'S', identifier};
+			return new Block('S', identifier);
 		} else if (num == 5) {
-			return new Block{'I', identifier};
+			return new Block('I', identifier);
 		} else if (num == 6) {
-			return new Block{'J', identifier};
+			return new Block('J', identifier);
 		} else if (num == 7) {
-			return new Block{'O', identifier};
+			return new Block('O', identifier);
 		} else if (num == 8) {
-			return new Block{'L', identifier};
+			return new Block('L', identifier);
 		} else {
-			return new Block{'T', identifier};
+			return new Block('T', identifier);
 		}
 	}
 }
