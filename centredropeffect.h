@@ -1,7 +1,6 @@
 #ifndef CDEFT_H
 #define CDEFT_H
 #include "effect.h"
-#include "gamestate.h"
 
 class CentreDropEffect : public Effect {
 	int blocksSinceClear;
