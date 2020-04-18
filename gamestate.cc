@@ -1,7 +1,13 @@
 #include "gamestate.h"
 
-#include <utility>
+#include <istream>
+#include <vector>
+#include <functional>
 #include <string>
+
+#include "player.h"
+#include "window.h"
+#include "commandlist.h"
 
 using namespace std;
 
