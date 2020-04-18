@@ -1,7 +1,9 @@
 #ifndef OBSERVER_H
 #define OBSERVER_H
-#include "player.h"
+
 #include <vector>
+
+class Player;
 
 class Observer {
 	protected:
