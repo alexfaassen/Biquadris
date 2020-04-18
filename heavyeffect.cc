@@ -1,4 +1,5 @@
 #include "heavyeffect.h"
+#include "player.h"
 
 void HeavyEffect::notify(const Event currEvent, const int linesCleared) {
 	if (currEvent == afterMove){

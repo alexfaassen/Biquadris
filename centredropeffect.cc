@@ -1,4 +1,5 @@
 #include "centredropeffect.h"
+#include "player.h"
 
 void CentreDropEffect::notify(const Event currEvent, const int linesCleared) {
 	if (currEvent == onTurnEnd) {
