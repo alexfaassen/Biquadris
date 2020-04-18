@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include "gamestate.h"
+
 using namespace std;
 
 int main(int argc, char *argv[]) {
@@ -83,7 +84,7 @@ int main(int argc, char *argv[]) {
         srand(seed);
     }
 
-    GameState gamestate = Gamestate(hasWindow, scriptfile1, scriptfile2, startlevel);
+    GameState gamestate(hasWindow, scriptfile1, scriptfile2, startlevel);
     
     gamestate.beginReadLoop();
     
