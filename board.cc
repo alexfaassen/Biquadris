@@ -157,14 +157,13 @@ bool Board::isEmpty(int x, int y) {
 }
 
 vector<vector<char>> Board::renderCharArray() {
-	cout << "test : starting board.renderCharArray()" << endl;
 	vector<vector<char>> vec; 
 	for(int i = 0; i < 3; i ++){
 		vec.emplace_back(vector<char>(11, ' '));
 	}
 	for(int y = 0; y < 15; y++) {
 		for(int x = 0; x < 11; x++) {
-			if(!immobileTiles[x][y]){ 
+			if(!immobileTiles[y][x]){ 
 				vec.at(x).emplace_back(' ');
 			} else {
 				vec.at(x).emplace_back(immobileTiles[x][y]->getLetter());
@@ -178,7 +177,6 @@ vector<vector<char>> Board::renderCharArray() {
 		currY = currentBlock->getTiles()[i].getY();
 		vec.at(currX + 3).at(currY) = currentBlock->getType();
 	}
-	cout << "test : returning from board.renderCharArray()" << endl;
 	return vec;
 }
 
