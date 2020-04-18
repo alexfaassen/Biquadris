@@ -47,6 +47,7 @@ class Board {
 	bool clockwiseCurrent();
 	bool counterClockwiseCurrent();
 	void dropCurrent();
+	bool isAlive() const;
 
 	//will moving currentBlock by the given coords cause it to collide with a tile?
 	bool isMoveBlocked(int deltaX, int deltaY);	
