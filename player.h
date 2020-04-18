@@ -52,7 +52,7 @@ class Player {
     int moveBlock(Direction, int, bool);
     int rotateClockwise(int, bool);
     int rotateCounterClockwise(int, bool);
-    void drop(bool = false);
+    void drop(bool);
     int incLevel(int);
 
     //turn triggers
