@@ -10,11 +10,10 @@ class Observer {
 	protected:
 	Player *player = NULL;
 	bool alive = 1;
-	
-	virtual ~Observer();
 
 	public:
 	Observer() {}
+	virtual ~Observer();
 
 	bool isAlive() const;
   

@@ -19,7 +19,10 @@ class Level {
 	Level(const Level &other) : playerSide{other.playerSide}, customSeed{other.customSeed}, seed{other.seed}, file{other.file} {}
 	virtual ~Level();
 
-	// getters/setters
+	public:
+	virtual ~Level();
+	
+	// accessors
 	int getIdentifier() const;
 	bool setFile(std::ifstream *newFile);
 	void updateSeed(const int newSeed);

@@ -6,7 +6,7 @@ Level1::~Level1() { delete file; }
 
 Level1::Level1(const Level &other) : Level(other) { identifier = 1; }
 
-Level1::Level1(const int playerSide, int identifier, bool customSeed, int seed, ifstream *file) : Level(playerSide, identifier, customSeed, seed, file) {}
+Level1::Level1(const int playerSide, int identifier) : Level(playerSide, identifier) {}
 
 Block *Level1::CreateBlock() {	
 	if (customSeed) {

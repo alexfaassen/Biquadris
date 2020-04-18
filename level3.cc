@@ -9,7 +9,7 @@ Level3::Level3(const Level &other) : Level(other), heavy{new HeavyEffect()} { id
 
 Level3::Level3(const Level4 &other) : Level(other), heavy{other.heavy} { identifier = 3; }
 
-Level3::Level3(const int playerSide, int identifier, bool customSeed, int seed, ifstream *file, Effect *heavy) : Level(playerSide, identifier, customSeed, seed, file), heavy{new HeavyEffect()} {}
+Level3::Level3(const int playerSide, int identifier) : Level(playerSide, identifier) { heavy = new HeavyEffect(); }
 
 void Level3::generateEffects(std::vector<Observer*> &vec) const { vec.emplace_back(heavy); }
 
