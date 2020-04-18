@@ -24,7 +24,7 @@ void GameState::createPlayers(){
 int GameState::cleanStreams(){
     int n = 0;
     while(!ifstreams.empty()){
-        ifstream s = ifstreams.back();
+        ifstream &s = ifstreams.back();
         if(s.eof()){ 
             ifstreams.pop_back();
         } else {
