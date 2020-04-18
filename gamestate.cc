@@ -136,10 +136,10 @@ bool GameState::runInput(string input, int multiplier = 1){
     }
 
     //runs the command if it succeeds, and prints error msg if it fails
-    if(p && !duplicate_found){
+    if(cmd && !duplicate_found){
         cmd->execute(*this, multiplier);
         return true;
-    } else if (!p) {
+    } else if (!cmd) {
         cout << "Error: Invalid command" << endl;
     } else if (duplicate_found){
         cout << "Error: Ambiguous command" << endl;
