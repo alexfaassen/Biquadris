@@ -92,10 +92,13 @@ void GameState::pushToStreams(ifstream& stream){
 }
 
 istream& GameState::getStream(){
+    cout  << "test : before CleanStreams()" << endl;
     cleanStreams();
     if(ifstreams.empty()){
+        cout  << "test : returning cin" << endl;
         return cin;
     } else {
+        cout  << "test : ifstreams.back" << endl;
         return ifstreams.back();
     }
 }
@@ -103,6 +106,7 @@ istream& GameState::getStream(){
 bool GameState::beginReadLoop(){
     string s;
     while (getStream() >> s) {
+        cout << "test: passed getStream" << endl;
         int multiplier = 1;
         if(isdigit(s[0])){          // test if s starts with an int
             multiplier = atoi(s.c_str());   // http://www.cplusplus.com/reference/cstdlib/atoi/
