@@ -17,10 +17,10 @@ class Level0;
 
 class Player {
     private:
+    PlayerWindow window;
     int side, score = 0;
     Board board;
     Level* level = new Level0(side);
-    PlayerWindow window;
     std::vector<Observer*> observers;
     InputState inputState = NORMAL;
     std::string scriptFile;
