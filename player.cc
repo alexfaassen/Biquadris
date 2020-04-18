@@ -44,6 +44,8 @@ void Player::preMove(){
 
 void Player::postMoveClean(){
     notifyObservers(afterMove);
+    //TODO once board is implemented
+    if (!board.isAlive()) setInputState(LOSS);
 }
 
 Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptfile, int startlevel)
@@ -139,6 +141,7 @@ void Player::startTurn(){
     setInputState(NORMAL);
     board.pushNextBlock();
     notifyObservers(onTurnStart);
+    if (!board.isAlive()) setInputState(LOSS);
 }
 
 void Player::endTurn(){
@@ -148,6 +151,7 @@ void Player::endTurn(){
         setInputState(SA);
     }
     notifyObservers(onTurnEnd, linescleared);
+    if (!board.isAlive()) setInputState(LOSS);
 }
 
 bool Player::setLevel(int n){
@@ -203,8 +207,9 @@ void Player::pushToObservers(Observer* obs){
     obs->attach(this);
 }
 
-void Player::changeCurrentBlock(char c){
-    board.changeCurrent(c);
+void Player::changeCurrentBlock(Block* block){
+    board.changeCurrent(block);
+    if (!board.isAlive()) setInputState(LOSS);
 }
 
 string charArrToString(const vector<vector<char>>& arr){
