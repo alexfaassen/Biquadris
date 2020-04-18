@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <vector>
+
 #include "command.h"
 #include "inputstate.h"
 

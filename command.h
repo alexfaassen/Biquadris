@@ -2,7 +2,7 @@
 #define CMD_H
 #include <string>
 
-#include "gamestate.h"
+class GameState;
 
 class Command {
 	std::string name;

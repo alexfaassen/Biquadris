@@ -1,4 +1,5 @@
 #include "command.h"
+#include "gamestate.h"
 
 std::string Command::getName() const { return name; }
 
