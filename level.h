@@ -14,7 +14,7 @@ class Level {
 	int seed = 1;
 	std::ifstream *file = nullptr;
 
-	Level(const int playerSide, int identifier);
+	Level(const int playerSide, int identifier) : playerSide{playerSide}, identifier{identifier} {}
 	Level(const Level &other) : playerSide{other.playerSide}, customSeed{other.customSeed}, seed{other.seed}, file{other.file} {}
 
 	public:

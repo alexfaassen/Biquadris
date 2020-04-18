@@ -1,7 +1,5 @@
 #include "level.h" 
 
-Level::Level(const int playerSide, int identifier) : playerSide{playerSide}, identifier{identifier} {}
-
 Level::~Level() { delete file; }
 
 void Level::updateSeed(const int newSeed) {

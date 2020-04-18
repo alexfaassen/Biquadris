@@ -5,9 +5,11 @@
 
 Level4::~Level4() { delete heavy; delete centreDrop; delete file; }
 
-Level4::Level4(const Level &other) : Level(other), heavy{new HeavyEffect()}, centreDrop{new CentreDropEffect()} { identifier = 4; }
-
-Level4::Level4(const Level3 &other) : Level(other), heavy{other.heavy}, centreDrop{new CentreDropEffect()} { identifier = 4; }
+Level4::Level4(const Level &other) : Level(other) {
+	identifier = 4;
+	heavy = new HeavyEffect();
+	centreDrop = new CentreDropEffect();
+}
 
 Level4::Level4(const int playerSide, int identifier) : Level(playerSide, identifier) {}
 
