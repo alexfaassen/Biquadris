@@ -118,7 +118,7 @@ bool GameState::beginReadLoop(){
     return true;
 }
 
-bool GameState::runInput(String input, int multiplier = 1){
+bool GameState::runInput(string input, int multiplier = 1){
 
     //commandList figures out which vector of commands to loop through
     vector<Command*> &commands = commandList.selectVector(activePlayer->getInputState());
@@ -147,7 +147,7 @@ bool GameState::runInput(String input, int multiplier = 1){
     return false;
 }
 
-bool GameState::runInputOnNAP(String input, int multiplier = 1){
+bool GameState::runInputOnNAP(string input, int multiplier = 1){
     //switch activePlayer, call runInput, then switch back
     switchActive();
     bool success = runInput(input, multiplier);
@@ -155,7 +155,7 @@ bool GameState::runInputOnNAP(String input, int multiplier = 1){
     return success;
 }
 
-bool GameState::runInputOnBoth(String input, int multiplier = 1){
+bool GameState::runInputOnBoth(string input, int multiplier = 1){
     Player* oldActivePlayer = activePlayer;
     bool success1 = runInput(input, multiplier);
 
