@@ -1,8 +1,6 @@
 #include "level0.h"
 #include <iostream>
 
-Level0::~Level0() { delete file; }
-
 Level0::Level0(const Level &other) : Level(other) { identifier = 0; }
 
 Level0::Level0(const int playerSide, int identifier) : Level(playerSide, identifier) {
