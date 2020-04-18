@@ -87,10 +87,11 @@ int Board::eotClean(int *score) {
 }
 
 void Board::changeCurrent(char newType) {
-	Block *newBlock = new Block{newType, level->getIdentifier(), 0, 2};
+	Block *newBlock = new Block(newType, level->getIdentifier());
 	Block *oldCurrBlock = currentBlock;
 	currentBlock = newBlock;
 	delete oldCurrBlock;
+	if (isCurrentBlocked()) kill();
 }
 
 int Board::moveCurrent(Direction dir, int amount) {
@@ -170,7 +171,7 @@ vector<vector<char>> &Board::renderCharArray() {
 }
 
 void Board::forceTopColumnTile(const char b, const int col) {
-	if (!isEmpty(5, 0)) alive = false; 
+	if (!isEmpty(5, 0)) kill(); 
 	int row = 0;
 	for (int i = 1; i < 15; ++i) {
 		if (!isEmpty(5, i)) row = i - 1;
@@ -197,5 +198,10 @@ string Board::printNextBlock() {
 		str += "\n";
 	}
 }
+
+void Board::kill() {
+	alive = false;
+}
+
 
 
