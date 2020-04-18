@@ -17,7 +17,7 @@ void Player::initGraphicsObservers(){
 }
 
 int Player::cleanObservers(){
-    for(int i = 0; i < observers.size(); i++){
+    for(size_t i = 0; i < observers.size(); i++){
         if(!observers.at(i)->isAlive()){
             delete observers.at(i);
             observers.erase(observers.begin()+i);
