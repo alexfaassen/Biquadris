@@ -40,14 +40,16 @@ Board::~Board(){
 	}
 }
 
-void Board::pushNextBlock(){
-	placeCurrent();
+bool Board::pushNextBlock(bool safe = true){
+	if(safe && currentBlock) return false;
 	currentBlock = nextBlock;
 	nextBlock = level->CreateBlock();
+	return true;
 }
 
 void Board::placeCurrent(){
 	placeBlock(currentBlock);
+	currentBlock = nullptr;
 }
 
 void Board::placeBlock(Block* b){
@@ -122,10 +124,16 @@ void Board::dropCurrent() {
 	placeCurrent();
 }
 
+bool Board::isCurrentBlocked(){
+	for(auto t : currentBlock->getTiles()){
+		if(!isEmpty(t.getX(),t.getY())) return true;
+	}
+	return false;
+}
 
 bool Board::isMoveBlocked(int deltaX, int deltaY){
-	for (int i = 0; i < 4; ++i) {
-		if (!isEmpty(currentBlock->getTiles[i].getX() + deltaX, currentBlock->getTiles()[i].getY() + deltaY)) return true;
+	for (auto t : currentBlock->getTiles()) {
+		if (!isEmpty(t.getX() + deltaX, t.getY() + deltaY)) return true;
 	}
 	return false;
 }
@@ -177,7 +185,7 @@ string Board::printNextBlock() {
 	for(int i = 2; i > 0; i++) {
 		for(int j = 0; j < 11; j++) {
 			for(int k = 0; k < 4; k++) {
-				if(nextBlock.getTiles()[k]->getX() == j && nextBlock.getTiles[k]->getY() == i) {
+				if(nextBlock->getTiles[i].getX() == j && nextBlock->getTiles[k]->getY() == i) {
 					str += nextBlock->getType();
 					isTile = true;
 					break;

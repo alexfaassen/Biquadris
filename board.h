@@ -29,10 +29,13 @@ class Board {
 	Board();
 	~Board();
 
-	// moves currentBlock into placed, nextBlock into currentBlock, and generates nextBlock
-	void pushNextBlock();
+	bool isAlive() const{return alive;};
 
-	// moves currentBlock into placed and its tiles into immobileTiles
+	// moves currentBlock into placed, nextBlock into currentBlock, and generates nextBlock. 
+	// Returns if successful. If safe, will not do anything if currentBlock is not nullptr
+	bool pushNextBlock(bool safe = true);
+
+	// moves currentBlock into placed and its tiles into immobileTiles. Sets currentBlock to nullptr
 	void placeCurrent();
 
 	//moves the given block into placed and its tiles into immobileTiles
@@ -48,10 +51,13 @@ class Board {
 	bool counterClockwiseCurrent();
 	void dropCurrent();
 
+	// are any of currentBlock's tiles on an occupied tile?
+	bool isCurrentBlocked();
+
 	//will moving currentBlock by the given coords cause it to collide with a tile?
 	bool isMoveBlocked(int deltaX, int deltaY);	
 
-	// returns if the given coord isn't occupied by a tile
+	// returns if the given coord isn't occupied by a tile and isn't out of bounds
 	bool isEmpty(int x, int y);
 
 	std::vector<std::vector<char>> &renderCharArray();
