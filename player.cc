@@ -79,7 +79,7 @@ int Player::moveBlock(Direction dir, int times, bool isInput = false){
     return moves;
 }
 
-int Player::rotateClockWise(int times, bool isInput = false){
+int Player::rotateClockwise(int times, bool isInput = false){
     if(isInput){
         preMove();
     }
