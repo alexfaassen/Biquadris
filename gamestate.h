@@ -39,10 +39,10 @@ class GameState {
     ~GameState();
 
     //accessors
-    Player& getActivePlayer() {return *activePlayer};
-    Player& getNAP() {return *nonActivePlayer};
-    Player& getLeftPlayer() {return leftPlayer};
-    Player& getRightPlayer() {return rightPlayer};
+    Player& getActivePlayer() {return *activePlayer;};
+    Player& getNAP() {return *nonActivePlayer;};
+    Player& getLeftPlayer() {return leftPlayer;};
+    Player& getRightPlayer() {return rightPlayer;};
 
     void pushToStreams(std::istream&);      // pushes istream to istreams
 
@@ -51,9 +51,9 @@ class GameState {
 
     bool beginReadLoop();               // starts the read loop
 
-    bool runInput(string, int=1)        // tries to interpret and run given input
-    bool runInputOnNAP(string, int=1)   // calls runInput while pretending that NAP is activePlayer
-    bool runInputOnBoth(string, int=1)  // calls runInput sequentially on both players as if they were activePlayer
+    bool runInput(string, int=1);        // tries to interpret and run given input
+    bool runInputOnNAP(string, int=1);   // calls runInput while pretending that NAP is activePlayer
+    bool runInputOnBoth(string, int=1);  // calls runInput sequentially on both players as if they were activePlayer
     void cleanup();                     // checks for and handles end-of-turn
     void printGame();                   // prints the game to textdisplay
     void restart();                     // resets everything
@@ -61,7 +61,7 @@ class GameState {
     // compares score to highscore and updates highscore if needed; returns if update happened
     bool updateHighscore(int score);    
 
-}
+};
 
 
 
