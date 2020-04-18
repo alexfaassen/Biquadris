@@ -1,5 +1,9 @@
 #include "level.h" 
 
+Level::Level(const int playerSide, int identifier, bool customSeed, int seed, std::ifstream* file) 
+: playerSide{playerSide}, identifier{identifier}, customSeed{customSeed}, seed {seed}, file{file} {
+}
+
 Level::~Level() { delete file; }
 
 void Level::updateSeed(const int newSeed) { seed = newSeed; }
