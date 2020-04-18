@@ -1,4 +1,5 @@
 #include "level3.h"
+#include "heavyeffect.h"
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
@@ -7,7 +8,7 @@ Level3::~Level3() { delete heavy; delete file; }
 
 Level3::Level3(const Level &other) : Level(other) { identifier = 3; }
 
-Level3::Level3(const Level4 &other) : Level(other) { identifier = 3; }
+Level3::Level3(const Level3 &other) : Level(other) { identifier = 3; }
 
 Level3::Level3(const int playerSide, int identifier) : Level(playerSide, identifier) {}
 
