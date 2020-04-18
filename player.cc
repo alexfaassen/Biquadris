@@ -25,7 +25,7 @@ void Player::notifyObservers(Event ev, int n = 0){
     }
 }
 
-void Player::notifyObservers(Event ev, char[][]& arr){
+void Player::notifyObservers(Event ev, vector<vector<char>>& arr){
     for(auto p : observers){
         p->notify(ev, arr);
     }
@@ -38,6 +38,7 @@ void Player::preMove(){
 void Player::postMoveClean(){
     notifyObservers(afterMove);
     //TODO once board is implemented
+    if (!board.isAlive()) setInputState(LOSS);
 }
 
 Player::Player(Xwindow* w, int offsetX, int offsetY, int side)
@@ -100,6 +101,7 @@ bool Player::incLevel(int n){
 void Player::startTurn(){
     setInputState(NORMAL);
     notifyObservers(onTurnStart);
+    if (!board.isAlive()) setInputState(LOSS);
 }
 
 void Player::endTurn(){
@@ -162,6 +164,7 @@ void Player::pushToObservers(Observer* obs){
 
 void Player::changeCurrentBlock(Block* block){
     board.changeCurrent(block);
+    if (!board.isAlive()) setInputState(LOSS);
 }
 
 string charArrToString(const char[][]& arr){
