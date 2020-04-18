@@ -49,10 +49,10 @@ class Player {
     void setScriptFile(std::string s) {scriptFile = s;};
 
     //movement commands
-    int moveBlock(Direction, int, bool);
-    int rotateClockwise(int, bool);
-    int rotateCounterClockwise(int, bool);
-    void drop(bool);
+    int moveBlock(Direction dir, int times, bool isInput = false);
+    int rotateClockwise(int times, bool isInput = false);
+    int rotateCounterClockwise(int times, bool isInput = false);
+    void drop(bool isInput = false);
     int incLevel(int);
 
     //turn triggers

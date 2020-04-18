@@ -72,7 +72,7 @@ Player::~Player(){
     }
 }
 
-int Player::moveBlock(Direction dir, int times, bool isInput = false){
+int Player::moveBlock(Direction dir, int times, bool isInput){
     if(isInput){
         preMove();
     }
@@ -83,7 +83,7 @@ int Player::moveBlock(Direction dir, int times, bool isInput = false){
     return moves;
 }
 
-int Player::rotateClockwise(int times, bool isInput = false){
+int Player::rotateClockwise(int times, bool isInput){
     if(isInput){
         preMove();
     }
@@ -97,7 +97,7 @@ int Player::rotateClockwise(int times, bool isInput = false){
     return successes;
 }
 
-int Player::rotateCounterClockwise(int times, bool isInput = false){
+int Player::rotateCounterClockwise(int times, bool isInput){
     if(isInput){
         preMove();
     }
@@ -111,7 +111,7 @@ int Player::rotateCounterClockwise(int times, bool isInput = false){
     return successes;
 }
 
-void Player::drop(bool isInput = false){
+void Player::drop(bool isInput){
     if(isInput){
         preMove();
     }
