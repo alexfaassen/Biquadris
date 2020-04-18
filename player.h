@@ -17,7 +17,7 @@ class Player {
     private:
     int side, score = 0;
     Board board;
-    Level* level = new Level0();
+    Level* level = new Level0(side);
     PlayerWindow window;
     std::vector<Observer*> observers;
     InputState inputState = NORMAL;
