@@ -239,8 +239,9 @@ void GameState::restart(){
     createPlayers();
     activePlayer = &leftPlayer;
     nonActivePlayer = &rightPlayer;
-    cout << "test : printing" << endl;
+    cout << "test : activePlayer->startTurn" << endl;
     activePlayer->startTurn();
+    cout << "test : printgame" << endl;
     printGame();
 }
 
