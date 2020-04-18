@@ -51,9 +51,9 @@ class GameState {
 
     bool beginReadLoop();               // starts the read loop
 
-    bool runInput(string, int=1);        // tries to interpret and run given input
-    bool runInputOnNAP(string, int=1);   // calls runInput while pretending that NAP is activePlayer
-    bool runInputOnBoth(string, int=1);  // calls runInput sequentially on both players as if they were activePlayer
+    bool runInput(string input, int=1);        // tries to interpret and run given input
+    bool runInputOnNAP(string input, int=1);   // calls runInput while pretending that NAP is activePlayer
+    bool runInputOnBoth(string input, int=1);  // calls runInput sequentially on both players as if they were activePlayer
     void cleanup();                     // checks for and handles end-of-turn
     void printGame();                   // prints the game to textdisplay
     void restart();                     // resets everything
