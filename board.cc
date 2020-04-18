@@ -164,12 +164,12 @@ vector<vector<char>> Board::renderCharArray() {
 		vec.emplace_back(vector<char>(11, ' '));
 	}
 	cout << "test: before second for loop" << endl;
-	for(int y = 3; y < 18; y++) {
+	for(int y = 0; y < 15; y++) {
 		for(int x = 0; x < 11; x++) {
 			if(!immobileTiles[y][x]){ 
-				vec.at(y).emplace_back(' ');
+				vec.at(y + 3).emplace_back(' ');
 			} else {
-				vec.at(y).emplace_back(immobileTiles[x][y]->getLetter());
+				vec.at(y + 3).emplace_back(immobileTiles[x][y]->getLetter());
 			}
 		}
 		vec.emplace_back(vector<char>());
