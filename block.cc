@@ -106,8 +106,8 @@ Block::~Block(){
 
 void Block::move(int deltaX, int deltaY) {
 	for(int i = 0; i < 4; i++) {
-		tiles[i].setX(tiles[i].getX + deltaX);
-		tiles[i].setY(tiles[i].getY + deltaY);
+		tiles[i].setX(tiles[i].getX() + deltaX);
+		tiles[i].setY(tiles[i].getY() + deltaY);
 	}
 }
 
@@ -126,11 +126,11 @@ void Block::clockwise() {
 	int newY;
 	for(int i = 0; i < 4; i++) {
 		if(i > upperMid) {
-			newY = lowerMid - tiles[i].getY + upperMid;
+			newY = lowerMid - tiles[i].getY() + upperMid;
 			tiles[i].setY(newY);
 		} 
 		else if(i < lowerMid) {
-			newY = upperMid + tiles[i].getY - upperMid;
+			newY = upperMid + tiles[i].getY() - upperMid;
 			tiles[i].setY(newY);
 		}
 	}
@@ -151,11 +151,11 @@ void Block::counterClockwise() {
 	int newX;
 	for(int i = 0; i < 4; i++) {
                 if(i > upperMid) {
-                        newX = lowerMid - tiles[i].getX + upperMid;
+                        newX = lowerMid - tiles[i].getX() + upperMid;
                         tiles[i].setX(newX);
                 }
                 else if(i < lowerMid) {
-                        newX = upperMid + tiles[i].getX - upperMid;
+                        newX = upperMid + tiles[i].getX() - upperMid;
                         tiles[i].setX(newX);
                 }
 	}
