@@ -230,6 +230,7 @@ void GameState::printGame(){
 void GameState::restart(){
     activePlayer = nullptr;
     nonActivePlayer = nullptr;
+    cout << "test : restarting" << endl;
     createPlayers();
     activePlayer = &leftPlayer;
     nonActivePlayer = &rightPlayer;
