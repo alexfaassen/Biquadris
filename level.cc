@@ -1,12 +1,13 @@
 #include "level.h" 
 
-Level::Level(const int playerSide, int identifier, bool customSeed = 0, int seed = 1, std::ifstream* file = nullptr) 
-: playerSide{playerSide}, identifier{identifier}, customSeed{customSeed}, seed {seed}, file{file} {
-}
+Level::Level(const int playerSide, int identifier) : playerSide{playerSide}, identifier{identifier} {}
 
 Level::~Level() { delete file; }
 
-void Level::updateSeed(const int newSeed) { seed = newSeed; }
+void Level::updateSeed(const int newSeed) {
+	if (!customSeed) customSeed = true;
+	seed = newSeed;
+}
 
 int Level::getIdentifier() const { return identifier; }
 
