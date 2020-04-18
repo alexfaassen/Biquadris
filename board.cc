@@ -114,10 +114,14 @@ int Board::moveCurrent(Direction dir, int amount) {
 
 bool Board::clockwiseCurrent() {
 	currentBlock->clockwise();
+	//PLACEHOLDER
+	return true;
 }
 
 bool Board::counterClockwiseCurrent() {
 	currentBlock->counterClockwise();
+	//PLACEHOLDER
+	return true;
 }
 
 void Board::dropCurrent() {
