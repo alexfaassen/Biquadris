@@ -1,6 +1,6 @@
 #include "gamestate.h"
 
-#include <istream>
+#include <iostream>
 #include <vector>
 #include <functional>
 #include <string>
@@ -23,8 +23,8 @@ void GameState::createPlayers(){
 
 int GameState::cleanStreams(){
     int n = 0;
-    while(!istreams.empty() && istreams.back().eof()){
-        istreams.pop_back();
+    while(!ifstreams.empty() && ifstreams.back().eof()){
+        ifstreams.pop_back();
         ++n;
     }
     return n;
@@ -82,18 +82,18 @@ GameState::~GameState(){
     nonActivePlayer = nullptr;
 }
 
-void GameState::pushToStreams(istream& stream){
+void GameState::pushToStreams(ifstream& stream){
     cleanStreams();
-    reference_wrapper<istream> in(stream);
-    istreams.emplace_back(in);
+    reference_wrapper<ifstream> in(stream);
+    ifstreams.emplace_back(in);
 }
 
 istream& GameState::getStream(){
     cleanStreams();
-    if(istreams.empty()){
+    if(ifstreams.empty()){
         return cin;
     } else {
-        return istreams.back();
+        return ifstreams.back();
     }
 }
 
