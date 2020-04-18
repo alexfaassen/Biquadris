@@ -52,7 +52,7 @@ void Player::postMoveClean(){
     if (!board.isAlive()) setInputState(LOSS);
 }
 
-Player::Player(){ Board board(); }
+Player::Player(){}
 
 Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptfile, int startlevel)
 : window{PlayerWindow(w, offsetX, offsetY)}, side{side}, scriptFile {scriptfile} {
