@@ -1,9 +1,8 @@
 #ifndef LEVEL4_H
 #define LEVEL4_H
 #include "level.h"
-
-class HeavyEffect;
-class CentreDropEffect;
+#include "heavyeffect.h"
+#include "centredropeffect.h"
 
 class Level4 : public Level {
 	HeavyEffect *heavy = new HeavyEffect();
