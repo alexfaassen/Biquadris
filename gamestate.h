@@ -36,7 +36,7 @@ class GameState {
 
     public:
     //constructors and destrutors
-    Gamestate(bool hasWindow, std::string scriptfile1, std::string scriptfile2, int startlevel);
+    GameState(bool hasWindow, std::string scriptfile1, std::string scriptfile2, int startlevel);
     ~GameState();
 
     //accessors
