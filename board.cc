@@ -160,10 +160,11 @@ bool Board::isEmpty(int x, int y) {
 vector<vector<char>> Board::renderCharArray() {
 	vector<vector<char>> vec; 
 	cout << "test: before first for loop" << endl;
-	for(int i = 0; i < 4; i ++){
+	for(int i = 0; i < 3; i ++){
 		vec.emplace_back(vector<char>(11, ' '));
 	}
 	cout << "test: before second for loop" << endl;
+	vec.emplace_back(vector<char>());
 	for(int y = 0; y < 15; y++) {
 		for(int x = 0; x < 11; x++) {
 			if(!immobileTiles[y][x]){ 
