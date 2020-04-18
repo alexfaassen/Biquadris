@@ -91,7 +91,7 @@ void Board::changeCurrent(char newType) {
 	Block *oldCurrBlock = currentBlock;
 	currentBlock = newBlock;
 	delete oldCurrBlock;
-	if (isCurrentBlocked()) alive = false;
+	if (isCurrentBlocked()) kill();
 }
 
 int Board::moveCurrent(Direction dir, int amount) {
@@ -171,7 +171,7 @@ vector<vector<char>> &Board::renderCharArray() {
 }
 
 void Board::forceTopColumnTile(const char b, const int col) {
-	if (!isEmpty(5, 0)) alive = false; 
+	if (!isEmpty(5, 0)) kill(); 
 	int row = 0;
 	for (int i = 1; i < 15; ++i) {
 		if (!isEmpty(5, i)) row = i - 1;
