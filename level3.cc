@@ -5,11 +5,11 @@
 
 Level3::~Level3() { delete heavy; delete file; }
 
-Level3::Level3(const Level &other) : Level(other), heavy{new HeavyEffect()} { identifier = 3; }
+Level3::Level3(const Level &other) : Level(other) { identifier = 3; }
 
-Level3::Level3(const Level4 &other) : Level(other), heavy{other.heavy} { identifier = 3; }
+Level3::Level3(const Level4 &other) : Level(other) { identifier = 3; }
 
-Level3::Level3(const int playerSide, int identifier) : Level(playerSide, identifier) { heavy = new HeavyEffect(); }
+Level3::Level3(const int playerSide, int identifier) : Level(playerSide, identifier) {}
 
 void Level3::generateEffects(std::vector<Observer*> &vec) const { vec.emplace_back(heavy); }
 

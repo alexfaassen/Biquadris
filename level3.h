@@ -3,6 +3,8 @@
 #include "level.h"
 
 class Level3 : public Level {
+	HeavyEffect *heavy = new HeavyEffect();
+
 	public:
 	Level3(const int playerSide, int identifier = 3);
 	Level3(const Level &other);
