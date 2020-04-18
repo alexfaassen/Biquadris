@@ -41,36 +41,37 @@ CommandList::~CommandList(){
 
 void CommandList::fillNormalCommands(){
     normalCommands.clear();
-    //add new commands here as they are implemented
-    //normalCommands.emplace_back(new Command);
+    // movement commands
+    normalCommands.emplace_back(new LeftCmd());
+    normalCommands.emplace_back(new RightCmd());
+    normalCommands.emplace_back(new DropCmd());
+    normalCommands.emplace_back(new DownCmd());
     normalCommands.emplace_back(new ClockwiseCmd());
     normalCommands.emplace_back(new CounterClockwiseCmd());
-    normalCommands.emplace_back(new DownCmd());
-    normalCommands.emplace_back(new DropCmd());
+    // level commands
+    normalCommands.emplace_back(new LevelUp());
+    normalCommands.emplace_back(new LevelDown());
+    // restart
+    normalCommands.emplace_back(new Restart());
+    // testing commands
+    normalCommands.emplace_back(new NoRandom());
+    normalCommands.emplace_back(new Random());
+    normalCommands.emplace_back(new Sequence());
     normalCommands.emplace_back(new ICmd());
     normalCommands.emplace_back(new JCmd());
     normalCommands.emplace_back(new LCmd());
-    normalCommands.emplace_back(new LeftCmd());
-    normalCommands.emplace_back(new LevelDown());
-    normalCommands.emplace_back(new LevelUp());
-    normalCommands.emplace_back(new NoRandom());
     normalCommands.emplace_back(new OCmd());
-    normalCommands.emplace_back(new Random());
-    normalCommands.emplace_back(new Restart());
-    normalCommands.emplace_back(new RightCmd());
     normalCommands.emplace_back(new SCmd());
-    normalCommands.emplace_back(new Sequence());
-    normalCommands.emplace_back(new TCmd());
     normalCommands.emplace_back(new ZCmd());
+    normalCommands.emplace_back(new TCmd());;
 }
 
 void CommandList::fillSACommands(){
     SACommands.clear();
-    //add new commands here as they are implemented
-    //SACommands.emplace_back(new Command);
-    SACommands.emplace_back(new Blind());
     SACommands.emplace_back(new Force());
     SACommands.emplace_back(new Heavy());
+    SACommands.emplace_back(new Blind());
+}
 
 vector<Command*>& CommandList::selectVector(InputState inputState){
     if(inputState == SA){
