@@ -1,5 +1,5 @@
 #include "level1.h"
-#include <stdlib>
+#include <cstdlib>
 #include <ctime>
 
 Level1::~Level1() { delete file; }
