@@ -3,10 +3,9 @@
 #include <fstream>
 #include <sstream>
 
-void Sequence::run(Gamestate &game, const int times) const override {
+void Sequence::run(Gamestate &game, const int times) const {
 	std::istream &in = game.getStream();
 	std::string fileName;
-	in >> fileName;	
-	std::ifstream &file{new fileName};
-	game.pushToStreams(file);
+	in >> fileName;
+	game.pushToStreams(new ifstream{fileName});
 }
