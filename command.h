@@ -10,10 +10,11 @@ class Command {
 	bool needClean;
 
 	Command(const std::string name, const bool needClean = 1) : name{name}, needClean{needClean} {}
-	virtual ~Command();
 
 	virtual void run(GameState &game, const int times = 1) const = 0;
+
 	public:
+	virtual ~Command();
 
 	std::string getName() const;
 
