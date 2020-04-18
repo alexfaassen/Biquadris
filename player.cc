@@ -201,6 +201,7 @@ bool Player::setLevel(int n){
 	             temp = NULL;
 	     }
     }
+    board.setLevel(level);
     return true;
 }
 

@@ -211,7 +211,7 @@ void Board::forceTopColumnTile(const char b, const int col) {
 
 //TODO: needs some rewriting
 string Board::printNextBlock() {	
-	if (!nextBlock) return "           ";
+	if (!nextBlock) return "           \n           ";
 	string str = "";
 	bool isTile = false;
 	for(int i = 2; i > 0; i++) {
@@ -235,5 +235,4 @@ void Board::kill() {
 	alive = false;
 }
 
-
-
+void Board::setLevel(Level *newLevel) { level = newLevel; }
