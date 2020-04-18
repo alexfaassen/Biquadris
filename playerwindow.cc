@@ -16,23 +16,23 @@ PlayerWindow::PlayerWindow(Xwindow* window, int offsetX, int offsetY, int width 
 
 PlayerWindow::~PlayerWindow(){}
 
-void PlayerWindow::drawString(int x, int y, string msg, int colour = Black){
+void PlayerWindow::drawString(int x, int y, string msg, int colour){
     window->drawString(offsetX+x, offsetY+y, msg, colour);
 }
 
-void PlayerWindow::drawBigString(int x, int y, string msg, int colour = Black){
+void PlayerWindow::drawBigString(int x, int y, string msg, int colour){
     window->drawBigString(offsetX+x, offsetY+y, msg, colour);
 }
 
-void PlayerWindow::drawStringFont(int x, int y, string msg, string font, int colour = Black){
+void PlayerWindow::drawStringFont(int x, int y, string msg, string font, int colour){
     window->drawStringFont(offsetX+x, offsetY+y, msg, font, colour);
 }
 
-void PlayerWindow::fillRectangle(int x, int y, int width, int height, int colour=Black){
+void PlayerWindow::fillRectangle(int x, int y, int width, int height, int colour){
     window->fillRectangle(offsetX+x, offsetY+y, width, height, colour);
 }
 
-void PlayerWindow::fillPolygon(int x, int y, int num, int side, int rotate = 0, int colour = Black){
+void PlayerWindow::fillPolygon(int x, int y, int num, int side, int rotate, int colour){
     window->fillPolygon(offsetX+x, offsetY+y, num, side, rotate, colour);
 }
 
@@ -48,7 +48,7 @@ void PlayerWindow::fillArc(int x, int y, int width, int height, int angle1, int 
     window->fillArc(offsetX+x, offsetY+y, width, height, angle1, angle2, colour);
 }
 
-void PlayerWindow::fillCircle(int x, int y, int d, int colour = Black){
+void PlayerWindow::fillCircle(int x, int y, int d, int colour){
     window->fillCircle(offsetX+x, offsetY+y, d, colour);
 }
 
