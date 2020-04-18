@@ -13,11 +13,9 @@ class Level {
 	bool customSeed = 0;
 	int seed = 1;
 	std::ifstream *file = nullptr;
-	
-	public:
+
 	Level(const int playerSide, int identifier, bool customSeed = 0, int seed = 1, std::ifstream* file = nullptr);
 	Level(const Level &other) : playerSide{other.playerSide}, customSeed{other.customSeed}, seed{other.seed}, file{other.file} {}
-	virtual ~Level();
 
 	public:
 	virtual ~Level();
