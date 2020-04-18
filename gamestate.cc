@@ -16,8 +16,8 @@ void GameState::switchActive(){
 }
 
 void GameState::createPlayers(){
-    leftPlayer = Player(window, loffsetX, loffsetY, -1, scriptfile1, startlevel);
-    rightPlayer = Player(window, roffsetX, roffsetY, 1, scriptfile2, startlevel);
+    leftPlayer = Player(window, loffsetX, loffsetY, -1, scriptFile1, startlevel);
+    rightPlayer = Player(window, roffsetX, roffsetY, 1, scriptFile2, startlevel);
 }
 
 int GameState::cleanStreams(){
