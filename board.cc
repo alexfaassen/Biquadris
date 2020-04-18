@@ -164,9 +164,9 @@ bool Board::isEmpty(int x, int y) {
 }
 
 vector<vector<char>> Board::renderCharArray() {
-	for(auto &x : immobileTiles){
-		for(auto p : x){
-			p = nullptr;
+	for(int y = 0; y < 15; ++y) {
+		for(int x = 0; x < 11; ++x){
+			immobileTiles[y][x] = nullptr;
 		}
 	}
 	vector<vector<char>> vec; 
