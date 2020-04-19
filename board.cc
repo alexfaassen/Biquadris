@@ -217,7 +217,7 @@ void Board::forceTopColumnTile(const char b, const int col) {
 	if (!isEmpty(col, 0)) {
 		kill();
 	} else {
-		int row = 0;
+		int row = 14;
 		for (int y = 0; y < 15; ++y) {
 			if (!isEmpty(col, y)) {
 				row = y - 1;
