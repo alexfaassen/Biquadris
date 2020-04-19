@@ -9,7 +9,7 @@ class Player;
 class Observer {
 	protected:
 	Player *player = NULL;
-	bool alive = 1;
+	bool alive = true;
 
 	// default ctor
 	Observer() {}
@@ -17,10 +17,9 @@ class Observer {
 	public:
 	virtual ~Observer();
 
-	bool isAlive() const;
-  
+	// accessors
+	bool isAlive() const; 
 	void attach(Player* const newPlayer);
-
 	void kill();
 
 	virtual void notify(const Event currEvent, const int linesCleared);
