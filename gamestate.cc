@@ -218,12 +218,11 @@ void GameState::printGame(){
     cout << "test: before player.printToString" << endl;
     string lp, rp;
     if(activePlayer->getSide() == -1){
-        cout << activePlayer->printToString();
-        string lp = activePlayer->printToString();
-        string rp = nonActivePlayer->printToString();
+        lp = activePlayer->printToString();
+        rp = nonActivePlayer->printToString();
     } else {
-        string lp = nonActivePlayer->printToString();
-        string rp = activePlayer->printToString();
+        lp = nonActivePlayer->printToString();
+        rp = activePlayer->printToString();
     }
     cout << "test: after player.printToString" << endl;
 
