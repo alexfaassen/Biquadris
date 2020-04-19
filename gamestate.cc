@@ -83,7 +83,7 @@ GameState::~GameState(){
     if(window) delete window;
     if(activePlayer) delete activePlayer;
     if(nonActivePlayer) delete nonActivePlayer;
-    delete commandList;
+    if(commandList) delete commandList;
 }
 
 bool GameState::pushToStreams(const string file){

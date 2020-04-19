@@ -5,7 +5,10 @@
 
 using namespace std;
 
-Level3::~Level3() { delete heavy; delete file; }
+Level3::~Level3() {
+	if (heavy) delete heavy;
+	if (file) delete file;
+}
 
 Level3::Level3(const Level &other) : Level(other) {
 	identifier = 3;
