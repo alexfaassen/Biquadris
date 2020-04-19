@@ -91,7 +91,7 @@ bool GameState::pushToStreams(const string file){
     ifstreams.emplace_back(ifstream(file));
     if(!ifstreams.back().good()){
         cout << "Error: " << file << " is missing or unreadable" << endl;
-        return false
+        return false;
     }
     return true;
 }
