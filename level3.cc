@@ -20,7 +20,10 @@ Block *Level3::CreateBlock() {
 	cout << "test: level3 calling CreateBlock()" << endl;
 	if (file) {
 		// No random
-		if (file->eof()) file->seekg(0);
+		if (file->eof()) {
+			file->clear();
+			file->seekg(0);
+		}
 		char b = ' ';
 		while (b == ' ') *file >> b; 
 		return new Block(b, identifier);
