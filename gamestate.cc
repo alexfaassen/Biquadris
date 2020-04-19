@@ -108,9 +108,21 @@ istream& GameState::getStream(){
     }
 }
 
+bool GameState::readFromStream(string &str){
+    bool read = getStream() >> str;
+    if(!ifstreams.empty()) cout << str << endl;
+    return read;
+}
+
+bool GameState::readFromStream(char &c){
+    bool read = getStream() >> c;
+    if(!ifstreams.empty()) cout << string(1,c) << endl;
+    return read;
+}
+
 bool GameState::beginReadLoop(){
     string s;
-    while (getStream() >> s) {
+    while (readFromStream(s)) {
         cout << "test: passed getStream" << endl;
         int multiplier = 1;
         if(isdigit(s[0])){          // test if s starts with an int

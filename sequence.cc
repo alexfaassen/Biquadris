@@ -5,9 +5,10 @@
 #include <fstream>
 #include <sstream>
 
+using namespace std;
+
 void Sequence::run(GameState &game, const int times) const {
-	std::istream &in = game.getStream();
-	std::string s;
-	in >> s;
+	string s;
+	game.readFromStream(s);
 	game.pushToStreams(s);
 }
