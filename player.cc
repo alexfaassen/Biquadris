@@ -262,6 +262,7 @@ string Player::printToString(){
     ss << "Next:      " << '\n';
     cout << "test: before printNextBlock()" << endl;
     ss << board->printNextBlock();
+    cout << ss.str();
     return ss.str();
 }
 
