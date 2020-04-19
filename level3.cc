@@ -6,8 +6,7 @@
 using namespace std;
 
 Level3::~Level3() {
-	if (heavy) delete heavy;
-	if (file) delete file;
+	if(heavy) heavy->kill();
 }
 
 Level3::Level3(const Level &other) : Level(other) {
@@ -15,7 +14,9 @@ Level3::Level3(const Level &other) : Level(other) {
 	heavy = new HeavyEffect();
 }
 
-Level3::Level3(const int playerSide, int identifier) : Level(playerSide, identifier) {}
+Level3::Level3(const int playerSide, int identifier) : Level(playerSide, identifier) {
+	heavy = new HeavyEffect();
+}
 
 void Level3::generateEffects(std::vector<Observer*> &vec) const { vec.emplace_back(heavy); }
 

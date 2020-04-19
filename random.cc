@@ -4,5 +4,5 @@
 #include <fstream>
 
 void Random::run(GameState &game, const int times) const {
-	game.getActivePlayer().setFileInput(NULL);
+	game.getActivePlayer().setFileInput(nullptr);
 }

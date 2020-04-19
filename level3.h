@@ -5,7 +5,7 @@
 #include "level4.h"
 
 class Level3 : public Level {
-	HeavyEffect *heavy = new HeavyEffect();
+	HeavyEffect *heavy = nullptr;
 
 	public:
 	Level3(const int playerSide, int identifier = 3);

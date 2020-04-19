@@ -71,9 +71,12 @@ Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptFile
 }
 
 Player::~Player(){
-    if(level) delete level;
+    if(level){
+        level->deleteFile();
+        delete level;
+    }
     for(auto p : observers){
-        delete p;
+        if(p) delete p;
     }
     if(board) delete board;
 }
@@ -230,7 +233,12 @@ bool Player::setLevel(int n){
 }
 
 bool Player::setFileInput(ifstream* stream){
-    return level ? level->setFile(stream) : 0;
+    if(level){
+        level->deleteFile();
+        level->setFile(stream);
+        return true;
+    }
+    return false;
 }
 
 void Player::specialAction(){

@@ -21,6 +21,7 @@ class Level {
 	// accessors
 	int getIdentifier() const;
 	bool setFile(std::ifstream *newFile);
+	void deleteFile() {if(file) delete file;};
 
 	virtual void generateEffects(std::vector<Observer*> &vec) const;
 	virtual Block *CreateBlock() = 0;
