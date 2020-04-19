@@ -6,35 +6,35 @@ using namespace std;
 
 void Block::iBlock(int initX, int initY) {
 	tiles[0].setX(initX + 0);
-    tiles[0].setY(initY + 0);
-    tiles[1].setX(initX + 1);
-    tiles[1].setY(initY + 0);
-    tiles[2].setX(initX + 2);
-    tiles[2].setY(initY + 0);
-    tiles[3].setX(initX + 3);
-    tiles[3].setY(initY + 0);
+    	tiles[0].setY(initY + 0);
+    	tiles[1].setX(initX + 1);
+    	tiles[1].setY(initY + 0);
+    	tiles[2].setX(initX + 2);
+    	tiles[2].setY(initY + 0);
+   	tiles[3].setX(initX + 3);
+    	tiles[3].setY(initY + 0);
 }
 
 void Block::jBlock(int initX, int initY) {
 	tiles[0].setX(initX + 0);
-    tiles[0].setY(initY + 1);
-    tiles[1].setX(initX + 0);
-    tiles[1].setY(initY + 0);
-    tiles[2].setX(initX + 1);
-    tiles[2].setY(initY + 0);
-    tiles[3].setX(initX + 2);
-    tiles[3].setY(initY + 0);
+    	tiles[0].setY(initY + 1);
+    	tiles[1].setX(initX + 0);
+    	tiles[1].setY(initY + 0);
+    	tiles[2].setX(initX + 1);
+    	tiles[2].setY(initY + 0);
+    	tiles[3].setX(initX + 2);
+    	tiles[3].setY(initY + 0);
 }
 
 void Block::lBlock(int initX, int initY) {
 	tiles[0].setX(initX + 0);
-    tiles[0].setY(initY + 0);
-    tiles[1].setX(initX + 1);
-    tiles[1].setY(initY + 0);
-    tiles[2].setX(initX + 2);
-    tiles[2].setY(initY + 0);
-    tiles[3].setX(initX + 2);
-    tiles[3].setY(initY + 1);
+    	tiles[0].setY(initY + 0);
+    	tiles[1].setX(initX + 1);
+    	tiles[1].setY(initY + 0);
+    	tiles[2].setX(initX + 2);
+    	tiles[2].setY(initY + 0);
+    	tiles[3].setX(initX + 2);
+    	tiles[3].setY(initY + 1);
 }
 
 void Block::oBlock(int initX, int initY) {
@@ -92,12 +92,12 @@ void Block::tileDropBlock(int initX, int initY) {
 Block::Block(char type, int initLevel, int x, int y):
 type{type}, initLevel{initLevel} {
 	if(type == '*') tileDropBlock(x, y);
-	else if(type == 'i') iBlock(x, y);
-	else if(type == 'j') jBlock(x, y);
-	else if(type == 'l') lBlock(x, y);
-	else if(type == 'o') oBlock(x, y);
-	else if(type == 's') sBlock(x, y);
-	else if(type == 'z') zBlock(x, y);
+	else if(type == 'I') iBlock(x, y);
+	else if(type == 'J') jBlock(x, y);
+	else if(type == 'L') lBlock(x, y);
+	else if(type == 'O') oBlock(x, y);
+	else if(type == 'S') sBlock(x, y);
+	else if(type == 'Z') zBlock(x, y);
 	else tBlock(x, y);	
 }
 
