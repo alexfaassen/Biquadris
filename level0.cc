@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Level0::Level0(const Level &other) : Level(other) { identifier = 0; }
+Level0::Level0(const Level &other) : Level(other) { cout << "test: Level0 ctor" << endl; identifier = 0; }
 
 Level0::Level0(const int playerSide, int identifier) : Level(playerSide, identifier) {
 	if (playerSide == 1) {
