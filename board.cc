@@ -184,7 +184,7 @@ vector<vector<char>> Board::renderCharArray() {
 	vector<vector<char>> vec; 
 	//cout << "test: before first for loop" << endl;
 	for(int i = 0; i < 3; ++i){
-		vec.emplace_back(vector<char>(11, 'T'));
+		vec.emplace_back(vector<char>(11, ' '));
 	}
 	vec.emplace_back(vector<char>());
 	//cout << "test: before second for loop" << endl;
@@ -197,19 +197,17 @@ vector<vector<char>> Board::renderCharArray() {
 			}
 		}
 		if (y < 14) vec.emplace_back(vector<char>());
-	}
-	/*
+	}	
 	int currX, currY;
 	//cout << "test: before third for loop" << endl;
 	if(currentBlock){
 		for(int i = 0; i < 4; i++) {
 			currX = currentBlock->getTiles()[i]->getX();
 			currY = currentBlock->getTiles()[i]->getY();
-			vec.at(currX).at(currY + 3) = currentBlock->getType();
+			vec.at(currY + 3).at(currX) = currentBlock->getType();
 		}
 	}
 	//cout << "test: about to return vec" << endl;
-*/	
 	return vec;
 }
 
