@@ -184,9 +184,9 @@ vector<vector<char>> Board::renderCharArray() {
 	vector<vector<char>> vec; 
 	//cout << "test: before first for loop" << endl;
 	for(int i = 0; i < 3; ++i){
-		vec.emplace_back(vector<char>(3, 'T'));
+		vec.emplace_back(vector<char>(11, 'T'));
 	}
-	
+	vec.emplace_back(vector<char>);
 	//cout << "test: before second for loop" << endl;
 	for(int y = 0; y < 15; ++y) {
 		for(int x = 0; x < 11; ++x) {
@@ -196,6 +196,7 @@ vector<vector<char>> Board::renderCharArray() {
 				vec.at(y + 3).emplace_back(immobileTiles[x][y]->getLetter());
 			}
 		}
+		if (y < 14) vec.emplace_back(vector<char>);
 	}
 	/*
 	int currX, currY;
