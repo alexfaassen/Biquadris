@@ -218,7 +218,7 @@ void Board::forceTopColumnTile(const char b, const int col) {
 }
 
 string Board::printNextBlock() {	
-	if (!nextBlock) return "           \n           ";
+	if (!nextBlock) return "           \n           \n";
 	else return nextBlock->printBlock();
 }
 
