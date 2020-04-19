@@ -235,6 +235,7 @@ string Board::printNextBlock() {
 		}
 		str += "\n";
 	}
+	cout << "test: about to return printNextBlock()" << endl;
 	return str;
 }
 
