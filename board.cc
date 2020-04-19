@@ -71,7 +71,7 @@ void Board::placeCurrent(){
 void Board::placeBlock(Block* b){
 	placed.emplace_back(b);
 	for (auto p : b->getTiles()){
-		immobileTiles[p->getX()][p->getY()] = &p;
+		immobileTiles[p->getX()][p->getY()] = p;
 	}
 }
 
