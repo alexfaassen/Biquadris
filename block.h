@@ -33,6 +33,7 @@ class Block {
 	char getType() const {return type;};
 	int getInitLevel() const {return initLevel;};
 	Tile* (&getTiles())[4] {return tiles;};
+	std::string printBlock() const;
 
 	//maintainence
 	bool alive();

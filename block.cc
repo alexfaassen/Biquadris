@@ -161,4 +161,5 @@ void Block::deleteTiles(){
 	}
 }
 
-
+std::string printBlock() {
+}
