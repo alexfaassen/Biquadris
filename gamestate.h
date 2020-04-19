@@ -18,7 +18,7 @@ class GameState {
     Player* activePlayer = nullptr;
     Player* nonActivePlayer = nullptr;
     Xwindow* window = nullptr;
-    CommandList commandList;
+    CommandList *commandList = new CommandList();
     std::vector<std::reference_wrapper<std::ifstream>> ifstreams;
 
     const int loffsetX = 0, loffsetY = 0, roffsetX = 0, roffsetY = 0;

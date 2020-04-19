@@ -8,6 +8,7 @@ class Tile {
 	int y;
 
 	public:
+	Tile(int x, int y) : x{x}, y{y} {}
 	char getLetter();
 	void setLetter(char newLetter);
 	int getX();

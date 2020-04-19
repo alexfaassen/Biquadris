@@ -128,7 +128,7 @@ bool GameState::beginReadLoop(){
 bool GameState::runInput(string input, int multiplier){
 
     //commandList figures out which vector of commands to loop through
-    vector<Command*> &commands = commandList.selectVector(activePlayer->getInputState());
+    vector<Command*> &commands = commandList->selectVector(activePlayer->getInputState());
 
     Command* cmd = nullptr;
     bool duplicate_found = false;
