@@ -178,7 +178,7 @@ bool Board::isMoveBlocked(int deltaX, int deltaY){
 bool Board::isEmpty(int x, int y) {
 	if(x < 0 || x > 10 || y > 14 || y < -3) return false;		//bounds checking sides
 	if(y >= -3 && y < 0) return true;				//exception for the 3 extra lines on top
-	if(!immobileTiles[x][y]){cout<<"isEmpty() returns TRUE"<<endl;return true;}				//checking for empty tile within bounds
+	if(!immobileTiles[x][y])return true;				//checking for empty tile within bounds
 	return false;							//otherwise fail
 }
 
