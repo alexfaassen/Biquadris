@@ -49,8 +49,9 @@ Board::~Board(){
 
 void Board::initLevel(Level* l){
 	level = l;
-	//currentBlock = level->CreateBlock();
+	currentBlock = level->CreateBlock();
 	nextBlock = level->CreateBlock();
+	cout << "test: currentBlock type (initLevel): " << string(nextBlock->getType(), 1) << endl;
 }
 
 bool Board::pushNextBlock(bool safe){
