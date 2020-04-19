@@ -20,8 +20,8 @@ Block *Level3::CreateBlock() {
 	cout << "test: level3 calling CreateBlock()" << endl;
 	if (file) {
 		// No random
-		char b;
-		*file >> b;
+		char b = ' ';
+		while (b == ' ') *file >> b; 
 		return new Block(b, identifier);
 	} else {
 		// Random

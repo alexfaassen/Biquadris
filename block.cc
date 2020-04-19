@@ -91,14 +91,14 @@ void Block::tileDropBlock(int initX, int initY) {
 
 Block::Block(char type, int initLevel, int x, int y):
 type{type}, initLevel{initLevel} {
-	if(type == 'i') iBlock(x, y);
+	if(type == '*') tileDropBlock(x, y);
+	else if(type == 'i') iBlock(x, y);
 	else if(type == 'j') jBlock(x, y);
 	else if(type == 'l') lBlock(x, y);
 	else if(type == 'o') oBlock(x, y);
 	else if(type == 's') sBlock(x, y);
 	else if(type == 'z') zBlock(x, y);
-	else if(type == 't') tBlock(x, y);	
-	else if(type == '*') tileDropBlock(x, y);
+	else tBlock(x, y);	
 }
 
 Block::~Block(){
