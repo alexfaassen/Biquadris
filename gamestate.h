@@ -8,8 +8,9 @@
 #include <string>
 
 #include "player.h"
-#include "window.h"
 #include "commandlist.h"
+
+class Xwindow;
 
 class GameState {
     private:
