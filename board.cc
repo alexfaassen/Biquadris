@@ -116,15 +116,9 @@ void Board::changeCurrent(char newType) {
 
 int Board::moveCurrent(Direction dir, int amount) {
 	int deltaX = 0, deltaY = 0;
-	/*switch(dir) {
-		case Left: deltaX = -1;
-		case Right: deltaX = 1;
-		case Down: deltaY = 1; 
-	}*/
 	if (dir == Left) deltaX = -1;
 	else if (dir == Right) deltaX = 1;
 	else if (dir == Down) deltaY = 1;
-	cout << "test: moveCurrent(), deltaX = " << deltaX <<", deltaY = " << deltaY << endl;
 	int moveCount = 0;
 	while(moveCount < amount) {
 		if(isMoveBlocked(deltaX, deltaY)){
