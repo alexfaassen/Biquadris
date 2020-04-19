@@ -44,17 +44,16 @@ void Block::lBlock(int initX, int initY) {
 void Block::oBlock(int initX, int initY) {
 	type = 'O';
 	tiles[0].setX(initX + 0);
-    tiles[0].setY(initY + 0);
-    tiles[1].setX(initX + 1);
-    tiles[1].setY(initY + 0);
-    tiles[2].setX(initX + 1);
-    tiles[2].setY(initY + 1);
-    tiles[3].setX(initX + 2);
-    tiles[3].setY(initY + 1);
+    	tiles[0].setY(initY + 0);
+    	tiles[1].setX(initX + 1);
+    	tiles[1].setY(initY + 0);
+    	tiles[2].setX(initX + 1);
+    	tiles[2].setY(initY + 1);
+    	tiles[3].setX(initX + 2);
+    	tiles[3].setY(initY + 1);
 }
 
 void Block::sBlock(int initX, int initY) {
-	cout << "sBlock(x,y) is being run" << endl;
 	type = 'S';
 	tiles[0].setX(initX + 0);     
 	tiles[0].setY(initY + 0);
@@ -69,24 +68,24 @@ void Block::sBlock(int initX, int initY) {
 void Block::zBlock(int initX, int initY) {
 	type = 'Z';
 	tiles[0].setX(initX + 0);
-    tiles[0].setY(initY + 1);
-    tiles[1].setX(initX + 1);
-    tiles[1].setY(initY + 1);
-    tiles[2].setX(initX + 1);
-    tiles[2].setY(initY + 0);
-    tiles[3].setX(initX + 2);
-    tiles[3].setY(initY + 0);
+    	tiles[0].setY(initY + 1);
+    	tiles[1].setX(initX + 1);
+    	tiles[1].setY(initY + 1);
+    	tiles[2].setX(initX + 1);
+    	tiles[2].setY(initY + 0);
+    	tiles[3].setX(initX + 2);
+    	tiles[3].setY(initY + 0);
 }
 
 void Block::tBlock(int initX, int initY) {
 	tiles[0].setX(initX + 0);
-    tiles[0].setY(initY + 1);
-    tiles[1].setX(initX + 1);
-    tiles[1].setY(initY + 1);
-    tiles[2].setX(initX + 1);
-    tiles[2].setY(initY + 0);
-    tiles[3].setX(initX + 2);
-    tiles[3].setY(initY + 1);
+    	tiles[0].setY(initY + 1);
+    	tiles[1].setX(initX + 1);
+    	tiles[1].setY(initY + 1);
+    	tiles[2].setX(initX + 1);
+    	tiles[2].setY(initY + 0);
+    	tiles[3].setX(initX + 2);
+    	tiles[3].setY(initY + 1);
 }
 
 void Block::tileDropBlock(int initX, int initY) {
@@ -100,7 +99,7 @@ void Block::tileDropBlock(int initX, int initY) {
 
 Block::Block(char type, int initLevel, int x, int y):
 type{type}, initLevel{initLevel} {
-	cout << "Block ctor is run with " << string(1,type) << endl;
+	//cout << "Block ctor is run with " << string(1,type) << endl;
 	if(type == '*') tileDropBlock(x, y);
 	else if(type == 'I') iBlock(x, y);
 	else if(type == 'J') jBlock(x, y);

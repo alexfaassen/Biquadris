@@ -171,7 +171,7 @@ bool Player::setLevel(int n){
     if (!level) {
 	    if (n == 0) {
 		level = new Level0(side);
-		cout << "test: setting level 0" << endl;
+		//cout << "test: setting level 0" << endl;
 	    } else if (n == 1) {
         	level = new Level1(side);
 	    } else if (n == 2) {
