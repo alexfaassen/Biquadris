@@ -219,7 +219,9 @@ void Board::forceTopColumnTile(const char b, const int col) {
 		for (int y = 0; y < 15; ++y) {
 			if (!isEmpty(col, y)) row = y - 1;
 		}
-		placeBlock(new Block(b, -1, col, row));
+		Block *b = new Block(b, -1, col, row);
+		immobileTiles[col][row] = b->getTiles()[0];
+		placed.emplace_back(b);
 	}
 }
 
