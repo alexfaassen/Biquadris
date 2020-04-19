@@ -6,8 +6,8 @@
 #include "level3.h"
 
 class Level4 : public Level {
-	HeavyEffect *heavy = new HeavyEffect();
-	CentreDropEffect *centreDrop = new CentreDropEffect();
+	HeavyEffect *heavy = nullptr;
+	CentreDropEffect *centreDrop = nullptr;
 
 	public:
 	Level4(const int playerSide, int identifier = 4);

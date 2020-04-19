@@ -1,6 +1,6 @@
 #include "level.h" 
 
-Level::~Level() { if(file) delete file; }
+Level::~Level() {}
 
 int Level::getIdentifier() const { return identifier; }
 

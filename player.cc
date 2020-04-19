@@ -71,9 +71,12 @@ Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptFile
 }
 
 Player::~Player(){
-    if(level) delete level;
+    if(level){
+        level->deleteFile();
+        delete level;
+    }
     for(auto p : observers){
-        delete p;
+        if(p) delete p;
     }
     if(board) delete board;
 }
