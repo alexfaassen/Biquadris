@@ -161,6 +161,7 @@ bool Block::alive() {
 }
 
 void Block::deleteTiles(){
+	if(!tiles) return;
 	for(auto p : tiles){
 		if(p) delete p;
 	}
