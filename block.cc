@@ -53,6 +53,7 @@ void Block::oBlock(int initX, int initY) {
 }
 
 void Block::sBlock(int initX, int initY) {
+	cout << "sBlock(x,y) is being run" << endl;
 	type = 'S';
 	tiles[0].setX(initX + 0);     
 	tiles[0].setY(initY + 0);
@@ -98,6 +99,7 @@ void Block::tileDropBlock(int initX, int initY) {
 
 Block::Block(char type, int initLevel, int x, int y):
 type{type}, initLevel{initLevel} {
+	cout << "Block ctor is run" << endl;
 	if(type == '*') tileDropBlock(x, y);
 	else if(type == 'I') iBlock(x, y);
 	else if(type == 'J') jBlock(x, y);
