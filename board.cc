@@ -224,7 +224,7 @@ string Board::printNextBlock() {
 			cout << "for loop 1" <<endl;
 			for(int k = 0; k < 4; k++) {
 				cout << "check tiles" <<endl;
-				if(nextBlock->getTiles()[i]->getX() == j && nextBlock->getTiles()[k]->getY() == i) {
+				if(nextBlock->getTiles()[k]->getX() == j && nextBlock->getTiles()[k]->getY() == i) {
 					str += nextBlock->getType();
 					isTile = true;
 					break;
