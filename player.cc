@@ -139,12 +139,7 @@ void Player::drop(bool isInput){
 }
 
 int Player::incLevel(int n){
-    if (!level) {
-	    return setLevel(level->getIdentifier() + n);
-    } else {
-	    // Error, level not set
-	    return 0;
-    }
+    if (!level) return setLevel(n);
     int successes = 0;
     if(n < 0){
         n *= -1;
@@ -183,7 +178,6 @@ bool Player::setLevel(int n){
     if (!level) {
 	    if (n == 0) {
 		level = new Level0(side);
-		cout << "test: setting level 0" << endl;
 	    } else if (n == 1) {
         	level = new Level1(side);
 	    } else if (n == 2) {
@@ -199,9 +193,11 @@ bool Player::setLevel(int n){
 		    return false;
     	    }
      } else {
-	     if (n < 0 || n > 4 || n == level->getIdentifier()) {
+	     if (n < 0 || n > 4) {
 		     // Error, Invalid Input
 	             return false;
+	     } else if (n == level->getIdentifier()) {
+		     return true;
  	     } else {
 		     Level *temp = level;
 	     	     if (n == 0) {
