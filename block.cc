@@ -120,7 +120,7 @@ void Block::clockwise() {
 	int distUp;
 	for(int i = 0; i < 4; i++) {
 		distUp = maxY - tiles[i]->getY();
-		tiles[i]->setY(maxY - distUp);
+		tiles[i]->setY(maxY + distUp);
 		cout << "(" << tiles[i]->getX() << ", " << tiles[i]->getY() << ") ";
 		tiles[i]->invert();
 		tiles[i]->setY(tiles[i]->getY() - maxX + minX);
