@@ -157,7 +157,6 @@ void Board::dropCurrent() {
 		//cout << "test: dropping..." <<endl;
 	}
 	cout << "test: before placeCurrent()" << endl;
-	placeCurrent();
 }
 
 bool Board::isCurrentBlocked(){

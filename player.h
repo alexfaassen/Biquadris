@@ -50,7 +50,7 @@ class Player {
     int moveBlock(Direction dir, int times, bool isInput = true);
     int rotateClockwise(int times, bool isInput = true);
     int rotateCounterClockwise(int times, bool isInput = true);
-    void drop(int times = 0, bool isInput = true);
+    void drop(int times = 1, bool isInput = true);
     int incLevel(int);
 
     //turn triggers

@@ -91,10 +91,7 @@ int Player::moveBlock(Direction dir, int times, bool isInput){
         preMove();
     }
     int moves = board->moveCurrent(dir, times);
-    if(isInput){
-	//cout << "test: postMove() called" << endl;
-        postMoveClean();
-    }
+    if(isInput) postMoveClean();
     return moves;
 }
 
@@ -106,9 +103,7 @@ int Player::rotateClockwise(int times, bool isInput){
     for (int i = 0; i < times; ++i) {
 	    if (board->clockwiseCurrent()) ++successes;
     }
-    if(isInput){
-        postMoveClean();
-    }
+    if(isInput) postMoveClean();
     return successes;
 }
 
@@ -120,27 +115,31 @@ int Player::rotateCounterClockwise(int times, bool isInput){
     for (int i = 0; i < times; ++i) {
 	    if (board->counterClockwiseCurrent()) ++successes;
     }
-    if(isInput){
-        postMoveClean();
-    }
+    if(isInput) postMoveClean();
     return successes;
 }
 
 void Player::drop(int times, bool isInput){
-    if(isInput){
-        preMove();
-    }
+
+    if(isInput) preMove();
     //cout << "test: before dropCurrent()" << endl;
-    for(int i = 0; i < times; ++i){
-        board->pushNextBlock();
+
+    // handles everything except the last drop in a multi drop
+    for(int i = 1; i < times; ++i){
         board->dropCurrent();
+        board->placeCurrent();
+        board->pushNextBlock();
     }
-    if(isInput){
-        //cout << "test: before postMoveClean()" << endl;
-        postMoveClean();
-        //cout << "test: before endTurn()" << endl;
-        endTurn();
-    }
+
+    // handles the final drop
+    if(times > 0) board->dropCurrent();
+
+    if(isInput) notifyObservers(afterMove);
+
+    board->placeCurrent();
+
+    if(isInput && times > 0) endTurn();
+
     //cout << "test: after endTurn()" << endl;
 }
 
