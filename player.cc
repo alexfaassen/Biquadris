@@ -133,7 +133,7 @@ void Player::drop(bool isInput){
 }
 
 int Player::incLevel(int n){
-    if (level) {
+    if (!level) {
 	    return setLevel(level->getIdentifier() + n);
     } else {
 	    // Error, level not set
