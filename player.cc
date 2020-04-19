@@ -125,11 +125,15 @@ void Player::drop(bool isInput){
     if(isInput){
         preMove();
     }
+    cout << "test: before dropCurrent()" << endl;
     board->dropCurrent();
     if(isInput){
+        cout << "test: before postMoveClean()" << endl;
         postMoveClean();
+        cout << "test: before endTurn()" << endl;
         endTurn();
     }
+    cout << "test: after endTurn()" << endl;
 }
 
 int Player::incLevel(int n){

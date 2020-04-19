@@ -65,12 +65,15 @@ bool Board::pushNextBlock(bool safe){
 }
 
 void Board::placeCurrent(){
+	cout << "test: before placeBlock()" << endl;
 	placeBlock(currentBlock);
 	currentBlock = nullptr;
 }
 
 void Board::placeBlock(Block* b){
+	cout << "test: placed.emplace_back(b)" << endl;
 	placed.emplace_back(b);
+	cout << "test: for (auto p : b->getTiles())" << endl;
 	for (auto p : b->getTiles()){
 		immobileTiles[p->getX()][p->getY()] = p;
 	}
@@ -149,6 +152,7 @@ bool Board::counterClockwiseCurrent() {
 
 void Board::dropCurrent() {
 	while(moveCurrent(Down, 1)){}
+	cout << "test: before placeCurrent()" << endl;
 	placeCurrent();
 }
 
