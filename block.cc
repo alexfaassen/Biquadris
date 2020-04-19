@@ -140,6 +140,12 @@ void Block::clockwise() {
 }
 
 void Block::counterClockwise() {
+	cout << "before counterclockwise: ";
+	for(int i = 0; i < 4; i++) {
+		cout << "(" << tiles[i]->getX() << ", " << tiles[i]->getY() << ") ";
+	}
+	cout <<endl;
+
 	int max = 0;
 	for(int i = 0; i < 4; i++) {
 		tiles[i]->invert();
@@ -162,6 +168,12 @@ void Block::counterClockwise() {
                         tiles[i]->setX(newX);
                 }
 	}
+
+	cout << "after counterclockwise: ";
+	for(int i = 0; i < 4; i++) {
+		cout << "(" << tiles[i]->getX() << ", " << tiles[i]->getY() << ") ";
+	}
+	cout <<endl;
 }
 
 bool Block::alive() {
