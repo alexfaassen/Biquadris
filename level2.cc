@@ -5,9 +5,9 @@
 
 using namespace std;
 
-Level2::Level2(const Level &other) : Level(other) { identifier = 2; }
+Level2::Level2(const Level &other) : Level(other) { cout << "test: level2 copy ctor" << endl;identifier = 2; }
 
-Level2::Level2(const int playerSide, int identifier) : Level(playerSide, identifier) {}
+Level2::Level2(const int playerSide, int identifier) : Level(playerSide, identifier) { cout << "test: level2 ctor" << endl;}
 
 Block *Level2::CreateBlock() {	
 	cout << "test: level2 calling CreateBlock()" << endl;
