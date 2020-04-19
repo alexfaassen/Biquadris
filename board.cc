@@ -225,9 +225,7 @@ void Board::forceTopColumnTile(const char b, const int col) {
 			}
 		}
 		cout << "test: !isEmpty() at row = " << row << endl;
-		Block *wrapperBlock = new Block(b, -1, col, row);
-		immobileTiles[col][row] = wrapperBlock->getTiles()[0];
-		placed.emplace_back(wrapperBlock);
+		placeBlock(new Block(b, -1, col, row));
 	}
 }
 
