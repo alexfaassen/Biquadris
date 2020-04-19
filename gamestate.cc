@@ -103,7 +103,7 @@ istream& GameState::getStream(){
         //cout  << "test : returning cin" << endl;
         return cin;
     } else {
-        //cout  << "test : ifstreams.back" << endl;
+        cout  << "test : ifstreams.back" << endl;
         return ifstreams.back();
     }
 }
