@@ -98,7 +98,7 @@ bool GameState::pushToStreams(const string file){
 
 istream& GameState::getStream(){
     cout  << "test : before CleanStreams()" << endl;
-    cleanStreams();
+    cout << "test: cleanStreams: " cleanStreams() << endl;
     if(ifstreams.empty()){
         cout  << "test : returning cin" << endl;
         return cin;
