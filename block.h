@@ -7,7 +7,7 @@
 class Block {
 	char type;
 	int initLevel;
-	Tile *tiles[4] = {nullptr, nullptr, nullptr, nullptr};
+	std::vector<Tile*> tiles;
 
 	public:
 	//constructors
@@ -32,7 +32,7 @@ class Block {
 	//accessors
 	char getType() const {return type;};
 	int getInitLevel() const {return initLevel;};
-	Tile* (&getTiles())[4] {return tiles;};
+	std::vector<Tile*>& getTiles() {return tiles;};
 	std::string printBlock() const;
 
 	//maintainence

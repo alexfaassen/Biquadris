@@ -203,9 +203,9 @@ vector<vector<char>> Board::renderCharArray() {
 	int currX, currY;
 	//cout << "test: before third for loop" << endl;
 	if(currentBlock){
-		for(int i = 0; i < 4; i++) {
-			currX = currentBlock->getTiles()[i]->getX();
-			currY = currentBlock->getTiles()[i]->getY();
+		for(auto t : currentBlock->getTiles()) {
+			currX = t->getX();
+			currY = t->getY();
 			vec.at(currY + 3).at(currX) = currentBlock->getType();
 		}
 	}

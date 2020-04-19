@@ -8,74 +8,68 @@ using namespace std;
 void Block::iBlock(int initX, int initY) {
 	deleteTiles();
 	cout << "test: in iBlock ctor, initX = "<< initX << ", initY = " << initY << endl;
-	tiles[0] = new Tile('I', initX + 0, initY - 0);
-	tiles[1] = new Tile('I', initX + 1, initY - 0);
-	tiles[2] = new Tile('I', initX + 2, initY - 0);
-	tiles[3] = new Tile('I', initX + 3, initY - 0);
+	tiles.emplace_back(new Tile('I', initX + 0, initY - 0));
+	tiles.emplace_back(new Tile('I', initX + 1, initY - 0));
+	tiles.emplace_back(new Tile('I', initX + 2, initY - 0));
+	tiles.emplace_back(new Tile('I', initX + 3, initY - 0));
 }
 
 void Block::jBlock(int initX, int initY) {
 	deleteTiles();
-	tiles[0] = new Tile('J', initX + 0, initY - 1);
-	tiles[1] = new Tile('J', initX + 0, initY - 0);
-	tiles[2] = new Tile('J', initX + 1, initY - 0);
-	tiles[3] = new Tile('J', initX + 2, initY - 0);
+	tiles.emplace_back(new Tile('J', initX + 0, initY - 1));
+	tiles.emplace_back(new Tile('J', initX + 0, initY - 0));
+	tiles.emplace_back(new Tile('J', initX + 1, initY - 0));
+	tiles.emplace_back(new Tile('J', initX + 2, initY - 0));
 }
 
 void Block::lBlock(int initX, int initY) {
 	deleteTiles();
-	tiles[0] = new Tile('L', initX + 0, initY - 0);
-	tiles[1] = new Tile('L', initX + 1, initY - 0);
-	tiles[2] = new Tile('L', initX + 2, initY - 0);
-	tiles[3] = new Tile('L', initX + 2, initY - 1);
+	tiles.emplace_back(new Tile('L', initX + 0, initY - 0));
+	tiles.emplace_back(new Tile('L', initX + 1, initY - 0));
+	tiles.emplace_back(new Tile('L', initX + 2, initY - 0));
+	tiles.emplace_back(new Tile('L', initX + 2, initY - 1));
 }
 
 void Block::oBlock(int initX, int initY) {
 	deleteTiles();
-	tiles[0] = new Tile('O', initX + 0, initY - 0);
-	tiles[1] = new Tile('O', initX + 0, initY - 1);
-	tiles[2] = new Tile('O', initX + 1, initY - 0);
-	tiles[3] = new Tile('O', initX + 1, initY - 1);
+	tiles.emplace_back(new Tile('O', initX + 0, initY - 0));
+	tiles.emplace_back(new Tile('O', initX + 0, initY - 1));
+	tiles.emplace_back(new Tile('O', initX + 1, initY - 0));
+	tiles.emplace_back(new Tile('O', initX + 1, initY - 1));
 }
 
 void Block::sBlock(int initX, int initY) {
 	//cout << "test: deleteTiles" << endl;
 	deleteTiles();
 	//cout << "test: newtile 0" << endl;
-	tiles[0] = new Tile('S', initX + 0, initY - 0);
+	tiles.emplace_back(new Tile('S', initX + 0, initY - 0));
 	//cout << "test: newtile 1" << endl;
-	tiles[1] = new Tile('S', initX + 1, initY - 0);
+	tiles.emplace_back(new Tile('S', initX + 1, initY - 0));
 	//cout << "test: newtile 2" << endl;
-	tiles[2] = new Tile('S', initX + 1, initY - 1);
+	tiles.emplace_back(new Tile('S', initX + 1, initY - 1));
 	//cout << "test: newtile 3" << endl;
-	tiles[3] = new Tile('S', initX + 2, initY - 1);
+	tiles.emplace_back(new Tile('S', initX + 2, initY - 1));
 }
 
 void Block::zBlock(int initX, int initY) {
 	deleteTiles();
-	tiles[0] = new Tile('Z', initX + 0, initY - 1);
-	tiles[1] = new Tile('Z', initX + 1, initY - 1);
-	tiles[2] = new Tile('Z', initX + 1, initY - 0);
-	tiles[3] = new Tile('Z', initX + 2, initY - 0);
+	tiles.emplace_back(new Tile('Z', initX + 0, initY - 1));
+	tiles.emplace_back(new Tile('Z', initX + 1, initY - 1));
+	tiles.emplace_back(new Tile('Z', initX + 1, initY - 0));
+	tiles.emplace_back(new Tile('Z', initX + 2, initY - 0));
 }
 
 void Block::tBlock(int initX, int initY) {
 	deleteTiles();
-	tiles[0] = new Tile('T', initX + 0, initY - 1);
-	tiles[1] = new Tile('T', initX + 1, initY - 1);
-	tiles[2] = new Tile('T', initX + 1, initY - 0);
-	tiles[3] = new Tile('T', initX + 2, initY - 1);
+	tiles.emplace_back(new Tile('T', initX + 0, initY - 1));
+	tiles.emplace_back(new Tile('T', initX + 1, initY - 1));
+	tiles.emplace_back(new Tile('T', initX + 1, initY - 0));
+	tiles.emplace_back(new Tile('T', initX + 2, initY - 1));
 }
 
 void Block::tileDropBlock(int initX, int initY) {
 	deleteTiles();
-	tiles[0] = new Tile('*', initX, initY);
-	tiles[1] = new Tile(' ', -1, -1);
-	tiles[2] = new Tile(' ', -1, -1);
-	tiles[3] = new Tile(' ', -1, -1);
-	tiles[1]->kill();
-	tiles[2]->kill();
-	tiles[3]->kill();
+	tiles.emplace_back(new Tile('*', initX, initY));
 }
 
 Block::Block(char type, int initLevel, int x, int y):
@@ -96,25 +90,25 @@ Block::~Block(){
 }
 
 void Block::move(int deltaX, int deltaY) {
-	for(int i = 0; i < 4; i++) {
-		tiles[i]->setX(tiles[i]->getX() + deltaX);
-		tiles[i]->setY(tiles[i]->getY() + deltaY);
+	for(auto t : tiles) {
+		t->setX(t->getX() + deltaX);
+		t->setY(t->getY() + deltaY);
 	}
 }
 
 void Block::clockwise() {
 	int maxX = 0, maxY = -3, minX = 11;
-	for(int i = 0; i < 4; i++) {
-		if(tiles[i]->getX() > maxX)maxX = tiles[i]->getX();
-		if(tiles[i]->getY() > maxY)maxY = tiles[i]->getY();
-		if(tiles[i]->getX() < minX)minX = tiles[i]->getX();
+	for(auto t : tiles) {
+		if(t->getX() > maxX)maxX = t->getX();
+		if(t->getY() > maxY)maxY = t->getY();
+		if(t->getX() < minX)minX = t->getX();
 	}
 	int distUp;
-	for(int i = 0; i < 4; i++) {
-		distUp = maxY - tiles[i]->getY();
-		tiles[i]->setY(maxY + distUp);
-		tiles[i]->invert();
-		tiles[i]->setY(tiles[i]->getY() - maxX + minX);
+	for(auto t : tiles) {
+		distUp = maxY - t->getY();
+		t->setY(maxY + distUp);
+		t->invert();
+		t->setY(t->getY() - maxX + minX);
 	}
 }
 
@@ -132,12 +126,12 @@ bool Block::alive() {
 }
 
 void Block::deleteTiles(){
-	if(!tiles) return;
 	for(auto p : tiles){
 		//cout << "test: deleting p" << endl;
 		if(p) delete p;
 		//cout << "test: deleted p" << endl;
 	}
+	tiles.clear();
 }
 
 std::string Block::printBlock() const {
@@ -145,8 +139,8 @@ std::string Block::printBlock() const {
 	string str = "";
 	for (int row = -1; row <= 0; ++row) {
 		for (int col = 0; col < 11; ++col) {
-			for (int t = 0; t < 4; ++t) {
-				if (tiles[t]->getY() == row && tiles[t]->getX() == col) {
+			for (auto t : tiles) {
+				if (t->getY() == row && t->getX() == col) {
 					str += string(1, type);	
 					isTile = true;
 					break;
