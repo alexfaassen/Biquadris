@@ -212,12 +212,17 @@ vector<vector<char>> Board::renderCharArray() {
 }
 
 void Board::forceTopColumnTile(const char b, const int col) {
-	if (!isEmpty(5, 0)) kill(); 
-	int row = 0;
-	for (int i = 1; i < 15; ++i) {
-		if (!isEmpty(5, i)) row = i - 1;
+	if (!isEmpty(col, 0)) {
+		kill();
+	} else {
+		int row = 0;
+		for (int y = 0; y < 15; ++y) {
+			if (!isEmpty(col, y)) row = y - 1;
+		}
+		Block *wrapperBlock = new Block(b, -1, col, row);
+		immobileTiles[col][row] = wrapperBlock->getTiles()[0];
+		placed.emplace_back(wrapperBlock);
 	}
-	placeBlock(new Block(b, -1, col, row));
 }
 
 string Board::printNextBlock() {	
