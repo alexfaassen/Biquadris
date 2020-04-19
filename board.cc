@@ -81,9 +81,8 @@ void Board::placeBlock(Block* b){
 }
 
 int Board::eotClean(int *score) {
-	int rowsRemoved = 0;
-
 	//remove completed rows
+	int rowsRemoved = 0;
 	for(int y = 0; y < 15; y++){
 		if(rowIsFull(y)){
 			clearRow(y);
