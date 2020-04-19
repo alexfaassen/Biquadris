@@ -100,7 +100,7 @@ istream& GameState::getStream(){
     cout  << "test : before CleanStreams()" << endl;
     cleanStreams();
     if(ifstreams.empty()){
-        //cout  << "test : returning cin" << endl;
+        cout  << "test : returning cin" << endl;
         return cin;
     } else {
         cout  << "test : ifstreams.back" << endl;
