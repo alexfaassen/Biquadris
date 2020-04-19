@@ -17,8 +17,8 @@ void GameState::switchActive(){
 }
 
 void GameState::createPlayers(){
-    leftPlayer = Player(window, loffsetX, loffsetY, -1, scriptFile1, startlevel);
-    rightPlayer = Player(window, roffsetX, roffsetY, 1, scriptFile2, startlevel);
+    activePlayer = new Player(window, loffsetX, loffsetY, -1, scriptFile1, startlevel);
+    nonActivePlayer = new Player(window, roffsetX, roffsetY, 1, scriptFile2, startlevel);
 }
 
 int GameState::cleanStreams(){
@@ -79,11 +79,9 @@ GameState::GameState(bool hasWindow, string scriptfile1, string scriptfile2, int
 }
 
 GameState::~GameState(){
-    if(window){
-        delete window;
-    }
-    activePlayer = nullptr;
-    nonActivePlayer = nullptr;
+    if(window) delete window;
+    if(activePlayer) delete activePlayer;
+    if(nonActivePlayer) delete nonActivePlayer;
 }
 
 void GameState::pushToStreams(ifstream& stream){
@@ -214,8 +212,14 @@ bool printAndRemoveLine(string &str){
 
 void GameState::printGame(){
     cout << "test: before player.printToString" << endl;
-    string lp = leftPlayer.printToString();
-    string rp = rightPlayer.printToString();
+    string lp, rp;
+    if(activePlayer->getSide() == -1){
+        string lp = activePlayer->printToString();
+        string rp = nonActivePlayer->printToString();
+    } else {
+        string lp = nonActivePlayer->printToString();
+        string rp = activePlayer->printToString();
+    }
     cout << "test: after player.printToString" << endl;
 
     while(true){
@@ -233,12 +237,10 @@ void GameState::printGame(){
 }
 
 void GameState::restart(){
-    activePlayer = nullptr;
-    nonActivePlayer = nullptr;
+    if(activePlayer) delete activePlayer;
+    if(nonActivePlayer) delete nonActivePlayer;
     //cout << "test : restarting" << endl;
     createPlayers();
-    activePlayer = &leftPlayer;
-    nonActivePlayer = &rightPlayer;
     cout << "test : activePlayer->startTurn" << endl;
     activePlayer->startTurn();
     cout << "test : printgame" << endl;
