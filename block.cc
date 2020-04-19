@@ -5,17 +5,19 @@
 using namespace std;
 
 void Block::iBlock(int initX, int initY) {
+	type = 'I';
 	tiles[0].setX(initX + 0);
     	tiles[0].setY(initY + 0);
     	tiles[1].setX(initX + 1);
     	tiles[1].setY(initY + 0);
     	tiles[2].setX(initX + 2);
     	tiles[2].setY(initY + 0);
-   	tiles[3].setX(initX + 3);
+   		tiles[3].setX(initX + 3);
     	tiles[3].setY(initY + 0);
 }
 
 void Block::jBlock(int initX, int initY) {
+	type = 'J';
 	tiles[0].setX(initX + 0);
     	tiles[0].setY(initY + 1);
     	tiles[1].setX(initX + 0);
@@ -27,6 +29,7 @@ void Block::jBlock(int initX, int initY) {
 }
 
 void Block::lBlock(int initX, int initY) {
+	type = 'L';
 	tiles[0].setX(initX + 0);
     	tiles[0].setY(initY + 0);
     	tiles[1].setX(initX + 1);
@@ -38,6 +41,7 @@ void Block::lBlock(int initX, int initY) {
 }
 
 void Block::oBlock(int initX, int initY) {
+	type = 'O';
 	tiles[0].setX(initX + 0);
     tiles[0].setY(initY + 0);
     tiles[1].setX(initX + 1);
@@ -49,6 +53,7 @@ void Block::oBlock(int initX, int initY) {
 }
 
 void Block::sBlock(int initX, int initY) {
+	type = 'S';
 	tiles[0].setX(initX + 0);     
 	tiles[0].setY(initY + 0);
 	tiles[1].setX(initX + 0);
@@ -60,6 +65,7 @@ void Block::sBlock(int initX, int initY) {
 }
 
 void Block::zBlock(int initX, int initY) {
+	type = 'Z';
 	tiles[0].setX(initX + 0);
     tiles[0].setY(initY + 1);
     tiles[1].setX(initX + 1);
@@ -82,6 +88,7 @@ void Block::tBlock(int initX, int initY) {
 }
 
 void Block::tileDropBlock(int initX, int initY) {
+	type = '*';
 	tiles[0].setX(initX);
 	tiles[0].setY(initY);
 	tiles[1].kill();
