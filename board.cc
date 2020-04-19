@@ -126,7 +126,7 @@ int Board::moveCurrent(Direction dir, int amount) {
 		if(isMoveBlocked(deltaX, deltaY)){
 			break;
 		}
-		cout << "test: currentBlock->move(deltaX, deltaY) called" << endl;
+		//cout << "test: currentBlock->move(deltaX, deltaY) called" << endl;
 		currentBlock->move(deltaX, deltaY);
 		moveCount++;
 	}
@@ -173,10 +173,10 @@ bool Board::isMoveBlocked(int deltaX, int deltaY){
 }
 
 bool Board::isEmpty(int x, int y) {
-	if(x < 0 || x > 10 || y > 14 || y < -3) return false;	//bounds checking sides
-	if(y >= -3 && y < 0) return true;						//exception for the 3 extra lines on top
-	if(!immobileTiles[x][y])return true;					//checking for empty tile within bounds
-	return false;											//otherwise fail
+	if(x < 0 || x > 10 || y > 14 || y < -3) return false;		//bounds checking sides
+	if(y >= -3 && y < 0) return true;				//exception for the 3 extra lines on top
+	if(!immobileTiles[x][y])return true;				//checking for empty tile within bounds
+	return false;							//otherwise fail
 }
 
 vector<vector<char>> Board::renderCharArray() {

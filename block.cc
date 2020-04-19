@@ -183,7 +183,7 @@ void Block::deleteTiles(){
 std::string Block::printBlock() const {
 	bool isTile = false;
 	string str = "";
-	for (int row = 1; row >= 0; --row) {
+	for (int row = 0; row <= 1; ++row) {
 		for (int col = 0; col < 11; ++col) {
 			for (int t = 0; t < 4; ++t) {
 				if (tiles[t]->getX() == col && tiles[t]->getY() == row) {
