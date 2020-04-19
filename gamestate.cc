@@ -117,7 +117,8 @@ bool GameState::beginReadLoop(){
 
             // clear all digits from front of string
             while(isdigit(s[0])){
-                s.erase(s[0]);
+		s = s.erase(0, 1);
+                //s.erase(s[0]);
             }
         }
 	cout << "test: in beingReadLoop(), multiplier = " << multiplier << endl;
