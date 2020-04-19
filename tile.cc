@@ -4,7 +4,7 @@
 using namespace std;
 
 Tile::~Tile(){
-	cout << "test: running Tile destructor" << endl;
+	//cout << "test: running Tile destructor" << endl;
 }
 
 char Tile::getLetter() {
