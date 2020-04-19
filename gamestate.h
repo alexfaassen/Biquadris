@@ -22,7 +22,7 @@ class GameState {
     std::vector<std::reference_wrapper<std::ifstream>> ifstreams;
 
     const int loffsetX = 0, loffsetY = 0, roffsetX = 0, roffsetY = 0;
-    const std::string scriptFile1 = "", scriptFile2 ="";
+    const std::string scriptFile1 = "biquadris_sequence1.txt", scriptFile2 ="biquadris_sequence2.txt";
     const int startlevel = 0;
     bool running = true;
 
@@ -36,7 +36,7 @@ class GameState {
 
     public:
     //constructors and destrutors
-    GameState(bool hasWindow, std::string scriptfile1, std::string scriptfile2, int startlevel);
+    GameState(bool hasWindow, std::string scriptFile1, std::string scriptFile2, int startlevel);
     ~GameState();
 
     //accessors
