@@ -27,7 +27,7 @@ void GameState::createPlayers(){
 int GameState::cleanStreams(){
     int n = 0;
     for(size_t i = 0; i < ifstreams.size(); i++){
-        if(!ifstreams.at(i).eof()){
+        if(ifstreams.at(i).eof()){
             ifstreams.erase(ifstreams.begin()+i);
             i--;
             ++n;
@@ -97,13 +97,13 @@ bool GameState::pushToStreams(const string file){
 }
 
 istream& GameState::getStream(){
-    cout  << "test : before CleanStreams()" << endl;
-    cout << "test: cleanStreams: " << cleanStreams() << endl;
+    //cout  << "test : before CleanStreams()" << endl;
+    leanStreams();
     if(ifstreams.empty()){
-        cout  << "test : returning cin" << endl;
+        //cout  << "test : returning cin" << endl;
         return cin;
     } else {
-        cout  << "test : ifstreams.back" << endl;
+        //cout  << "test : ifstreams.back" << endl;
         return ifstreams.back();
     }
 }
@@ -111,7 +111,7 @@ istream& GameState::getStream(){
 bool GameState::readFromStream(string &str){
     bool read = true;
     if(getStream() >> str) read = true;
-    cout << "test: read " << str << endl;
+    //cout << "test: read " << str << endl;
     if(!ifstreams.empty()) cout << str << endl;
     return read;
 }
