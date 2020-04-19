@@ -146,7 +146,9 @@ int Player::incLevel(int n){
 
 void Player::startTurn(){
     setInputState(NORMAL);
+    cout << "test: pushNextBlock" << endl;
     board.pushNextBlock();
+    cout << "test: notifyObservers(OnTurnStart)" << endl;
     notifyObservers(onTurnStart);
     if (!board.isAlive()) setInputState(LOSS);
 }
