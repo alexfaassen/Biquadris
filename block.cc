@@ -7,6 +7,7 @@ using namespace std;
 
 void Block::iBlock(int initX, int initY) {
 	deleteTiles();
+	cout << "test: in iBlock ctor, initX = "<< initX << ", initY = " << initY << endl;
 	tiles[0] = new Tile(initX + 0, initY - 0);
 	tiles[1] = new Tile(initX + 1, initY - 0);
 	tiles[2] = new Tile(initX + 2, initY - 0);
