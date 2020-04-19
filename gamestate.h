@@ -15,8 +15,6 @@ class Xwindow;
 class GameState {
     private:
     int highscore = 0;
-    Player leftPlayer;
-    Player rightPlayer;
     Player* activePlayer = nullptr;
     Player* nonActivePlayer = nullptr;
     Xwindow* window = nullptr;
@@ -44,8 +42,6 @@ class GameState {
     //accessors
     Player& getActivePlayer() {return *activePlayer;};
     Player& getNAP() {return *nonActivePlayer;};
-    Player& getLeftPlayer() {return leftPlayer;};
-    Player& getRightPlayer() {return rightPlayer;};
 
     void pushToStreams(std::ifstream&);      // pushes ifstream to ifstreams
 
