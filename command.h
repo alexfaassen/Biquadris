@@ -19,7 +19,8 @@ class Command {
 
 	std::string getName() const;
 
-	bool hasSubstring(const std::string playerInput) const; // returns whether playerInput is a substring of name
+	 // returns whether playerInput is a substring of name
+	bool hasSubstring(const std::string playerInput) const;
 
 	virtual void execute(GameState &game, const int times) const;
 };
