@@ -173,6 +173,7 @@ void Player::endTurn(){
         setInputState(SA);
     }
     notifyObservers(onTurnEnd, linescleared);
+    cleanObservers();
     if (!board->isAlive()) setInputState(LOSS);
 }
 
