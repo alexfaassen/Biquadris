@@ -178,8 +178,7 @@ std::string Block::printBlock() const {
 			if (!isTile) str += " ";
 			isTile = false;
 		}
-		str += "|\n";
+		str += "\n";
 	}
-	str += "|";
 	return str;
 }
