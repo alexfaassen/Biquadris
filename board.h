@@ -55,10 +55,10 @@ class Board {
 	bool isCurrentBlocked();
 
 	//will moving currentBlock by the given coords cause it to collide with a tile?
-	bool isMoveBlocked(int deltaX, int deltaY);	
+	bool isMoveBlocked(int deltaY, int deltaX);	
 
 	// returns if the given coord isn't occupied by a tile and isn't out of bounds
-	bool isEmpty(int x, int y);
+	bool isEmpty(int y, int x);
 
 	void setLevel(Level *newLevel);
 
