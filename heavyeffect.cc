@@ -8,5 +8,7 @@ void HeavyEffect::notify(const Event currEvent, const int linesCleared) {
 			player->drop(false);
 			player->endTurn();
 		}
+	} else if (currEvent == onTurnEnd) {
+		update();
 	}
 }

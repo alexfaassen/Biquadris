@@ -12,11 +12,11 @@ Level3::~Level3() {
 
 Level3::Level3(const Level &other) : Level(other) {
 	identifier = 3;
-	heavy = new HeavyEffect();
+	heavy = new HeavyEffect(false);
 }
 
 Level3::Level3(const int playerSide, int identifier) : Level(playerSide, identifier) {
-	heavy = new HeavyEffect();
+	heavy = new HeavyEffect(false);
 }
 
 void Level3::generateEffects(Player &p) const { 

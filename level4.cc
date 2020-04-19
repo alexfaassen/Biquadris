@@ -13,13 +13,13 @@ Level4::~Level4() {
 
 Level4::Level4(const Level &other) : Level(other) {
 	identifier = 4;
-	heavy = new HeavyEffect();
-	centreDrop = new CentreDropEffect();
+	heavy = new HeavyEffect(false);
+	centreDrop = new CentreDropEffect(false);
 }
 
 Level4::Level4(const int playerSide, int identifier) : Level(playerSide, identifier) {
-	heavy = new HeavyEffect();
-	centreDrop = new CentreDropEffect();
+	heavy = new HeavyEffect(false);
+	centreDrop = new CentreDropEffect(false);
 }
 
 void Level4::generateEffects(Player &p) const { 

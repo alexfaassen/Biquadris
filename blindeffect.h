@@ -4,7 +4,7 @@
 
 class BlindEffect : public Effect {
 	public:
-	BlindEffect() : Effect() {}
+	BlindEffect(bool temp = true) : Effect(temp) {}
 
 	void notify(const Event currEvent, std::vector<std::vector<char>> &boardPrint) override;
 	void notify(const Event currEvent, int linesCleared) override;
