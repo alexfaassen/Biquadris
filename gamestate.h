@@ -19,7 +19,7 @@ class GameState {
     Player* nonActivePlayer = nullptr;
     Xwindow* window = nullptr;
     CommandList *commandList = new CommandList();
-    std::vector<std::reference_wrapper<std::ifstream>> ifstreams;
+    std::vector<std::ifstream> ifstreams;
 
     const int loffsetX = 0, loffsetY = 0, roffsetX = 0, roffsetY = 0;
     const std::string scriptFile1 = "biquadris_sequence1.txt", scriptFile2 ="biquadris_sequence2.txt";
@@ -43,6 +43,7 @@ class GameState {
     Player& getActivePlayer() {return *activePlayer;};
     Player& getNAP() {return *nonActivePlayer;};
 
+    bool pushToStreams(const std::string);   //creates a ifstream on filename and pushes it to ifstreams
     void pushToStreams(std::ifstream&);      // pushes ifstream to ifstreams
 
     // returns the top non-exauhsted istream in ifstreams. Returns cin if ifstreams is empty

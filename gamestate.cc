@@ -26,14 +26,12 @@ void GameState::createPlayers(){
 
 int GameState::cleanStreams(){
     int n = 0;
-    while(!ifstreams.empty()){
-        ifstream &s = ifstreams.back();
-        if(s.eof()){ 
-            ifstreams.pop_back();
-        } else {
-            break;
+    for(size_t i = 0; i < ifstreams.size(); i++){
+        if(!ifstreams.at(i).good()){
+            ifstreams.erase(ifstreams.begin()+i);
+            i--;
+            ++n;
         }
-        ++n;
     }
     return n;
 }
@@ -88,17 +86,21 @@ GameState::~GameState(){
     delete commandList;
 }
 
+void GameState::pushToStreams(const string file){
+    cleanStreams();
+    ifstreams.emplace_back(ifstream(file));
+}
+
 void GameState::pushToStreams(ifstream& stream){
     cleanStreams();
-    reference_wrapper<ifstream> in(stream);
-    ifstreams.emplace_back(in);
+    ifstreams.emplace_back(stream);
 }
 
 istream& GameState::getStream(){
     cout  << "test : before CleanStreams()" << endl;
     cleanStreams();
     if(ifstreams.empty()){
-        cout  << "test : returning cin" << endl;
+        //cout  << "test : returning cin" << endl;
         return cin;
     } else {
         cout  << "test : ifstreams.back" << endl;
