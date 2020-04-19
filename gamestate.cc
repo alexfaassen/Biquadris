@@ -17,11 +17,11 @@ void GameState::switchActive(){
 }
 
 void GameState::createPlayers(){
-    cout << "test: constructing player 1" << endl;
+    //cout << "test: constructing player 1" << endl;
     activePlayer = new Player(window, loffsetX, loffsetY, -1, scriptFile1, startlevel);
-    cout << "test: constructing player 2" << endl;
+    //cout << "test: constructing player 2" << endl;
     nonActivePlayer = new Player(window, roffsetX, roffsetY, 1, scriptFile2, startlevel);
-    cout << "test: finished constructing players" << endl;
+    //cout << "test: finished constructing players" << endl;
 }
 
 int GameState::cleanStreams(){
@@ -75,7 +75,7 @@ GameState::GameState(bool hasWindow, string scriptFile1, string scriptFile2, int
     if(hasWindow){
         window = new Xwindow();
     }
-    cout << "test: before restart" << endl;
+    //cout << "test: before restart" << endl;
     restart();
 }
 
@@ -126,7 +126,7 @@ bool GameState::readFromStream(char &c){
 bool GameState::beginReadLoop(){
     string s;
     while (readFromStream(s)) {
-        cout << "test: passed getStream" << endl;
+        //cout << "test: passed getStream" << endl;
         int multiplier = 1;
         if(isdigit(s[0])){          // test if s starts with an int
             multiplier = atoi(s.c_str());   // http://www.cplusplus.com/reference/cstdlib/atoi/
@@ -136,7 +136,7 @@ bool GameState::beginReadLoop(){
 		s = s.erase(0, 1);
             }
         }
-	cout << "test: in beingReadLoop(), multiplier = " << multiplier << endl;
+	//cout << "test: in beingReadLoop(), multiplier = " << multiplier << endl;
         runInput(s, multiplier);
 
         //game over stuff
@@ -232,7 +232,7 @@ bool printAndRemoveLine(string &str){
 }
 
 void GameState::printGame(){
-    cout << "test: before player.printToString" << endl;
+    //cout << "test: before player.printToString" << endl;
     string lp, rp;
     if(activePlayer->getSide() == -1){
         lp = activePlayer->printToString();
@@ -241,7 +241,7 @@ void GameState::printGame(){
         lp = nonActivePlayer->printToString();
         rp = activePlayer->printToString();
     }
-    cout << "test: after player.printToString" << endl;
+    //cout << "test: after player.printToString" << endl;
 
     //cout << "lp size: " << lp.size() << endl;
     //cout << "rp size: " << rp.size() << endl;
@@ -257,17 +257,17 @@ void GameState::printGame(){
         cout << endl;
     }
 
-    cout << "test: after printing" << endl;
+    //cout << "test: after printing" << endl;
 }
 
 void GameState::restart(){
     if(activePlayer) delete activePlayer;
     if(nonActivePlayer) delete nonActivePlayer;
-    cout << "test : before createPlayers" << endl;
+    //cout << "test : before createPlayers" << endl;
     createPlayers();
-    cout << "test : activePlayer->startTurn" << endl;
+    //cout << "test : activePlayer->startTurn" << endl;
     activePlayer->startTurn();
-    cout << "test : printgame" << endl;
+    //cout << "test : printgame" << endl;
     printGame();
 }
 
