@@ -266,7 +266,7 @@ string Player::printToString(){
     vector<vector<char>> boardarr = board->renderCharArray();
     cout << "test: before notifyObservers(boardarr)" << endl;
     notifyObservers(beforeTextDisplay, boardarr);
-    ss << charArrToString(boardarr);
+    ss << charArrToString(boardarr) << endl;
     ss << "-----------" << '\n';
     ss << "Next:      " << '\n';
     cout << "test: before printNextBlock()" << endl;

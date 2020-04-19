@@ -66,15 +66,15 @@ bool Board::pushNextBlock(bool safe){
 }
 
 void Board::placeCurrent(){
-	cout << "test: before placeBlock()" << endl;
+	cout << "test: in placeCurrent()" << endl;
 	placeBlock(currentBlock);
 	currentBlock = nullptr;
 }
 
 void Board::placeBlock(Block* b){
-	cout << "test: placed.emplace_back(b)" << endl;
+	cout << "test: in placeBlock(b)" << endl;
 	placed.emplace_back(b);
-	cout << "test: for (auto p : b->getTiles())" << endl;
+	//cout << "test: for (auto p : b->getTiles())" << endl;
 	for (auto p : b->getTiles()){
 		immobileTiles[p->getX()][p->getY()] = p;
 	}
@@ -121,9 +121,9 @@ int Board::moveCurrent(Direction dir, int amount) {
 	else if (dir == Right) deltaX = 1;
 	else if (dir == Down) deltaY = 1;
 	int moveCount = 0;
-	cout << "test: STARTING WHILE (moveCount < amount) LOOP" << endl;
+	//cout << "test: STARTING WHILE (moveCount < amount) LOOP" << endl;
 	while(moveCount < amount) {
-		cout << "test: isMoveBlocked() called" << endl;
+		//cout << "test: isMoveBlocked() called" << endl;
 		if(isMoveBlocked(deltaX, deltaY)){
 			break;
 		}
@@ -131,7 +131,7 @@ int Board::moveCurrent(Direction dir, int amount) {
 		currentBlock->move(deltaX, deltaY);
 		moveCount++;
 	}
-	cout << "test: ENDING WHILE (moveCount < amount) LOOP" << endl;
+	//cout << "test: ENDING WHILE (moveCount < amount) LOOP" << endl;
 	return moveCount;	
 }
 
@@ -183,26 +183,28 @@ bool Board::isEmpty(int x, int y) {
 vector<vector<char>> Board::renderCharArray() {
 	vector<vector<char>> vec; 
 	//cout << "test: before first for loop" << endl;
-	for(int i = 0; i < 11; ++i){
-		vec.emplace_back(vector<char>(3, ' '));
+	for(int i = 0; i < 3; ++i){
+		vec.emplace_back(vector<char>(11, ' '));
 	}
+	vec.emplace_back(vector<char>());
 	//cout << "test: before second for loop" << endl;
 	for(int y = 0; y < 15; ++y) {
 		for(int x = 0; x < 11; ++x) {
 			if(!immobileTiles[x][y]){ 
-				vec.at(x).emplace_back(' ');
+				vec.at(y + 3).emplace_back(' ');
 			} else {
-				vec.at(x).emplace_back(immobileTiles[x][y]->getLetter());
+				vec.at(y + 3).emplace_back(immobileTiles[x][y]->getLetter());
 			}
 		}
-	}
+		if (y < 14) vec.emplace_back(vector<char>());
+	}	
 	int currX, currY;
 	//cout << "test: before third for loop" << endl;
 	if(currentBlock){
 		for(int i = 0; i < 4; i++) {
 			currX = currentBlock->getTiles()[i]->getX();
 			currY = currentBlock->getTiles()[i]->getY();
-			vec.at(currX).at(currY) = currentBlock->getType();
+			vec.at(currY + 3).at(currX) = currentBlock->getType();
 		}
 	}
 	//cout << "test: about to return vec" << endl;
