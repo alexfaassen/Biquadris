@@ -17,8 +17,11 @@ void GameState::switchActive(){
 }
 
 void GameState::createPlayers(){
+    cout << "test: constructing player 1" << endl;
     activePlayer = new Player(window, loffsetX, loffsetY, -1, scriptFile1, startlevel);
+    cout << "test: constructing player 2" << endl;
     nonActivePlayer = new Player(window, roffsetX, roffsetY, 1, scriptFile2, startlevel);
+    cout << "test: finished constructing players" << endl;
 }
 
 int GameState::cleanStreams(){
@@ -240,7 +243,7 @@ void GameState::printGame(){
 void GameState::restart(){
     if(activePlayer) delete activePlayer;
     if(nonActivePlayer) delete nonActivePlayer;
-    //cout << "test : restarting" << endl;
+    cout << "test : before createPlayers" << endl;
     createPlayers();
     cout << "test : activePlayer->startTurn" << endl;
     activePlayer->startTurn();
