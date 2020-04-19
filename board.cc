@@ -219,8 +219,9 @@ void Board::forceTopColumnTile(const char b, const int col) {
 	} else {
 		int row = 0;
 		for (int y = 0; y < 15; ++y) {
-			if (!isEmpty(col, y)) row = y - 1;
+			if (!isEmpty(col, y))row = y - 1;
 		}
+		cout << "test: !isEmpty() at row = " << row << endl;
 		Block *wrapperBlock = new Block(b, -1, col, row);
 		immobileTiles[col][row] = wrapperBlock->getTiles()[0];
 		placed.emplace_back(wrapperBlock);
