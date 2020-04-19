@@ -232,7 +232,7 @@ bool printAndRemoveLine(string &str){
 }
 
 void GameState::printGame(){
-    cout << "test: before player.printToString" << endl;
+    //cout << "test: before player.printToString" << endl;
     string lp, rp;
     if(activePlayer->getSide() == -1){
         lp = activePlayer->printToString();
@@ -241,7 +241,7 @@ void GameState::printGame(){
         lp = nonActivePlayer->printToString();
         rp = activePlayer->printToString();
     }
-    cout << "test: after player.printToString" << endl;
+    //cout << "test: after player.printToString" << endl;
 
     //cout << "lp size: " << lp.size() << endl;
     //cout << "rp size: " << rp.size() << endl;
@@ -257,17 +257,17 @@ void GameState::printGame(){
         cout << endl;
     }
 
-    cout << "test: after printing" << endl;
+    //cout << "test: after printing" << endl;
 }
 
 void GameState::restart(){
     if(activePlayer) delete activePlayer;
     if(nonActivePlayer) delete nonActivePlayer;
-    cout << "test : before createPlayers" << endl;
+    //cout << "test : before createPlayers" << endl;
     createPlayers();
-    cout << "test : activePlayer->startTurn" << endl;
+    //cout << "test : activePlayer->startTurn" << endl;
     activePlayer->startTurn();
-    cout << "test : printgame" << endl;
+    //cout << "test : printgame" << endl;
     printGame();
 }
 
