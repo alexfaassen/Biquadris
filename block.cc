@@ -163,7 +163,9 @@ bool Block::alive() {
 void Block::deleteTiles(){
 	if(!tiles) return;
 	for(auto p : tiles){
+		cout << "test: deleting p" << endl;
 		if(p) delete p;
+		cout << "test: deleted p" << endl;
 	}
 }
 
