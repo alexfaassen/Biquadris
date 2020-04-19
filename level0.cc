@@ -18,6 +18,6 @@ Block *Level0::CreateBlock() {
 	char b;
 	cout << "test: *file >> b" << endl;
 	*file >> b;
-	cout << "test: new Block(b, identifier)" << endl;
+	cout << "new Block("<<b<<", identifier)" << endl;
 	return new Block(b, identifier);
 }

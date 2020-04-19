@@ -49,6 +49,7 @@ Board::~Board(){
 
 void Board::initLevel(Level* l){
 	level = l;
+	currentBlock = level->createBlock();
 	nextBlock = level->CreateBlock();
 }
 
@@ -214,7 +215,6 @@ void Board::forceTopColumnTile(const char b, const int col) {
 	placeBlock(new Block(b, -1, col, row));
 }
 
-//TODO: needs some rewriting
 string Board::printNextBlock() {	
 	if (!nextBlock) return "           \n           ";
 	string str = "";
