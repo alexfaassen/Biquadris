@@ -165,18 +165,16 @@ std::string Block::printBlock() const {
 	bool isTile = false;
 	string str = "";
 	for (int row = 1; row >= 0; --row) {
-		cout << "row: " << row << endl;
 		for (int col = 0; col < 11; ++col) {
-			cout << "col: " << col << endl;
 			for (int t = 0; t < 4; ++t) {
 				if (tiles[t]->getX() == col && tiles[t]->getY() == row) {
 					str += string(1, type);	
 					isTile = true;
 					break;
 				}
-				if (!isTile) str += " ";
-				isTile = false;	
 			}
+			if (!isTile) str += " ";
+			isTile = false;
 		}
 		str += "\n";
 	}
