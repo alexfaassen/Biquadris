@@ -33,7 +33,7 @@ void Board::clearRow(int row){
 
 Board::Board(Level* level)
 : level{level} {
-	cout << "test: Board ctor starting" << endl;
+	//cout << "test: Board ctor starting" << endl;
 	for(auto &x : immobileTiles){
 		for(auto &p : x){
 			p = nullptr;
@@ -51,28 +51,28 @@ Board::~Board(){
 }
 
 bool Board::pushNextBlock(bool safe){
-	cout << "test: if(safe && currentBlock)" << endl;
+	//cout << "test: if(safe && currentBlock)" << endl;
 	if(safe && currentBlock) return false;
-	if(!nextBlock) { cout << "test: first createBlock" <<endl; nextBlock = level->CreateBlock(); }
-	cout << "test: nextBlock type (before switch): " << string(1, nextBlock->getType()) << endl;
+	if(!nextBlock)nextBlock = level->CreateBlock();
+	//cout << "test: nextBlock type (before switch): " << string(1, nextBlock->getType()) << endl;
 	currentBlock = nextBlock;
-	cout << "test: currentBlock type: " << string(1, currentBlock->getType()) << endl;
-	cout << "test: second createBlock" <<endl;
-	cout << "level: " << level->getIdentifier() << endl;
+	//cout << "test: currentBlock type: " << string(1, currentBlock->getType()) << endl;
+	//cout << "test: second createBlock" <<endl;
+	//cout << "level: " << level->getIdentifier() << endl;
 	nextBlock = level->CreateBlock();
-	cout << "test: after second createBlock" <<endl;
+	//cout << "test: after second createBlock" <<endl;
 	if (isCurrentBlocked()) kill();
 	return true;
 }
 
 void Board::placeCurrent(){
-	cout << "test: in placeCurrent()" << endl;
+	//cout << "test: in placeCurrent()" << endl;
 	placeBlock(currentBlock);
 	currentBlock = nullptr;
 }
 
 void Board::placeBlock(Block* b){
-	cout << "test: in placeBlock(b)" << endl;
+	//cout << "test: in placeBlock(b)" << endl;
 	placed.emplace_back(b);
 	//cout << "test: for (auto p : b->getTiles())" << endl;
 	for (auto p : b->getTiles()){
@@ -156,7 +156,7 @@ void Board::dropCurrent() {
 	while(moveCurrent(Down, 1)){
 		//cout << "test: dropping..." <<endl;
 	}
-	cout << "test: before placeCurrent()" << endl;
+	//cout << "test: before placeCurrent()" << endl;
 	placeCurrent();
 }
 
@@ -223,7 +223,7 @@ void Board::forceTopColumnTile(const char b, const int col) {
 				break;
 			}
 		}
-		cout << "test: !isEmpty() at row = " << row << endl;
+		//cout << "test: !isEmpty() at row = " << row << endl;
 		placeBlock(new Block(b, -1, col, row));
 	}
 }
