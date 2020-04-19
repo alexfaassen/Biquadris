@@ -104,7 +104,7 @@ void Block::move(int deltaX, int deltaY) {
 void Block::clockwise() {
 	cout << "before clockwise: ";
 	for(int i = 0; i < 4; i++) {
-		// cout << *tiles[i] << ", ";
+		cout << "(" << tiles[i]->getX() << ", " << tiles[i]->getY() << ") ";
 	}
 	cout <<endl;
 
@@ -133,7 +133,7 @@ void Block::clockwise() {
 
 	cout << "after clockwise: ";
 	for(int i = 0; i < 4; i++) {
-		// cout << *tiles[i] << ", ";
+		cout << "(" << tiles[i]->getX() << ", " << tiles[i]->getY() << ") ";
 	}
 	cout <<endl;
 }
@@ -173,10 +173,11 @@ bool Block::alive() {
 }
 
 void Block::deleteTiles(){
+	if(!tiles) return;
 	for(auto p : tiles){
-		//cout << "test: deleting p" << endl;
+		cout << "test: deleting p" << endl;
 		if(p) delete p;
-		//cout << "test: deleted p" << endl;
+		cout << "test: deleted p" << endl;
 	}
 }
 
