@@ -217,7 +217,7 @@ string Board::printNextBlock() {
 	if (!nextBlock) return "           \n           ";
 	string str = "";
 	bool isTile = false;
-	cout << "start printNextBlock loops" <<endl;
+	cout << "test: start printNextBlock loops" <<endl;
 	for(int i = 2; i > 0; i++) {
 		// cout << "i: " << i <<endl;
 		for(int j = 0; j < 11; j++) {
