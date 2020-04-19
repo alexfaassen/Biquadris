@@ -218,7 +218,7 @@ string Board::printNextBlock() {
 	string str = "";
 	bool isTile = false;
 	cout << "for loop 1" <<endl;
-	for(int i = 2; i > 0; i++) {
+	for(int i = 2; i > 0; i--) {
 		cout << "for loop 1" <<endl;
 		for(int j = 0; j < 11; j++) {
 			cout << "for loop 1" <<endl;
