@@ -5,7 +5,7 @@ Observer::~Observer() {}
 
 bool Observer::isAlive() const { return alive; }
 
-void Observer::kill() { delete this; }
+void Observer::kill() { alive = false; }
 
 void Observer::attach(Player* const newPlayer) { player = newPlayer; }
 
