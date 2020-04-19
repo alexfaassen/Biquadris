@@ -121,6 +121,7 @@ int Board::moveCurrent(Direction dir, int amount) {
 		case Right: deltaX = 1;
 		case Down: deltaY = 1; 
 	}
+	cout << "test: moveCurrent(), deltaX = " << deltaX <<", deltaY = " << deltaY << endl;
 	int moveCount = 0;
 	while(moveCount < amount) {
 		if(isMoveBlocked(deltaX, deltaY)){
