@@ -55,12 +55,13 @@ void Board::initLevel(Level* l){
 bool Board::pushNextBlock(bool safe){
 	cout << "test: if(safe && currentBlock)" << endl;
 	if(safe && currentBlock) return false;
-	cout << "first createBlock" <<endl;
+	cout << "test: first createBlock" <<endl;
 	if(!nextBlock) nextBlock = level->CreateBlock();
 	currentBlock = nextBlock;
-	cout << "second createBlock" <<endl;
+	cout << "test: second createBlock" <<endl;
+	cout << "test: level = " << level->getIdentifier() << endl;
 	nextBlock = level->CreateBlock();
-	cout << "after second createBlock" <<endl;
+	cout << "test: after second createBlock" <<endl;
 	return true;
 }
 
