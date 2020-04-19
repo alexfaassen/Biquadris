@@ -60,7 +60,7 @@ bool Board::pushNextBlock(bool safe){
 	if(!nextBlock) { cout << "test: first createBlock" <<endl; nextBlock = level->CreateBlock(); }
 	cout << "test: nextBlock type (before switch): " << string(1, nextBlock->getType()) << endl;
 	currentBlock = nextBlock;
-	cout << "test: currentBlock type: " << string(currentBlock->getType(), 1) << endl;
+	cout << "test: currentBlock type: " << string(1, currentBlock->getType()) << endl;
 	cout << "test: second createBlock" <<endl;
 	cout << "test: does level exist? " << bool(level) << endl;
 	cout << "test: purely level->CreateBlock()" << endl;
