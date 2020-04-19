@@ -59,6 +59,7 @@ bool Board::pushNextBlock(bool safe){
 	currentBlock = nextBlock;
 	cout << "second createBlock" <<endl;
 	nextBlock = level->CreateBlock();
+	cout << "after second createBlock" <<endl;
 	return true;
 }
 
