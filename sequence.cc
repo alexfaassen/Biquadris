@@ -10,5 +10,6 @@ using namespace std;
 void Sequence::run(GameState &game, const int times) const {
 	string s;
 	game.readFromStream(s);
+	cout << "test: reading from file " << s << endl;
 	game.pushToStreams(s);
 }
