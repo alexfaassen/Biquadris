@@ -102,8 +102,8 @@ int Board::eotClean(int *score) {
    	}
 
 	//scores removed rows
-	int rowsScore = (rowsRemoved * level->getIdentifier()) * (rowsRemoved * level->getIdentifier());
-    	*score += rowsScore;	
+	int rowsScore = (rowsRemoved + level->getIdentifier()) * (rowsRemoved + level->getIdentifier());
+    	*score += rowsScore;
 	return rowsRemoved;
 }
 
