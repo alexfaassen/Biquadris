@@ -217,18 +217,19 @@ string Board::printNextBlock() {
 	if (!nextBlock) return "           \n           ";
 	string str = "";
 	bool isTile = false;
-	cout << "start loops" <<endl;
-	for (int i = 2; i > 0; i--) {
+	cout << "start printNextBlock loops" <<endl;
+	for(int i = 2; i > 0; i++) {
+		// cout << "i: " << i <<endl;
 		for(int j = 0; j < 11; j++) {
-			cout << "j: " << j  <<endl;
+			// cout << "j: " << j  <<endl;
 			for(int k = 0; k < 4; k++) {
-				cout << "k: " <<  k <<endl;
+				// cout << "k: " <<  k <<endl;
 				if(nextBlock->getTiles()[k]->getX() == j && nextBlock->getTiles()[k]->getY() == i) {
 					str += nextBlock->getType();
 					isTile = true;
 					break;
 				}
-				cout << "after if" <<endl;
+				// cout << "after if" <<endl;
 			}
 			if(!isTile)str += " ";
 			isTile = false;
