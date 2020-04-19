@@ -1,6 +1,8 @@
 #include "level0.h"
 #include <iostream>
 
+using namespace std;
+
 Level0::Level0(const Level &other) : Level(other) { identifier = 0; }
 
 Level0::Level0(const int playerSide, int identifier) : Level(playerSide, identifier) {
@@ -12,7 +14,10 @@ Level0::Level0(const int playerSide, int identifier) : Level(playerSide, identif
 }
 
 Block *Level0::CreateBlock() {
+	cout << "calling CreateBlock()" << endl;
 	char b;
+	cout << "*file >> b" << endl;
 	*file >> b;
+	cout << "new Block(b, identifier)" << endl;
 	return new Block(b, identifier);
 }
