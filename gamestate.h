@@ -44,7 +44,6 @@ class GameState {
     Player& getNAP() {return *nonActivePlayer;};
 
     void pushToStreams(const std::string);   //creates a ifstream on filename and pushes it to ifstreams
-    void pushToStreams(std::ifstream&);      // pushes ifstream to ifstreams
 
     // returns the top non-exauhsted istream in ifstreams. Returns cin if ifstreams is empty
     std::istream& getStream();              

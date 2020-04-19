@@ -91,11 +91,6 @@ void GameState::pushToStreams(const string file){
     ifstreams.emplace_back(ifstream(file));
 }
 
-void GameState::pushToStreams(ifstream& stream){
-    cleanStreams();
-    ifstreams.emplace_back(stream);
-}
-
 istream& GameState::getStream(){
     cout  << "test : before CleanStreams()" << endl;
     cleanStreams();
