@@ -84,10 +84,12 @@ int Player::isLevel() {
 
 int Player::moveBlock(Direction dir, int times, bool isInput){
     if(isInput){
+	cout << "test: preMove() called" << endl;
         preMove();
     }
     int moves = board->moveCurrent(dir, times);
     if(isInput){
+	cout << "test: postMove() called" << endl;
         postMoveClean();
     }
     return moves;

@@ -121,9 +121,11 @@ int Board::moveCurrent(Direction dir, int amount) {
 	else if (dir == Down) deltaY = 1;
 	int moveCount = 0;
 	while(moveCount < amount) {
+		cout << "test: isMoveBlocked() called" << endl;
 		if(isMoveBlocked(deltaX, deltaY)){
 			break;
 		}
+		cout << "test: currentBlock->move(deltaX, deltaY) called" << endl;
 		currentBlock->move(deltaX, deltaY);
 		moveCount++;
 	}
