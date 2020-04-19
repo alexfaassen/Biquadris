@@ -1,6 +1,7 @@
 #ifndef CMD_H
 #define CMD_H
 #include <string>
+#include "player.h"
 
 class GameState;
 
