@@ -71,7 +71,7 @@ void Board::placeCurrent(){
 void Board::placeBlock(Block* b){
 	placed.emplace_back(b);
 	for (auto p : b->getTiles()){
-		immobileTiles[p.getX()][p.getY()] = &p;
+		immobileTiles[p->getX()][p->getY()] = &p;
 	}
 }
 
@@ -153,14 +153,14 @@ void Board::dropCurrent() {
 
 bool Board::isCurrentBlocked(){
 	for(auto t : currentBlock->getTiles()){
-		if(!isEmpty(t.getX(),t.getY())) return true;
+		if(!isEmpty(t->getX(), t->getY())) return true;
 	}
 	return false;
 }
 
 bool Board::isMoveBlocked(int deltaX, int deltaY){
 	for (auto t : currentBlock->getTiles()) {
-		if (!isEmpty(t.getX() + deltaX, t.getY() + deltaY)) return true;
+		if (!isEmpty(t->getX() + deltaX, t->getY() + deltaY)) return true;
 	}
 	return false;
 }
@@ -194,8 +194,8 @@ vector<vector<char>> Board::renderCharArray() {
 	//cout << "test: before third for loop" << endl;
 	if(currentBlock){
 		for(int i = 0; i < 4; i++) {
-			currX = currentBlock->getTiles()[i].getX();
-			currY = currentBlock->getTiles()[i].getY();
+			currX = currentBlock->getTiles()[i]->getX();
+			currY = currentBlock->getTiles()[i]->getY();
 			vec.at(currY + 3).at(currX) = currentBlock->getType();
 		}
 	}
@@ -219,7 +219,7 @@ string Board::printNextBlock() {
 	for(int i = 2; i > 0; i++) {
 		for(int j = 0; j < 11; j++) {
 			for(int k = 0; k < 4; k++) {
-				if(nextBlock->getTiles()[i].getX() == j && nextBlock->getTiles()[k].getY() == i) {
+				if(nextBlock->getTiles()[i]->getX() == j && nextBlock->getTiles()[k]->getY() == i) {
 					str += nextBlock->getType();
 					isTile = true;
 					break;
@@ -237,4 +237,4 @@ void Board::kill() {
 	alive = false;
 }
 
-void Board::setLevel(Level *newLevel) { level = newLevel; cout << "board level is: " << level << endl; }
+void Board::setLevel(Level *newLevel) { level = newLevel; }
