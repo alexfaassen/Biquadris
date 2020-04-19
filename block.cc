@@ -97,6 +97,12 @@ void Block::move(int deltaX, int deltaY) {
 }
 
 void Block::clockwise() {
+	cout << "before clockwise: ";
+	for(int i = 0; i < 4; i++) {
+		cout << tiles[i] << ", ";
+	}
+	cout <<endl;
+
 	int max = 0;
 	for(int i = 0; i < 4; i++) {
 		tiles[i]->invert();
@@ -119,6 +125,12 @@ void Block::clockwise() {
 			tiles[i]->setY(newY);
 		}
 	}
+
+	cout << "after clockwise: ";
+	for(int i = 0; i < 4; i++) {
+		cout << tiles[i] << ", ";
+	}
+	cout <<endl;
 }
 
 void Block::counterClockwise() {
