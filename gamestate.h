@@ -7,10 +7,10 @@
 #include <functional>
 #include <string>
 
-#include "player.h"
 #include "commandlist.h"
 
 class Xwindow;
+class Player;
 
 class GameState {
     private:

@@ -26,14 +26,10 @@ class Board {
 	
 	public:
 	//constructor and destructor
-	Board();
+	Board(Level*);
 	~Board();
 
 	bool isAlive() const{return alive;};
-
-	//initializes the board with the given level (sets nextBlock and stuff)
-	//player should call it in its constructor
-	void initLevel(Level*);
 
 	// moves currentBlock into placed, nextBlock into currentBlock, and generates nextBlock. 
 	// Returns if successful. If safe, will not do anything if currentBlock is not nullptr

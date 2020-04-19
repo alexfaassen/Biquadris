@@ -1,5 +1,6 @@
 #include "player.h"
 #include "observer.h"
+#include "board.h"
 #include "level.h"
 #include "level0.h"
 #include "level1.h"
@@ -49,31 +50,32 @@ void Player::preMove(){
 void Player::postMoveClean(){
     notifyObservers(afterMove);
     //TODO once board is implemented
-    if (!board.isAlive()) setInputState(LOSS);
+    if (!board->isAlive()) setInputState(LOSS);
 }
 
 Player::Player(){}
 
 Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptfile, int startlevel)
 : window{PlayerWindow(w, offsetX, offsetY)}, side{side}, scriptFile {scriptfile} {
-    cout << "if(window.hasWindow())" <<endl;
+    //cout << "if(window.hasWindow())" <<endl;
     if(window.hasWindow()){
         initGraphicsObservers();
     }
-    cout << "if(!setLevel(startlevel))" <<endl;
+    //cout << "if(!setLevel(startlevel))" <<endl;
     if(!setLevel(startlevel)){
         cout << "Error: invalid startlevel. Using Level 0 instead" << endl;
         setLevel(0);
     }
-    cout << "board.initLevel(level);" <<endl;
-    board.initLevel(level);
+    //cout << "board.initLevel(level);" <<endl;
+    board = new Board(level);
 }
 
 Player::~Player(){
-    delete level;
+    if(level) delete level;
     for(auto p : observers){
         delete p;
     }
+    if(board) delete board;
 }
 
 int Player::isLevel() {
@@ -84,7 +86,7 @@ int Player::moveBlock(Direction dir, int times, bool isInput){
     if(isInput){
         preMove();
     }
-    int moves = board.moveCurrent(dir, times);
+    int moves = board->moveCurrent(dir, times);
     if(isInput){
         postMoveClean();
     }
@@ -97,7 +99,7 @@ int Player::rotateClockwise(int times, bool isInput){
     }
     int successes = 0;
     for (int i = 0; i < times; ++i) {
-	    if (board.clockwiseCurrent()) ++successes;
+	    if (board->clockwiseCurrent()) ++successes;
     }
     if(isInput){
         postMoveClean();
@@ -111,7 +113,7 @@ int Player::rotateCounterClockwise(int times, bool isInput){
     }
     int successes = 0;
     for (int i = 0; i < times; ++i) {
-	    if (board.counterClockwiseCurrent()) ++successes;
+	    if (board->counterClockwiseCurrent()) ++successes;
     }
     if(isInput){
         postMoveClean();
@@ -123,7 +125,7 @@ void Player::drop(bool isInput){
     if(isInput){
         preMove();
     }
-    board.dropCurrent();
+    board->dropCurrent();
     if(isInput){
         postMoveClean();
         endTurn();
@@ -154,20 +156,20 @@ int Player::incLevel(int n){
 void Player::startTurn(){
     setInputState(NORMAL);
     cout << "test: pushNextBlock" << endl;
-    board.pushNextBlock();
+    board->pushNextBlock();
     cout << "test: notifyObservers(OnTurnStart)" << endl;
     notifyObservers(onTurnStart);
-    if (!board.isAlive()) setInputState(LOSS);
+    if (!board->isAlive()) setInputState(LOSS);
 }
 
 void Player::endTurn(){
-    int linescleared = board.eotClean(&score);
+    int linescleared = board->eotClean(&score);
     setInputState(END_TURN);
     if(linescleared >= 2) {
         setInputState(SA);
     }
     notifyObservers(onTurnEnd, linescleared);
-    if (!board.isAlive()) setInputState(LOSS);
+    if (!board->isAlive()) setInputState(LOSS);
 }
 
 bool Player::setLevel(int n){
@@ -212,7 +214,7 @@ bool Player::setLevel(int n){
 	             temp = NULL;
 	     }
     }
-    board.setLevel(level);
+    board->setLevel(level);
     return true;
 }
 
@@ -230,8 +232,8 @@ void Player::pushToObservers(Observer* obs){
 }
 
 void Player::changeCurrentBlock(char c){
-    board.changeCurrent(c);
-    if (!board.isAlive()) setInputState(LOSS);
+    board->changeCurrent(c);
+    if (!board->isAlive()) setInputState(LOSS);
 }
 
 string charArrToString(const vector<vector<char>>& arr){
@@ -252,17 +254,17 @@ string Player::printToString(){
     ss << "Score:" << setw(5) << score << '\n';
     ss << "-----------" << '\n';
     cout << "test: before board.renderCharArray" << endl;
-    vector<vector<char>> boardarr = board.renderCharArray();
+    vector<vector<char>> boardarr = board->renderCharArray();
     cout << "test: before notifyObservers(boardarr)" << endl;
     notifyObservers(beforeTextDisplay, boardarr);
     ss << charArrToString(boardarr);
     ss << "-----------" << '\n';
     ss << "Next:      " << '\n';
     cout << "test: before printNextBlock()" << endl;
-    ss << board.printNextBlock();
+    ss << board->printNextBlock();
     return ss.str();
 }
 
 void Player::forceTopTile(const char b, const int col){
-	board.forceTopColumnTile(b, col);
+	board->forceTopColumnTile(b, col);
 }
