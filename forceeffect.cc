@@ -2,5 +2,8 @@
 #include "player.h"
 
 void ForceEffect::notify(const Event currEvent, const int linesCleared) {
-	if (currEvent == beforeMove) player->changeCurrentBlock(newBlock);
+	if (currEvent == beforeMove) {
+		player->changeCurrentBlock(newBlock);
+		kill();
+	}
 }
