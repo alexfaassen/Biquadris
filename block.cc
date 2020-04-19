@@ -46,7 +46,7 @@ void Block::sBlock(int initX, int initY) {
 	//cout << "test: newtile 1" << endl;
 	tiles[1] = new Tile('S', initX + 1, initY + 1);
 	//cout << "test: newtile 2" << endl;
-	tiles[2] = new Tile('S', initX + 1, initY + 0;
+	tiles[2] = new Tile('S', initX + 1, initY + 0);
 	//cout << "test: newtile 3" << endl;
 	tiles[3] = new Tile('S', initX + 2, initY + 0);
 }
