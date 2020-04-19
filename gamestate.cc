@@ -119,6 +119,7 @@ bool GameState::beginReadLoop(){
                 s.erase(s[0]);
             }
         }
+	cout << "test: in beingReadLoop(), multiplier = " << multiplier << endl;
         runInput(s, multiplier);
 
         //game over stuff
