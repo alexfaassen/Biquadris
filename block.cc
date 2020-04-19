@@ -1,4 +1,5 @@
 #include <string>
+#include <iostream>
 #include "block.h"
 #include "tile.h"
 
@@ -99,7 +100,7 @@ void Block::tileDropBlock(int initX, int initY) {
 
 Block::Block(char type, int initLevel, int x, int y):
 type{type}, initLevel{initLevel} {
-	cout << "Block ctor is run" << endl;
+	cout << "Block ctor is run with " << string(1,type) << endl;
 	if(type == '*') tileDropBlock(x, y);
 	else if(type == 'I') iBlock(x, y);
 	else if(type == 'J') jBlock(x, y);
