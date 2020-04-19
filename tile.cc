@@ -1,4 +1,11 @@
 #include "tile.h"
+#include <iostream>
+
+using namespace std;
+
+Tile::~Tile(){
+	cout << "test: running Tile destructor" << endl;
+}
 
 char Tile::getLetter() {
 	return letter;
