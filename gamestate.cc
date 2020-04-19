@@ -226,8 +226,8 @@ void GameState::printGame(){
     }
     cout << "test: after player.printToString" << endl;
 
-    cout << "lp size: " << lp.size() << endl;
-    cout << "rp size: " << rp.size() << endl;
+    //cout << "lp size: " << lp.size() << endl;
+    //cout << "rp size: " << rp.size() << endl;
 
     while(true){
         if(!printAndRemoveLine(lp)){    //breaks out of loop once either string runs out of lines
