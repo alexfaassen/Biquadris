@@ -240,4 +240,4 @@ void Board::kill() {
 	alive = false;
 }
 
-void Board::setLevel(Level *newLevel) { level = newLevel; }
+void Board::setLevel(Level *newLevel) { level = newLevel; cout << "board level is: " << level << endl; }
