@@ -59,6 +59,7 @@ bool Board::pushNextBlock(bool safe){
 	cout << "test: first createBlock" <<endl;
 	if(!nextBlock) nextBlock = level->CreateBlock();
 	currentBlock = nextBlock;
+	cout << "test: currentBlock type: " << currentBlock->getType() << endl;
 	cout << "test: second createBlock" <<endl;
 	cout << "test: level = " << level->getIdentifier() << endl;
 	nextBlock = level->CreateBlock();
