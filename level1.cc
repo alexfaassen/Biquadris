@@ -7,7 +7,7 @@ using namespace std;
 
 Level1::Level1(const Level &other) : Level(other) { identifier = 1; }
 
-Level1::Level1(cons t int playerSide, int identifier) : Level(playerSide, identifier) {}
+Level1::Level1(const int playerSide, int identifier) : Level(playerSide, identifier) {}
 
 Block *Level1::CreateBlock() {	
 	cout << "test: level1 calling CreateBlock()" << endl;
