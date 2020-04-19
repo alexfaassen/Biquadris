@@ -227,6 +227,7 @@ bool Player::setLevel(int n){
 	             temp = NULL;
 	     }
     }
+    cleanObservers();
     cout << "test: in setLevel(), about to call board->setNewLevel()" << endl;
     if(board) board->setNewLevel(level);
     return true;
