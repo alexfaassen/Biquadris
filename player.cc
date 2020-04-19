@@ -123,12 +123,14 @@ int Player::rotateCounterClockwise(int times, bool isInput){
     return successes;
 }
 
-void Player::drop(bool isInput){
+void Player::drop(int times, bool isInput){
     if(isInput){
         preMove();
     }
-    cout << "test: before dropCurrent()" << endl;
-    board->dropCurrent();
+    //cout << "test: before dropCurrent()" << endl;
+    for(int i = 0; i < times; ++i){
+        board->dropCurrent();
+    }
     if(isInput){
         cout << "test: before postMoveClean()" << endl;
         postMoveClean();
