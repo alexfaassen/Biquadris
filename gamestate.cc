@@ -27,7 +27,7 @@ void GameState::createPlayers(){
 int GameState::cleanStreams(){
     int n = 0;
     for(size_t i = 0; i < ifstreams.size(); i++){
-        if(!ifstreams.at(i).good()){
+        if(!ifstreams.at(i).eof()){
             ifstreams.erase(ifstreams.begin()+i);
             i--;
             ++n;
@@ -103,7 +103,7 @@ istream& GameState::getStream(){
         //cout  << "test : returning cin" << endl;
         return cin;
     } else {
-        cout  << "test : ifstreams.back" << endl;
+        //cout  << "test : ifstreams.back" << endl;
         return ifstreams.back();
     }
 }
