@@ -22,7 +22,7 @@ void Board::clearRow(int row){
 	//move everything above it down
 	for(int y = row; y > 0; --y){
 		for(int x = 0; x < 11; ++x){
-			immobileTiles[x][y] = immobileTiles[x][y+1];
+			immobileTiles[x][y] = immobileTiles[x][y - 1];
 		}
 	}
 	//make top row empty
