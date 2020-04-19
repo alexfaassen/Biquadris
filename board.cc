@@ -51,14 +51,14 @@ void Board::initLevel(Level* l){
 	level = l;
 	currentBlock = level->CreateBlock();
 	nextBlock = level->CreateBlock();
-	cout << "test: currentBlock type (initLevel): " << string(nextBlock->getType(), 1) << endl;
+	cout << "test: currentBlock type (initLevel): " << string(1, nextBlock->getType()) << endl;
 }
 
 bool Board::pushNextBlock(bool safe){
 	cout << "test: if(safe && currentBlock)" << endl;
 	if(safe && currentBlock) return false;
 	if(!nextBlock) { cout << "test: first createBlock" <<endl; nextBlock = level->CreateBlock(); }
-	cout << "test: nextBlock type (before switch): " << string(nextBlock->getType(), 1) << endl;
+	cout << "test: nextBlock type (before switch): " << string(1, nextBlock->getType()) << endl;
 	currentBlock = nextBlock;
 	cout << "test: currentBlock type: " << string(currentBlock->getType(), 1) << endl;
 	cout << "test: second createBlock" <<endl;
