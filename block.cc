@@ -6,6 +6,7 @@
 using namespace std;
 
 void Block::iBlock(int initX, int initY) {
+	deleteTiles();
 	tiles[0] = new Tile(initX + 0, initY + 0);
 	tiles[1] = new Tile(initX + 1, initY + 0);
 	tiles[2] = new Tile(initX + 2, initY + 0);
@@ -13,6 +14,7 @@ void Block::iBlock(int initX, int initY) {
 }
 
 void Block::jBlock(int initX, int initY) {
+	deleteTiles();
 	tiles[0] = new Tile(initX + 0, initY + 1);
 	tiles[1] = new Tile(initX + 0, initY + 0);
 	tiles[2] = new Tile(initX + 1, initY + 0);
@@ -20,6 +22,7 @@ void Block::jBlock(int initX, int initY) {
 }
 
 void Block::lBlock(int initX, int initY) {
+	deleteTiles();
 	tiles[0] = new Tile(initX + 0, initY + 0);
 	tiles[1] = new Tile(initX + 1, initY + 0);
 	tiles[2] = new Tile(initX + 2, initY + 0);
@@ -27,6 +30,7 @@ void Block::lBlock(int initX, int initY) {
 }
 
 void Block::oBlock(int initX, int initY) {
+	deleteTiles();
 	tiles[0] = new Tile(initX + 0, initY + 0);
 	tiles[1] = new Tile(initX + 1, initY + 0);
 	tiles[2] = new Tile(initX + 1, initY + 1);
@@ -34,6 +38,7 @@ void Block::oBlock(int initX, int initY) {
 }
 
 void Block::sBlock(int initX, int initY) {
+	deleteTiles();
 	tiles[0] = new Tile(initX + 0, initY + 0);
 	tiles[1] = new Tile(initX + 0, initY + 1);
 	tiles[2] = new Tile(initX + 1, initY + 1);
@@ -41,6 +46,7 @@ void Block::sBlock(int initX, int initY) {
 }
 
 void Block::zBlock(int initX, int initY) {
+	deleteTiles();
 	tiles[0] = new Tile(initX + 0, initY + 1);
 	tiles[1] = new Tile(initX + 1, initY + 1);
 	tiles[2] = new Tile(initX + 1, initY + 0);
@@ -48,6 +54,7 @@ void Block::zBlock(int initX, int initY) {
 }
 
 void Block::tBlock(int initX, int initY) {
+	deleteTiles();
 	tiles[0] = new Tile(initX + 0, initY + 1);
 	tiles[1] = new Tile(initX + 1, initY + 1);
 	tiles[2] = new Tile(initX + 1, initY + 0);
@@ -55,13 +62,14 @@ void Block::tBlock(int initX, int initY) {
 }
 
 void Block::tileDropBlock(int initX, int initY) {
+	deleteTiles();
 	tiles[0] = new Tile(initX, initY);
 	tiles[1] = new Tile(-1, -1);
 	tiles[2] = new Tile(-1, -1);
 	tiles[3] = new Tile(-1, -1);
-	tiles[1].kill();
-	tiles[2].kill();
-	tiles[3].kill();
+	tiles[1]->kill();
+	tiles[2]->kill();
+	tiles[3]->kill();
 }
 
 Block::Block(char type, int initLevel, int x, int y):
@@ -78,6 +86,7 @@ type{type}, initLevel{initLevel} {
 }
 
 Block::~Block(){
+	deleteTiles();
 }
 
 void Block::move(int deltaX, int deltaY) {
@@ -144,6 +153,12 @@ bool Block::alive() {
 		}
 	}
 	return false;
+}
+
+void Block::deleteTiles(){
+	for(auto p : tiles){
+		delete p;
+	}
 }
 
 
