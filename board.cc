@@ -9,7 +9,7 @@ using namespace std;
 
 bool Board::rowIsFull(int row){
 	for(int x = 0; x < 11; ++x){
-		if(!immobileTiles[x][y]) return false;
+		if(!immobileTiles[x][row]) return false;
 	}
 	return true;
 }
