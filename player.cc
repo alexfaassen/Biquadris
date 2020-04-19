@@ -209,6 +209,7 @@ bool Player::setLevel(int n){
 	             } else if (n == 1) {
 	                     level = new Level1(*temp);
 	     	     } else if (n == 2) {
+			     cout << "test: in setLevel(), level2 copy ctor" << endl;
 	     		     level = new Level2(*temp);
 	     	     } else if (n == 3) {
 		   	     level = new Level3(*temp);
