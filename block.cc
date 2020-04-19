@@ -115,21 +115,21 @@ void Block::clockwise() {
 			max = tiles[i]->getY();
 		}
 	}
-	int upperMid, lowerMid;
-	upperMid = (max + 1) / 2;
-	if((max + 1) % 2 == 0) lowerMid = (max + 1) / 2 - 1;
-	else lowerMid = upperMid;
-	int newY;
-	for(int i = 0; i < 4; i++) {
-		if(i > upperMid) {
-			newY = lowerMid - tiles[i]->getY() + upperMid;
-			tiles[i]->setY(newY);
-		} 
-		else if(i < lowerMid) {
-			newY = upperMid + tiles[i]->getY() - upperMid;
-			tiles[i]->setY(newY);
-		}
-	}
+	// int upperMid, lowerMid;
+	// upperMid = (max + 1) / 2;
+	// if((max + 1) % 2 == 0) lowerMid = (max + 1) / 2 - 1;
+	// else lowerMid = upperMid;
+	// int newY;
+	// for(int i = 0; i < 4; i++) {
+	// 	if(i > upperMid) {
+	// 		newY = lowerMid - tiles[i]->getY() + upperMid;
+	// 		tiles[i]->setY(newY);
+	// 	} 
+	// 	else if(i < lowerMid) {
+	// 		newY = upperMid + tiles[i]->getY() - upperMid;
+	// 		tiles[i]->setY(newY);
+	// 	}
+	// }
 
 	cout << "after clockwise: ";
 	for(int i = 0; i < 4; i++) {
