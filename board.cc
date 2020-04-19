@@ -184,11 +184,12 @@ vector<vector<char>> Board::renderCharArray() {
 	vector<vector<char>> vec; 
 	//cout << "test: before first for loop" << endl;
 	for(int i = 0; i < 11; ++i){
-		vec.emplace_back(vector<char>(3, ' '));
+		vec.emplace_back(vector<char>(3, 'T'));
 	}
+	/*
 	//cout << "test: before second for loop" << endl;
-	for(int y = 0; y < 15; ++y) {
-		for(int x = 0; x < 11; ++x) {
+	for(int x = 0; x < 11; ++x) {
+		for(int y = 0; y < 15; ++y) {
 			if(!immobileTiles[x][y]){ 
 				vec.at(x).emplace_back(' ');
 			} else {
@@ -202,10 +203,10 @@ vector<vector<char>> Board::renderCharArray() {
 		for(int i = 0; i < 4; i++) {
 			currX = currentBlock->getTiles()[i]->getX();
 			currY = currentBlock->getTiles()[i]->getY();
-			vec.at(currX).at(currY) = currentBlock->getType();
+			vec.at(currX).at(currY + 3) = currentBlock->getType();
 		}
 	}
-	//cout << "test: about to return vec" << endl;
+	//cout << "test: about to return vec" << endl;*/
 	return vec;
 }
 
