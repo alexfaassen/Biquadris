@@ -14,10 +14,10 @@ Level0::Level0(const int playerSide, int identifier) : Level(playerSide, identif
 }
 
 Block *Level0::CreateBlock() {
-	cout << "calling CreateBlock()" << endl;
+	cout << "test: calling CreateBlock()" << endl;
 	char b;
-	cout << "*file >> b" << endl;
+	cout << "test: *file >> b" << endl;
 	*file >> b;
-	cout << "new Block(b, identifier)" << endl;
+	cout << "test: new Block(b, identifier)" << endl;
 	return new Block(b, identifier);
 }
