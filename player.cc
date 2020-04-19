@@ -132,6 +132,7 @@ void Player::drop(int times, bool isInput){
     }
     //cout << "test: before dropCurrent()" << endl;
     for(int i = 0; i < times; ++i){
+        board->pushNextBlock();
         board->dropCurrent();
     }
     if(isInput){
