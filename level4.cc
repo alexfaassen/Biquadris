@@ -1,4 +1,5 @@
 #include "level4.h"
+#include "player.h"
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
@@ -21,7 +22,10 @@ Level4::Level4(const int playerSide, int identifier) : Level(playerSide, identif
 	centreDrop = new CentreDropEffect();
 }
 
-void Level4::generateEffects(std::vector<Observer*> &vec) const { vec.emplace_back(heavy); vec.emplace_back(centreDrop); }
+void Level4::generateEffects(Player &p) const { 
+	p.pushToObservers(heavy);
+	p.pushToObservers(centreDrop);
+}
 
 Block *Level4::CreateBlock() {	
 	cout << "test: level4 calling CreateBlock()" << endl;

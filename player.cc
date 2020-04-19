@@ -190,10 +190,10 @@ bool Player::setLevel(int n){
 		level = new Level2(side);
 	    } else if (n == 3) {
 	    	level = new Level3(side);
-		level->generateEffects(observers);
+		level->generateEffects(*this);
 	    } else if (n == 4) {
 		level = new Level4(side);
-		level->generateEffects(observers);
+		level->generateEffects(*this);
 	    } else {
 	 	    // Error, Invalid Input
 		    return false;
@@ -208,18 +208,18 @@ bool Player::setLevel(int n){
  	     } else {
 		     Level *temp = level;
 	     	     if (n == 0) {
-			     level = new Level0(*temp);
+			        level = new Level0(*temp);
 	             } else if (n == 1) {
-	                     level = new Level1(*temp);
+	                level = new Level1(*temp);
 	     	     } else if (n == 2) {
-			     cout << "test: in setLevel(), level2 copy ctor" << endl;
-	     		     level = new Level2(*temp);
+			        cout << "test: in setLevel(), level2 copy ctor" << endl;
+	     		    level = new Level2(*temp);
 	     	     } else if (n == 3) {
-		   	     level = new Level3(*temp);
-		    	     level->generateEffects(observers);
+		   	        level = new Level3(*temp);
+		    	    level->generateEffects(*this);
 	     	     } else if (n == 4) {
-		  	     level = new Level4(*temp);
-		   	     level->generateEffects(observers);
+		  	        level = new Level4(*temp);
+		   	        level->generateEffects(*this);
 	    	     }
 		     cout << "test: pre delete temp" << endl;
                      delete temp;

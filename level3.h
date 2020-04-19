@@ -2,7 +2,8 @@
 #define LEVEL3_H
 #include "level.h"
 #include "heavyeffect.h"
-#include "level4.h"
+
+class Player;
 
 class Level3 : public Level {
 	HeavyEffect *heavy = nullptr;
@@ -12,7 +13,7 @@ class Level3 : public Level {
 	Level3(const Level &other);
 	~Level3();
 
-	void generateEffects(std::vector<Observer*> &vec) const override;
+	void generateEffects(Player &p) const override;
 	Block *CreateBlock() override;
 };
 

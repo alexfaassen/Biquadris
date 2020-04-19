@@ -23,7 +23,7 @@ class Level {
 	bool setFile(std::ifstream *newFile);
 	void deleteFile() {if(file) delete file;};
 
-	virtual void generateEffects(std::vector<Observer*> &vec) const;
+	virtual void generateEffects(Player &p) const;
 	virtual Block *CreateBlock() = 0;
 };
 

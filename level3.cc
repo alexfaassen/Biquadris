@@ -1,4 +1,5 @@
 #include "level3.h"
+#include "player.h"
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
@@ -18,7 +19,9 @@ Level3::Level3(const int playerSide, int identifier) : Level(playerSide, identif
 	heavy = new HeavyEffect();
 }
 
-void Level3::generateEffects(std::vector<Observer*> &vec) const { vec.emplace_back(heavy); }
+void Level3::generateEffects(Player &p) const { 
+	p.pushToObservers(heavy);
+}
 
 Block *Level3::CreateBlock() {	
 	cout << "test: level3 calling CreateBlock()" << endl;
