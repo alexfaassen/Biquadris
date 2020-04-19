@@ -113,6 +113,7 @@ bool GameState::beginReadLoop(){
         int multiplier = 1;
         if(isdigit(s[0])){          // test if s starts with an int
             multiplier = atoi(s.c_str());   // http://www.cplusplus.com/reference/cstdlib/atoi/
+	    cout << "test: multiplier is set to " << multiplier << endl;
 
             // clear all digits from front of string
             while(isdigit(s[0])){
