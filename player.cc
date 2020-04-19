@@ -219,6 +219,7 @@ bool Player::setLevel(int n){
 		   	     level->generateEffects(observers);
 	    	     }
                      delete temp;
+		     cout << "test: post delete temp" << endl;
 	             temp = NULL;
 	     }
     }
