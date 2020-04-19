@@ -31,12 +31,14 @@ void Board::clearRow(int row){
 	}
 }
 
-Board::Board(){
+Board::Board(Level* level)
+: level{level} {
 	for(auto &x : immobileTiles){
 		for(auto &p : x){
 			p = nullptr;
 		}
 	}
+	nextBlock = level->CreateBlock();
 }
 
 Board::~Board(){
@@ -45,11 +47,6 @@ Board::~Board(){
 	for(auto p : placed){
 		delete p;
 	}
-}
-
-void Board::initLevel(Level* l){
-	level = l;
-	nextBlock = level->CreateBlock();
 }
 
 bool Board::pushNextBlock(bool safe){

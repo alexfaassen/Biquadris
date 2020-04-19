@@ -7,17 +7,17 @@
 #include "inputstate.h"
 #include "direction.h"
 #include "playerwindow.h"
-#include "board.h"
 #include "event.h"
 
 class Observer;
 class Level;
+class Board;
 
 class Player {
     private:
     PlayerWindow window;
     int side, score = 0;
-    Board board;
+    Board* board = nullptr;
     Level* level = nullptr;
     std::vector<Observer*> observers;
     InputState inputState = NORMAL;
