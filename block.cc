@@ -174,9 +174,9 @@ std::string Block::printBlock() const {
 					isTile = true;
 					break;
 				}
-				if (!isTile) str += " ";
-				isTile = false;	
 			}
+			if (!isTile) str += " ";
+			isTile = false;
 		}
 		str += "\n";
 	}
