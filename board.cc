@@ -93,17 +93,17 @@ int Board::eotClean(int *score) {
 
 	//erase dead blocks and score them
 	for(size_t i = 0; i < placed.size(); i++){
-        if(!placed.at(i)->alive()){
-			score += (placed.at(i)->getInitLevel() + 1) * (placed.at(i)->getInitLevel() + 1);
-            delete placed.at(i);
-            placed.erase(placed.begin()+i);
-            i--;
-        }
-    }
+        	if(!placed.at(i)->alive()){
+			*score += (placed.at(i)->getInitLevel() + 1) * (placed.at(i)->getInitLevel() + 1);
+        	    	delete placed.at(i);
+            		placed.erase(placed.begin()+i);
+           		i--;
+       		}
+   	}
 
 	//scores removed rows
 	int rowsScore = (rowsRemoved * level->getIdentifier()) * (rowsRemoved * level->getIdentifier());
-    score += rowsScore;	
+    	*score += rowsScore;	
 	return rowsRemoved;
 }
 
