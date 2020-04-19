@@ -8,7 +8,6 @@ bool Level::setFile(std::ifstream *newFile) {
 	if (identifier < 3) {
 		return false;
 	}
-	deleteFile();
 	file = newFile;
 	return true;
 }
