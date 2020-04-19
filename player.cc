@@ -141,6 +141,7 @@ void Player::drop(int times, bool isInput){
 }
 
 int Player::incLevel(int n){
+    cout << "test: incLevel()" << endl;
     if (!level) return setLevel(n);
     int successes = 0;
     if(n < 0){ 
@@ -152,6 +153,7 @@ int Player::incLevel(int n){
             successes += setLevel(level->getIdentifier() + 1);
         }
     } 
+    cout << "test: about to finish incLevel()" << endl;
     return successes;
 }
 
