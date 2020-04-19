@@ -66,15 +66,15 @@ bool Board::pushNextBlock(bool safe){
 }
 
 void Board::placeCurrent(){
-	cout << "test: before placeBlock()" << endl;
+	cout << "test: in placeCurrent()" << endl;
 	placeBlock(currentBlock);
 	currentBlock = nullptr;
 }
 
 void Board::placeBlock(Block* b){
-	cout << "test: placed.emplace_back(b)" << endl;
+	cout << "test: in placeBlock(b)" << endl;
 	placed.emplace_back(b);
-	cout << "test: for (auto p : b->getTiles())" << endl;
+	//cout << "test: for (auto p : b->getTiles())" << endl;
 	for (auto p : b->getTiles()){
 		immobileTiles[p->getX()][p->getY()] = p;
 	}
@@ -121,9 +121,9 @@ int Board::moveCurrent(Direction dir, int amount) {
 	else if (dir == Right) deltaX = 1;
 	else if (dir == Down) deltaY = 1;
 	int moveCount = 0;
-	cout << "test: STARTING WHILE (moveCount < amount) LOOP" << endl;
+	//cout << "test: STARTING WHILE (moveCount < amount) LOOP" << endl;
 	while(moveCount < amount) {
-		cout << "test: isMoveBlocked() called" << endl;
+		//cout << "test: isMoveBlocked() called" << endl;
 		if(isMoveBlocked(deltaX, deltaY)){
 			break;
 		}
@@ -131,7 +131,7 @@ int Board::moveCurrent(Direction dir, int amount) {
 		currentBlock->move(deltaX, deltaY);
 		moveCount++;
 	}
-	cout << "test: ENDING WHILE (moveCount < amount) LOOP" << endl;
+	//cout << "test: ENDING WHILE (moveCount < amount) LOOP" << endl;
 	return moveCount;	
 }
 
