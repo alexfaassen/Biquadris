@@ -10,8 +10,8 @@ class Level;
 
 class Board {
 	// Board has ownership of the following
-	Block *currentBlock;	
-	Block *nextBlock;
+	Block *currentBlock = nullptr;	
+	Block *nextBlock = nullptr;
 	std::vector <Block *> placed;
 
 	//Board DOES NOT have ownership of the following. DO NOT call delete on these
