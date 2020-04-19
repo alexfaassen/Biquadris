@@ -109,13 +109,13 @@ istream& GameState::getStream(){
 }
 
 bool GameState::readFromStream(string &str){
-    bool read = getStream() >> str;
+    bool read = (getStream() >> str);
     if(!ifstreams.empty()) cout << str << endl;
     return read;
 }
 
 bool GameState::readFromStream(char &c){
-    bool read = getStream() >> c;
+    bool read = (getStream() >> c);
     if(!ifstreams.empty()) cout << string(1,c) << endl;
     return read;
 }
