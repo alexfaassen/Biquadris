@@ -3,7 +3,8 @@
 #include "level.h"
 #include "heavyeffect.h"
 #include "centredropeffect.h"
-#include "level3.h"
+
+class Player;
 
 class Level4 : public Level {
 	HeavyEffect *heavy = nullptr;
@@ -14,7 +15,7 @@ class Level4 : public Level {
 	Level4(const Level &other);
 	~Level4();
 
-	void generateEffects(std::vector<Observer*> &vec) const override;
+	void generateEffects(Player &p) const override;
 	Block *CreateBlock() override;
 };
 
