@@ -11,8 +11,10 @@ class Observer {
 	Player *player = NULL;
 	bool alive = 1;
 
-	public:
+	// default ctor
 	Observer() {}
+
+	public:
 	virtual ~Observer();
 
 	bool isAlive() const;

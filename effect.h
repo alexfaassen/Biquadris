@@ -4,6 +4,7 @@
 
 class Effect : public Observer {
 	protected:
+	// default ctor
 	Effect() : Observer() {}
 };
 
