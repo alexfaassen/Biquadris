@@ -8,7 +8,7 @@ class Tile {
 	int y;
 
 	public:
-	Tile(int x, int y) : x{x}, y{y} {};
+	Tile(char letter = ' ', int x = 0, int y = 0) : letter{letter}, x{x}, y{y} {};
 	~Tile();
 	char getLetter();
 	void setLetter(char newLetter);
