@@ -5,9 +5,10 @@ Level::~Level() {}
 int Level::getIdentifier() const { return identifier; }
 
 bool Level::setFile(std::ifstream *newFile) {
-	if (identifier == 0) {
+	if (identifier < 3) {
 		return false;
 	}
+	deleteFile();
 	file = newFile;
 	return true;
 }
