@@ -18,6 +18,6 @@ Block *Level0::CreateBlock() {
 	if (file->eof()) file->seekg(0);
 	char b = ' ';
 	while (b == ' ') *file >> b;
-	//cout << "test: giving Block ctor character: " << b << endl;
+	cout << "test: giving Block ctor character: " << b << endl;
 	return new Block(b, identifier);
 }
