@@ -151,7 +151,7 @@ int Player::incLevel(int n){
         for(int i = 0; i < n; i++){
             successes += setLevel(level->getIdentifier() + 1);
         }
-    }
+    } 
     return successes;
 }
 
@@ -194,6 +194,7 @@ bool Player::setLevel(int n){
 		    return false;
     	    }
      } else {
+	     cout << "test: in setLevel(), level exists, setting it to " << n << endl;
 	     if (n < 0 || n > 4) {
 		     // Error, Invalid Input
 	             return false;
@@ -218,7 +219,8 @@ bool Player::setLevel(int n){
 	             temp = NULL;
 	     }
     }
-    if(board) board->setLevel(level);
+    cout << "test: in setLevel(), about to call board->setNewLevel()" << endl;
+    if(board) board->setNewLevel(level);
     return true;
 }
 
