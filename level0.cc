@@ -17,5 +17,6 @@ Block *Level0::CreateBlock() {
 	cout << "test: level0 calling CreateBlock()" << endl;
 	char b = ' ';
 	while (b == ' ') *file >> b;
+	cout << "test: giving Block ctor character: " << b << endl;
 	return new Block(b, identifier);
 }
