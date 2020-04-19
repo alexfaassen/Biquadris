@@ -33,13 +33,13 @@ int Player::cleanObservers(){
 
 void Player::notifyObservers(Event ev, int n = 0){
     for(auto p : observers){
-        if (p->isAlive()) p->notify(ev, n);
+        if (p && p->isAlive()) p->notify(ev, n);
     }
 }
 
 void Player::notifyObservers(Event ev, vector<vector<char>>& arr){
     for(auto p : observers){
-        if (p->isAlive()) p->notify(ev, arr);
+        if (p && p->isAlive()) p->notify(ev, arr);
     }
 }
 
