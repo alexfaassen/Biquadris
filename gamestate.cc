@@ -227,6 +227,7 @@ void GameState::printGame(){
     cout << "test: after player.printToString" << endl;
 
     while(true){
+        cout << "while(true)" <<endl;
         if(!printAndRemoveLine(lp)){    //breaks out of loop once either string runs out of lines
             break;
         }
