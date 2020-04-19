@@ -73,6 +73,10 @@ Player::~Player(){
     }
 }
 
+int Player::isLevel() {
+    return level ? level->getIdentifier() : 0;
+}
+
 int Player::moveBlock(Direction dir, int times, bool isInput){
     if(isInput){
         preMove();
