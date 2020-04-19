@@ -141,9 +141,8 @@ void Player::drop(bool isInput){
 int Player::incLevel(int n){
     if (!level) return setLevel(n);
     int successes = 0;
-    if(n < 0){
-        n *= -1;
-        for(int i = 0; i < n; i++){
+    if(n < 0){ 
+        for(int i = 0; i > n; i--){
             successes += setLevel(level->getIdentifier() - 1);
         }
     } else if (n > 0){
