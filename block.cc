@@ -117,12 +117,15 @@ void Block::clockwise() {
 	}
 
 	int distUp;
+	cout << "Doing clockwise: ";
 	for(int i = 0; i < 4; i++) {
 		distUp = maxY - tiles[i]->getY();
 		tiles[i]->setY(maxY - distUp);
+		cout << "(" << tiles[i]->getX() << ", " << tiles[i]->getY() << ") ";
 		tiles[i]->invert();
 		tiles[i]->setY(tiles[i]->getY() - maxX + minX);
 	}
+	cout <<endl;
 
 	cout << "after clockwise: ";
 	for(int i = 0; i < 4; i++) {
