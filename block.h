@@ -7,7 +7,7 @@
 class Block {
 	char type;
 	int initLevel;
-	Tile &tiles[4];
+	Tile *tiles[4];
 
 	public:
 	//constructors
