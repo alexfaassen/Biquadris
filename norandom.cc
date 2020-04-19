@@ -8,9 +8,8 @@
 using namespace std;
 
 void NoRandom::run(GameState &game, const int times) const {
-	istream &in = game.getStream();
 	string s;
-	in >> s;
+	game.readFromStream(s);
 	ifstream *newFile = new ifstream{s};
 	game.getActivePlayer().setFileInput(newFile);
 }

@@ -98,19 +98,34 @@ bool GameState::pushToStreams(const string file){
 
 istream& GameState::getStream(){
     cout  << "test : before CleanStreams()" << endl;
-    cleanStreams();
+    cout << "test: cleanStreams: " cleanStreams() << endl;
     if(ifstreams.empty()){
-        //cout  << "test : returning cin" << endl;
+        cout  << "test : returning cin" << endl;
         return cin;
     } else {
-        //cout  << "test : ifstreams.back" << endl;
+        cout  << "test : ifstreams.back" << endl;
         return ifstreams.back();
     }
 }
 
+bool GameState::readFromStream(string &str){
+    bool read = true;
+    if(getStream() >> str) read = true;
+    cout << "test: read " << str << endl;
+    if(!ifstreams.empty()) cout << str << endl;
+    return read;
+}
+
+bool GameState::readFromStream(char &c){
+    bool read = true;
+    if (getStream() >> c) read = true;
+    if(!ifstreams.empty()) cout << string(1,c) << endl;
+    return read;
+}
+
 bool GameState::beginReadLoop(){
     string s;
-    while (getStream() >> s) {
+    while (readFromStream(s)) {
         cout << "test: passed getStream" << endl;
         int multiplier = 1;
         if(isdigit(s[0])){          // test if s starts with an int

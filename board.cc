@@ -154,7 +154,9 @@ bool Board::counterClockwiseCurrent() {
 }
 
 void Board::dropCurrent() {
-	while(moveCurrent(Down, 1)){cout << "test: dropping..." <<endl;}
+	while(moveCurrent(Down, 1)){
+		//cout << "test: dropping..." <<endl;
+	}
 	cout << "test: before placeCurrent()" << endl;
 	placeCurrent();
 }

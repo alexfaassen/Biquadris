@@ -46,7 +46,11 @@ class GameState {
     bool pushToStreams(const std::string);   //creates a ifstream on filename and pushes it to ifstreams
 
     // returns the top non-exauhsted istream in ifstreams. Returns cin if ifstreams is empty
-    std::istream& getStream();              
+    std::istream& getStream();  
+
+    // calls getStream >> str and returns if it succeeded. Prints str if reading from file
+    bool readFromStream(std::string &str);     
+    bool readFromStream(char &c);       
 
     bool beginReadLoop();               // starts the read loop
 

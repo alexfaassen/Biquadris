@@ -6,8 +6,7 @@
 #include <fstream>
 
 void Force::run(GameState &game, const int times) const {
-	std::istream &in = game.getStream();
 	char b;
-	in >> b;
+	game.readFromStream(b);
 	game.getNAP().pushToObservers(new ForceEffect(b));
 }
