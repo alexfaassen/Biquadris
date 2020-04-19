@@ -21,6 +21,7 @@ Block *Level4::CreateBlock() {
 	cout << "test: level4 calling CreateBlock()" << endl;
 	if (file) {
 		// No random
+		if (file->eof()) file->seekg(0);
 		char b = ' ';
 		while (b == ' ') *file >> b;
 		return new Block(b, identifier);
