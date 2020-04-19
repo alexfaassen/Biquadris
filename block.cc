@@ -161,13 +161,13 @@ void Block::deleteTiles(){
 	}
 }
 
-std::string printBlock() {
+std::string Block::printBlock() const {
 	string str = "";
 	for (int row = 1; row >= 0; --row) {
 		for (int col = 0; col < 11; ++col) {
 			for (int t = 0; t < 4; ++t) {
-				if (tiles[k]->getX() == col && tiles[k]->getY() == row) {
-					str += str(tiles[k]->getType());
+				if (tiles[t]->getX() == col && tiles[t]->getY() == row) {
+					str += str(tiles[t]->getType());
 					break;
 				} else {
 					str += " ";
