@@ -9,6 +9,7 @@ class Tile {
 
 	public:
 	Tile(int x, int y) : x{x}, y{y} {}
+	~Tile() {}
 	char getLetter();
 	void setLetter(char newLetter);
 	int getX();
