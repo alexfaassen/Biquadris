@@ -86,9 +86,14 @@ GameState::~GameState(){
     delete commandList;
 }
 
-void GameState::pushToStreams(const string file){
+bool GameState::pushToStreams(const string file){
     cleanStreams();
     ifstreams.emplace_back(ifstream(file));
+    if(!ifstreams.back().good()){
+        cout << "Error: " << file << " is missing or unreadable" << endl;
+        return false
+    }
+    return true;
 }
 
 istream& GameState::getStream(){
