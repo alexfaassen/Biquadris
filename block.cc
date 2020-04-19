@@ -109,34 +109,19 @@ void Block::clockwise() {
 	}
 	cout <<endl;
 
-	int max = 0;
+	int maxX = 0, maxY = -3, minX = 11;
 	for(int i = 0; i < 4; i++) {
+		if(tiles[i]->getX() > maxX)maxX = tiles[i]->getX();
+		if(tiles[i]->getY() > maxY)maxY = tiles[i]->getY();
+		if(tiles[i]->getX() < minX)minX = tiles[i]->getX();
+	}
+
+	int distUp;
+	for(int i = 0; i < 4; i++) {
+		distUp = maxY - tiles[i]->getY();
+		tiles[i]->setY(maxY - distUp);
 		tiles[i]->invert();
-		if(tiles[i]->getY() > max) {
-			max = tiles[i]->getY();
-		}
-	}
-
-	cout << "after clockwise invert: ";
-	for(int i = 0; i < 4; i++) {
-		cout << "(" << tiles[i]->getX() << ", " << tiles[i]->getY() << ") ";
-	}
-	cout <<endl;
-
-	int upperMid, lowerMid;
-	upperMid = (max + 1) / 2;
-	if((max + 1) % 2 == 0) lowerMid = (max + 1) / 2 - 1;
-	else lowerMid = upperMid;
-	int newY;
-	for(int i = 0; i < 4; i++) {
-		if(i > upperMid) {
-			newY = lowerMid - tiles[i]->getY() + upperMid;
-			tiles[i]->setY(newY);
-		} 
-		else if(i < lowerMid) {
-			newY = upperMid + tiles[i]->getY() - upperMid;
-			tiles[i]->setY(newY);
-		}
+		tiles[i]->setY(tiles[i]->getY() - maxX + minX);
 	}
 
 	cout << "after clockwise: ";
