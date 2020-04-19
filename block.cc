@@ -1,4 +1,5 @@
 #include <string>
+#include <iostream>
 #include "block.h"
 #include "tile.h"
 
