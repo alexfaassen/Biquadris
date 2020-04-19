@@ -33,6 +33,7 @@ void Board::clearRow(int row){
 
 Board::Board(Level* level)
 : level{level} {
+	cout << "test: Board ctor starting" << endl;
 	for(auto &x : immobileTiles){
 		for(auto &p : x){
 			p = nullptr;
