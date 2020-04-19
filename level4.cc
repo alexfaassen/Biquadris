@@ -28,7 +28,7 @@ void Level4::generateEffects(Player &p) const {
 }
 
 Block *Level4::CreateBlock() {	
-	cout << "test: level4 calling CreateBlock()" << endl;
+	//cout << "test: level4 calling CreateBlock()" << endl;
 	if (file) {
 		// No random
 		if (file->eof()) {

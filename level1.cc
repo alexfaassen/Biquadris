@@ -5,12 +5,12 @@
 
 using namespace std;
 
-Level1::Level1(const Level &other) : Level(other) { cout << "test: level1 copy ctor" << endl;identifier = 1; }
+Level1::Level1(const Level &other) : Level(other) { identifier = 1; }
 
-Level1::Level1(const int playerSide, int identifier) : Level(playerSide, identifier) { cout << "test: level1 ctor" << endl;}
+Level1::Level1(const int playerSide, int identifier) : Level(playerSide, identifier) {}
 
 Block *Level1::CreateBlock() {	
-	cout << "test: level1 calling CreateBlock()" << endl;
+	//cout << "test: level1 calling CreateBlock()" << endl;
 	int num = 1 + (rand() % 12);
 	if (num == 1) {
 		return new Block('Z', identifier);
