@@ -103,79 +103,23 @@ void Block::move(int deltaX, int deltaY) {
 }
 
 void Block::clockwise() {
-	cout << "before clockwise: ";
-	for(int i = 0; i < 4; i++) {
-		cout << "(" << tiles[i]->getX() << ", " << tiles[i]->getY() << ") ";
-	}
-	cout <<endl;
-
 	int maxX = 0, maxY = -3, minX = 11;
 	for(int i = 0; i < 4; i++) {
 		if(tiles[i]->getX() > maxX)maxX = tiles[i]->getX();
 		if(tiles[i]->getY() > maxY)maxY = tiles[i]->getY();
 		if(tiles[i]->getX() < minX)minX = tiles[i]->getX();
 	}
-
-	cout << "Doing clockwise: ";
 	int distUp;
 	for(int i = 0; i < 4; i++) {
 		distUp = maxY - tiles[i]->getY();
 		tiles[i]->setY(maxY + distUp);
-		cout << "(" << tiles[i]->getX() << ", " << tiles[i]->getY() << ") ";
 		tiles[i]->invert();
 		tiles[i]->setY(tiles[i]->getY() - maxX + minX);
 	}
-	cout <<endl;
-
-	cout << "after clockwise: ";
-	for(int i = 0; i < 4; i++) {
-		cout << "(" << tiles[i]->getX() << ", " << tiles[i]->getY() << ") ";
-	}
-	cout <<endl;
 }
 
 void Block::counterClockwise() {
-	cout << "before counterclockwise: ";
-	for(int i = 0; i < 4; i++) {
-		cout << "(" << tiles[i]->getX() << ", " << tiles[i]->getY() << ") ";
-	}
-	cout <<endl;
-
-	int max = 0;
-	for(int i = 0; i < 4; i++) {
-		tiles[i]->invert();
-		if(tiles[i]->getX() > max) {
-			max = tiles[i]->getX();
-		}
-	}
-
-	cout << "after counterclockwise invert: ";
-	for(int i = 0; i < 4; i++) {
-		cout << "(" << tiles[i]->getX() << ", " << tiles[i]->getY() << ") ";
-	}
-	cout <<endl;
-
-	int upperMid, lowerMid;
-        upperMid = (max + 1) / 2;
-        if((max + 1) % 2 == 0) lowerMid = (max + 1) / 2 - 1;
-        else lowerMid = upperMid;
-	int newX;
-	for(int i = 0; i < 4; i++) {
-                if(i > upperMid) {
-                        newX = lowerMid - tiles[i]->getX() + upperMid;
-                        tiles[i]->setX(newX);
-                }
-                else if(i < lowerMid) {
-                        newX = upperMid + tiles[i]->getX() - upperMid;
-                        tiles[i]->setX(newX);
-                }
-	}
-
-	cout << "after counterclockwise: ";
-	for(int i = 0; i < 4; i++) {
-		cout << "(" << tiles[i]->getX() << ", " << tiles[i]->getY() << ") ";
-	}
-	cout <<endl;
+	for(int i = 0; i < 3; i++)clockwise();
 }
 
 bool Block::alive() {
