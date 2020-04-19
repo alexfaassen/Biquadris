@@ -187,7 +187,7 @@ std::string Block::printBlock() const {
 	for (int row = 0; row <= 1; ++row) {
 		for (int col = 0; col < 11; ++col) {
 			for (int t = 0; t < 4; ++t) {
-				if (tiles[t]->getX() == col && tiles[t]->getY() == row) {
+				if (tiles[t]->getY() == row && tiles[t]->getX() == col) {
 					str += string(1, type);	
 					isTile = true;
 					break;
