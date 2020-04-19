@@ -116,8 +116,8 @@ void Block::clockwise() {
 		if(tiles[i]->getX() < minX)minX = tiles[i]->getX();
 	}
 
-	int distUp;
 	cout << "Doing clockwise: ";
+	int distUp;
 	for(int i = 0; i < 4; i++) {
 		distUp = maxY - tiles[i]->getY();
 		tiles[i]->setY(maxY - distUp);
