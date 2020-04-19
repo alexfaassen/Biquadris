@@ -15,7 +15,7 @@ class Board {
 	std::vector <Block *> placed;
 
 	//Board DOES NOT have ownership of the following. DO NOT call delete on these
-	Tile* immobileTiles[15][11];
+	Tile* immobileTiles[11][15];
 	Level* level = nullptr;
 
 	
