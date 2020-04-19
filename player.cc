@@ -245,11 +245,13 @@ void Player::changeCurrentBlock(char c){
 
 string charArrToString(const vector<vector<char>>& arr){
     stringstream ss;
-    for(auto y : arr){
-        for(auto x : y){
+    bool firstLine = true;
+    for(auto y : arr) {
+        if(!firstLine)ss << '\n';
+        for(auto x : y) {
             ss << x;
         }
-        ss << '\n';
+        firstLine = false;
     }
     return ss.str();
 }
