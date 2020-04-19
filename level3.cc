@@ -3,6 +3,8 @@
 #include <ctime>
 #include <iostream>
 
+using namespace std;
+
 Level3::~Level3() { delete heavy; delete file; }
 
 Level3::Level3(const Level &other) : Level(other) {
@@ -15,6 +17,7 @@ Level3::Level3(const int playerSide, int identifier) : Level(playerSide, identif
 void Level3::generateEffects(std::vector<Observer*> &vec) const { vec.emplace_back(heavy); }
 
 Block *Level3::CreateBlock() {	
+	cout << "test: level3 calling CreateBlock()" << endl;
 	if (file) {
 		// No random
 		char b;

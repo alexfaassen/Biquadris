@@ -1,12 +1,16 @@
 #include "level2.h"
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
+
+using namespace std;
 
 Level2::Level2(const Level &other) : Level(other) { identifier = 2; }
 
 Level2::Level2(const int playerSide, int identifier) : Level(playerSide, identifier) {}
 
 Block *Level2::CreateBlock() {	
+	cout << "test: level2 calling CreateBlock()" << endl;
 	int num = 1 + (rand() % 7);
 	if (num == 1) {
 		return new Block('Z', identifier);
