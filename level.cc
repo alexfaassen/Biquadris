@@ -12,4 +12,4 @@ bool Level::setFile(std::ifstream *newFile) {
 	return true;
 }
 
-void Level::generateEffects(std::vector<Observer*> &vec) const {}
+void Level::generateEffects(Player &p) const {}
