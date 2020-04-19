@@ -98,7 +98,7 @@ type{type}, initLevel{initLevel} {
 	else if(type == 'o') oBlock(x, y);
 	else if(type == 's') sBlock(x, y);
 	else if(type == 'z') zBlock(x, y);
-	else(type == 't') tBlock(x, y);	
+	else tBlock(x, y);	
 }
 
 Block::~Block(){
