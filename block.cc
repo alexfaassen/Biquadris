@@ -7,63 +7,63 @@ using namespace std;
 
 void Block::iBlock(int initX, int initY) {
 	deleteTiles();
-	tiles[0] = new Tile(initX + 0, initY + 0);
-	tiles[1] = new Tile(initX + 1, initY + 0);
-	tiles[2] = new Tile(initX + 2, initY + 0);
-	tiles[3] = new Tile(initX + 3, initY + 0);
+	tiles[0] = new Tile(initX + 0, initY - 0);
+	tiles[1] = new Tile(initX + 1, initY - 0);
+	tiles[2] = new Tile(initX + 2, initY - 0);
+	tiles[3] = new Tile(initX + 3, initY - 0);
 }
 
 void Block::jBlock(int initX, int initY) {
 	deleteTiles();
-	tiles[0] = new Tile(initX + 0, initY + 1);
-	tiles[1] = new Tile(initX + 0, initY + 0);
-	tiles[2] = new Tile(initX + 1, initY + 0);
-	tiles[3] = new Tile(initX + 2, initY + 0);
+	tiles[0] = new Tile(initX + 0, initY - 1);
+	tiles[1] = new Tile(initX + 0, initY - 0);
+	tiles[2] = new Tile(initX + 1, initY - 0);
+	tiles[3] = new Tile(initX + 2, initY - 0);
 }
 
 void Block::lBlock(int initX, int initY) {
 	deleteTiles();
-	tiles[0] = new Tile(initX + 0, initY + 0);
-	tiles[1] = new Tile(initX + 1, initY + 0);
-	tiles[2] = new Tile(initX + 2, initY + 0);
-	tiles[3] = new Tile(initX + 2, initY + 1);
+	tiles[0] = new Tile(initX + 0, initY - 0);
+	tiles[1] = new Tile(initX + 1, initY - 0);
+	tiles[2] = new Tile(initX + 2, initY - 0);
+	tiles[3] = new Tile(initX + 2, initY - 1);
 }
 
 void Block::oBlock(int initX, int initY) {
 	deleteTiles();
-	tiles[0] = new Tile(initX + 0, initY + 0);
-	tiles[1] = new Tile(initX + 0, initY + 1);
-	tiles[2] = new Tile(initX + 1, initY + 0);
-	tiles[3] = new Tile(initX + 1, initY + 1);
+	tiles[0] = new Tile(initX + 0, initY - 0);
+	tiles[1] = new Tile(initX + 0, initY - 1);
+	tiles[2] = new Tile(initX + 1, initY - 0);
+	tiles[3] = new Tile(initX + 1, initY - 1);
 }
 
 void Block::sBlock(int initX, int initY) {
 	cout << "test: deleteTiles" << endl;
 	deleteTiles();
 	cout << "test: newtile 0" << endl;
-	tiles[0] = new Tile(initX + 0, initY + 0);
+	tiles[0] = new Tile(initX + 0, initY - 0);
 	cout << "test: newtile 1" << endl;
-	tiles[1] = new Tile(initX + 1, initY + 0);
+	tiles[1] = new Tile(initX + 1, initY - 0);
 	cout << "test: newtile 2" << endl;
-	tiles[2] = new Tile(initX + 1, initY + 1);
+	tiles[2] = new Tile(initX + 1, initY - 1);
 	cout << "test: newtile 3" << endl;
-	tiles[3] = new Tile(initX + 2, initY + 1);
+	tiles[3] = new Tile(initX + 2, initY - 1);
 }
 
 void Block::zBlock(int initX, int initY) {
 	deleteTiles();
-	tiles[0] = new Tile(initX + 0, initY + 1);
-	tiles[1] = new Tile(initX + 1, initY + 1);
-	tiles[2] = new Tile(initX + 1, initY + 0);
-	tiles[3] = new Tile(initX + 2, initY + 0);
+	tiles[0] = new Tile(initX + 0, initY - 1);
+	tiles[1] = new Tile(initX + 1, initY - 1);
+	tiles[2] = new Tile(initX + 1, initY - 0);
+	tiles[3] = new Tile(initX + 2, initY - 0);
 }
 
 void Block::tBlock(int initX, int initY) {
 	deleteTiles();
-	tiles[0] = new Tile(initX + 0, initY + 1);
-	tiles[1] = new Tile(initX + 1, initY + 1);
-	tiles[2] = new Tile(initX + 1, initY + 0);
-	tiles[3] = new Tile(initX + 2, initY + 1);
+	tiles[0] = new Tile(initX + 0, initY - 1);
+	tiles[1] = new Tile(initX + 1, initY - 1);
+	tiles[2] = new Tile(initX + 1, initY - 0);
+	tiles[3] = new Tile(initX + 2, initY - 1);
 }
 
 void Block::tileDropBlock(int initX, int initY) {
