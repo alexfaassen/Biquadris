@@ -226,8 +226,8 @@ void GameState::printGame(){
     }
     cout << "test: after player.printToString" << endl;
 
-    cout << lp;
-    cout << rp;
+    cout << "lp size: " << lp.size() << endl;
+    cout << "rp size: " << rp.size() << endl;
 
     while(true){
         cout << "while(true)" <<endl;
