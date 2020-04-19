@@ -162,4 +162,19 @@ void Block::deleteTiles(){
 }
 
 std::string printBlock() {
+	string str = "";
+	for (int row = 1; row >= 0; --row) {
+		for (int col = 0; col < 11; ++col) {
+			for (int t = 0; t < 4; ++t) {
+				if (tiles[k]->getX() == col && tiles[k]->getY() == row) {
+					str += str(tiles[k]->getType());
+					break;
+				} else {
+					str += " ";
+				}
+			}
+		}
+		str += "\n';
+	}
+	return str;
 }
