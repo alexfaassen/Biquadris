@@ -40,9 +40,9 @@ void Block::oBlock(int initX, int initY) {
 void Block::sBlock(int initX, int initY) {
 	deleteTiles();
 	tiles[0] = new Tile(initX + 0, initY + 0);
-	tiles[1] = new Tile(initX + 0, initY + 1);
+	tiles[1] = new Tile(initX + 1, initY + 0);
 	tiles[2] = new Tile(initX + 1, initY + 1);
-	tiles[3] = new Tile(initX + 1, initY + 0);
+	tiles[3] = new Tile(initX + 1, initY + 1);
 }
 
 void Block::zBlock(int initX, int initY) {
