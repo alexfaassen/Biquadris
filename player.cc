@@ -55,8 +55,8 @@ void Player::postMoveClean(){
 
 Player::Player(){}
 
-Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptfile, int startlevel)
-: window{PlayerWindow(w, offsetX, offsetY)}, side{side}, scriptFile {scriptfile} {
+Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptFile, int startlevel)
+: window{PlayerWindow(w, offsetX, offsetY)}, side{side}, scriptFile {scriptFile} {
     //cout << "if(window.hasWindow())" <<endl;
     if(window.hasWindow()){
         initGraphicsObservers();

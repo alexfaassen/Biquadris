@@ -33,7 +33,7 @@ class Player {
 
     public:
     Player();
-    Player(Xwindow*, int offsetX, int offsetY, int side, std::string scriptfile, int startlevel);
+    Player(Xwindow*, int offsetX, int offsetY, int side, std::string scriptFile, int startlevel);
     ~Player();
 
     //accessors
