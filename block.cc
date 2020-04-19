@@ -170,9 +170,9 @@ std::string Block::printBlock() const {
 			cout << "col: " << col << endl;
 			for (int t = 0; t < 4; ++t) {
 				if (tiles[t]->getX() == col && tiles[t]->getY() == row) {
-					str += string(1, type);
-					break;
+					str += string(1, type);	
 					isTile = true;
+					break;
 				}
 				if (!isTile) str += " ";
 				isTile = false;	
