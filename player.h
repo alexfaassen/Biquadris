@@ -9,11 +9,9 @@
 #include "playerwindow.h"
 #include "board.h"
 #include "event.h"
-#include "level0.h"
 
 class Observer;
 class Level;
-class Level0;
 
 class Player {
     private:
