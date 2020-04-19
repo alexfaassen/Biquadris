@@ -232,7 +232,12 @@ bool Player::setLevel(int n){
 }
 
 bool Player::setFileInput(ifstream* stream){
-    return level ? level->setFile(stream) : 0;
+    if(level){
+        level->deleteFile();
+        level->setFile(stream);
+        return true;
+    }
+    return false;
 }
 
 void Player::specialAction(){

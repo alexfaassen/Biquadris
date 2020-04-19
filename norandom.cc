@@ -5,12 +5,12 @@
 #include <sstream>
 #include <fstream>
 
+using namespace std;
+
 void NoRandom::run(GameState &game, const int times) const {
-	if (game.getActivePlayer().isLevel() == 3 || game.getActivePlayer().isLevel() == 4) {
-		std::istream &in = game.getStream();
-		std::string s;
-		in >> s;
-		std::ifstream *newFile = new std::ifstream{s};
-		game.getActivePlayer().setFileInput(newFile);
-	}
+	istream &in = game.getStream();
+	string s;
+	in >> s;
+	ifstream *newFile = new ifstream{s};
+	game.getActivePlayer().setFileInput(newFile);
 }
