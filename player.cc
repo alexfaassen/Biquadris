@@ -214,7 +214,7 @@ bool Player::setLevel(int n){
 	             temp = NULL;
 	     }
     }
-    board->setLevel(level);
+    if(board) board->setLevel(level);
     return true;
 }
 
