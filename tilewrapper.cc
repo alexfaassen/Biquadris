@@ -18,14 +18,14 @@ void Tilewrapper::drawEmptyAt(int x, int y) const{
 }
 
 void Tilewrapper::drawTileAt(int x, int y) const{
-    int colour = White;
-    if (tile->getType() == 'I') colour = Yellow;
-    else if (tile->getType() == 'J') colour = Magenta;
-    else if (tile->getType() == 'L') colour = Brown;
-    else if (tile->getType() == 'O') colour = Green;
-    else if (tile->getType() == 'S') colour = Cyan;
-    else if (tile->getType() == 'Z') colour = Orange;
-    else if (tile->getType() == '*') colour = Black;
+    int colour = XWindow::White;
+    if (tile->getType() == 'I') colour = XWindow::Yellow;
+    else if (tile->getType() == 'J') colour = XWindow::Magenta;
+    else if (tile->getType() == 'L') colour = XWindow::Brown;
+    else if (tile->getType() == 'O') colour = XWindow::Green;
+    else if (tile->getType() == 'S') colour = XWindow::Cyan;
+    else if (tile->getType() == 'Z') colour = XWindow::Orange;
+    else if (tile->getType() == '*') colour = XWindow::Black;
     window->fillRectangle(x, y, 20, 20, colour);
 }
 

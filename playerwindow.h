@@ -23,10 +23,6 @@ class PlayerWindow{
     int getHeight() {return height;};   
     bool hasWindow() {return thisHasWindow;};             
 
-	enum { White = 0, Black, Red, Green, Blue, Cyan, Yellow, Magenta,
-		Orange, Brown, DarkGreen }; // Available colours.
-
-
 	// Draws a string
 	void drawString(int x, int y, std::string msg, int colour = Black);
 	void drawBigString(int x, int y, std::string msg, int colour = Black);
