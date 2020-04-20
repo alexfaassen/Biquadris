@@ -4,7 +4,7 @@
 
 class HeavyEffect : public Effect {
 	int numDown;
-	vector<Move> triggerMoves;
+	std::vector<Move> triggerMoves;
 
 	bool isTrigger(const Move m) const;
 

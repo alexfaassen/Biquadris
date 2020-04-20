@@ -26,7 +26,7 @@ class Player {
 
     void initGraphicsObservers();   //creates and attaches all of the graphicObserver objects
     int cleanObservers();           //removes all dead observers from the vector
-    void notifyObservers(Event, int);      //calls notify() with the given parameters on all observers
+    void notifyObservers(Event, Move);      //calls notify() with the given parameters on all observers
     void notifyObservers(Event, std::vector<std::vector<char>>&);
 
     void preMove();     //called right before movement
