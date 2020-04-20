@@ -53,6 +53,7 @@ void Board::initImmobileTiles(PlayerWindow* w){
 
 Board::Board(Level* level, PlayerWindow* w)
 : level{level}, window{w} {
+	cout << "test: Board Constructor" << endl;
 	cout << "test: initImmobileTiles" << endl;
 	initImmobileTiles(w);
 	cout << "test: nextBlock = CreateBlock" << endl;
