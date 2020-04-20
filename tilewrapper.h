@@ -1,7 +1,7 @@
 #ifndef TILEWRAPPER_H
 #define TILEWRAPPER_H
 
-#include <vector>;
+#include <vector>
 
 class Tile;
 class PlayerWindow;
