@@ -1,0 +1,1 @@
+3levelup 7left 7right 7left drop leveldown seq test_sa.txt heavy 7right 7left

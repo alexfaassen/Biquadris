@@ -1,0 +1,1 @@
+seq test_sa.txt force S seq drop seq test_sa.txt force K drop seq test_sa.txt blue

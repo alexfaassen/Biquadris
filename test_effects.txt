@@ -1,6 +1,8 @@
 =============================================================================1
-seq test_input.txt restart
+seq test_heavy.txt restart
 =============================================================================2
-seq test_change.txt restart
+seq test_force.txt restart
 =============================================================================3
-seq test_blockGen.txt restart
+seq test_blind.txt restart
+=============================================================================4
+seq test_centreDrop.txt restart
