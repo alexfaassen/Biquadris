@@ -1,8 +1,8 @@
-=============================================================================1
+=============================================================================test_input-1
 3levelup seq test_inputRefresh.txt 2leveldown seq test_inputRefresh.txt restart
-=============================================================================2
+=============================================================================test_input-2
 8levelup seq test_inputRefresh.txt 10leveldown seq test_inputRefresh.txt restart
-=============================================================================3
+=============================================================================test_input-3
 10levelup seq test_inputRefresh.txt 4levelup seq test_inputRefresh.txt restart
-=============================================================================4
+=============================================================================test_input-4
 0levelup norandom biquadris_mysequence.txt seq test_inputRefresh.txt 3leveldown seq test_inputRefresh.txt
