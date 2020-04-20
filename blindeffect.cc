@@ -17,7 +17,7 @@ void BlindEffect::notify(const Event currEvent, vector<vector<char>> &boardPrint
 			for (int c = 0; c < 11; ++c) {
 				if (blindRow || (c >= 2 && c < 9)) {
 					try {
-						boardPrint.at(c).at(y) = '?';
+						boardPrint.at(r).at(c) = '?';
 					} catch (...) {
 						break;
 					}
