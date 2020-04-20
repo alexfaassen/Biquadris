@@ -11,7 +11,7 @@ class HeavyEffect : public Effect {
 	public:
 	HeavyEffect(bool temp = true, int numDown = 1);
 
-	void notify(const Event currEvent, const int linesCleared) override;
+	void notify(const Event currEvent, const Move currMove) override;
 };
 
 #endif
