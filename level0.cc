@@ -19,6 +19,9 @@ Block *Level0::CreateBlock() {
 		file->clear();
 		file->seekg(ios::beg);
 	}
-	while (b == ' ') *file >> b;
+	while (b == ' '){
+		cout << "test: reading from file b" << endl;
+		*file >> b;
+	}
 	return new Block(b, identifier);
 }
