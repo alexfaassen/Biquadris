@@ -51,7 +51,7 @@ Board::~Board(){
 }
 
 bool Board::pushNextBlock(bool safe){
-	cout << "test: in pushNextBlock()" << endl;
+	cout << "test: in pushNextBlock(), current nextblock type is " << nextBlock->getType() << endl;
 	if(safe && currentBlock) return false;
 	if(!nextBlock)nextBlock = level->CreateBlock();
 	//cout << "test: nextBlock type (before switch): " << string(1, nextBlock->getType()) << endl;
