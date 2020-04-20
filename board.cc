@@ -35,7 +35,9 @@ void Board::clearRow(int row){
 }
 
 Block* Board::CreateBlock(){
+	cout << "test: level->CreateBlock" << endl;
 	Block* b = level->CreateBlock();
+	cout << "test: b->attachWindow(window)" << endl;
 	b->attachWindow(window);
 	return b;
 }
@@ -51,9 +53,9 @@ void Board::initImmobileTiles(PlayerWindow* w){
 
 Board::Board(Level* level, PlayerWindow* w)
 : level{level}, window{w} {
-	//cout << "test: initImmobileTiles" << endl;
+	cout << "test: initImmobileTiles" << endl;
 	initImmobileTiles(w);
-	//cout << "test: nextBlock = CreateBlock" << endl;
+	cout << "test: nextBlock = CreateBlock" << endl;
 	nextBlock = CreateBlock();
 }
 
