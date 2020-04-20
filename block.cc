@@ -110,26 +110,43 @@ void Block::clockwise() {
 		if(t->getX() < minX)minX = t->getX();
 		if(t->getY() < minY)minY = t->getY();
 	}
+
+	Block rotateBlock = Block(type, 0, 0, 0, 0);
+	int maxRotateX = 0, maxRoatateY = -3;
+	for(auto t : rotateBlock.tiles) {
+		if(t->getX() > maxRoatateX)maxRoatateX = t->getX();
+		if(t->getY() > maxRoatateY)maxRoatateY = t->getY();
+	}
 	int distUp;
+	for(auto t : rotateBlock.tiles) {
+		distUp = maxRotateY - t->getY();
+		// t->setX(t->getX() - minX);
+		// t->setX(t->getY() - minY);
+		t->setY(maxRotateY + distUp);
+		t->invert();
+		t->setY(t->getY() - maxRotateX + maxY);
+		t->setX(t->getX() + minX)
+	}
+
 	// for(auto t : tiles) {
 	// 	t->setX(t->getX() - minX);
 	// 	t->setX(t->getY() - minY);
 	// }
 
-	cout << "after min clockwise" <<endl;
-	for(auto t : tiles) {
-		cout << "(" << t->getX() << ", " << t->getY() << ") ";
-	}
-	cout <<endl;
+	// cout << "after min clockwise" <<endl;
+	// for(auto t : tiles) {
+	// 	cout << "(" << t->getX() << ", " << t->getY() << ") ";
+	// }
+	// cout <<endl;
 
-	for(auto t : tiles) {
-		t->setX(t->getX() - minX);
-		t->setX(t->getY() - minY);
-		t->invert();
-		t->setY(-t->getY());
-		t->setX(t->getX() - minX);
-		t->setX(t->getY() - minY);
-	}
+	// for(auto t : tiles) {
+	// 	t->setX(t->getX() - minX);
+	// 	t->setX(t->getY() - minY);
+	// 	t->invert();
+	// 	t->setY(-t->getY());
+	// 	t->setX(t->getX() - minX);
+	// 	t->setX(t->getY() - minY);
+	// }
 	
 	// for(auto t : tiles) {
 	// 	distUp = maxY - t->getY();
