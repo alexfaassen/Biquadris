@@ -4,8 +4,6 @@
 #include <string>
 #include "window.h"
 
-class Xwindow;
-
 class PlayerWindow{
     private:
     Xwindow* window;
