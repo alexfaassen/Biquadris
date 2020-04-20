@@ -5,9 +5,9 @@
 #include "tile.h"
 #include "direction.h"
 #include "block.h"
+#include "immtilewrapper.h"
 
 class Level;
-class Tilewrapper;
 class PlayerWindow;
 
 class Board {
