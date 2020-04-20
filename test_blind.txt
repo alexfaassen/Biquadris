@@ -1,0 +1,1 @@
+seq test_sa.txt blind 7left 7right 7left

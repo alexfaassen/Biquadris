@@ -1,6 +1,6 @@
 =============================================================================1
-seq test_input.txt restart
+levelup I seq test_inputRefresh.txt restart
 =============================================================================2
-seq test_change.txt restart
+4levelup J norandom biquadris_mysequence.txt L seq test_inputRefresh.txt restart
 =============================================================================3
-seq test_blockGen.txt restart
+4levelup J drop I 12right L 0down -1right 0drop 1drop L restart
