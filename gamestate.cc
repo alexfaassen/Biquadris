@@ -54,7 +54,7 @@ bool GameState::handleGameOver(){
 bool GameState::beginGameOverLoop(){
     cout << "Play again? y/n" << endl;
     string s;
-    while(getStream() >> s){
+    while(readFromStream(s)){
         if (s == "y" || s == "Y"){
             cout << "Restarting game..." << endl;
             restart();
