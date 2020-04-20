@@ -6,3 +6,5 @@ seq heavy_eot.txt restart
 seq level2_drop.txt restart
 =============================================================================4
 seq level3_drop.txt restart
+=============================================================================5
+3levelup I right clockwise down counterclockwise left
