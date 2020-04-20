@@ -143,7 +143,7 @@ bool GameState::beginReadLoop(){
         if(!handleGameOver()){
             break;
         }
-        
+
         if(activePlayer->getInputState() == SA) cout << "Choose a Special Action!" << endl;
     }
     return true;
@@ -242,11 +242,11 @@ void GameState::printGame(){
     //cout << "test: before player.printToString" << endl;
     string lp, rp;
     if(activePlayer->getSide() == -1){
-        lp = activePlayer->printToString();
-        rp = nonActivePlayer->printToString();
+        lp = activePlayer->printToString(true);
+        rp = nonActivePlayer->printToString(false);
     } else {
-        lp = nonActivePlayer->printToString();
-        rp = activePlayer->printToString();
+        lp = nonActivePlayer->printToString(false);
+        rp = activePlayer->printToString(true);
     }
     //cout << "test: after player.printToString" << endl;
 

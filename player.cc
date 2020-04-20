@@ -283,18 +283,26 @@ string charArrToString(const vector<vector<char>>& arr){
     return ss.str();
 }
 
-string Player::printToString(){
+string Player::printToString(bool active){
     stringstream ss;
     //cout << "test: before level->getIdentifier" << endl;
     ss << "Level:" << setw(5) << level->getIdentifier() << '\n';
     ss << "Score:" << setw(5) << score << '\n';
-    ss << "-----------" << '\n';
+    if(active){ 
+        ss << "===========" << '\n';
+    } else { 
+        ss << "-----------" << '\n';
+    }
     //cout << "test: before board.renderCharArray" << endl;
     vector<vector<char>> boardarr = board->renderCharArray();
     //cout << "test: before notifyObservers(boardarr)" << endl;
     notifyObservers(beforeTextDisplay, boardarr);
     ss << charArrToString(boardarr) << endl;
-    ss << "-----------" << '\n';
+    if(active){ 
+        ss << "===========" << '\n';
+    } else { 
+        ss << "-----------" << '\n';
+    }
     ss << "Next:      " << '\n';
     //cout << "test: before printNextBlock()" << endl;
     ss << board->printNextBlock();
