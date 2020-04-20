@@ -127,6 +127,7 @@ bool GameState::beginReadLoop(){
     string s;
     while (readFromStream(s)) {
         //cout << "test: passed getStream" << endl;
+        if(activePlayer->getInputState() == SA) cout << "Choose a Special Action!" << endl;
         int multiplier = 1;
         if(isdigit(s[0])){          // test if s starts with an int
             multiplier = atoi(s.c_str());   // http://www.cplusplus.com/reference/cstdlib/atoi/
@@ -217,7 +218,6 @@ void GameState::cleanup(){
 
     //handle textDisplay
     printGame();
-    if(activePlayer->getInputState() == SA) cout << "Choose a Special Action!" << endl;
 }
 
 // prints everything until the first \n in str and removes everything up to and including that \n
