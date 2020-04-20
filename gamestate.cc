@@ -116,6 +116,7 @@ bool GameState::readFromStream(string &str){
             return true;
         }
     }
+    cout << "test: reading from cin" << endl;
     return bool(cin >> str);
 }
 
