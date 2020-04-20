@@ -32,6 +32,7 @@ class Tilewrapper {
     virtual Tilewrapper& operator=(Tilewrapper &other) {tile = other.tile; return *this;}; 
 
     virtual Tile* getTile() const {return tile;};
+    virtual void setWindow(PlayerWindow* w) {window = w;};
 
     //implicit conversions
     virtual operator bool() const {return tile;};

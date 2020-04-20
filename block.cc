@@ -79,6 +79,7 @@ type{type}, initLevel{initLevel}, heaviness{heavy} {
 	else if(type == 'S') sBlock(x, y);
 	else if(type == 'Z') zBlock(x, y);
 	else tBlock(x, y);
+	cout << "test: Block constructed with tile size = " << tiles.size() << endl;
 }
 
 Block::~Block(){
@@ -117,6 +118,9 @@ void Block::counterClockwise() {
 
 void Block::attachWindow(PlayerWindow* w) {
 	window = w;
+	for(auto &t : tiles){
+		t.setWindow(window);
+	}
 	draw();
 }
 
