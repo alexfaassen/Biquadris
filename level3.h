@@ -6,7 +6,6 @@
 class Player;
 
 class Level3 : public Level {
-
 	public:
 	Level3(const int playerSide, int identifier = 3);
 	Level3(const Level &other);
