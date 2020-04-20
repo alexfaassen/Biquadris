@@ -9,8 +9,8 @@ class PlayerWindow;
 class Tilewrapper {
     protected:
     // Tilewarpper DOES NOT have ownership of these. DO NOT delete
-    Tile* tile = nullptr;
     PlayerWindow* window = nullptr;
+    Tile* tile = nullptr;
 
     virtual void drawAt(int x, int y);
     virtual void drawEmptyAt(int x, int y);
@@ -22,7 +22,7 @@ class Tilewrapper {
     virtual ~Tilewrapper(){;};
 
     //copy assignment operator
-    virtual Tilewrapper& operator=(Tilewrapper &other) {tile = other.tile;};  
+    virtual Tilewrapper& operator=(Tilewrapper &other) {tile = other.tile; return *this;};  
 
     //implicit conversions
     virtual operator bool() const {return tile;};
