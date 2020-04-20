@@ -110,7 +110,7 @@ void Board::changeCurrent(char newType) {
 	Block *newBlock = new Block(newType, level->getIdentifier());
 	Block *oldCurrBlock = currentBlock;
 	currentBlock = newBlock;
-	delete oldCurrBlock;
+	if(oldCurrBlock) delete oldCurrBlock;
 	if (isCurrentBlocked()) kill();
 }
 
