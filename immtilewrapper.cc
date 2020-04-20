@@ -19,6 +19,11 @@ ImmTilewrapper& ImmTilewrapper::operator=(Tilewrapper &other){
     return *this;
 }
 
+ImmTilewrapper& ImmTilewrapper::operator=(ImmTilewrapper &other){
+    tile = other.tile;
+    return *this;
+}
+
 void ImmTilewrapper::draw() const{
     drawAt(x, y);
 }
