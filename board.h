@@ -4,8 +4,8 @@
 #include <string>
 #include "tile.h"
 #include "direction.h"
+#include "block.h"
 
-class Block;
 class Level;
 class Tilewrapper;
 class PlayerWindow;
@@ -37,7 +37,7 @@ class Board {
 	~Board();
 
 	bool isAlive() const{return alive;};
-	char getNextBlockType() const;
+	char getNextBlockType() const {return nextBlock->getType();};
 
 	// moves currentBlock into placed, nextBlock into currentBlock, and generates nextBlock. 
 	// Returns if successful. If safe, will not do anything if currentBlock is not nullptr

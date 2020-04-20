@@ -6,6 +6,7 @@
 #include "level.h"
 #include "tilewrapper.h"
 #include "immtilewrapper.h"
+#include "blocktilewrapper.h"
 
 using namespace std;
 
@@ -61,10 +62,6 @@ Board::~Board(){
 	for(auto p : placed){
 		delete p;
 	}
-}
-
-char Board::getNextBlockType() const {
-	return nextBlock->getType();
 }
 
 bool Board::pushNextBlock(bool safe){
