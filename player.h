@@ -6,17 +6,18 @@
 
 #include "inputstate.h"
 #include "direction.h"
-#include "playerwindow.h"
 #include "event.h"
 #include "move.h"
 
 class Observer;
 class Level;
 class Board;
+class PlayerWindow;
+class Xwindow;
 
 class Player {
     private:
-    PlayerWindow window;
+    PlayerWindow* window = nullptr;
     int side, score = 0;
     Board* board = nullptr;
     Level* level = nullptr;

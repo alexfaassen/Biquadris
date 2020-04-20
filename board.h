@@ -7,6 +7,8 @@
 
 class Block;
 class Level;
+class Tilewrapper;
+class PlayerWindow;
 
 class Board {
 	// Board has ownership of the following
@@ -15,7 +17,8 @@ class Board {
 	std::vector <Block *> placed;
 
 	//Board DOES NOT have ownership of the following. DO NOT call delete on these
-	Tile* immobileTiles[11][15];
+	//Tilewrapper immobileTiles[11][15];
+	std::vector<std::vector<Tilewrapper>> immobileTiles;
 	Level* level = nullptr;
 
 	
@@ -23,10 +26,12 @@ class Board {
 	void clearRow(int row);		//kills all the tiles in the row drops everything down
 
 	bool alive = 1;
+
+	void initImmobileTiles(PlayerWindow* = nullptr);
 	
 	public:
 	//constructor and destructor
-	Board(Level*);
+	Board(Level*, PlayerWindow* = nullptr);
 	~Board();
 
 	bool isAlive() const{return alive;};

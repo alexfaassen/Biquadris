@@ -7,6 +7,7 @@
 #include "level2.h"
 #include "level3.h"
 #include "level4.h"
+#include "playerwindow.h"
 #include <sstream>
 #include <iostream>
 #include <iomanip>
@@ -62,9 +63,10 @@ void Player::checkEndTurn(){
 Player::Player(){}
 
 Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptFile, int startlevel)
-: window{PlayerWindow(w, offsetX, offsetY)}, side{side}, scriptFile {scriptFile} {
+: side{side}, scriptFile {scriptFile} {
     //cout << "test: if(window.hasWindow())" <<endl;
-    if(window.hasWindow()){
+    if(w){
+        window = new PlayerWindow(w, offsetX, offsetY);
         initGraphicsObservers();
     }
     //cout << "test: if(!setLevel(startlevel))" <<endl;
@@ -73,7 +75,7 @@ Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptFile
         setLevel(0);
     }
     //cout << "test: constructing board" <<endl;
-    board = new Board(level);
+    board = new Board(level, window);
 }
 
 Player::~Player(){
@@ -85,6 +87,7 @@ Player::~Player(){
         if(p) delete p;
     }
     if(board) delete board;
+    if(window) delete window;
 }
 
 int Player::isLevel() {

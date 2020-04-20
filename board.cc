@@ -4,6 +4,8 @@
 #include "board.h"
 #include "block.h"
 #include "level.h"
+#include "tilewrapper.h"
+#include "playerwindow.h"
 
 using namespace std;
 
@@ -31,14 +33,19 @@ void Board::clearRow(int row){
 	}
 }
 
-Board::Board(Level* level)
-: level{level} {
-	//cout << "test: Board ctor starting" << endl;
-	for(auto &x : immobileTiles){
-		for(auto &p : x){
-			p = nullptr;
+void Board::initImmobileTiles(PlayerWindow* w){
+	for(int x = 0; x < 11; x++){
+		immobileTiles.emplace_back(vector<Tilewrapper>());
+		for(int y = 0; y < 15; y++){
+			immobileTiles[x].emplace_back(Tilewrapper(x,y,w));
 		}
 	}
+}
+
+Board::Board(Level* level, PlayerWindow* w)
+: level{level} {
+	//cout << "test: Board ctor starting" << endl;
+	initImmobileTiles(w);
 	nextBlock = level->CreateBlock();
 }
 
