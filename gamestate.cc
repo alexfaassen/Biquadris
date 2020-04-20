@@ -111,15 +111,18 @@ istream& GameState::getStream(){
 
 bool GameState::readFromStream(string &str){
     bool read = false;
-    if(getStream() >> str) read = true;
-    //cout << "test: read " << str << endl;
+    while(!ifstreams.empty() && !read){
+        if (getStream() >> str) read = true;
+    }
     if(!ifstreams.empty()) cout << str << endl;
     return read;
 }
 
 bool GameState::readFromStream(char &c){
     bool read = false;
-    if (getStream() >> c) read = true;
+    while(!ifstreams.empty() && !read){
+        if (getStream() >> c) read = true;
+    }
     if(!ifstreams.empty()) cout << string(1,c) << endl;
     return read;
 }
