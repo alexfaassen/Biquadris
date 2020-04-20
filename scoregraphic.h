@@ -9,7 +9,7 @@ class ScoreGraphic : public GraphicsObserver {
 
     public:
     ScoreGraphic(PlayerWindow* w = nullptr): GraphicsObserver(w) {};
-    void notify(const Event currEvent, Move) override;
+    void notify(const Event currEvent, const Move m) override;
 };
 
 #endif
