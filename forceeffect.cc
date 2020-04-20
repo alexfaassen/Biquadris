@@ -2,7 +2,7 @@
 #include "player.h"
 
 void ForceEffect::notify(const Event currEvent, const Move currMove) {
-	if (currEvent == onTurnStart) {
+	if (currEvent == onTurnStart || currEvent == beforeMove) {
 		player->changeCurrentBlock(newBlock);
 		kill();
 	}

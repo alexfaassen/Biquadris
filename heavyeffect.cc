@@ -23,7 +23,6 @@ void HeavyEffect::notify(const Event currEvent, const Move currMove) {
 		int moved = player->moveBlock(Down, numDown, false);
 		if(moved < numDown){
 			player->drop(1, false);
-			player->endTurn();
 		}
 	} else if (currEvent == onTurnEnd) {
 		update();
