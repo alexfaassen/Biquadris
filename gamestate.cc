@@ -210,10 +210,15 @@ void GameState::cleanup(){
     //update highscore
     updateHighscore(activePlayer->getScore());
     
-    //switch active player if turn has ended
-    if(activePlayer->getInputState() == END_TURN){
+    if(simul){
         switchActive();
-        activePlayer->startTurn();  //note: this is where startTurn() is called
+        if(activePlayer->getInputState() == END_TURN) activePlayer->startTurn();
+    } else {
+        //switch active player if turn has ended
+        if(activePlayer->getInputState() == END_TURN){
+            switchActive();
+            activePlayer->startTurn();  //note: this is where startTurn() is called
+        }
     }
 
     //handle textDisplay
