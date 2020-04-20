@@ -11,5 +11,9 @@ void NoRandom::run(GameState &game, const int times) const {
 	string s;
 	game.readFromStream(s);
 	ifstream *newFile = new ifstream{s};
-	game.getActivePlayer().setFileInput(newFile);
+	if(newFile->good()){
+		game.getActivePlayer().setFileInput(newFile);
+	} else {
+		cout << "Error: " << s << " is missing or unreadable" << endl;
+	}
 }
