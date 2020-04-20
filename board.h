@@ -51,6 +51,9 @@ class Board {
 	bool counterClockwiseCurrent();
 	void dropCurrent();
 
+	// deals with the heaviness stuff
+	void weighDownCurrent();
+
 	// are any of currentBlock's tiles on an occupied tile?
 	bool isCurrentBlocked();
 
