@@ -4,11 +4,6 @@
 HeavyEffect::HeavyEffect(bool temp, int numDown) : Effect(temp), numDown{numDown} {
 	triggerMoves.emplace_back(mLeft);
 	triggerMoves.emplace_back(mRight);
-	if (temp) {
-		triggerMoves.emplace_back(mDown);
-		triggerMoves.emplace_back(mClockwise);
-		triggerMoves.emplace_back(mCounterClockwise);
-	}
 }
 
 bool HeavyEffect::isTrigger(const Move m) const {

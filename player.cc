@@ -49,6 +49,7 @@ void Player::preMove(){
 }
 
 void Player::postMoveClean(Move m = mLeft){
+    board->weighDownCurrent();
     notifyObservers(afterMove, m);
     checkEndTurn();
 }
@@ -149,8 +150,10 @@ void Player::drop(int times, bool isInput){
         endTurn();
     }
 
-    if(isInput && times > 0) checkEndTurn();
-
+    if(isInput && times > 0){
+        notifyObservers(onDrop);
+        checkEndTurn();
+    }
     //cout << "test: after endTurn()" << endl;
 }
 

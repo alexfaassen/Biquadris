@@ -6,12 +6,12 @@
 
 class Block {
 	char type;
-	int initLevel;
+	int initLevel, heaviness = 0;
 	std::vector<Tile*> tiles;
 
 	public:
 	//constructors
-	Block(char type, int initLevel, int x = 0, int y = 0);
+	Block(char type, int initLevel, int heavy = 0, int x = 0, int y = 0);
 	~Block();
 
 	//set block types
@@ -34,6 +34,7 @@ class Block {
 	int getInitLevel() const {return initLevel;};
 	std::vector<Tile*>& getTiles() {return tiles;};
 	std::string printBlock() const;
+	int getHeaviness() const {return heaviness;};
 
 	//maintainence
 	bool alive();

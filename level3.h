@@ -6,7 +6,6 @@
 class Player;
 
 class Level3 : public Level {
-	HeavyEffect *heavy = nullptr;
 
 	public:
 	Level3(const int playerSide, int identifier = 3);

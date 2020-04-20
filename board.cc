@@ -165,6 +165,10 @@ void Board::dropCurrent() {
 	//cout << "test: before placeCurrent()" << endl;
 }
 
+void Board::weighDownCurrent(){
+	moveCurrent(Down, currentBlock->getHeaviness());
+}
+
 bool Board::isCurrentBlocked(){
 	for(auto t : currentBlock->getTiles()){
 		if(!isEmpty(t->getX(), t->getY())) return true;
