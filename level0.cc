@@ -18,7 +18,7 @@ Block *Level0::CreateBlock() {
 /*	if (!(*file >> b)) {
 		file->clear();
 		file->seekg(ios::beg);
-	l*/}
+	l*/
 	while (b == ' '){
 		if (!(*file >> b)) {
 			file->clear();
