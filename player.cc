@@ -186,9 +186,10 @@ void Player::endTurn(){
 
 void Player::handleEndTurn(){
     int linescleared = board->eotClean(&score);
-    if(linescleared >= 2) {
-        setInputState(SA);
-    }
+    
+    if(linescleared >= 1) notifyObservers(onLinesCleared);
+    if(linescleared >= 2) setInputState(SA);
+    
     notifyObservers(onTurnEnd);
     cleanObservers();
     if (!board->isAlive()) setInputState(LOSS);
