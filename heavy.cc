@@ -3,5 +3,5 @@
 #include "gamestate.h"
 
 void Heavy::run(GameState &game, const int times) const {
-    game.getNAP().pushToObservers(new HeavyEffect(2));
+    game.getNAP().pushToObservers(new HeavyEffect(2, true));
 }
