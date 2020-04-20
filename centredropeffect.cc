@@ -3,7 +3,7 @@
 
 void CentreDropEffect::notify(const Event currEvent, const Move currMove) {
 	if (currEvent == onTurnEnd) {
-		if (blocksSinceClear == 4) {
+		if (blocksSinceClear == 2) {
 			player->forceTopTile('*', 5);
 			blocksSinceClear = 0;
 		} else {
