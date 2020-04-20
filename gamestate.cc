@@ -75,7 +75,7 @@ GameState::GameState(bool hasWindow, string scriptFile1, string scriptFile2, int
     if(hasWindow){
         window = new Xwindow();
     }
-    //cout << "test: before restart" << endl;
+    cout << "test: before restart" << endl;
     restart();
 }
 
@@ -271,11 +271,11 @@ void GameState::printGame(){
 void GameState::restart(){
     if(activePlayer) delete activePlayer;
     if(nonActivePlayer) delete nonActivePlayer;
-    //cout << "test : before createPlayers" << endl;
+    cout << "test : before createPlayers" << endl;
     createPlayers();
-    //cout << "test : activePlayer->startTurn" << endl;
+    cout << "test : activePlayer->startTurn" << endl;
     activePlayer->startTurn();
-    //cout << "test : printgame" << endl;
+    cout << "test : printgame" << endl;
     printGame();
 }
 
