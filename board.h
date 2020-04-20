@@ -37,7 +37,7 @@ class Board {
 	~Board();
 
 	bool isAlive() const{return alive;};
-	char getNextBlockType() const {return nextBlock->getType();};
+	char getNextBlockType() const;
 
 	// moves currentBlock into placed, nextBlock into currentBlock, and generates nextBlock. 
 	// Returns if successful. If safe, will not do anything if currentBlock is not nullptr

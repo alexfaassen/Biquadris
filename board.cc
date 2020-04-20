@@ -63,6 +63,10 @@ Board::~Board(){
 	}
 }
 
+char Board::getNextBlockType() const {
+	return nextBlock->getType();
+}
+
 bool Board::pushNextBlock(bool safe){
 	//cout << "test: in pushNextBlock(), current nextblock type is " << nextBlock->getType() << endl;
 	if(safe && currentBlock) return false;
