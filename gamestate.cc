@@ -113,12 +113,12 @@ bool GameState::readFromStream(string &str){
     while(!ifstreams.empty()){
         if(getStream() >> str) {
             cout << str << endl;
-            cout << "test: file read success" << endl;
+            //cout << "test: file read success" << endl;
             return true;
         }
-        cout << "test: file read fail" << endl;
+        //cout << "test: file read fail" << endl;
     }
-    cout << "test: reading from cin" << endl;
+    //cout << "test: reading from cin" << endl;
     return bool(cin >> str);
 }
 
