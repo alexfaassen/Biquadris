@@ -1,6 +1,6 @@
 #ifndef MOVE_H
 #define MOVE_H
 
-enum Move {Left, Right, Down, Clockwise, CounterClockwise};
+enum Move {mLeft, mRight, mDown, mClockwise, mCounterClockwise};
 
 #endif

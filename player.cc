@@ -31,7 +31,7 @@ int Player::cleanObservers(){
     return cleaned;
 }
 
-void Player::notifyObservers(Event ev, Move m = Left){
+void Player::notifyObservers(Event ev, Move m = mLeft){
     cout << "test: observers.size = " <<observers.size() << endl;
     for(auto p : observers){
         if (p->isAlive()) p->notify(ev, m);
@@ -48,7 +48,7 @@ void Player::preMove(){
     notifyObservers(beforeMove);
 }
 
-void Player::postMoveClean(Move m = Left){
+void Player::postMoveClean(Move m = mLeft){
     notifyObservers(afterMove, m);
     checkEndTurn();
 }
@@ -98,9 +98,9 @@ int Player::moveBlock(Direction dir, int times, bool isInput){
     int moves = board->moveCurrent(dir, times);
     if(isInput) {
 	    cout << "test: postMove() called" << endl;
-	    Move m = Left;
-	    if (dir == Right) m = Right;
-	    else if (dir == Down) m = Down;
+	    Move m = mLeft;
+	    if (dir == Right) m = mRight;
+	    else if (dir == Down) m = mDown;
 	    postMoveClean(m);
     }
     return moves;
@@ -114,7 +114,7 @@ int Player::rotateClockwise(int times, bool isInput){
     for (int i = 0; i < times; ++i) {
 	    if (board->clockwiseCurrent()) ++successes;
     }
-    if(isInput) postMoveClean(Clockwise);
+    if(isInput) postMoveClean(mClockwise);
     return successes;
 }
 
@@ -126,7 +126,7 @@ int Player::rotateCounterClockwise(int times, bool isInput){
     for (int i = 0; i < times; ++i) {
 	    if (board->counterClockwiseCurrent()) ++successes;
     }
-    if(isInput) postMoveClean(CounterClockwise);
+    if(isInput) postMoveClean(mCounterClockwise);
     return successes;
 }
 
