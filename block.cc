@@ -7,7 +7,7 @@ using namespace std;
 
 void Block::iBlock(int initX, int initY) {
 	deleteTiles();
-	cout << "test: in iBlock ctor, initX = "<< initX << ", initY = " << initY << endl;
+	//cout << "test: in iBlock ctor, initX = "<< initX << ", initY = " << initY << endl;
 	tiles.emplace_back(new Tile('I', initX + 0, initY - 0));
 	tiles.emplace_back(new Tile('I', initX + 1, initY - 0));
 	tiles.emplace_back(new Tile('I', initX + 2, initY - 0));
@@ -74,7 +74,7 @@ void Block::tileDropBlock(int initX, int initY) {
 
 Block::Block(char type, int initLevel, int x, int y):
 type{type}, initLevel{initLevel} {
-	cout << "Block ctor is run with " << string(1,type) << endl;
+	//cout << "Block ctor is run with " << string(1,type) << endl;
 	if(type == '*') tileDropBlock(x, y);
 	else if(type == 'I') iBlock(x, y);
 	else if(type == 'J') jBlock(x, y);
