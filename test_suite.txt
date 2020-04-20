@@ -9,4 +9,6 @@ seq level3_drop.txt restart
 =============================================================================5
 3levelup I right clockwise down counterclockwise left restart
 =============================================================================6
-seq test_input.txt restart
+seq test_levels.txt restart
+=============================================================================7
+seq test_effects.txt restart
