@@ -110,33 +110,23 @@ istream& GameState::getStream(){
 }
 
 bool GameState::readFromStream(string &str){
-    /*bool read = false;
-    while(!ifstreams.empty() && !read){
-        if (getStream() >> str) read = true;
+    while(!ifstreams.empty()){
+        if(getStream() >> str) {
+            cout << str << endl;
+            return true;
+        }
     }
-    if(!ifstreams.empty()) cout << str << endl;
-    return read;*/
-
-    while(getStream() >> str){
-        if(!ifstreams.empty()) cout << str << endl;
-        return true;
-    }
-    return false;
+    return cin >> str;
 }
 
 bool GameState::readFromStream(char &c){
-    /*bool read = false;
-    while(!ifstreams.empty() && !read){
-        if (getStream() >> c) read = true;
+    while(!ifstreams.empty()){
+        if(getStream() >> c){
+            cout << string(1,c) << endl;
+            return true;
+        }
     }
-    if(!ifstreams.empty()) cout << string(1,c) << endl;
-    return read;*/
-
-    while(getStream() >> c){
-        if(!ifstreams.empty()) cout << string(1,c) << endl;
-        return true;
-    }
-    return false;
+    return cin >> c;
 }
 
 bool GameState::beginReadLoop(){
