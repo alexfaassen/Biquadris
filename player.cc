@@ -49,7 +49,6 @@ void Player::preMove(){
 
 void Player::postMoveClean(){
     notifyObservers(afterMove);
-    //TODO once board is implemented
     if (!board->isAlive()) setInputState(LOSS);
 }
 
@@ -87,11 +86,14 @@ int Player::isLevel() {
 
 int Player::moveBlock(Direction dir, int times, bool isInput){
     if(isInput){
-	//cout << "test: preMove() called" << endl;
+	cout << preMove() called" << endl;
         preMove();
     }
     int moves = board->moveCurrent(dir, times);
-    if(isInput) postMoveClean();
+    if(isInput) {
+	    cout << "test: postMove() called" << endl;
+	    postMoveClean();
+    }
     return moves;
 }
 
