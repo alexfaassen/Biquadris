@@ -75,7 +75,7 @@ GameState::GameState(bool hasWindow, string scriptFile1, string scriptFile2, int
     if(hasWindow){
         window = new Xwindow();
     }
-    //cout << "test: before restart" << endl;
+    cout << "test: before restart" << endl;
     restart();
 }
 
