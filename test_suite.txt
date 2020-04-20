@@ -12,3 +12,13 @@ seq level3_drop.txt restart
 seq test_levels.txt restart
 =============================================================================7
 seq test_effects.txt restart
+========================blankfile
+seq test_blankfile.txt
+========================levelbounds
+seq test_levelbounds.txt
+========================illegalfile
+seq test_illegalfile.txt
+========================multidrop
+seq test_multidrop.txt
+========================recursion
+seq test_recursion.txts
