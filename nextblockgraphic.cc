@@ -3,5 +3,5 @@
 #include "playerwindow.h"
 
 void NextBlockGraphic::notify(const Event currEvent, const char c){	
-	window->drawString(0, 415, "Next:", Xwindow::Black);
+	window->drawString(0, 415, "Next:", PlayerWindow::Black);
 }
