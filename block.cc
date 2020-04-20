@@ -97,6 +97,12 @@ void Block::move(int deltaX, int deltaY) {
 }
 
 void Block::clockwise() {
+	cout << "before clockwise" <<endl;
+	for(auto t : tiles) {
+		cout << "(" << t->getX() << ", " << t->getY() << ") ";
+	}
+	cout <<endl;
+
 	int maxX = 0, maxY = -3, minX = 11;
 	for(auto t : tiles) {
 		if(t->getX() > maxX)maxX = t->getX();
@@ -105,11 +111,28 @@ void Block::clockwise() {
 	}
 	int distUp;
 	for(auto t : tiles) {
+		t->setX(t->getX() - minX);
+		t->setX(t->getY() - minX);
+	}
+	
+	cout << "after min clockwise" <<endl;
+	for(auto t : tiles) {
+		cout << "(" << t->getX() << ", " << t->getY() << ") ";
+	}
+	cout <<endl;
+	
+	for(auto t : tiles) {
 		distUp = maxY - t->getY();
 		t->setY(maxY + distUp);
 		t->invert();
 		t->setY(t->getY() - maxX + minX);
 	}
+
+	cout << "after clockwise" <<endl;
+	for(auto t : tiles) {
+		cout << "(" << t->getX() << ", " << t->getY() << ") ";
+	}
+	cout <<endl;
 }
 
 void Block::counterClockwise() {
