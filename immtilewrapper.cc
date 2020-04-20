@@ -14,6 +14,11 @@ void ImmTilewrapper::operator=(Tile *t){
     draw();
 }
 
+ImmTilewrapper& ImmTilewrapper::operator=(Tilewrapper &other){
+    tile = other.getTile(); 
+    return *this;
+}
+
 void ImmTilewrapper::draw() const{
     drawAt(x, y);
 }

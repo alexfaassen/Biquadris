@@ -91,7 +91,7 @@ void Board::placeBlock(Block* b){
 	//cout << "test: in placeBlock(b)" << endl;
 	placed.emplace_back(b);
 	//cout << "test: for (auto p : b->getTiles())" << endl;
-	for (auto p : b->getTiles()){
+	for (Tilewrapper &p : b->getTiles()){
 		immobileTiles[p->getX()][p->getY()] = p;
 	}
 }
@@ -258,7 +258,7 @@ string Board::printNextBlock() {
 
 void Board::redrawBoard(){
 	for(auto &x : immobileTiles){
-		for(auto &sy: x){
+		for(auto &y: x){
 			y.draw();
 		}
 	}

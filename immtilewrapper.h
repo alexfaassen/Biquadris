@@ -10,6 +10,7 @@ class ImmTilewrapper : public Tilewrapper {
     public:
     ImmTilewrapper(int x, int y, PlayerWindow *w): Tilewrapper(w), x{x}, y{y} {};
     void operator=(Tile* t) override;
+    virtual ImmTilewrapper& operator=(Tilewrapper &other) override;
     void draw() const override;
     void undraw() const override;
 };

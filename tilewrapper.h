@@ -16,10 +16,14 @@ class Tilewrapper {
     virtual void drawEmptyAt(int x, int y) const;
     virtual void drawTileAt(int x, int y) const;
 
+    
+
     public:
 
     Tilewrapper(PlayerWindow* w = nullptr, Tile* t = nullptr) : window{w}, tile{t}{};
     virtual ~Tilewrapper(){;};
+
+    virtual Tile* getTile() const {return tile;};
 
     //copy assignment operator
     virtual Tilewrapper& operator=(Tilewrapper &other) {tile = other.tile; return *this;};  
