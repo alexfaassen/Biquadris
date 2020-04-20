@@ -111,10 +111,10 @@ void Block::clockwise() {
 		if(t->getY() < minY)minY = t->getY();
 	}
 	int distUp;
-	for(auto t : tiles) {
-		t->setX(t->getX() - minX);
-		t->setX(t->getY() - minY);
-	}
+	// for(auto t : tiles) {
+	// 	t->setX(t->getX() - minX);
+	// 	t->setX(t->getY() - minY);
+	// }
 
 	cout << "after min clockwise" <<endl;
 	for(auto t : tiles) {
@@ -124,6 +124,8 @@ void Block::clockwise() {
 	
 	for(auto t : tiles) {
 		distUp = maxY - t->getY();
+		t->setX(t->getX() - minX);
+		t->setX(t->getY() - minY);
 		t->setY(maxY + distUp);
 		t->invert();
 		t->setY(t->getY() - maxX + minX);
