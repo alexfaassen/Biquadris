@@ -1,9 +1,6 @@
 #ifndef HEAVYEFT_H
 #define HEAVYEFT_H
-#include "effect.h" 
-#include <iostream>
-
-using namespace std;
+#include "effect.h"
 
 class HeavyEffect : public Effect {
 	int numDown;

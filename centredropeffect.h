@@ -6,7 +6,7 @@ class CentreDropEffect : public Effect {
 	int blocksSinceClear;
 
 	public:
-	CentreDropEffect(int blocksSinceClear = 0, bool temp = true) : Effect(temp), blocksSinceClear{blocksSinceClear} {}
+	CentreDropEffect(bool temp = true, int blocksSinceClear = 0) : Effect(temp), blocksSinceClear{blocksSinceClear} {}
 
 	void notify(const Event currEvent, const int linesCleared) override;
 };
