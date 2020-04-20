@@ -50,6 +50,10 @@ void Player::preMove(){
 
 void Player::postMoveClean(){
     notifyObservers(afterMove);
+    checkEndTurn();
+}
+
+void Player::checkEndTurn(){
     if (inputState == END_TURN) handleEndTurn();
     if (!board->isAlive()) setInputState(LOSS);
 }
@@ -136,14 +140,13 @@ void Player::drop(int times, bool isInput){
     }
 
     // handles the final drop
-    if(times > 0) board->dropCurrent();
-
-    board->placeCurrent();
-
-    if(isInput && times > 0){ 
+    if(times > 0){ 
+        board->dropCurrent();
+        board->placeCurrent();
         endTurn();
-        postMoveClean();
     }
+
+    if(isInput && times > 0) checkEndTurn();
 
     //cout << "test: after endTurn()" << endl;
 }

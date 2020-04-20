@@ -30,6 +30,7 @@ class Player {
 
     void preMove();     //called right before movement
     void postMoveClean();    //called after movement. Handles cleaning and stuff
+    void checkEndTurn();
 
     public:
     Player();
