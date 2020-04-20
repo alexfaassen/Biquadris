@@ -8,6 +8,8 @@
 #include "level3.h"
 #include "level4.h"
 #include "playerwindow.h"
+#include "scoregraphic.h"
+#include "levelgraphic.h"
 #include <sstream>
 #include <iostream>
 #include <iomanip>
@@ -16,7 +18,8 @@
 using namespace std;
 
 void Player::initGraphicsObservers(){
-    //TODO once GraphicsObserver is implemented
+    pushToObservers(new ScoreGraphic(window));
+    pushToObservers(new LevelGraphic(window));
 }
 
 int Player::cleanObservers(){
@@ -198,6 +201,7 @@ void Player::endTurn(){
 
 void Player::handleEndTurn(){
     int linescleared = board->eotClean(&score);
+    notifyObservers(onScoreChange);
     
     if(linescleared >= 1) notifyObservers(onLinesCleared);
     if(linescleared >= 2) setInputState(SA);
@@ -257,6 +261,7 @@ bool Player::setLevel(int n){
     cleanObservers();
     //cout << "test: in setLevel(), about to call board->setNewLevel()" << endl;
     if(board) board->setNewLevel(level);
+    notifyObservers(onLevelChange);
     return true;
 }
 
