@@ -11,9 +11,9 @@ HeavyEffect::HeavyEffect(bool temp, int numDown) : Effect(temp), numDown{numDown
 	}
 }
 
-bool HeavyEffect::isTrigger(const Cmd c) const {
+bool HeavyEffect::isTrigger(const Move m) const {
 	for (auto p : triggerCommands) {
-		if (c == p) return true;
+		if (p == m) return true;
 	}
 	return false;
 }

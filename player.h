@@ -30,7 +30,7 @@ class Player {
     void notifyObservers(Event, std::vector<std::vector<char>>&);
 
     void preMove();     //called right before movement
-    void postMoveClean();    //called after movement. Handles cleaning and stuff
+    void postMoveClean(Move);    //called after movement. Handles cleaning and stuff
     void checkEndTurn();
 
     public:
