@@ -70,8 +70,8 @@ bool GameState::beginGameOverLoop(){
     return false;
 }
 
-GameState::GameState(bool hasWindow, string scriptFile1, string scriptFile2, int startlevel)
-: scriptFile1{scriptFile1}, scriptFile2{scriptFile2}, startlevel{startlevel} {
+GameState::GameState(bool hasWindow, string scriptFile1, string scriptFile2, int startlevel, bool simul)
+: scriptFile1{scriptFile1}, scriptFile2{scriptFile2}, startlevel{startlevel}, simul{simul} {
     if(hasWindow){
         window = new Xwindow();
     }
@@ -217,6 +217,7 @@ void GameState::cleanup(){
 
     //handle textDisplay
     printGame();
+    if(activePlayer->getInputState() == SA) cout << "Choose a Special Action!" << endl;
 }
 
 // prints everything until the first \n in str and removes everything up to and including that \n
