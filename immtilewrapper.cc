@@ -14,10 +14,10 @@ void ImmTilewrapper::operator=(Tile *t){
     draw();
 }
 
-void ImmTilewrapper::draw(){
+void ImmTilewrapper::draw() const{
     drawAt(x, y);
 }
 
-void ImmTilewrapper::undraw(){
+void ImmTilewrapper::undraw() const{
     drawEmptyAt(x, y);
 }

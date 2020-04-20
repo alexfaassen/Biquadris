@@ -223,7 +223,7 @@ vector<vector<char>> Board::renderCharArray() {
 		if (y < 14) vec.emplace_back(vector<char>());
 	}	
 	int currX, currY;
-	//cout << "test: before third for loop" << endl;
+	//cout << "test: before third for loop" << endl;s
 	if(currentBlock){
 		for(auto t : currentBlock->getTiles()) {
 			currX = t->getX();
@@ -257,8 +257,8 @@ string Board::printNextBlock() {
 }
 
 void Board::redrawBoard(){
-	for(auto x : immobileTiles){
-		for(auto y: x){
+	for(auto &x : immobileTiles){
+		for(auto &sy: x){
 			y.draw();
 		}
 	}
