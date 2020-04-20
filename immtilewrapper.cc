@@ -24,10 +24,10 @@ ImmTilewrapper& ImmTilewrapper::operator=(ImmTilewrapper &other){
     return *this;
 }
 
-void ImmTilewrapper::draw() const{
+void ImmTilewrapper::draw(){
     drawAt(x, y);
 }
 
-void ImmTilewrapper::undraw() const{
+void ImmTilewrapper::undraw(){
     drawEmptyAt(x, y);
 }

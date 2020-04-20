@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void Tilewrapper::drawAt(int x, int y) const{
+void Tilewrapper::drawAt(int x, int y){
     if(!window) return;
     if(!tile){
         drawEmptyAt(x, y);
@@ -13,12 +13,12 @@ void Tilewrapper::drawAt(int x, int y) const{
     }
 }
 
-void Tilewrapper::drawEmptyAt(int x, int y) const{
+void Tilewrapper::drawEmptyAt(int x, int y){
     if(!window) return;
     window->fillRectangle(x, y, 20, 20, PlayerWindow::White);
 }
 
-void Tilewrapper::drawTileAt(int x, int y) const{
+void Tilewrapper::drawTileAt(int x, int y){
     int colour = PlayerWindow::White;
     if (tile->getLetter() == 'I') colour = PlayerWindow::Yellow;
     else if (tile->getLetter() == 'J') colour = PlayerWindow::Magenta;
@@ -30,10 +30,10 @@ void Tilewrapper::drawTileAt(int x, int y) const{
     window->fillRectangle(x, y, 20, 20, colour);
 }
 
-void Tilewrapper::draw() const{
+void Tilewrapper::draw(){
     drawAt(tile->getX(), tile->getY());
 }
 
-void Tilewrapper::undraw() const{
+void Tilewrapper::undraw(){
     drawEmptyAt(tile->getX(), tile->getY());
 }

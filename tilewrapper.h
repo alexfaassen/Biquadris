@@ -12,9 +12,9 @@ class Tilewrapper {
     PlayerWindow* window = nullptr;
     Tile* tile = nullptr;
 
-    virtual void drawAt(int x, int y) const;
-    virtual void drawEmptyAt(int x, int y) const;
-    virtual void drawTileAt(int x, int y) const;
+    virtual void drawAt(int x, int y);
+    virtual void drawEmptyAt(int x, int y);
+    virtual void drawTileAt(int x, int y);
 
     
 
@@ -43,8 +43,8 @@ class Tilewrapper {
     virtual void operator=(Tile* t){tile = t;};
 
     //draws to screen
-    virtual void draw() const;
-    virtual void undraw() const;   //erases the current spot
+    virtual void draw();
+    virtual void undraw();   //erases the current spot
 };
 
 

@@ -16,8 +16,8 @@ class ImmTilewrapper : public Tilewrapper {
     void operator=(Tile* t) override;
     virtual ImmTilewrapper& operator=(Tilewrapper &other) override;
     virtual ImmTilewrapper& operator=(ImmTilewrapper &other);
-    void draw() const override;
-    void undraw() const override;
+    void draw() override;
+    void undraw() override;
 };
 
 #endif
