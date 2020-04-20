@@ -66,7 +66,7 @@ class Player {
     void specialAction();               //queries special action
     void pushToObservers(Observer*);
     void changeCurrentBlock(char);
-    std::string printToString();
+    std::string printToString(bool active);
     void forceTopTile(const char b, const int col);
 };
 
