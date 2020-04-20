@@ -96,13 +96,13 @@ void Block::move(int deltaX, int deltaY) {
 void Block::clockwise() {
 	undraw();
 	int maxX = 0, maxY = -3, minX = 11;
-	for(auto t : tiles) {
+	for(auto &t : tiles) {
 		if(t->getX() > maxX) maxX = t->getX();
 		if(t->getY() > maxY) maxY = t->getY();
 		if(t->getX() < minX) minX = t->getX();
 	}
 	int distUp;
-	for(auto t : tiles) {
+	for(auto &t : tiles) {
 		distUp = maxY - t->getY();
 		t->setY(maxY + distUp);
 		t->invert();
@@ -129,9 +129,11 @@ bool Block::alive() {
 	return false;
 }
 
-void Block::deleteTiles(){
+bool Block::deleteTiles(){
+	if(tiles.empty()) return false;
 	undraw();
 	tiles.clear();
+	return true;
 }
 
 std::string Block::printBlock() const {
@@ -139,7 +141,7 @@ std::string Block::printBlock() const {
 	string str = "";
 	for (int row = -1; row <= 0; ++row) {
 		for (int col = 0; col < 11; ++col) {
-			for (auto t : tiles) {
+			for (auto& t : tiles) {
 				if (t->getY() == row && t->getX() == col) {
 					str += string(1, type);	
 					isTile = true;

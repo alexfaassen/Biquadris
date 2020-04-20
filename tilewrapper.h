@@ -33,6 +33,7 @@ class Tilewrapper {
 
     //operator overloads
     virtual Tile* operator->(){return tile;};
+    virtual Tile* operator->() const {return tile;};
     virtual void operator=(Tile* t){tile = t;};
 
     //draws to screen
