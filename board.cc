@@ -90,12 +90,10 @@ int Board::eotClean(int *score) {
 			rowsRemoved++;
 		}
 	}
-	cout << "rowsRemoved: " << rowsRemoved <<endl;
 
 	//erase dead blocks and score them
 	for(size_t i = 0; i < placed.size(); i++){
         	if(!placed.at(i)->alive()){
-				cout << "Dead block: " << placed.at(i)->getInitLevel() <<endl;
 				*score += (placed.at(i)->getInitLevel() + 1) * (placed.at(i)->getInitLevel() + 1);
         	    delete placed.at(i);
             	placed.erase(placed.begin()+i);
@@ -104,9 +102,10 @@ int Board::eotClean(int *score) {
    	}
 
 	//scores removed rows
-	int rowsScore = (rowsRemoved + level->getIdentifier()) * (rowsRemoved + level->getIdentifier());
-	cout << "rowScore: " << rowsScore <<endl;
-    *score += rowsScore;
+	if(rowsRemoved > 0) {
+		int rowsScore = (rowsRemoved + level->getIdentifier()) * (rowsRemoved + level->getIdentifier());
+   		*score += rowsScore;
+	}
 	return rowsRemoved;
 }
 
