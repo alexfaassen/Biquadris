@@ -20,6 +20,7 @@ class Board {
 	//Tilewrapper immobileTiles[11][15];
 	std::vector<std::vector<Tilewrapper>> immobileTiles;
 	Level* level = nullptr;
+	PlayerWindow* window = nullptr;
 
 	
 	bool rowIsFull(int row);	//checks if the given row is complete
@@ -28,6 +29,7 @@ class Board {
 	bool alive = 1;
 
 	void initImmobileTiles(PlayerWindow* = nullptr);
+	Block* CreateBlock();
 	
 	public:
 	//constructor and destructor
@@ -35,6 +37,7 @@ class Board {
 	~Board();
 
 	bool isAlive() const{return alive;};
+	char getNextBlockType() const {return nextBlock->getType();};
 
 	// moves currentBlock into placed, nextBlock into currentBlock, and generates nextBlock. 
 	// Returns if successful. If safe, will not do anything if currentBlock is not nullptr

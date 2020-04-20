@@ -10,6 +10,7 @@
 #include "playerwindow.h"
 #include "scoregraphic.h"
 #include "levelgraphic.h"
+#include "nextblockgraphic.h"
 #include <sstream>
 #include <iostream>
 #include <iomanip>
@@ -20,6 +21,7 @@ using namespace std;
 void Player::initGraphicsObservers(){
     pushToObservers(new ScoreGraphic(window));
     pushToObservers(new LevelGraphic(window));
+    pushToObservers(new NextBlockGraphic(window));
 }
 
 int Player::cleanObservers(){
@@ -39,6 +41,13 @@ void Player::notifyObservers(Event ev, Move m = mLeft){
     //cout << "test: observers.size = " <<observers.size() << endl;
     for(auto p : observers){
         if (p->isAlive()) p->notify(ev, m);
+    }
+}
+
+void Player::notifyObservers(Event ev, const char c){
+    //cout << "test: observers.size = " <<observers.size() << endl;
+    for(auto p : observers){
+        if (p->isAlive()) p->notify(ev, c);
     }
 }
 
@@ -190,8 +199,9 @@ void Player::startTurn(){
     setInputState(NORMAL);
     //cout << "test: pushNextBlock" << endl;
     board->pushNextBlock();
+    notifyObservers(onNextBlockChange);
     //cout << "test: notifyObservers(OnTurnStart)" << endl;
-    notifyObservers(onTurnStart);
+    notifyObservers(onTurnStart, board->getNextBlockType());
     if (!board->isAlive()) setInputState(LOSS);
 }
 

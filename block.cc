@@ -39,15 +39,10 @@ void Block::oBlock(int initX, int initY) {
 }
 
 void Block::sBlock(int initX, int initY) {
-	//cout << "test: deleteTiles" << endl;
 	deleteTiles();
-	//cout << "test: newtile 0" << endl;
 	tiles.emplace_back(new Tile('S', initX + 0, initY - 0));
-	//cout << "test: newtile 1" << endl;
 	tiles.emplace_back(new Tile('S', initX + 1, initY - 0));
-	//cout << "test: newtile 2" << endl;
 	tiles.emplace_back(new Tile('S', initX + 1, initY - 1));
-	//cout << "test: newtile 3" << endl;
 	tiles.emplace_back(new Tile('S', initX + 2, initY - 1));
 }
 

@@ -2,12 +2,15 @@
 #define _BLOCK_H_
 #include <string>
 #include <vector>
-#include "tile.h"
+
+class Tile;
+class PlayerWindow;
 
 class Block {
 	char type;
 	int initLevel, heaviness = 0;
 	std::vector<Tile*> tiles;
+	PlayerWindow* window = nullptr;
 
 	public:
 	//constructors
@@ -35,6 +38,7 @@ class Block {
 	std::vector<Tile*>& getTiles() {return tiles;};
 	std::string printBlock() const;
 	int getHeaviness() const {return heaviness;};
+	void attachWindow(PlayerWindow* w = nullptr) {window = w;};
 
 	//maintainence
 	bool alive();

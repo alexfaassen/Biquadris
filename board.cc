@@ -33,6 +33,12 @@ void Board::clearRow(int row){
 	}
 }
 
+Block* Board::CreateBlock(){
+	Block* b = CreateBlock();
+	b->attachWindow(window);
+	return b;
+}
+
 void Board::initImmobileTiles(PlayerWindow* w){
 	for(int x = 0; x < 11; x++){
 		immobileTiles.emplace_back(vector<Tilewrapper>());
@@ -43,10 +49,10 @@ void Board::initImmobileTiles(PlayerWindow* w){
 }
 
 Board::Board(Level* level, PlayerWindow* w)
-: level{level} {
+: level{level}, window{w} {
 	//cout << "test: Board ctor starting" << endl;
 	initImmobileTiles(w);
-	nextBlock = level->CreateBlock();
+	nextBlock = CreateBlock();
 }
 
 Board::~Board(){
@@ -60,14 +66,14 @@ Board::~Board(){
 bool Board::pushNextBlock(bool safe){
 	//cout << "test: in pushNextBlock(), current nextblock type is " << nextBlock->getType() << endl;
 	if(safe && currentBlock) return false;
-	if(!nextBlock)nextBlock = level->CreateBlock();
+	if(!nextBlock)nextBlock = CreateBlock();
 	//cout << "test: nextBlock type (before switch): " << string(1, nextBlock->getType()) << endl;
 	currentBlock = nextBlock;
 	//cout << "test: currentBlock type: " << string(1, currentBlock->getType()) << endl;
 	//cout << "test: second createBlock" <<endl;
 	//cout << "level: " << level->getIdentifier() << endl;
 	//cout << "test: Attempting to create next block" << endl;
-	nextBlock = level->CreateBlock();
+	nextBlock = CreateBlock();
 	//cout << "test: after second createBlock" <<endl;
 	if (isCurrentBlocked()) kill();
 	return true;

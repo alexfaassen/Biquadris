@@ -11,6 +11,8 @@ void Observer::attach(Player* const newPlayer) { player = newPlayer; }
 
 void Observer::notify(const Event currEvent, const Move currMove) {}
 
+void Observer::notify(const Event currEvent, const char c) {}
+
 void Observer::notify(const Event currEvent, std::vector<std::vector<char>> &boardPrint) {}
 
 void Observer::notify(const Event currEvent, PlayerWindow&) {};
