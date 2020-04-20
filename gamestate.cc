@@ -126,8 +126,7 @@ bool GameState::readFromStream(char &c){
 bool GameState::beginReadLoop(){
     string s;
     while (readFromStream(s)) {
-        //cout << "test: passed getStream" << endl;
-        if(activePlayer->getInputState() == SA) cout << "Choose a Special Action!" << endl;
+        //cout << "test: passed getStream" << endl;     
         int multiplier = 1;
         if(isdigit(s[0])){          // test if s starts with an int
             multiplier = atoi(s.c_str());   // http://www.cplusplus.com/reference/cstdlib/atoi/
@@ -144,6 +143,8 @@ bool GameState::beginReadLoop(){
         if(!handleGameOver()){
             break;
         }
+        
+        if(activePlayer->getInputState() == SA) cout << "Choose a Special Action!" << endl;
     }
     return true;
 }
