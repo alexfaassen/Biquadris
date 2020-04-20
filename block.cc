@@ -158,11 +158,11 @@ void Block::clockwise() {
 	// 	t->setY(t->getY() - maxX + minX);
 	// }
 
-	cout << "after invert clockwise" <<endl;
-	for(auto t : tiles) {
-		cout << "(" << t->getX() << ", " << t->getY() << ") ";
-	}
-	cout <<endl;
+	// cout << "after invert clockwise" <<endl;
+	// for(auto t : tiles) {
+	// 	cout << "(" << t->getX() << ", " << t->getY() << ") ";
+	// }
+	// cout <<endl;
 
 	// for(auto t : tiles) {
 	// 	t->setX(t->getX() + minX);
