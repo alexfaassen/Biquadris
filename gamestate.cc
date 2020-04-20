@@ -118,7 +118,7 @@ bool GameState::readFromStream(string &str){
 }
 
 bool GameState::readFromStream(char &c){
-    bool read = true;
+    bool read = false;
     if (getStream() >> c) read = true;
     if(!ifstreams.empty()) cout << string(1,c) << endl;
     return read;
