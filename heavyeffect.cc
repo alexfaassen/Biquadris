@@ -1,6 +1,8 @@
 #include "heavyeffect.h"
 #include "player.h"
-#include "iostream"
+#include <iostream>
+
+using namespace std;
 
 void HeavyEffect::notify(const Event currEvent, const int linesCleared) {
 	cout << "test: heavyeffect notify() is called" << endl;
