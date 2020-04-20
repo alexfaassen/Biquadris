@@ -169,7 +169,7 @@ void Block::clockwise() {
 	// }
 
 	cout << "after clockwise" <<endl;
-	for(auto t : tiles) {
+	for(auto &t : tiles) {
 		cout << "(" << t->getX() << ", " << t->getY() << ") ";
 	}
 	draw();
