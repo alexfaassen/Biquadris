@@ -14,13 +14,11 @@ Level0::Level0(const int playerSide, int identifier) : Level(playerSide, identif
 }
 
 Block *Level0::CreateBlock() {
-	//cout << "test: level0 calling CreateBlock()" << endl;
 	char b = ' ';
 	if (!(*file >> b)) {
 		file->clear();
 		file->seekg(ios::beg);
 	}
 	while (b == ' ') *file >> b;
-	//cout << "test: giving Block ctor character: " << b << endl;
 	return new Block(b, identifier);
 }

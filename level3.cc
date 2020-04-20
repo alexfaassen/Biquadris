@@ -24,14 +24,13 @@ void Level3::generateEffects(Player &p) const {
 }
 
 Block *Level3::CreateBlock() {	
-	//cout << "test: level3 calling CreateBlock()" << endl;
 	if (file) {
 		// No random
-		if (file->eof()) {
-			file->clear();
-			file->seekg(0);
-		}
 		char b = ' ';
+		if (!(*file >> b)) {
+			file->clear();
+			file->seekg(ios::beg);
+		}
 		while (b == ' ') *file >> b; 
 		return new Block(b, identifier);
 	} else {
