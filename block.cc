@@ -115,7 +115,7 @@ void Block::counterClockwise() {
 	for(int i = 0; i < 3; i++)clockwise();
 }
 
-void Block::attachWindow(PlayerWindow* w = nullptr) {
+void Block::attachWindow(PlayerWindow* w) {
 	window = w;
 	draw();
 }
