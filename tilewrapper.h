@@ -23,10 +23,15 @@ class Tilewrapper {
     Tilewrapper(PlayerWindow* w = nullptr, Tile* t = nullptr) : window{w}, tile{t}{};
     virtual ~Tilewrapper(){;};
 
-    virtual Tile* getTile() const {return tile;};
+    //copy constructor
+    Tilewrapper(Tilewrapper& other): window{other.window}, tile{other.tile}{};
+    //move constructor 
+    Tilewrapper(Tilewrapper&& other): window{other.window}, tile{other.tile}{};
 
     //copy assignment operator
-    virtual Tilewrapper& operator=(Tilewrapper &other) {tile = other.tile; return *this;};  
+    virtual Tilewrapper& operator=(Tilewrapper &other) {tile = other.tile; return *this;}; 
+
+    virtual Tile* getTile() const {return tile;};
 
     //implicit conversions
     virtual operator bool() const {return tile;};
