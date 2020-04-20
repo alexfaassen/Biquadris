@@ -20,7 +20,7 @@ class Player {
     Board* board = nullptr;
     Level* level = nullptr;
     std::vector<Observer*> observers;
-    InputState inputState = NORMAL;
+    InputState inputState = END_TURN;
     std::string scriptFile;
 
     void initGraphicsObservers();   //creates and attaches all of the graphicObserver objects
