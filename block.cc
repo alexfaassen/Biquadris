@@ -70,7 +70,7 @@ void Block::tileDropBlock(int initX, int initY) {
 
 Block::Block(char type, int initLevel, int heavy, int x, int y):
 type{type}, initLevel{initLevel}, heaviness{heavy} {
-	//cout << "Block ctor is run with " << string(1,type) << endl;
+	cout << "Block ctor is run with " << string(1,type) << endl;
 	if(type == '*') tileDropBlock(x, y);
 	else if(type == 'I') iBlock(x, y);
 	else if(type == 'J') jBlock(x, y);
@@ -130,8 +130,12 @@ bool Block::alive() {
 }
 
 bool Block::deleteTiles(){
-	if(tiles.empty()) return false;
+	if(tiles.empty()){
+		cout << "test: deleteTiles is empty" << endl; 
+		return false;
+	}
 	undraw();
+	cout << "test: deleteTiles with n = " << tiles.size() << endl;
 	tiles.clear();
 	return true;
 }
