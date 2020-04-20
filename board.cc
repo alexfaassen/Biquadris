@@ -42,8 +42,10 @@ Block* Board::CreateBlock(){
 
 void Board::initImmobileTiles(PlayerWindow* w){
 	for(int x = 0; x < 11; x++){
+		cout << "immobileTiles.emplace_back(vector<ImmTilewrapper>())" << endl;
 		immobileTiles.emplace_back(vector<ImmTilewrapper>());
 		for(int y = 0; y < 15; y++){
+			cout << "immobileTiles[x].emplace_back(ImmTilewrapper(x,y,w))" << endl;
 			immobileTiles[x].emplace_back(ImmTilewrapper(x,y,w));
 		}
 	}
@@ -51,8 +53,9 @@ void Board::initImmobileTiles(PlayerWindow* w){
 
 Board::Board(Level* level, PlayerWindow* w)
 : level{level}, window{w} {
-	//cout << "test: Board ctor starting" << endl;
+	cout << "test: initImmobileTiles" << endl;
 	initImmobileTiles(w);
+	cout << "test: nextBlock = CreateBlock" << endl;
 	nextBlock = CreateBlock();
 }
 
