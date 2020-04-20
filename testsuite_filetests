@@ -1,3 +1,0 @@
-seq test_blankfile.txt
-seq test_multidrop.txt
-seq test_recursion.txt
