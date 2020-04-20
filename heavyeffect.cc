@@ -12,7 +12,7 @@ HeavyEffect::HeavyEffect(bool temp, int numDown) : Effect(temp), numDown{numDown
 }
 
 bool HeavyEffect::isTrigger(const Move m) const {
-	for (auto p : triggerCommands) {
+	for (auto p : triggerMoves) {
 		if (p == m) return true;
 	}
 	return false;
