@@ -50,6 +50,7 @@ void Player::preMove(){
 
 void Player::postMoveClean(){
     notifyObservers(afterMove);
+    if (inputState == END_TURN) handleEndTurn();
     if (!board->isAlive()) setInputState(LOSS);
 }
 
@@ -137,11 +138,12 @@ void Player::drop(int times, bool isInput){
     // handles the final drop
     if(times > 0) board->dropCurrent();
 
-    if(isInput) notifyObservers(afterMove);
-
     board->placeCurrent();
 
-    if(isInput && times > 0) endTurn();
+    if(isInput && times > 0){ 
+        endTurn();
+        postMoveClean();
+    }
 
     //cout << "test: after endTurn()" << endl;
 }
@@ -173,8 +175,11 @@ void Player::startTurn(){
 }
 
 void Player::endTurn(){
-    int linescleared = board->eotClean(&score);
     setInputState(END_TURN);
+}
+
+void Player::handleEndTurn(){
+    int linescleared = board->eotClean(&score);
     if(linescleared >= 2) {
         setInputState(SA);
     }

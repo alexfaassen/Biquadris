@@ -55,7 +55,8 @@ class Player {
 
     //turn triggers
     void startTurn();   // executes start of turn procedures
-    void endTurn();     // executes end of turn procedures
+    void endTurn();     // sets inputstate to END_TURN
+    void handleEndTurn();   // executes end of turn procedures if inputstate is END_TURN
     
     //other stuff
     bool setLevel(int);

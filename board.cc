@@ -72,9 +72,10 @@ void Board::placeCurrent(){
 }
 
 void Board::placeBlock(Block* b){
-	cout << "test: in placeBlock(b)" << endl;
+	if(!b) return;
+	//cout << "test: in placeBlock(b)" << endl;
 	placed.emplace_back(b);
-	cout << "test: for (auto p : b->getTiles())" << endl;
+	//cout << "test: for (auto p : b->getTiles())" << endl;
 	for (auto p : b->getTiles()){
 		immobileTiles[p->getX()][p->getY()] = p;
 	}
