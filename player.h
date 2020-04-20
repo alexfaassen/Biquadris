@@ -29,6 +29,7 @@ class Player {
     int cleanObservers();           //removes all dead observers from the vector
     void notifyObservers(Event, Move);      //calls notify() with the given parameters on all observers
     void notifyObservers(Event, std::vector<std::vector<char>>&);
+    void notifyObservers(Event, PlayerWindow&);
 
     void preMove();     //called right before movement
     void postMoveClean(Move);    //called after movement. Handles cleaning and stuff
@@ -69,6 +70,8 @@ class Player {
     void changeCurrentBlock(char);
     std::string printToString(bool active);
     void forceTopTile(const char b, const int col);
+
+    void redrawBoard();
 };
 
 #endif

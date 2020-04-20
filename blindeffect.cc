@@ -1,9 +1,11 @@
 #include "blindeffect.h"
 #include "player.h"
+#include "playerwindow.h"
 
 using namespace std;
 
 void BlindEffect::notify(const Event currEvent, vector<vector<char>> &boardPrint) {
+	//textDisplay stuff
 	if (currEvent == beforeTextDisplay) {
 		// blind row
 		bool blindRow = 0;
@@ -27,8 +29,16 @@ void BlindEffect::notify(const Event currEvent, vector<vector<char>> &boardPrint
 	}
 }
 
+void BlindEffect::notify(const Event currEvent, PlayerWindow& window){
+	//graphicsDisplay stuff
+	if(currEvent == beforeTextDisplay){
+		//TODO: draw blind effect
+	}
+}
+
 void BlindEffect::notify(const Event currEvent, const Move currMove) {
 	if(currEvent == onDrop){
 		update();
+		player->redrawBoard();
 	}
 }

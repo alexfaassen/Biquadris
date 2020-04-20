@@ -6,6 +6,7 @@
 #include <vector>
 
 class Player;
+class PlayerWindow;
 
 class Observer {
 	protected:
@@ -25,6 +26,7 @@ class Observer {
 
 	virtual void notify(const Event currEvent, const Move currMove);
 	virtual void notify(const Event currEvent, std::vector<std::vector<char>> &boardPrint);
+	virtual void notify(const Event currEvent, PlayerWindow&);
 };
 
 #endif

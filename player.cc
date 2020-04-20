@@ -45,6 +45,12 @@ void Player::notifyObservers(Event ev, vector<vector<char>>& arr){
     }
 }
 
+void Player::notifyObservers(Event ev, PlayerWindow& w){
+    for(auto p : observers){
+        if (p->isAlive()) p->notify(ev, w);
+    }
+}
+
 void Player::preMove(){
     notifyObservers(beforeMove);
 }
@@ -304,6 +310,7 @@ string Player::printToString(bool active){
     vector<vector<char>> boardarr = board->renderCharArray();
     //cout << "test: before notifyObservers(boardarr)" << endl;
     notifyObservers(beforeTextDisplay, boardarr);
+    if(window) notifyObservers(beforeTextDisplay, *window); //random graphicdisplay code here
     ss << charArrToString(boardarr) << endl;
     if(active){ 
         ss << "===========" << '\n';
@@ -318,4 +325,8 @@ string Player::printToString(bool active){
 
 void Player::forceTopTile(const char b, const int col){
 	board->forceTopColumnTile(b, col);
+}
+
+void Player::redrawBoard(){
+    board->redrawBoard();
 }

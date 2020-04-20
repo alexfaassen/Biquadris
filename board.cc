@@ -249,6 +249,14 @@ string Board::printNextBlock() {
 	else return nextBlock->printBlock();
 }
 
+void Board::redrawBoard(){
+	for(auto x : immobileTiles){
+		for(auto y: x){
+			y.draw();
+		}
+	}
+}
+
 void Board::kill() {
 	alive = false;
 }
