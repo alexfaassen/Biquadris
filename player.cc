@@ -189,7 +189,7 @@ void Player::handleEndTurn(){
     if(linescleared >= 2) {
         setInputState(SA);
     }
-    notifyObservers(onTurnEnd, linescleared);
+    notifyObservers(onTurnEnd);
     cleanObservers();
     if (!board->isAlive()) setInputState(LOSS);
 }
