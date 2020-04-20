@@ -2,6 +2,7 @@
 #include <iostream>
 #include "block.h"
 #include "tile.h"
+#include "tilewrapper.h"
 
 using namespace std;
 
@@ -90,7 +91,7 @@ Block::~Block(){
 }
 
 void Block::move(int deltaX, int deltaY) {
-	for(auto t : tiles) {
+	for(auto &t : tiles) {
 		t->setX(t->getX() + deltaX);
 		t->setY(t->getY() + deltaY);
 	}
