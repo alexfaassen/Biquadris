@@ -87,7 +87,7 @@ Block::~Block(){
 
 void Block::move(int deltaX, int deltaY) {
 	undraw();
-	for(auto t : tiles) {
+	for(auto &t : tiles) {
 		t->setXY(t->getX() + deltaX, t->getY() + deltaY);
 	}
 	draw();
@@ -121,7 +121,7 @@ void Block::attachWindow(PlayerWindow* w) {
 }
 
 bool Block::alive() {
-	for(auto t : tiles){
+	for(auto &t : tiles){
 		if(t->isAlive()){
 			return true;
 		}

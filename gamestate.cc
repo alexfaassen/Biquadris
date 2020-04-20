@@ -17,11 +17,11 @@ void GameState::switchActive(){
 }
 
 void GameState::createPlayers(){
-    //cout << "test: constructing player 1" << endl;
+    cout << "test: constructing player 1" << endl;
     activePlayer = new Player(window, loffsetX, loffsetY, -1, scriptFile1, startlevel);
-    //cout << "test: constructing player 2" << endl;
+    cout << "test: constructing player 2" << endl;
     nonActivePlayer = new Player(window, roffsetX, roffsetY, 1, scriptFile2, startlevel);
-    //cout << "test: finished constructing players" << endl;
+    cout << "test: finished constructing players" << endl;
 }
 
 int GameState::cleanStreams(){

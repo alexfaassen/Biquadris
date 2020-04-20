@@ -10,5 +10,5 @@ BlockTilewrapper::BlockTilewrapper(PlayerWindow *w, Tile* t)
 };
 
 BlockTilewrapper::~BlockTilewrapper(){
-    delete tile;
+    if(tile) delete tile;
 }

@@ -185,14 +185,14 @@ void Board::weighDownCurrent(){
 }
 
 bool Board::isCurrentBlocked(){
-	for(auto t : currentBlock->getTiles()){
+	for(auto &t : currentBlock->getTiles()){
 		if(!isEmpty(t->getX(), t->getY())) return true;
 	}
 	return false;
 }
 
 bool Board::isMoveBlocked(int deltaX, int deltaY){
-	for (auto t : currentBlock->getTiles()) {
+	for (auto &t : currentBlock->getTiles()) {
 		if (!isEmpty(t->getX() + deltaX, t->getY() + deltaY)) return true;
 	}
 	return false;
@@ -226,7 +226,7 @@ vector<vector<char>> Board::renderCharArray() {
 	int currX, currY;
 	//cout << "test: before third for loop" << endl;s
 	if(currentBlock){
-		for(auto t : currentBlock->getTiles()) {
+		for(auto &t : currentBlock->getTiles()) {
 			currX = t->getX();
 			currY = t->getY();
 			vec.at(currY + 3).at(currX) = currentBlock->getType();
