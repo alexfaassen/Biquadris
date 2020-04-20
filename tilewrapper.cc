@@ -14,18 +14,18 @@ void Tilewrapper::drawAt(int x, int y) const{
 }
 
 void Tilewrapper::drawEmptyAt(int x, int y) const{
-    window->fillRectangle(x, y, 20, 20, White);
+    window->fillRectangle(x, y, 20, 20, PlayerWindow::White);
 }
 
 void Tilewrapper::drawTileAt(int x, int y) const{
-    int colour = XWindow::White;
-    if (tile->getType() == 'I') colour = XWindow::Yellow;
-    else if (tile->getType() == 'J') colour = XWindow::Magenta;
-    else if (tile->getType() == 'L') colour = XWindow::Brown;
-    else if (tile->getType() == 'O') colour = XWindow::Green;
-    else if (tile->getType() == 'S') colour = XWindow::Cyan;
-    else if (tile->getType() == 'Z') colour = XWindow::Orange;
-    else if (tile->getType() == '*') colour = XWindow::Black;
+    int colour = PlayerWindow::White;
+    if (tile->getLetter() == 'I') colour = PlayerWindow::Yellow;
+    else if (tile->getLetter() == 'J') colour = PlayerWindow::Magenta;
+    else if (tile->getLetter() == 'L') colour = PlayerWindow::Brown;
+    else if (tile->getLetter() == 'O') colour = PlayerWindow::Green;
+    else if (tile->getLetter() == 'S') colour = PlayerWindow::Cyan;
+    else if (tile->getLetter() == 'Z') colour = PlayerWindow::Orange;
+    else if (tile->getLetter() == '*') colour = PlayerWindow::Black;
     window->fillRectangle(x, y, 20, 20, colour);
 }
 
