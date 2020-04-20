@@ -24,7 +24,7 @@ class GameState {
     const int loffsetX = 0, loffsetY = 0, roffsetX = 0, roffsetY = 0;
     const std::string scriptFile1 = "biquadris_sequence1.txt", scriptFile2 ="biquadris_sequence2.txt";
     const int startlevel = 0;
-    bool running = true;
+    bool running = true, simul = false;
 
     void switchActive();    //rotates the active player
     void createPlayers();   //creates the two players
@@ -36,7 +36,7 @@ class GameState {
 
     public:
     //constructors and destrutors
-    GameState(bool hasWindow, std::string scriptFile1, std::string scriptFile2, int startlevel);
+    GameState(bool hasWindow, std::string scriptFile1, std::string scriptFile2, int startlevel, bool simul);
     ~GameState();
 
     //accessors

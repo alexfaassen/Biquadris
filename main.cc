@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <string>
 #include <string.h>
 #include <cstdlib>
@@ -17,12 +16,15 @@ int main(int argc, char *argv[]) {
     string scriptfile1 = "sequence1.txt";
     string scriptfile2 = "sequence2.txt";
     int startlevel = 0;
+    bool simul = false;
 
     //command line inputs
     for(int i = 1; i < argc; i++){
         if(strcmp(argv[i], "-text") == 0){
             hasWindow = false;
 
+        } else if (strcmp(argv[i], "-simul") == 0){
+            simul = true;
         } else if (strcmp(argv[i], "-seed") == 0){
 
             //error handling out of range
@@ -87,7 +89,7 @@ int main(int argc, char *argv[]) {
 
     cout << "test: before gamestate" << endl;
 
-    GameState gamestate(hasWindow, scriptfile1, scriptfile2, startlevel);
+    GameState gamestate(hasWindow, scriptfile1, scriptfile2, startlevel, simul);
 
     cout << "test: before beginReadLoop" << endl;
     
