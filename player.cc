@@ -82,17 +82,17 @@ Player::Player(){}
 
 Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptFile, int startlevel)
 : side{side}, scriptFile {scriptFile} {
-    //cout << "test: if(window.hasWindow())" <<endl;
+    cout << "test: if(window.hasWindow())" <<endl;
     if(w){
         window = new PlayerWindow(w, offsetX, offsetY);
         initGraphicsObservers();
     }
-    //cout << "test: if(!setLevel(startlevel))" <<endl;
+    cout << "test: if(!setLevel(startlevel))" <<endl;
     if(!setLevel(startlevel)){
         cout << "Error: invalid startlevel. Using Level 0 instead" << endl;
         setLevel(0);
     }
-    //cout << "test: constructing board" <<endl;
+    cout << "test: constructing board" <<endl;
     board = new Board(level, window);
 }
 
