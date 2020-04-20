@@ -1,6 +1,7 @@
 #ifndef OBSERVER_H
 #define OBSERVER_H
 #include "event.h"
+#include "move.h"
 
 #include <vector>
 
@@ -22,7 +23,7 @@ class Observer {
 	void attach(Player* const newPlayer);
 	void kill();
 
-	virtual void notify(const Event currEvent, const int linesCleared);
+	virtual void notify(const Event currEvent, const Move currMove);
 	virtual void notify(const Event currEvent, std::vector<std::vector<char>> &boardPrint);
 };
 

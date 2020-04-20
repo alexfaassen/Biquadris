@@ -1,7 +1,7 @@
 #include "centredropeffect.h"
 #include "player.h"
 
-void CentreDropEffect::notify(const Event currEvent, const int linesCleared) {
+void CentreDropEffect::notify(const Event currEvent, const Move currMove) {
 	if (currEvent == onTurnEnd) {
 		if (blocksSinceClear == 4) {
 			player->forceTopTile('*', 5);

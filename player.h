@@ -8,6 +8,7 @@
 #include "direction.h"
 #include "playerwindow.h"
 #include "event.h"
+#include "move.h"
 
 class Observer;
 class Level;

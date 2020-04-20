@@ -8,7 +8,7 @@ class ForceEffect : public Effect {
 	public:
 	ForceEffect(const char newBlock) : Effect(), newBlock{newBlock} {}
 
-	void notify(const Event currEvent, const int linesCleared) override;
+	void notify(const Event currEvent, const Move currMove) override;
 };
 
 #endif
