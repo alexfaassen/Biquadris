@@ -28,14 +28,13 @@ void Level4::generateEffects(Player &p) const {
 }
 
 Block *Level4::CreateBlock() {	
-	//cout << "test: level4 calling CreateBlock()" << endl;
 	if (file) {
 		// No random
-		if (file->eof()) {
+		char b = ' ';
+		if (!(*file >> b)) {
 			file->clear();
 			file->seekg(0);
 		}
-		char b = ' ';
 		while (b == ' ') *file >> b;
 		return new Block(b, identifier);
 	} else {
