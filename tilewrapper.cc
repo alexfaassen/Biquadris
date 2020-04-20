@@ -14,6 +14,7 @@ void Tilewrapper::drawAt(int x, int y) const{
 }
 
 void Tilewrapper::drawEmptyAt(int x, int y) const{
+    if(!window) return;
     window->fillRectangle(x, y, 20, 20, PlayerWindow::White);
 }
 

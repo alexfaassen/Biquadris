@@ -8,13 +8,13 @@ using namespace std;
 BlockTilewrapper::BlockTilewrapper(BlockTilewrapper &other)
 : Tilewrapper(other) {
     tile = new Tile(*tile);
-    cout << "copy ctor" << endl;
+    //cout << "copy ctor" << endl;
 }
 
 BlockTilewrapper::BlockTilewrapper(BlockTilewrapper &&other)
 : Tilewrapper(other) {
     tile = new Tile(*tile);
-    cout << "move ctor" << endl;
+    //cout << "move ctor" << endl;
 }
 
 BlockTilewrapper::~BlockTilewrapper(){
