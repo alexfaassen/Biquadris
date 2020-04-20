@@ -111,6 +111,7 @@ void Block::clockwise() {
 		if(t->getY() < minY)minY = t->getY();
 	}
 
+	cout << "Bottom Left: " << maxY << ", " << minX <<endl;
 	Block rotateBlock = Block(type, 0, 0, 0, 0);
 	int maxRotateX = 0, maxRoatateY = -3;
 	for(auto t : rotateBlock.tiles) {
