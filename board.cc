@@ -59,6 +59,7 @@ bool Board::pushNextBlock(bool safe){
 	//cout << "test: currentBlock type: " << string(1, currentBlock->getType()) << endl;
 	//cout << "test: second createBlock" <<endl;
 	//cout << "level: " << level->getIdentifier() << endl;
+	cout << "test: Attempting to create next block" << endl;
 	nextBlock = level->CreateBlock();
 	//cout << "test: after second createBlock" <<endl;
 	if (isCurrentBlocked()) kill();
