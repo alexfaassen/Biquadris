@@ -2,12 +2,12 @@
 #include "player.h"
 
 HeavyEffect::HeavyEffect(bool temp, int numDown) : Effect(temp), numDown{numDown} {
-	triggerCommands.emplace_back(mLeft);
-	triggerCommands.emplace_back(mRight);
+	triggerMoves.emplace_back(mLeft);
+	triggerMoves.emplace_back(mRight);
 	if (temp) {
-		triggerCommands.emplace_back(mDown);
-		triggerCommands.emplace_back(mClockwise);
-		triggerCommands.emplace_back(mCounterClockwise);
+		triggerMoves.emplace_back(mDown);
+		triggerMoves.emplace_back(mClockwise);
+		triggerMoves.emplace_back(mCounterClockwise);
 	}
 }
 
