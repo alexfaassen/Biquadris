@@ -16,8 +16,9 @@ class Tile {
 	int getY();
 	bool isAlive() {return alive;};
 	void kill();
-	void setX(int newX);
-	void setY(int newY);
+	void setX(const int newX);
+	void setY(const int newY);
+	void setXY(const int newX, const int newY);
 	void invert();
 };
 

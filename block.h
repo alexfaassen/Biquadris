@@ -5,11 +5,12 @@
 
 class Tile;
 class PlayerWindow;
+class BlockTilewrapper;
 
 class Block {
 	char type;
 	int initLevel, heaviness = 0;
-	std::vector<Tile*> tiles;
+	std::vector<BlockTilewrapper> tiles;
 	PlayerWindow* window = nullptr;
 
 	public:
@@ -35,14 +36,18 @@ class Block {
 	//accessors
 	char getType() const {return type;};
 	int getInitLevel() const {return initLevel;};
-	std::vector<Tile*>& getTiles() {return tiles;};
+	std::vector<BlockTilewrapper>& getTiles() {return tiles;};
 	std::string printBlock() const;
 	int getHeaviness() const {return heaviness;};
-	void attachWindow(PlayerWindow* w = nullptr) {window = w;};
+	void attachWindow(PlayerWindow* w = nullptr);
 
 	//maintainence
 	bool alive();
 	void deleteTiles();
+
+	//drawing
+	void draw();
+	void undraw();
 };
 
 

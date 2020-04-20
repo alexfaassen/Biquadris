@@ -2,69 +2,70 @@
 #include <iostream>
 #include "block.h"
 #include "tile.h"
+#include "blocktilewrapper.h"
 
 using namespace std;
 
 void Block::iBlock(int initX, int initY) {
 	deleteTiles();
 	//cout << "test: in iBlock ctor, initX = "<< initX << ", initY = " << initY << endl;
-	tiles.emplace_back(new Tile('I', initX + 0, initY - 0));
-	tiles.emplace_back(new Tile('I', initX + 1, initY - 0));
-	tiles.emplace_back(new Tile('I', initX + 2, initY - 0));
-	tiles.emplace_back(new Tile('I', initX + 3, initY - 0));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('I', initX + 0, initY - 0)));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('I', initX + 1, initY - 0)));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('I', initX + 2, initY - 0)));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('I', initX + 3, initY - 0)));
 }
 
 void Block::jBlock(int initX, int initY) {
 	deleteTiles();
-	tiles.emplace_back(new Tile('J', initX + 0, initY - 1));
-	tiles.emplace_back(new Tile('J', initX + 0, initY - 0));
-	tiles.emplace_back(new Tile('J', initX + 1, initY - 0));
-	tiles.emplace_back(new Tile('J', initX + 2, initY - 0));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('J', initX + 0, initY - 1)));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('J', initX + 0, initY - 0)));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('J', initX + 1, initY - 0)));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('J', initX + 2, initY - 0)));
 }
 
 void Block::lBlock(int initX, int initY) {
 	deleteTiles();
-	tiles.emplace_back(new Tile('L', initX + 0, initY - 0));
-	tiles.emplace_back(new Tile('L', initX + 1, initY - 0));
-	tiles.emplace_back(new Tile('L', initX + 2, initY - 0));
-	tiles.emplace_back(new Tile('L', initX + 2, initY - 1));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('L', initX + 0, initY - 0)));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('L', initX + 1, initY - 0)));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('L', initX + 2, initY - 0)));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('L', initX + 2, initY - 1)));
 }
 
 void Block::oBlock(int initX, int initY) {
 	deleteTiles();
-	tiles.emplace_back(new Tile('O', initX + 0, initY - 0));
-	tiles.emplace_back(new Tile('O', initX + 0, initY - 1));
-	tiles.emplace_back(new Tile('O', initX + 1, initY - 0));
-	tiles.emplace_back(new Tile('O', initX + 1, initY - 1));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('O', initX + 0, initY - 0)));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('O', initX + 0, initY - 1)));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('O', initX + 1, initY - 0)));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('O', initX + 1, initY - 1)));
 }
 
 void Block::sBlock(int initX, int initY) {
 	deleteTiles();
-	tiles.emplace_back(new Tile('S', initX + 0, initY - 0));
-	tiles.emplace_back(new Tile('S', initX + 1, initY - 0));
-	tiles.emplace_back(new Tile('S', initX + 1, initY - 1));
-	tiles.emplace_back(new Tile('S', initX + 2, initY - 1));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('S', initX + 0, initY - 0)));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('S', initX + 1, initY - 0)));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('S', initX + 1, initY - 1)));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('S', initX + 2, initY - 1)));
 }
 
 void Block::zBlock(int initX, int initY) {
 	deleteTiles();
-	tiles.emplace_back(new Tile('Z', initX + 0, initY - 1));
-	tiles.emplace_back(new Tile('Z', initX + 1, initY - 1));
-	tiles.emplace_back(new Tile('Z', initX + 1, initY - 0));
-	tiles.emplace_back(new Tile('Z', initX + 2, initY - 0));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('Z', initX + 0, initY - 1)));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('Z', initX + 1, initY - 1)));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('Z', initX + 1, initY - 0)));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('Z', initX + 2, initY - 0)));
 }
 
 void Block::tBlock(int initX, int initY) {
 	deleteTiles();
-	tiles.emplace_back(new Tile('T', initX + 0, initY - 1));
-	tiles.emplace_back(new Tile('T', initX + 1, initY - 1));
-	tiles.emplace_back(new Tile('T', initX + 1, initY - 0));
-	tiles.emplace_back(new Tile('T', initX + 2, initY - 1));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('T', initX + 0, initY - 1)));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('T', initX + 1, initY - 1)));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('T', initX + 1, initY - 0)));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('T', initX + 2, initY - 1)));
 }
 
 void Block::tileDropBlock(int initX, int initY) {
 	deleteTiles();
-	tiles.emplace_back(new Tile('*', initX, initY));
+	tiles.emplace_back(BlockTilewrapper(window, new Tile('*', initX, initY)));
 }
 
 Block::Block(char type, int initLevel, int heavy, int x, int y):
@@ -85,18 +86,20 @@ Block::~Block(){
 }
 
 void Block::move(int deltaX, int deltaY) {
+	undraw();
 	for(auto t : tiles) {
-		t->setX(t->getX() + deltaX);
-		t->setY(t->getY() + deltaY);
+		t->setXY(t->getX() + deltaX, t->getY() + deltaY);
 	}
+	draw();
 }
 
 void Block::clockwise() {
+	undraw();
 	int maxX = 0, maxY = -3, minX = 11;
 	for(auto t : tiles) {
-		if(t->getX() > maxX)maxX = t->getX();
-		if(t->getY() > maxY)maxY = t->getY();
-		if(t->getX() < minX)minX = t->getX();
+		if(t->getX() > maxX) maxX = t->getX();
+		if(t->getY() > maxY) maxY = t->getY();
+		if(t->getX() < minX) minX = t->getX();
 	}
 	int distUp;
 	for(auto t : tiles) {
@@ -105,10 +108,16 @@ void Block::clockwise() {
 		t->invert();
 		t->setY(t->getY() - maxX + minX);
 	}
+	draw();
 }
 
 void Block::counterClockwise() {
 	for(int i = 0; i < 3; i++)clockwise();
+}
+
+void Block::attachWindow(PlayerWindow* w = nullptr) {
+	window = w;
+	draw();
 }
 
 bool Block::alive() {
@@ -121,11 +130,7 @@ bool Block::alive() {
 }
 
 void Block::deleteTiles(){
-	for(auto p : tiles){
-		//cout << "test: deleting p" << endl;
-		if(p) delete p;
-		//cout << "test: deleted p" << endl;
-	}
+	undraw();
 	tiles.clear();
 }
 
@@ -147,4 +152,16 @@ std::string Block::printBlock() const {
 		str += "\n";
 	}
 	return str;
+}
+
+void Block::draw(){
+	for(auto &t : tiles){
+		t.draw();
+	}
+}
+
+void Block::undraw(){
+	for(auto &t : tiles){
+		t.undraw();
+	}
 }

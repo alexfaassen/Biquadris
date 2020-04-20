@@ -5,7 +5,7 @@
 #include "block.h"
 #include "level.h"
 #include "tilewrapper.h"
-#include "playerwindow.h"
+#include "immtilewrapper.h"
 
 using namespace std;
 
@@ -41,9 +41,9 @@ Block* Board::CreateBlock(){
 
 void Board::initImmobileTiles(PlayerWindow* w){
 	for(int x = 0; x < 11; x++){
-		immobileTiles.emplace_back(vector<Tilewrapper>());
+		immobileTiles.emplace_back(vector<ImmTilewrapper>());
 		for(int y = 0; y < 15; y++){
-			immobileTiles[x].emplace_back(Tilewrapper(x,y,w));
+			immobileTiles[x].emplace_back(ImmTilewrapper(x,y,w));
 		}
 	}
 }

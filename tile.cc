@@ -27,11 +27,16 @@ void Tile::kill() {
 	alive = false;
 }
 
-void Tile::setX(int newX) {
+void Tile::setX(const int newX) {
 	x = newX;
 }
 
-void Tile::setY(int newY) {
+void Tile::setY(const int newY) {
+	y = newY;
+}
+
+void Tile::setXY(const int newX, const int newY){
+	x = newX;
 	y = newY;
 }
 

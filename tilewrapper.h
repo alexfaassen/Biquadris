@@ -7,30 +7,33 @@ class Tile;
 class PlayerWindow;
 
 class Tilewrapper {
+    protected:
     // Tilewarpper DOES NOT have ownership of these. DO NOT delete
     Tile* tile = nullptr;
     PlayerWindow* window = nullptr;
 
-    int x = 0, y = 0;
+    virtual void drawAt(int x, int y);
+    virtual void drawEmptyAt(int x, int y);
+    virtual void drawTileAt(int x, int y);
 
     public:
 
-    Tilewrapper(int x, int y, PlayerWindow* w = nullptr);
-    ~Tilewrapper(){;};
+    Tilewrapper(PlayerWindow* w = nullptr, Tile* t = nullptr) : window{w}, tile{t}{};
+    virtual ~Tilewrapper(){;};
 
     //copy assignment operator
-    Tilewrapper& operator=(Tilewrapper &other);  
+    virtual Tilewrapper& operator=(Tilewrapper &other) {tile = other.tile;};  
 
     //implicit conversions
-    operator bool() const {return tile;};
+    virtual operator bool() const {return tile;};
 
     //operator overloads
-    Tile* operator->(){return tile;};
-    void operator=(Tile* t){tile = t;};
+    virtual Tile* operator->(){return tile;};
+    virtual void operator=(Tile* t){tile = t;};
 
     //draws to screen
-    void draw();
-
+    virtual void draw();
+    virtual void undraw();   //erases the current spot
 };
 
 

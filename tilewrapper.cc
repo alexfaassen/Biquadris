@@ -4,22 +4,27 @@
 
 using namespace std;
 
-Tilewrapper::Tilewrapper(int x, int y, PlayerWindow* w = nullptr)
-: x{x}, y{y}, window{w} {
-    draw();
+void Tilewrapper::drawAt(int x, int y){
+    if(!window) return;
+    if(!tile){
+        drawEmptyAt(x, y);
+    } else {
+        drawTileAt(x, y);
+    }
 }
 
-Tilewrapper& Tilewrapper::operator=(Tilewrapper &other) {
-    tile = other.tile;
-    draw();
+void Tilewrapper::drawEmptyAt(int x, int y){
+    //TODO: drawing code for drawing a blank space
+}
+
+void Tilewrapper::drawTileAt(int x, int y){
+    //TODO: drawing code for drawing an occupied space
 }
 
 void Tilewrapper::draw(){
-    if(!window) return;
-    //TODO: drawing code
-    if(!tile){
-        //draw black
-    } else {
-        //draw according to tile
-    }
+    drawAt(tile->getX(), tile->getY());
+}
+
+void Tilewrapper::undraw(){
+    drawEmptyAt(tile->getX(), tile->getY());
 }
