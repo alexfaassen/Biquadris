@@ -2,6 +2,7 @@
 #define PLAYERWINDOW_H
 
 #include <string>
+#include "window.h"
 
 class Xwindow;
 
