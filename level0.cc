@@ -15,13 +15,17 @@ Level0::Level0(const int playerSide, int identifier) : Level(playerSide, identif
 
 Block *Level0::CreateBlock() {
 	char b = ' ';
-	if (!(*file >> b)) {
+/*	if (!(*file >> b)) {
 		file->clear();
 		file->seekg(ios::beg);
-	}
+	l*/}
 	while (b == ' '){
-		cout << "test: reading from file b" << endl;
-		*file >> b;
+		if (!(*file >> b)) {
+			file->clear();
+			file->seekg(ios::beg);
+		}
+		//cout << "test: reading from file b" << endl;
+		//*file >> b;
 	}
 	return new Block(b, identifier);
 }
