@@ -51,7 +51,7 @@ Board::~Board(){
 }
 
 bool Board::pushNextBlock(bool safe){
-	//cout << "test: if(safe && currentBlock)" << endl;
+	cout << "test: in pushNextBlock(), current nextblock type is " << nextBlock->getType() << endl;
 	if(safe && currentBlock) return false;
 	if(!nextBlock)nextBlock = level->CreateBlock();
 	//cout << "test: nextBlock type (before switch): " << string(1, nextBlock->getType()) << endl;
@@ -59,6 +59,7 @@ bool Board::pushNextBlock(bool safe){
 	//cout << "test: currentBlock type: " << string(1, currentBlock->getType()) << endl;
 	//cout << "test: second createBlock" <<endl;
 	//cout << "level: " << level->getIdentifier() << endl;
+	cout << "test: Attempting to create next block" << endl;
 	nextBlock = level->CreateBlock();
 	//cout << "test: after second createBlock" <<endl;
 	if (isCurrentBlocked()) kill();
