@@ -7,6 +7,10 @@
 #include "level2.h"
 #include "level3.h"
 #include "level4.h"
+#include "playerwindow.h"
+#include "scoregraphic.h"
+#include "levelgraphic.h"
+#include "nextblockgraphic.h"
 #include <sstream>
 #include <iostream>
 #include <iomanip>
@@ -15,7 +19,9 @@
 using namespace std;
 
 void Player::initGraphicsObservers(){
-    //TODO once GraphicsObserver is implemented
+    pushToObservers(new ScoreGraphic(window));
+    pushToObservers(new LevelGraphic(window));
+    pushToObservers(new NextBlockGraphic(window));
 }
 
 int Player::cleanObservers(){
@@ -38,9 +44,22 @@ void Player::notifyObservers(Event ev, Move m = mLeft){
     }
 }
 
+void Player::notifyObservers(Event ev, const char c){
+    //cout << "test: observers.size = " <<observers.size() << endl;
+    for(auto p : observers){
+        if (p->isAlive()) p->notify(ev, c);
+    }
+}
+
 void Player::notifyObservers(Event ev, vector<vector<char>>& arr){
     for(auto p : observers){
         if (p->isAlive()) p->notify(ev, arr);
+    }
+}
+
+void Player::notifyObservers(Event ev, PlayerWindow& w){
+    for(auto p : observers){
+        if (p->isAlive()) p->notify(ev, w);
     }
 }
 
@@ -62,18 +81,19 @@ void Player::checkEndTurn(){
 Player::Player(){}
 
 Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptFile, int startlevel)
-: window{PlayerWindow(w, offsetX, offsetY)}, side{side}, scriptFile {scriptFile} {
-    //cout << "test: if(window.hasWindow())" <<endl;
-    if(window.hasWindow()){
+: side{side}, scriptFile {scriptFile} {
+    cout << "test: if(window.hasWindow())" <<endl;
+    if(w){
+        window = new PlayerWindow(w, offsetX, offsetY);
         initGraphicsObservers();
     }
-    //cout << "test: if(!setLevel(startlevel))" <<endl;
+    cout << "test: if(!setLevel(startlevel))" <<endl;
     if(!setLevel(startlevel)){
         cout << "Error: invalid startlevel. Using Level 0 instead" << endl;
         setLevel(0);
     }
-    //cout << "test: constructing board" <<endl;
-    board = new Board(level);
+    cout << "test: constructing board" <<endl;
+    board = new Board(level, window);
 }
 
 Player::~Player(){
@@ -85,6 +105,7 @@ Player::~Player(){
         if(p) delete p;
     }
     if(board) delete board;
+    if(window) delete window;
 }
 
 int Player::isLevel() {
@@ -178,8 +199,9 @@ void Player::startTurn(){
     setInputState(NORMAL);
     //cout << "test: pushNextBlock" << endl;
     board->pushNextBlock();
+    notifyObservers(onNextBlockChange);
     //cout << "test: notifyObservers(OnTurnStart)" << endl;
-    notifyObservers(onTurnStart);
+    notifyObservers(onTurnStart, board->getNextBlockType());
     if (!board->isAlive()) setInputState(LOSS);
 }
 
@@ -189,6 +211,7 @@ void Player::endTurn(){
 
 void Player::handleEndTurn(){
     int linescleared = board->eotClean(&score);
+    notifyObservers(onScoreChange);
     
     if(linescleared >= 1) notifyObservers(onLinesCleared);
     if(linescleared >= 2) setInputState(SA);
@@ -248,6 +271,7 @@ bool Player::setLevel(int n){
     cleanObservers();
     //cout << "test: in setLevel(), about to call board->setNewLevel()" << endl;
     if(board) board->setNewLevel(level);
+    notifyObservers(onLevelChange);
     return true;
 }
 
@@ -301,6 +325,7 @@ string Player::printToString(bool active){
     vector<vector<char>> boardarr = board->renderCharArray();
     //cout << "test: before notifyObservers(boardarr)" << endl;
     notifyObservers(beforeTextDisplay, boardarr);
+    if(window) notifyObservers(beforeTextDisplay, *window); //random graphicdisplay code here
     ss << charArrToString(boardarr) << endl;
     if(active){ 
         ss << "===========" << '\n';
@@ -315,4 +340,8 @@ string Player::printToString(bool active){
 
 void Player::forceTopTile(const char b, const int col){
 	board->forceTopColumnTile(b, col);
+}
+
+void Player::redrawBoard(){
+    board->redrawBoard();
 }

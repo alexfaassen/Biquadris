@@ -17,11 +17,11 @@ void GameState::switchActive(){
 }
 
 void GameState::createPlayers(){
-    //cout << "test: constructing player 1" << endl;
+    cout << "test: constructing player 1" << endl;
     activePlayer = new Player(window, loffsetX, loffsetY, -1, scriptFile1, startlevel);
-    //cout << "test: constructing player 2" << endl;
+    cout << "test: constructing player 2" << endl;
     nonActivePlayer = new Player(window, roffsetX, roffsetY, 1, scriptFile2, startlevel);
-    //cout << "test: finished constructing players" << endl;
+    cout << "test: finished constructing players" << endl;
 }
 
 int GameState::cleanStreams(){
@@ -54,7 +54,7 @@ bool GameState::handleGameOver(){
 bool GameState::beginGameOverLoop(){
     cout << "Play again? y/n" << endl;
     string s;
-    while(getStream() >> s){
+    while(readFromStream(s)){
         if (s == "y" || s == "Y"){
             cout << "Restarting game..." << endl;
             restart();
@@ -75,7 +75,7 @@ GameState::GameState(bool hasWindow, string scriptFile1, string scriptFile2, int
     if(hasWindow){
         window = new Xwindow();
     }
-    //cout << "test: before restart" << endl;
+    cout << "test: before restart" << endl;
     restart();
 }
 
@@ -110,18 +110,26 @@ istream& GameState::getStream(){
 }
 
 bool GameState::readFromStream(string &str){
-    bool read = true;
-    if(getStream() >> str) read = true;
-    //cout << "test: read " << str << endl;
-    if(!ifstreams.empty()) cout << str << endl;
-    return read;
+    while(!ifstreams.empty()){
+        if(getStream() >> str) {
+            cout << str << endl;
+            //cout << "test: file read success" << endl;
+            return true;
+        }
+        //cout << "test: file read fail" << endl;
+    }
+    //cout << "test: reading from cin" << endl;
+    return bool(cin >> str);
 }
 
 bool GameState::readFromStream(char &c){
-    bool read = true;
-    if (getStream() >> c) read = true;
-    if(!ifstreams.empty()) cout << string(1,c) << endl;
-    return read;
+    while(!ifstreams.empty()){
+        if(getStream() >> c){
+            cout << string(1,c) << endl;
+            return true;
+        }
+    }
+    return bool(cin >> c);
 }
 
 bool GameState::beginReadLoop(){
@@ -271,11 +279,11 @@ void GameState::printGame(){
 void GameState::restart(){
     if(activePlayer) delete activePlayer;
     if(nonActivePlayer) delete nonActivePlayer;
-    //cout << "test : before createPlayers" << endl;
+    cout << "test : before createPlayers" << endl;
     createPlayers();
-    //cout << "test : activePlayer->startTurn" << endl;
+    cout << "test : activePlayer->startTurn" << endl;
     activePlayer->startTurn();
-    //cout << "test : printgame" << endl;
+    cout << "test : printgame" << endl;
     printGame();
 }
 

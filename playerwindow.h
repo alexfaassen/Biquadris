@@ -7,14 +7,13 @@ class Xwindow;
 
 class PlayerWindow{
     private:
-    Xwindow* window;
+    Xwindow* window = nullptr;
     int offsetX, offsetY, width, height;
-    bool thisHasWindow;
 
     public:
     //constructors and destructors
 	PlayerWindow();
-	PlayerWindow(Xwindow* window, int offsetX, int offsetY, int width = 200, int height = 400);  
+	PlayerWindow(Xwindow* window, int offsetX, int offsetY, int width = 220, int height = 470);  
 	~PlayerWindow();              
 
     //accessors
@@ -22,7 +21,7 @@ class PlayerWindow{
     int getOffsetY() {return offsetY;};
     int getWidth() {return width;};
     int getHeight() {return height;};   
-    bool hasWindow() {return thisHasWindow;};             
+    bool hasWindow() {return window;};             
 
 	enum { White = 0, Black, Red, Green, Blue, Cyan, Yellow, Magenta,
 		Orange, Brown, DarkGreen }; // Available colours.

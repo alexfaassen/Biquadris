@@ -4,6 +4,9 @@
 #include "board.h"
 #include "block.h"
 #include "level.h"
+#include "tilewrapper.h"
+#include "immtilewrapper.h"
+#include "blocktilewrapper.h"
 
 using namespace std;
 
@@ -31,15 +34,29 @@ void Board::clearRow(int row){
 	}
 }
 
-Board::Board(Level* level)
-: level{level} {
-	//cout << "test: Board ctor starting" << endl;
-	for(auto &x : immobileTiles){
-		for(auto &p : x){
-			p = nullptr;
+Block* Board::CreateBlock(){
+	cout << "test: level->CreateBlock" << endl;
+	Block* b = level->CreateBlock();
+	cout << "test: b->attachWindow(window)" << endl;
+	b->attachWindow(window);
+	return b;
+}
+
+void Board::initImmobileTiles(PlayerWindow* w){
+	for(int x = 0; x < 11; x++){
+		immobileTiles.emplace_back(vector<ImmTilewrapper>());
+		for(int y = 0; y < 15; y++){
+			immobileTiles[x].emplace_back(ImmTilewrapper(x,y,w));
 		}
 	}
-	nextBlock = level->CreateBlock();
+}
+
+Board::Board(Level* level, PlayerWindow* w)
+: level{level}, window{w} {
+	cout << "test: initImmobileTiles" << endl;
+	initImmobileTiles(w);
+	cout << "test: nextBlock = CreateBlock" << endl;
+	nextBlock = CreateBlock();
 }
 
 Board::~Board(){
@@ -53,14 +70,14 @@ Board::~Board(){
 bool Board::pushNextBlock(bool safe){
 	//cout << "test: in pushNextBlock(), current nextblock type is " << nextBlock->getType() << endl;
 	if(safe && currentBlock) return false;
-	if(!nextBlock)nextBlock = level->CreateBlock();
+	if(!nextBlock)nextBlock = CreateBlock();
 	//cout << "test: nextBlock type (before switch): " << string(1, nextBlock->getType()) << endl;
 	currentBlock = nextBlock;
 	//cout << "test: currentBlock type: " << string(1, currentBlock->getType()) << endl;
 	//cout << "test: second createBlock" <<endl;
 	//cout << "level: " << level->getIdentifier() << endl;
 	//cout << "test: Attempting to create next block" << endl;
-	nextBlock = level->CreateBlock();
+	nextBlock = CreateBlock();
 	//cout << "test: after second createBlock" <<endl;
 	if (isCurrentBlocked()) kill();
 	return true;
@@ -77,7 +94,7 @@ void Board::placeBlock(Block* b){
 	//cout << "test: in placeBlock(b)" << endl;
 	placed.emplace_back(b);
 	//cout << "test: for (auto p : b->getTiles())" << endl;
-	for (auto p : b->getTiles()){
+	for (Tilewrapper &p : b->getTiles()){
 		immobileTiles[p->getX()][p->getY()] = p;
 	}
 }
@@ -170,14 +187,14 @@ void Board::weighDownCurrent(){
 }
 
 bool Board::isCurrentBlocked(){
-	for(auto t : currentBlock->getTiles()){
+	for(auto &t : currentBlock->getTiles()){
 		if(!isEmpty(t->getX(), t->getY())) return true;
 	}
 	return false;
 }
 
 bool Board::isMoveBlocked(int deltaX, int deltaY){
-	for (auto t : currentBlock->getTiles()) {
+	for (auto &t : currentBlock->getTiles()) {
 		if (!isEmpty(t->getX() + deltaX, t->getY() + deltaY)) return true;
 	}
 	return false;
@@ -209,9 +226,9 @@ vector<vector<char>> Board::renderCharArray() {
 		if (y < 14) vec.emplace_back(vector<char>());
 	}	
 	int currX, currY;
-	//cout << "test: before third for loop" << endl;
+	//cout << "test: before third for loop" << endl;s
 	if(currentBlock){
-		for(auto t : currentBlock->getTiles()) {
+		for(auto &t : currentBlock->getTiles()) {
 			currX = t->getX();
 			currY = t->getY();
 			vec.at(currY + 3).at(currX) = currentBlock->getType();
@@ -240,6 +257,14 @@ void Board::forceTopColumnTile(const char b, const int col) {
 string Board::printNextBlock() {	
 	if (!nextBlock) return "           \n           \n";
 	else return nextBlock->printBlock();
+}
+
+void Board::redrawBoard(){
+	for(auto &x : immobileTiles){
+		for(auto &y: x){
+			y.draw();
+		}
+	}
 }
 
 void Board::kill() {

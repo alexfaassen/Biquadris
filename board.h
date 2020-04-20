@@ -4,9 +4,11 @@
 #include <string>
 #include "tile.h"
 #include "direction.h"
+#include "block.h"
+#include "immtilewrapper.h"
 
-class Block;
 class Level;
+class PlayerWindow;
 
 class Board {
 	// Board has ownership of the following
@@ -15,21 +17,27 @@ class Board {
 	std::vector <Block *> placed;
 
 	//Board DOES NOT have ownership of the following. DO NOT call delete on these
-	Tile* immobileTiles[11][15];
+	//Tilewrapper immobileTiles[11][15];
+	std::vector<std::vector<ImmTilewrapper>> immobileTiles;
 	Level* level = nullptr;
+	PlayerWindow* window = nullptr;
 
 	
 	bool rowIsFull(int row);	//checks if the given row is complete
 	void clearRow(int row);		//kills all the tiles in the row drops everything down
 
 	bool alive = 1;
+
+	void initImmobileTiles(PlayerWindow* = nullptr);
+	Block* CreateBlock();
 	
 	public:
 	//constructor and destructor
-	Board(Level*);
+	Board(Level*, PlayerWindow* = nullptr);
 	~Board();
 
 	bool isAlive() const{return alive;};
+	char getNextBlockType() const {return nextBlock->getType();};
 
 	// moves currentBlock into placed, nextBlock into currentBlock, and generates nextBlock. 
 	// Returns if successful. If safe, will not do anything if currentBlock is not nullptr
@@ -63,12 +71,15 @@ class Board {
 	// returns if the given coord isn't occupied by a tile and isn't out of bounds
 	bool isEmpty(int y, int x);
 
-	void setNewLevel(Level *newLevel);
-
 	std::vector<std::vector<char>> renderCharArray();
 	void forceTopColumnTile(const char b, const int col);
 	std::string printNextBlock();
+
+	//forces all immobileTiles to redraw
+	void redrawBoard();
+
 	void kill();
+	void setNewLevel(Level *newLevel);
 };
 
 #endif

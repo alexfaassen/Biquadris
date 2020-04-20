@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++14 -Wall -MMD -Werror=vla
 EXEC = biquadris
-OBJECTS = main.o gamestate.o player.o commandlist.o command.o clockwisecmd.o downcmd.o leftcmd.o rightcmd.o counterclockwisecmd.o dropcmd.o levelup.o leveldown.o norandom.o random.o sequence.o icmd.o jcmd.o lcmd.o tcmd.o scmd.o zcmd.o ocmd.o restart.o sacommand.o heavy.o force.o blind.o board.o block.o tile.o level.o level0.o level1.o level2.o level3.o level4.o observer.o effect.o heavyeffect.o blindeffect.o forceeffect.o centredropeffect.o playerwindow.o window.o
+OBJECTS = main.o gamestate.o player.o commandlist.o command.o clockwisecmd.o downcmd.o leftcmd.o rightcmd.o counterclockwisecmd.o dropcmd.o levelup.o leveldown.o norandom.o random.o sequence.o icmd.o jcmd.o lcmd.o tcmd.o scmd.o zcmd.o ocmd.o restart.o sacommand.o heavy.o force.o blind.o board.o block.o tile.o level.o level0.o level1.o level2.o level3.o level4.o observer.o effect.o heavyeffect.o blindeffect.o forceeffect.o centredropeffect.o playerwindow.o window.o blocktilewrapper.o graphicsobserver.o immtilewrapper.o levelgraphic.o nextblockgraphic.o scoregraphic.o tilewrapper.o 
 DEPENDS = ${OBJECTS:.o=.d}
 
 ${EXEC}: ${OBJECTS}
