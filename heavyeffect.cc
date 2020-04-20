@@ -2,7 +2,7 @@
 #include "player.h"
 
 void HeavyEffect::notify(const Event currEvent, const int linesCleared) {
-	if (currEvent == afterMove){
+	if (currEvent == onTurnStart){
 		int moved = player->moveBlock(Down, numDown, false);
 		if(moved < numDown){
 			player->drop(1, false);
