@@ -6,7 +6,7 @@ class HeavyEffect : public Effect {
 	int numDown;
 
 	public:
-	HeavyEffect(int numDown = 1, bool temp = true) : numDown{numDown}, Effect(temp) {}
+	HeavyEffect(int numDown = 1, bool temp = true) : Effect(temp), numDown{numDown} {}
 
 	void notify(const Event currEvent, const int linesCleared) override;
 };
