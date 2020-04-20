@@ -49,6 +49,7 @@ void Player::preMove(){
 }
 
 void Player::postMoveClean(Move m = mLeft){
+    board->weighDownCurrent();
     notifyObservers(afterMove, m);
     checkEndTurn();
 }

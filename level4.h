@@ -7,7 +7,6 @@
 class Player;
 
 class Level4 : public Level {
-	HeavyEffect *heavy = nullptr;
 	CentreDropEffect *centreDrop = nullptr;
 
 	public:
