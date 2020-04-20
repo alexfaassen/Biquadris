@@ -116,7 +116,7 @@ bool GameState::readFromStream(string &str){
             return true;
         }
     }
-    return cin >> str;
+    return bool(cin >> str);
 }
 
 bool GameState::readFromStream(char &c){
@@ -126,7 +126,7 @@ bool GameState::readFromStream(char &c){
             return true;
         }
     }
-    return cin >> c;
+    return bool(cin >> c);
 }
 
 bool GameState::beginReadLoop(){
