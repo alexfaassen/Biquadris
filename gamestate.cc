@@ -45,7 +45,7 @@ int GameState::getLoser(){
 bool GameState::handleGameOver(){
     int loser = getLoser();
     if(loser == 0) return true;     //if nobody loses, return true
-    int winner = (loser == -1 ? 1 : 2);
+    int winner = (loser == -1 ? 2 : 1);
     cout << "Player" << winner << " wins!" << endl;
     cout << "The highscore is " << highscore << endl;
     return beginGameOverLoop();
