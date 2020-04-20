@@ -43,7 +43,7 @@ class Block {
 
 	//maintainence
 	bool alive();
-	void deleteTiles();
+	bool deleteTiles();
 
 	//drawing
 	void draw();
