@@ -7,7 +7,7 @@ Tile::~Tile(){
 	//cout << "test: running Tile destructor" << endl;
 }
 
-char Tile::getLetter() {
+char Tile::getLetter() const {
 	return letter;
 }
 
@@ -15,11 +15,11 @@ void Tile::setLetter(char newLetter) {
 	letter = newLetter;
 }
 
-int Tile::getX() {
+int Tile::getX() const{
 	return x;
 }
 
-int Tile::getY() {
+int Tile::getY() const{
 	return y;
 }
 

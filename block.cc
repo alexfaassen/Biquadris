@@ -97,7 +97,7 @@ void Block::move(int deltaX, int deltaY) {
 void Block::clockwise() {
   undraw();
 	cout << "before clockwise" <<endl;
-	for(auto t : tiles) {
+	for(auto &t : tiles) {
 		cout << "(" << t->getX() << ", " << t->getY() << ") ";
 	}
 	cout <<endl;
