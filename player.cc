@@ -32,6 +32,7 @@ int Player::cleanObservers(){
 }
 
 void Player::notifyObservers(Event ev, int n = 0){
+    cout << "test: observers.size = " <<observers.size() << endl;
     for(auto p : observers){
         if (p->isAlive()) p->notify(ev, n);
     }
