@@ -135,11 +135,11 @@ bool Block::alive() {
 
 bool Block::deleteTiles(){
 	if(tiles.empty()){
-		cout << "test: deleteTiles is empty" << endl; 
+		//cout << "test: deleteTiles is empty" << endl; 
 		return false;
 	}
 	undraw();
-	cout << "test: deleteTiles with n = " << tiles.size() << endl;
+	//cout << "test: deleteTiles with n = " << tiles.size() << endl;
 	tiles.clear();
 	return true;
 }
