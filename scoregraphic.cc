@@ -3,5 +3,5 @@
 #include "playerwindow.h"
 
 void ScoreGraphic::notify(const Event currEvent, Move m){
-    //TODO: draw score
+       window->drawString(0, 10, "Score: " + player->getScore() + "   ", Black); 
 }

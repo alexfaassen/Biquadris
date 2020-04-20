@@ -3,5 +3,5 @@
 #include "playerwindow.h"
 
 void LevelGraphic::notify(const Event currEvent, Move m){
-    //TODO: draw level
+       window->drawString(0, 0, "Level: " + player->isLevel() + "   ", Black);
 }

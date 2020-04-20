@@ -14,11 +14,19 @@ void Tilewrapper::drawAt(int x, int y) const{
 }
 
 void Tilewrapper::drawEmptyAt(int x, int y) const{
-    //TODO: drawing code for drawing a blank space
+    window->fillRectangle(x, y, 20, 20, White);
 }
 
 void Tilewrapper::drawTileAt(int x, int y) const{
-    //TODO: drawing code for drawing an occupied space
+    int colour = White;
+    if (tile->getType() == 'I') colour = Yellow;
+    else if (tile->getType() == 'J') colour = Magenta;
+    else if (tile->getType() == 'L') colour = Brown;
+    else if (tile->getType() == 'O') colour = Green;
+    else if (tile->getType() == 'S') colour = Cyan;
+    else if (tile->getType() == 'Z') colour = Orange;
+    else if (tile->getType() == '*') colour = Black;
+    window->fillRectangle(x, y, 20, 20, colour);
 }
 
 void Tilewrapper::draw() const{

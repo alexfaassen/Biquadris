@@ -2,6 +2,6 @@
 #include "player.h"
 #include "playerwindow.h"
 
-void NextBlockGraphic::notify(const Event currEvent, const char c){
-    //TODO: draw next block
+void NextBlockGraphic::notify(const Event currEvent, const char c){	
+	window->drawString(0, 410, "Next:      ", Black);
 }
