@@ -18,7 +18,7 @@ class Board {
 
 	//Board DOES NOT have ownership of the following. DO NOT call delete on these
 	//Tilewrapper immobileTiles[11][15];
-	std::vector<std::vector<Tilewrapper>> immobileTiles;
+	std::vector<std::vector<ImmTilewrapper>> immobileTiles;
 	Level* level = nullptr;
 	PlayerWindow* window = nullptr;
 
