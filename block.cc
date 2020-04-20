@@ -126,7 +126,7 @@ void Block::clockwise() {
 		t->setY(maxRotateY + distUp);
 		t->invert();
 		t->setY(t->getY() - maxRotateX + maxY);
-		t->setX(t->getX() + minX)
+		t->setX(t->getX() + minX);
 	}
 
 	// for(auto t : tiles) {
