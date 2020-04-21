@@ -63,6 +63,8 @@ class Player {
     void drop(int times = 1, bool isInput = true);
     int incLevel(int);
 
+    bool pushNextBlockAndCheck();   //calls board->pushNextBlock() and checks for death
+
     //turn triggers
     void startTurn();   // executes start of turn procedures
     void endTurn();     // sets inputstate to END_TURN

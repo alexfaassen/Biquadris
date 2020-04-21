@@ -208,13 +208,21 @@ int Player::incLevel(int n){
     return successes;
 }
 
+bool Player::pushNextBlockAndCheck(){
+    bool success = true;
+    if(!board->pushNextBlock()){
+        success = false;
+        kill();
+    }
+    notifyObservers(onNextBlockChange, board->getNextBlockType());
+    return success;
+}
+
 void Player::startTurn(){
     setInputState(NORMAL);
     //cout << "test: pushNextBlock" << endl;
     board->pushNextBlock();
-    notifyObservers(onNextBlockChange);
     cout << "test: notifyObservers(OnTurnStart)" << endl;
-    notifyObservers(onTurnStart, board->getNextBlockType());
     if (!board->isAlive()) kill();
 }
 
