@@ -91,17 +91,17 @@ Player::Player(){}
 
 Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptFile, int startlevel)
 : side{side}, scriptFile {scriptFile} {
-    cout << "test: if(window.hasWindow())" <<endl;
+    //cout << "test: if(window.hasWindow())" <<endl;
     if(w){
         window = new PlayerWindow(w, offsetX, offsetY);
         initGraphicsObservers();
     }
-    cout << "test: if(!setLevel(startlevel))" <<endl;
+    //cout << "test: if(!setLevel(startlevel))" <<endl;
     if(!setLevel(startlevel)){
         cout << "Error: invalid startlevel. Using Level 0 instead" << endl;
         setLevel(0);
     }
-    cout << "test: constructing board" <<endl;
+    //cout << "test: constructing board" <<endl;
     board = new Board(level, window);
 }
 
@@ -123,12 +123,12 @@ int Player::isLevel() {
 
 int Player::moveBlock(Direction dir, int times, bool isInput){
     if(isInput){
-	cout << "preMove() called" << endl;
+	//cout << "preMove() called" << endl;
         preMove();
     }
     int moves = board->moveCurrent(dir, times);
     if(isInput) {
-	    cout << "test: postMove() called" << endl;
+	    //cout << "test: postMove() called" << endl;
 	    Move m = mLeft;
 	    if (dir == Right) m = mRight;
 	    else if (dir == Down) m = mDown;

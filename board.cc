@@ -35,9 +35,9 @@ void Board::clearRow(int row){
 }
 
 Block* Board::CreateBlock(){
-	cout << "test: level->CreateBlock" << endl;
+	//cout << "test: level->CreateBlock" << endl;
 	Block* b = level->CreateBlock();
-	cout << "test: b->attachWindow(window)" << endl;
+	//cout << "test: b->attachWindow(window)" << endl;
 	b->attachWindow(window);
 	return b;
 }
@@ -53,9 +53,9 @@ void Board::initImmobileTiles(PlayerWindow* w){
 
 Board::Board(Level* level, PlayerWindow* w)
 : level{level}, window{w} {
-	cout << "test: initImmobileTiles" << endl;
+	//cout << "test: initImmobileTiles" << endl;
 	initImmobileTiles(w);
-	cout << "test: nextBlock = CreateBlock" << endl;
+	//cout << "test: nextBlock = CreateBlock" << endl;
 	nextBlock = CreateBlock();
 }
 
@@ -128,13 +128,13 @@ int Board::eotClean(int *score) {
 }
 
 void Board::changeCurrent(char newType) {
-	cout << "test: in board, changeCurrent()" << endl;
+	//cout << "test: in board, changeCurrent()" << endl;
 	Block *newBlock = new Block(newType, level->getIdentifier());
 	Block *oldCurrBlock = currentBlock;
 	currentBlock = newBlock;
 	if(oldCurrBlock) delete oldCurrBlock;
 	if (isCurrentBlocked()) kill();
-	cout << "test: end of changeCurrent()" << endl;
+	//cout << "test: end of changeCurrent()" << endl;
 }
 
 int Board::moveCurrent(Direction dir, int amount) {

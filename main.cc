@@ -87,11 +87,11 @@ int main(int argc, char *argv[]) {
         srand(seed);
     }
 
-    cout << "test: before gamestate" << endl;
+    //cout << "test: before gamestate" << endl;
 
     GameState gamestate(hasWindow, scriptfile1, scriptfile2, startlevel, simul);
 
-    cout << "test: before beginReadLoop" << endl;
+    //cout << "test: before beginReadLoop" << endl;
     
     gamestate.beginReadLoop();
     
