@@ -25,6 +25,7 @@ class Observer {
 	void kill();
 
 	//observer methods
+	virtual void notify(const Event currEvent, const int i);
 	virtual void notify(const Event currEvent, const Move currMove);
 	virtual void notify(const Event currEvent, const char c);
 	virtual void notify(const Event currEvent, std::vector<std::vector<char>> &boardPrint);
