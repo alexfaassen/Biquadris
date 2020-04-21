@@ -8,7 +8,8 @@ void TurnGraphic::notify(const Event currEvent, int active){
     if(currEvent == beforeTextDisplay){
         //TODO: draw turngraphic
         if(active){
-            window->fillRectangle(180, 442,  30,  30, PlayerWindow::Yellow);
+            //window->fillRectangle(180, 442,  30,  30, PlayerWindow::Yellow);
+            window->fillPolygon(180, 442, 3, 20, 0, PlayerWindow::White);
         } else {
             window->fillRectangle(180, 442,  30,  30, PlayerWindow::Black);
         }
