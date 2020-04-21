@@ -14,13 +14,13 @@ class Block {
 	PlayerWindow* window = nullptr;
 
 	//set block types
-	void iBlock(int x, int y);
-	void jBlock(int x, int y);
-	void lBlock(int x, int y);
-	void oBlock(int x, int y);
-	void sBlock(int x, int y);
-	void zBlock(int x, int y);
-	void tBlock(int x, int y);
+	void IBlock(int x, int y);
+	void JBlock(int x, int y);
+	void LBlock(int x, int y);
+	void OBlock(int x, int y);
+	void SBlock(int x, int y);
+	void ZBlock(int x, int y);
+	void TBlock(int x, int y);
 	void tileDropBlock(int x, int y);
 
 	public:

@@ -16,7 +16,7 @@ void Tilewrapper::drawAt(int x, int y){
 
 void Tilewrapper::drawEmptyAt(int x, int y){
     if(!window) return;
-    window->fillRectangle(x * 20 + x, (y * 20) + 100 + y, 20, 20, PlayerWindow::White);
+    window->fillRectangle(x * 20 + x - 1, (y * 20) + 100 + y - 1, 22, 22, PlayerWindow::White);
 }
 
 void Tilewrapper::drawTileAt(int x, int y){

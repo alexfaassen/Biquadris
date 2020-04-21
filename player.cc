@@ -11,7 +11,7 @@
 #include "scoregraphic.h"
 #include "levelgraphic.h"
 #include "nextblockgraphic.h"
-#include "turngraphic.h"
+//#include "turngraphic.h"
 #include <sstream>
 #include <iostream>
 #include <iomanip>
@@ -209,7 +209,7 @@ void Player::startTurn(){
     //cout << "test: pushNextBlock" << endl;
     board->pushNextBlock();
     notifyObservers(onNextBlockChange);
-    //cout << "test: notifyObservers(OnTurnStart)" << endl;
+    cout << "test: notifyObservers(OnTurnStart)" << endl;
     notifyObservers(onTurnStart, board->getNextBlockType());
     if (!board->isAlive()) setInputState(LOSS);
 }
