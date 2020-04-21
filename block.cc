@@ -121,7 +121,7 @@ void Block::clockwise() {
 
 	int minInvertX = 11, maxInvertY = 0;
 	for(auto &t : tiles) {
-		if(t->getX() > minInvertX)minInvertX = t->getX();
+		if(t->getX() < minInvertX)minInvertX = t->getX();
 		if(t->getY() > maxInvertY)maxInvertY = t->getY();
 	}
 	cout << "Invert mins: " << minInvertX << ", " << maxInvertY <<endl;
