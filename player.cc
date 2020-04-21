@@ -91,7 +91,8 @@ void Player::postMoveClean(Move m = mLeft){
 
 void Player::checkEndTurn(){
     if (inputState == END_TURN) handleEndTurn();
-    if (!board->isAlive()) kill();
+    
+    if (!board->isAlive()){ cout << "test: killed by checkEndTurn" << endl; kill();}
 }
 
 Player::Player(){}
@@ -168,10 +169,10 @@ void Player::drop(int times, bool isInput){
         board->dropCurrent();
         board->placeCurrent();
         //if dead, break out of loop and ignore everything else
-        cout << "Drop death" <<endl;
+        //cout << "Drop death" <<endl;
         if(!pushNextBlockAndCheck()) break;
     }
-    
+
     // handles the final drop
     if(times > 0){ 
         board->dropCurrent();
@@ -214,7 +215,8 @@ void Player::startTurn(){
     setInputState(NORMAL);
     pushNextBlockAndCheck();
     notifyObservers(onTurnStart);
-    if (!board->isAlive()) kill();
+    
+    if (!board->isAlive()){cout << "test: killed by startTurn" << endl; kill();}
 }
 
 void Player::endTurn(){
@@ -230,7 +232,8 @@ void Player::handleEndTurn(){
     
     notifyObservers(onTurnEnd);
     cleanObservers();
-    if (!board->isAlive()) kill();
+    cout << "test: killed by handleEndTurn" << endl;
+    if (!board->isAlive()){cout << "test: killed by startTurn" << endl; kill();}
 }
 
 bool Player::setLevel(int n){
@@ -302,7 +305,7 @@ void Player::pushToObservers(Observer* obs){
 
 void Player::changeCurrentBlock(char c){
     board->changeCurrent(c);
-    if (!board->isAlive()) kill();
+    if (!board->isAlive()){cout << "test: killed by startTurn" << endl; kill();}
 }
 
 string charArrToString(const vector<vector<char>>& arr){
