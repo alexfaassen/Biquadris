@@ -96,8 +96,8 @@ void Player::checkEndTurn(){
 
 Player::Player(){}
 
-Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptFile, int startlevel)
-: side{side}, scriptFile {scriptFile} {
+Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptFile, int startlevel, bool fastmode)
+: side{side}, scriptFile {scriptFile}, fastmode{fastmode} {
     if(w){
         window = new PlayerWindow(w, offsetX, offsetY);
         initDrawWindow();
@@ -143,10 +143,7 @@ int Player::rotateClockwise(int times, bool isInput){
     if(isInput){
         preMove();
     }
-    int successes = 0;
-    for (int i = 0; i < times; ++i) {
-	    if (board->clockwiseCurrent()) ++successes;
-    }
+    int successes = board->clockwiseCurrent(times);
     if(isInput) postMoveClean(mClockwise);
     return successes;
 }
@@ -155,10 +152,7 @@ int Player::rotateCounterClockwise(int times, bool isInput){
     if(isInput){
         preMove();
     }
-    int successes = 0;
-    for (int i = 0; i < times; ++i) {
-	    if (board->counterClockwiseCurrent()) ++successes;
-    }
+    int successes = board->counterClockwiseCurrent(times);
     if(isInput) postMoveClean(mCounterClockwise);
     return successes;
 }

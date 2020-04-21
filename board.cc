@@ -54,8 +54,8 @@ void Board::initImmobileTiles(PlayerWindow* w){
 	}
 }
 
-Board::Board(Level* level, PlayerWindow* w)
-: level{level}, window{w} {
+Board::Board(Level* level, PlayerWindow* w, bool fastmode)
+: level{level}, window{w}, fastmode{fastmode} {
 	initImmobileTiles(w);
 	nextBlock = CreateBlock();
 }
@@ -147,6 +147,7 @@ bool Board::changeCurrent(char newType) {
 
 int Board::moveCurrent(Direction dir, int amount, bool redraw) {
 	if(amount == 0) return 0;
+	if(redraw && fastmode) currentBlock->undraw();
 	int deltaX = 0, deltaY = 0;
 	if (dir == Left) deltaX = -1;
 	else if (dir == Right) deltaX = 1;
@@ -156,48 +157,55 @@ int Board::moveCurrent(Direction dir, int amount, bool redraw) {
 		if(isMoveBlocked(deltaX, deltaY)){
 			break;
 		}
-		if(redraw) currentBlock->undraw();
+		if(redraw && !fastmode) currentBlock->undraw();
 		currentBlock->move(deltaX, deltaY);
-		if(redraw) currentBlock->draw();
+		if(redraw && !fastmode) currentBlock->draw();
 		moveCount++;
 	}
+	if(redraw && fastmode) currentBlock->draw();
 	return moveCount;	
 }
 
 int Board::clockwiseCurrent(int amount, bool redraw) {
 	if(amount == 0) return 0;
-	if(redraw) currentBlock->undraw();
+	if(redraw && fastmode) currentBlock->undraw();
 	int moveCount = 0;
 	while(moveCount < amount){
+		if(redraw && !fastmode) currentBlock->undraw();
 		currentBlock->clockwise();
 		if(isCurrentBlocked()) {
 			currentBlock->counterClockwise();
 			break;
 		}
+		if(redraw && !fastmode) currentBlock->draw();
 		moveCount++;
 	}
-	if(redraw) currentBlock->draw();
+	if(redraw && fastmode) currentBlock->draw();
 	return moveCount;
 }
 
 int Board::counterClockwiseCurrent(int amount, bool redraw) {
 	if(amount == 0) return 0;
-	if(redraw) currentBlock->undraw();
+	if(redraw && fastmode) currentBlock->undraw();
 	int moveCount = 0;
 	while(moveCount < amount){
+		if(redraw && !fastmode) currentBlock->undraw();
 		currentBlock->counterClockwise();
 		if(isCurrentBlocked()) {
 			currentBlock->clockwise();
 			break;
 		}
+		if(redraw && !fastmode) currentBlock->draw();
 		moveCount++;
 	}
-	if(redraw) currentBlock->draw();
+	if(redraw && fastmode) currentBlock->draw();
 	return moveCount;
 }
 
 void Board::dropCurrent(bool redraw) {
-	while(moveCurrent(Down, 1, true) && !isCurrentBlocked());	
+	if (redraw && fastmode) currentBlock->undraw();
+	while(moveCurrent(Down, 1, !fastmode) && !isCurrentBlocked());
+	if (redraw && fastmode) currentBlock->draw();	
 }
 
 void Board::weighDownCurrent(){

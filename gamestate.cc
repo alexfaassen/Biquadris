@@ -17,8 +17,8 @@ void GameState::switchActive(){
 }
 
 void GameState::createPlayers(){
-    activePlayer = new Player(window, loffsetX, loffsetY, -1, scriptFile1, startlevel);
-    nonActivePlayer = new Player(window, roffsetX, roffsetY, 1, scriptFile2, startlevel);
+    activePlayer = new Player(window, loffsetX, loffsetY, -1, scriptFile1, startlevel, fastmode);
+    nonActivePlayer = new Player(window, roffsetX, roffsetY, 1, scriptFile2, startlevel, fastmode);
 }
 
 int GameState::cleanStreams(){
@@ -76,8 +76,8 @@ bool GameState::beginGameOverLoop(){
     return false;
 }
 
-GameState::GameState(bool hasWindow, string scriptFile1, string scriptFile2, int startlevel, bool simul)
-: scriptFile1{scriptFile1}, scriptFile2{scriptFile2}, startlevel{startlevel}, simul{simul} {
+GameState::GameState(bool hasWindow, string scriptFile1, string scriptFile2, int startlevel, bool simul, bool fastmode)
+: scriptFile1{scriptFile1}, scriptFile2{scriptFile2}, startlevel{startlevel}, simul{simul}, fastmode{fastmode} {
     if(hasWindow){
         window = new Xwindow(windowWidth, windowHeight);
     }
