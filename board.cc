@@ -96,6 +96,7 @@ bool Board::placeBlock(Block* b, bool draw){
 		immobileTiles[p->getX()][p->getY()] = p;
 		if(draw) immobileTiles[p->getX()][p->getY()].draw();
 	}
+	b->nowNotCurr();
 	return true;
 }
 
