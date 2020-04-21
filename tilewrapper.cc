@@ -28,7 +28,7 @@ void Tilewrapper::drawTileAt(int x, int y){
     else if (tile->getLetter() == 'S') colour = PlayerWindow::Cyan;
     else if (tile->getLetter() == 'Z') colour = PlayerWindow::Orange;
     else if (tile->getLetter() == '*') colour = PlayerWindow::Black;
-    cout << "test: x = " << x << ", y = " << y << endl;
+    //cout << "test: x = " << x << ", y = " << y << endl;
     window->fillRectangle(x * 20 + x, (y * 20) + 100 + y, 20, 20, colour);
     window->drawLine(x * 20 + x, (y * 20) + 100 + y, (x * 20) + 20 + x, (y * 20) + 100 + y);
     window->drawLine(x * 20 + x, (y * 20) + 120 + y, (x * 20) + 20 + x, (y * 20) + 120 + y);

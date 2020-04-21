@@ -70,7 +70,7 @@ void Block::tileDropBlock(int initX, int initY) {
 
 Block::Block(char type, int initLevel, int heavy, int x, int y):
 type{type}, initLevel{initLevel}, heaviness{heavy} {
-	cout << "Block ctor is run with " << string(1,type) << endl;
+	//cout << "Block ctor is run with " << string(1,type) << endl;
 	if(type == '*') tileDropBlock(x, y);
 	else if(type == 'I') iBlock(x, y);
 	else if(type == 'J') jBlock(x, y);
@@ -79,7 +79,7 @@ type{type}, initLevel{initLevel}, heaviness{heavy} {
 	else if(type == 'S') sBlock(x, y);
 	else if(type == 'Z') zBlock(x, y);
 	else tBlock(x, y);
-	cout << "test: Block constructed with tile size = " << tiles.size() << endl;
+	// Block constructed with tile size = " << tiles.size() << endl;
 }
 
 Block::~Block(){
