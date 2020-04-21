@@ -109,7 +109,8 @@ void Block::clockwise() {
 		if(t->getX() < minX)minX = t->getX();
 		if(t->getY() < minY)minY = t->getY();
 	}
-
+	
+	cout << "Min values: " << minX << ", " << minY <<endl;
 	for(auto &t : tiles) {
 		t->setX(t->getX() - minX);
 		t->setX(t->getY() - minY);
