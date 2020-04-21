@@ -8,8 +8,8 @@ class BlockTilewrapper : public Tilewrapper {
 
     public:
     BlockTilewrapper(PlayerWindow *w, Tile* t): Tilewrapper(w, t) {};
-    BlockTilewrapper(BlockTilewrapper &other);
-    BlockTilewrapper(BlockTilewrapper &&other);
+    BlockTilewrapper(const BlockTilewrapper &other);
+    BlockTilewrapper(const BlockTilewrapper &&other);
     
     //BlockTilewrapper DOES have ownership of tile
     ~BlockTilewrapper();

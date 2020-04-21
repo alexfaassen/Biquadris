@@ -5,13 +5,13 @@
 
 using namespace std;
 
-BlockTilewrapper::BlockTilewrapper(BlockTilewrapper &other)
+BlockTilewrapper::BlockTilewrapper(const BlockTilewrapper &other)
 : Tilewrapper(other) {
     tile = new Tile(*tile);
     //cout << "copy ctor" << endl;
 }
 
-BlockTilewrapper::BlockTilewrapper(BlockTilewrapper &&other)
+BlockTilewrapper::BlockTilewrapper(const BlockTilewrapper &&other)
 : Tilewrapper(other) {
     tile = new Tile(*tile);
     //cout << "move ctor" << endl;

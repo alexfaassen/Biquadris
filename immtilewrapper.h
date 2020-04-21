@@ -10,8 +10,8 @@ class ImmTilewrapper : public Tilewrapper {
     public:
     //constructors
     ImmTilewrapper(int x, int y, PlayerWindow *w);
-    ImmTilewrapper(ImmTilewrapper &other): Tilewrapper(other), x{other.x}, y{other.y} {};
-    ImmTilewrapper(ImmTilewrapper &&other): Tilewrapper(other), x{other.x}, y{other.y} {};
+    ImmTilewrapper(const ImmTilewrapper &other): Tilewrapper(other), x{other.x}, y{other.y} {};
+    ImmTilewrapper(const ImmTilewrapper &&other): Tilewrapper(other), x{other.x}, y{other.y} {};
 
     void operator=(Tile* t) override;
     virtual ImmTilewrapper& operator=(Tilewrapper &other) override;

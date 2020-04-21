@@ -24,9 +24,9 @@ class Tilewrapper {
     virtual ~Tilewrapper(){;};
 
     //copy constructor
-    Tilewrapper(Tilewrapper& other): window{other.window}, tile{other.tile}{};
+    Tilewrapper(const Tilewrapper& other): window{other.window}, tile{other.tile}{};
     //move constructor 
-    Tilewrapper(Tilewrapper&& other): window{other.window}, tile{other.tile}{};
+    Tilewrapper(const Tilewrapper&& other): window{other.window}, tile{other.tile}{};
 
     //copy assignment operator
     virtual Tilewrapper& operator=(Tilewrapper &other) {tile = other.tile; return *this;}; 
