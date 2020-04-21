@@ -12,7 +12,7 @@ using namespace std;
 
 bool Board::rowIsFull(int row){
 	for(int x = 0; x < 11; ++x){
-		if(!immobileTiles[x][row]) return false;
+		if(!immobileTiles[x][row].getTile()) return false;
 	}
 	return true;
 }
@@ -20,7 +20,7 @@ bool Board::rowIsFull(int row){
 void Board::clearRow(int row){
 	//kill every tile on that row
 	for(int x = 0; x < 11; ++x){
-		if(immobileTiles[x][row]){
+		if(immobileTiles[x][row].getTile()){
 			immobileTiles[x][row].undraw();
 			immobileTiles[x][row].kill();
 		}

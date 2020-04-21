@@ -2,9 +2,10 @@
 #define _BOARD_H_
 #include <vector>
 #include <string>
-#include "tile.h"
+
 #include "direction.h"
 #include "block.h"
+#include "tile.h"
 #include "immtilewrapper.h"
 
 class Level;
