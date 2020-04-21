@@ -75,6 +75,7 @@ bool Board::pushNextBlock(bool safe){
 	if (window) currentBlock->draw();
 	nextBlock = CreateBlock();
 	if (isCurrentBlocked()){
+		cout << "test: block killed by pushNextBlock" << endl;
 		 kill();
 		 return false;
 	}
@@ -141,6 +142,7 @@ bool Board::changeCurrent(char newType) {
 	currentBlock->attachWindow(window);
 	currentBlock->draw();
 	if (isCurrentBlocked()){
+		cout << "test: block killed by changeCurrent" << endl;
 		kill();
 		return false;
 	}
@@ -268,6 +270,7 @@ vector<vector<char>> Board::renderCharArray() {
 
 void Board::forceTopColumnTile(const char b, const int col) {
 	if (!isEmpty(col, 0)) {
+		cout << "test: block killed by forceTopColumnTile" << endl;
 		kill();
 	} else {
 		int row = 14;
