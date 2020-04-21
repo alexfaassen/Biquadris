@@ -29,15 +29,6 @@ void Tilewrapper::drawTileAt(int x, int y, int deltaX, int deltaY){
     else if (tile->getLetter() == 'Z') colour = PlayerWindow::Orange;
     else if (tile->getLetter() == '*') colour = PlayerWindow::Black;
     window->fillRectangle(x * 20 + x, (y * 20) + 100 + y, 20, 20, colour);
-    window->drawLine(x * 20 + x, (y * 20) + 100 + y, (x * 20) + 20 + x, (y * 20) + 100 + y);
-    window->drawLine(x * 20 + x, (y * 20) + 120 + y, (x * 20) + 20 + x, (y * 20) + 120 + y);
-    window->drawLine(x * 20 + x, (y * 20) + 100 + y, x * 20 + x, (y * 20) + 120 + y);
-    window->drawLine((x * 20) + 20 + x, (y * 20) + 100 + y, (x * 20) + 20 + x, (y * 20) + 120 + y);
-/*    window->fillRectangle(x * 20 + x + deltaX, (y * 20) + y + deltaY, 20, 20, colour);
-    window->drawLine(x * 20 + x + deltaX, (y * 20) + y + deltaY, (x * 20) + 20 + x + deltaX, (y * 20) + y + deltaY);
-    window->drawLine(x * 20 + x + deltaX, (y * 20) + y + deltaY, (x * 20) + 20 + x + deltaX, (y * 20) + y + deltaY);
-    window->drawLine(x * 20 + x + deltaX, (y * 20) + y + deltaY, x * 20 + x + deltaX, (y * 20) + y + deltaY);
-    window->drawLine((x * 20) + 20 + x + deltaX, (y * 20) + y + deltaY, (x * 20) + 20 + x + deltaX, (y * 20) + y + deltaY);*/
 }
 
 void Tilewrapper::draw(){
@@ -62,9 +53,4 @@ void Tilewrapper::customDraw(int deltaX, int deltaY){
     int x = tile->getX();
     int y = tile->getY();
     window->fillRectangle(x * 20 + x + deltaX, (y * 20) + y + deltaY, 20, 20, colour);
-    window->drawLine(x * 20 + x + deltaX, (y * 20) + y + deltaY, (x * 20) + 20 + x + deltaX, (y * 20) + y + deltaY);
-    window->drawLine(x * 20 + x + deltaX, (y * 20) + y + deltaY, (x * 20) + 20 + x + deltaX, (y * 20) + y + deltaY);
-    window->drawLine(x * 20 + x + deltaX, (y * 20) + y + deltaY, x * 20 + x + deltaX, (y * 20) + y + deltaY);
-    window->drawLine((x * 20) + 20 + x + deltaX, (y * 20) + y + deltaY, (x * 20) + 20 + x + deltaX, (y * 20) + y + deltaY);
-    //drawAt(tile->getX(), tile->getY(), deltaX, deltaY);
 }
