@@ -37,8 +37,8 @@ int GameState::cleanStreams(){
 }
 
 int GameState::getLoser(){
-    if(activePlayer->getInputState() == LOSS) return activePlayer->getSide();
-    if(nonActivePlayer->getInputState() == LOSS) return nonActivePlayer->getSide();
+    if(activePlayer->isDead()) return activePlayer->getSide();
+    if(nonActivePlayer->isDead()) return nonActivePlayer->getSide();
     return 0;
 }
 
@@ -73,17 +73,17 @@ bool GameState::beginGameOverLoop(){
 GameState::GameState(bool hasWindow, string scriptFile1, string scriptFile2, int startlevel, bool simul)
 : scriptFile1{scriptFile1}, scriptFile2{scriptFile2}, startlevel{startlevel}, simul{simul} {
     if(hasWindow){
-        window = new Xwindow(482, 484);
+        window = new Xwindow(windowWidth, windowHeight);
     }
     //cout << "test: before restart" << endl;
     restart();
 }
 
 GameState::~GameState(){
-    if(window) delete window;
+    if(commandList) delete commandList;
     if(activePlayer) delete activePlayer;
     if(nonActivePlayer) delete nonActivePlayer;
-    if(commandList) delete commandList;
+    if(window) delete window;
 }
 
 bool GameState::pushToStreams(const string file){
@@ -279,7 +279,8 @@ void GameState::printGame(){
 void GameState::restart(){
     if(activePlayer) delete activePlayer;
     if(nonActivePlayer) delete nonActivePlayer;
-    //cout << "test : before createPlayers" << endl;
+    if(window) window->fillRectangle(0, 0, windowWidth, windowHeight);
+    cout << "test: to_string() = " << to_string(4) << endl;
     createPlayers();
     //cout << "test : activePlayer->startTurn" << endl;
     activePlayer->startTurn();

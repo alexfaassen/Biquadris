@@ -12,7 +12,7 @@ using namespace std;
 
 bool Board::rowIsFull(int row){
 	for(int x = 0; x < 11; ++x){
-		if(!immobileTiles[x][row]) return false;
+		if(!immobileTiles[x][row].getTile()) return false;
 	}
 	return true;
 }
@@ -20,12 +20,17 @@ bool Board::rowIsFull(int row){
 void Board::clearRow(int row){
 	//kill every tile on that row
 	for(int x = 0; x < 11; ++x){
-		if(immobileTiles[x][row]) immobileTiles[x][row]->kill();
+		if(immobileTiles[x][row]){
+			//immobileTiles[x][row].undraw();
+			immobileTiles[x][row]->kill();
+		}
 	}
 	//move everything above it down
 	for(int y = row; y > 0; --y){
 		for(int x = 0; x < 11; ++x){
+			//if(immobileTiles[x][y - 1]) immobileTiles[x][y - 1].undraw();
 			immobileTiles[x][y] = immobileTiles[x][y - 1];
+			//if(immobileTiles[x][y]) immobileTiles[x][y].draw();
 		}
 	}
 	//make top row empty
@@ -35,9 +40,7 @@ void Board::clearRow(int row){
 }
 
 Block* Board::CreateBlock(){
-	//cout << "test: level->CreateBlock" << endl;
 	Block* b = level->CreateBlock();
-	//cout << "test: b->attachWindow(window)" << endl;
 	b->attachWindow(window);
 	return b;
 }
@@ -53,9 +56,7 @@ void Board::initImmobileTiles(PlayerWindow* w){
 
 Board::Board(Level* level, PlayerWindow* w)
 : level{level}, window{w} {
-	//cout << "test: initImmobileTiles" << endl;
 	initImmobileTiles(w);
-	//cout << "test: nextBlock = CreateBlock" << endl;
 	nextBlock = CreateBlock();
 }
 
@@ -68,37 +69,34 @@ Board::~Board(){
 }
 
 bool Board::pushNextBlock(bool safe){
-	//cout << "test: in pushNextBlock(), current nextblock type is " << nextBlock->getType() << endl;
-	if(safe && currentBlock) return false;
+	if(safe && currentBlock) return true;
 	if(!nextBlock)nextBlock = CreateBlock();
-	//cout << "test: nextBlock type (before switch): " << string(1, nextBlock->getType()) << endl;
 	currentBlock = nextBlock;
 	if (window) currentBlock->draw();
-	currentBlock->nowCurr();
-	//cout << "test: currentBlock type: " << string(1, currentBlock->getType()) << endl;
-	//cout << "test: second createBlock" <<endl;
-	//cout << "level: " << level->getIdentifier() << endl;
-	//cout << "test: Attempting to create next block" << endl;
 	nextBlock = CreateBlock();
-	//cout << "test: after second createBlock" <<endl;
-	if (isCurrentBlocked()) kill();
+	if (isCurrentBlocked()){
+		 kill();
+		 return false;
+	}
 	return true;
 }
 
-void Board::placeCurrent(){
-	//cout << "test: in placeCurrent()" << endl;
+bool Board::placeCurrent(){
+	if(isCurrentBlocked()) return false; 
 	placeBlock(currentBlock);
 	currentBlock = nullptr;
+	return true;
 }
 
-void Board::placeBlock(Block* b){
-	if(!b) return;
-	//cout << "test: in placeBlock(b)" << endl;
+bool Board::placeBlock(Block* b, bool draw){
+	if(!b) return false;
+	if(isBlocked(b)) return false;
 	placed.emplace_back(b);
-	//cout << "test: for (auto p : b->getTiles())" << endl;
 	for (Tilewrapper &p : b->getTiles()){
 		immobileTiles[p->getX()][p->getY()] = p;
+		if(draw) immobileTiles[p->getX()][p->getY()].draw();
 	}
+	return true;
 }
 
 int Board::eotClean(int *score) {
@@ -129,70 +127,91 @@ int Board::eotClean(int *score) {
 	return rowsRemoved;
 }
 
-void Board::changeCurrent(char newType) {
-	//cout << "test: in board, changeCurrent()" << endl;
+bool Board::changeCurrent(char newType) {
 	Block *newBlock = new Block(newType, level->getIdentifier());
 	Block *oldCurrBlock = currentBlock;
 	currentBlock = newBlock;
-	if(oldCurrBlock) delete oldCurrBlock;
-	if (isCurrentBlocked()) kill();
-	//cout << "test: end of changeCurrent()" << endl;
+	if(oldCurrBlock){
+		oldCurrBlock->undraw();
+		delete oldCurrBlock;
+	}
+	currentBlock->attachWindow(window);
+	currentBlock->draw();
+	if (isCurrentBlocked()){
+		kill();
+		return false;
+	}
+	return true;
 }
 
-int Board::moveCurrent(Direction dir, int amount) {
+int Board::moveCurrent(Direction dir, int amount, bool redraw) {
+	if(amount == 0) return 0;
 	int deltaX = 0, deltaY = 0;
 	if (dir == Left) deltaX = -1;
 	else if (dir == Right) deltaX = 1;
 	else if (dir == Down) deltaY = 1;
 	int moveCount = 0;
-	//cout << "test: moveCurrent() called" << endl;
 	while(moveCount < amount) {
-		//cout << "test: isMoveBlocked() called" << endl;
 		if(isMoveBlocked(deltaX, deltaY)){
 			break;
 		}
-		//cout << "test: currentBlock->move(deltaX, deltaY) called" << endl;
+		if(redraw) currentBlock->undraw();
 		currentBlock->move(deltaX, deltaY);
+		if(redraw) currentBlock->draw();
 		moveCount++;
 	}
-	//cout << "test: ENDING WHILE (moveCount < amount) LOOP" << endl;
 	return moveCount;	
 }
 
-bool Board::clockwiseCurrent() {
-	currentBlock->clockwise();
-	if(isCurrentBlocked()) {
-		currentBlock->counterClockwise();
-		return false;
-	}
-	return true;
-}
-
-bool Board::counterClockwiseCurrent() {
-	currentBlock->counterClockwise();
-	if(isCurrentBlocked()) {
+int Board::clockwiseCurrent(int amount, bool redraw) {
+	if(amount == 0) return 0;
+	if(redraw) currentBlock->undraw();
+	int moveCount = 0;
+	while(moveCount < amount){
 		currentBlock->clockwise();
-		return false;
+		if(isCurrentBlocked()) {
+			currentBlock->counterClockwise();
+			break;
+		}
+		moveCount++;
 	}
-	return true;
+	if(redraw) currentBlock->draw();
+	return moveCount;
 }
 
-void Board::dropCurrent() {
-	while(moveCurrent(Down, 1)){
-		//cout << "test: dropping..." <<endl;
+int Board::counterClockwiseCurrent(int amount, bool redraw) {
+	if(amount == 0) return 0;
+	if(redraw) currentBlock->undraw();
+	int moveCount = 0;
+	while(moveCount < amount){
+		currentBlock->counterClockwise();
+		if(isCurrentBlocked()) {
+			currentBlock->clockwise();
+			break;
+		}
+		moveCount++;
 	}
-	//cout << "test: before placeCurrent()" << endl;
+	if(redraw) currentBlock->draw();
+	return moveCount;
+}
+
+void Board::dropCurrent(bool redraw) {
+	while(moveCurrent(Down, 1, true) && !isCurrentBlocked());	
 }
 
 void Board::weighDownCurrent(){
-	moveCurrent(Down, currentBlock->getHeaviness());
+	moveCurrent(Down, currentBlock->getHeaviness(), true);
 }
 
-bool Board::isCurrentBlocked(){
-	for(auto &t : currentBlock->getTiles()){
+bool Board::isBlocked(Block* b){
+	for(auto &t : b->getTiles()){
 		if(!isEmpty(t->getX(), t->getY())) return true;
 	}
 	return false;
+}
+
+bool Board::isCurrentBlocked(){
+	return isBlocked(currentBlock);
 }
 
 bool Board::isMoveBlocked(int deltaX, int deltaY){
@@ -211,12 +230,10 @@ bool Board::isEmpty(int x, int y) {
 
 vector<vector<char>> Board::renderCharArray() {
 	vector<vector<char>> vec; 
-	//cout << "test: before first for loop" << endl;
 	for(int i = 0; i < 3; ++i){
 		vec.emplace_back(vector<char>(11, ' '));
 	}
 	vec.emplace_back(vector<char>());
-	//cout << "test: before second for loop" << endl;
 	for(int y = 0; y < 15; ++y) {
 		for(int x = 0; x < 11; ++x) {
 			if(!immobileTiles[x][y]){ 
@@ -228,7 +245,6 @@ vector<vector<char>> Board::renderCharArray() {
 		if (y < 14) vec.emplace_back(vector<char>());
 	}	
 	int currX, currY;
-	//cout << "test: before third for loop" << endl;s
 	if(currentBlock){
 		for(auto &t : currentBlock->getTiles()) {
 			currX = t->getX();
@@ -236,7 +252,6 @@ vector<vector<char>> Board::renderCharArray() {
 			vec.at(currY + 3).at(currX) = currentBlock->getType();
 		}
 	}
-	//cout << "test: about to return vec" << endl;
 	return vec;
 }
 
@@ -251,8 +266,7 @@ void Board::forceTopColumnTile(const char b, const int col) {
 				break;
 			}
 		}
-		//cout << "test: !isEmpty() at row = " << row << endl;
-		placeBlock(new Block(b, -1, col, row));
+		placeBlock(new Block(b, -1, 0, col, row), true);
 	}
 }
 

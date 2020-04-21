@@ -28,12 +28,12 @@ Block *Level3::CreateBlock() {
 			file->seekg(ios::beg);
 		}
 		while (b == ' ') *file >> b; 
-		return new Block(b, identifier);
+		return new Block(b, identifier, 1);
 	} else {
 		// Random
 		int num = 1 + (rand() % 9);
 		if (num == 1 || num == 2) {
-                        return new Block('Z', identifier);
+            return new Block('Z', identifier, 1);
 		} else if (num == 3 || num == 4) {
 			return new Block('S', identifier, 1);
 		} else if (num == 5) {

@@ -6,6 +6,7 @@
 class ImmTilewrapper : public Tilewrapper {
 
     int x, y;
+    char letter = ' ';
 
     public:
     //constructors

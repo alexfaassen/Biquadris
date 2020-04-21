@@ -2,9 +2,10 @@
 #define _BOARD_H_
 #include <vector>
 #include <string>
-#include "tile.h"
+
 #include "direction.h"
 #include "block.h"
+#include "tile.h"
 #include "immtilewrapper.h"
 
 class Level;
@@ -21,7 +22,6 @@ class Board {
 	std::vector<std::vector<ImmTilewrapper>> immobileTiles;
 	Level* level = nullptr;
 	PlayerWindow* window = nullptr;
-
 	
 	bool rowIsFull(int row);	//checks if the given row is complete
 	void clearRow(int row);		//kills all the tiles in the row drops everything down
@@ -40,29 +40,34 @@ class Board {
 	char getNextBlockType() const {return nextBlock->getType();};
 
 	// moves currentBlock into placed, nextBlock into currentBlock, and generates nextBlock. 
-	// Returns if successful. If safe, will not do anything if currentBlock is not nullptr
+	// Return false if isBlocked
 	bool pushNextBlock(bool safe = true);
 
 	// moves currentBlock into placed and its tiles into immobileTiles. Sets currentBlock to nullptr
-	void placeCurrent();
+	// fails if isBlocked
+	bool placeCurrent();
 
 	//moves the given block into placed and its tiles into immobileTiles
-	void placeBlock(Block*);
+	// fails if isBlocked
+	bool placeBlock(Block*, bool draw = false);
 
 	// handles everything that needs to be called at end of turn
 	int eotClean(int *score);
 
-	void changeCurrent(char newType);
+	// changes the current block
+	// Returns false if isBlocked
+	bool changeCurrent(char newType);
 	void setNext(Block *nex);
-	int moveCurrent(Direction, int amount);
-	bool clockwiseCurrent();
-	bool counterClockwiseCurrent();
-	void dropCurrent();
+	int moveCurrent(Direction, int amount, bool redraw = true);
+	int clockwiseCurrent(int amount = 1, bool redraw = true);
+	int counterClockwiseCurrent(int amount = 1, bool redraw = true);
+	void dropCurrent(bool redraw = true);
 
 	// deals with the heaviness stuff
 	void weighDownCurrent();
 
-	// are any of currentBlock's tiles on an occupied tile?
+	// are any of block's tiles on an occupied tile?
+	bool isBlocked(Block* b);
 	bool isCurrentBlocked();
 
 	//will moving currentBlock by the given coords cause it to collide with a tile?

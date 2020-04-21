@@ -26,14 +26,25 @@ void Player::initGraphicsObservers(){
     pushToObservers(new TurnGraphic(window));
 }
 
+void Player::initDrawWindow(){
+	window->drawBigString(5, 10, "Level:");
+	window->drawBigString(221, 10, "0");
+	window->drawBigString(5, 30, "Score:");
+	window->drawBigString(221, 30, "0");
+	window->fillRectangle(0, 35, 231, 3, PlayerWindow::White);
+	window->fillRectangle(0, 422, 231, 3, PlayerWindow::White);
+	window->drawBigString(5, 437, "Next:");
+}
+
 int Player::cleanObservers(){
     int cleaned = 0;
     for(size_t i = 0; i < observers.size(); i++){
         if(!observers.at(i)->isAlive()){
             delete observers.at(i);
             observers.erase(observers.begin()+i);
-            cleaned = 0;
+            ++cleaned;
             i--;
+            //cout << "test: cleaned!" << endl;
         }
     }
     return cleaned;
@@ -46,7 +57,7 @@ void Player::notifyObservers(Event ev, int i){
     }
 }
 
-void Player::notifyObservers(Event ev, Move m = mLeft){
+void Player::notifyObservers(Event ev, Move m){
     //cout << "test: observers.size = " <<observers.size() << endl;
     for(auto p : observers){
         if (p->isAlive()) p->notify(ev, m);
@@ -84,7 +95,7 @@ void Player::postMoveClean(Move m = mLeft){
 
 void Player::checkEndTurn(){
     if (inputState == END_TURN) handleEndTurn();
-    if (!board->isAlive()) setInputState(LOSS);
+    if (!board->isAlive()) kill();
 }
 
 Player::Player(){}
@@ -94,6 +105,7 @@ Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptFile
     //cout << "test: if(window.hasWindow())" <<endl;
     if(w){
         window = new PlayerWindow(w, offsetX, offsetY);
+        initDrawWindow();
         initGraphicsObservers();
     }
     //cout << "test: if(!setLevel(startlevel))" <<endl;
@@ -103,6 +115,7 @@ Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptFile
     }
     //cout << "test: constructing board" <<endl;
     board = new Board(level, window);
+    notifyObservers(onNextBlockChange, board->getNextBlockType());
 }
 
 Player::~Player(){
@@ -170,7 +183,8 @@ void Player::drop(int times, bool isInput){
     for(int i = 1; i < times; ++i){
         board->dropCurrent();
         board->placeCurrent();
-        board->pushNextBlock();
+        //if dead, break out of loop and ignore everything else
+        if(!pushNextBlockAndCheck()) break;
     }
 
     // handles the final drop
@@ -204,14 +218,22 @@ int Player::incLevel(int n){
     return successes;
 }
 
+bool Player::pushNextBlockAndCheck(){
+    bool success = true;
+    if(!board->pushNextBlock()){
+        success = false;
+        kill();
+    }
+    notifyObservers(onNextBlockChange, board->getNextBlockType());
+    return success;
+}
+
 void Player::startTurn(){
     setInputState(NORMAL);
     //cout << "test: pushNextBlock" << endl;
-    board->pushNextBlock();
-    notifyObservers(onNextBlockChange);
-    cout << "test: notifyObservers(OnTurnStart)" << endl;
-    notifyObservers(onTurnStart, board->getNextBlockType());
-    if (!board->isAlive()) setInputState(LOSS);
+    pushNextBlockAndCheck();
+    //cout << "test: notifyObservers(OnTurnStart)" << endl;
+    if (!board->isAlive()) kill();
 }
 
 void Player::endTurn(){
@@ -227,13 +249,13 @@ void Player::handleEndTurn(){
     
     notifyObservers(onTurnEnd);
     cleanObservers();
-    if (!board->isAlive()) setInputState(LOSS);
+    if (!board->isAlive()) kill();
 }
 
 bool Player::setLevel(int n){
     if (!level) {
 	    if (n == 0) {
-		level = new Level0(side);
+		level = new Level0(side, scriptFile);
 	    } else if (n == 1) {
         	level = new Level1(side);
 	    } else if (n == 2) {
@@ -258,7 +280,7 @@ bool Player::setLevel(int n){
  	     } else {
 		     Level *temp = level;
 	     	     if (n == 0) {
-			        level = new Level0(*temp);
+			        level = new Level0(*temp, scriptFile);
 	             } else if (n == 1) {
 	                level = new Level1(*temp);
 	     	     } else if (n == 2) {
@@ -304,7 +326,7 @@ void Player::pushToObservers(Observer* obs){
 
 void Player::changeCurrentBlock(char c){
     board->changeCurrent(c);
-    if (!board->isAlive()) setInputState(LOSS);
+    if (!board->isAlive()) kill();
 }
 
 string charArrToString(const vector<vector<char>>& arr){

@@ -32,7 +32,7 @@ Block *Level4::CreateBlock() {
 			file->seekg(0);
 		}
 		while (b == ' ') *file >> b;
-		return new Block(b, identifier);
+		return new Block(b, identifier, 1);
 	} else {
 		// Random
 		int num = 1 + (rand() % 9);

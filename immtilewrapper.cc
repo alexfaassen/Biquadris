@@ -6,12 +6,13 @@ using namespace std;
 
 ImmTilewrapper::ImmTilewrapper(int x, int y, PlayerWindow *w)
 : Tilewrapper(w), x{x}, y{y} {
-    draw();
 }
 
 void ImmTilewrapper::operator=(Tile *t){
     tile = t;
-    draw();
+    char other = t ? t->getLetter() : ' ';
+    if(letter != other) draw();
+    letter = other;
 }
 
 ImmTilewrapper& ImmTilewrapper::operator=(Tilewrapper &other){

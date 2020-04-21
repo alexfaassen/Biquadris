@@ -3,9 +3,7 @@
 
 using namespace std;
 
-Tile::~Tile(){
-	//cout << "test: running Tile destructor" << endl;
-}
+Tile::~Tile(){}
 
 char Tile::getLetter()  {
 	return letter;

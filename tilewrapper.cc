@@ -16,7 +16,7 @@ void Tilewrapper::drawAt(int x, int y){
 
 void Tilewrapper::drawEmptyAt(int x, int y){
     if(!window) return;
-    window->fillRectangle(x * 20 + x - 1, (y * 20) + 100 + y - 1, 22, 22, PlayerWindow::White);
+    window->fillRectangle(x * 20 + x - 1, (y * 20) + 100 + y - 1, 22, 22);
 }
 
 void Tilewrapper::drawTileAt(int x, int y, int deltaX, int deltaY){
@@ -32,7 +32,7 @@ void Tilewrapper::drawTileAt(int x, int y, int deltaX, int deltaY){
 }
 
 void Tilewrapper::draw(){
-	std::cout << "test: in draw() method, tile->getX() =" << tile->getX() << std::endl;
+	//std::cout << "test: in draw() method, tile->getX() =" << tile->getX() << std::endl;
     drawAt(tile->getX(), tile->getY());
 }
 
@@ -52,5 +52,5 @@ void Tilewrapper::customDraw(int deltaX, int deltaY){
     else if (tile->getLetter() == '*') colour = PlayerWindow::Black;
     int x = tile->getX();
     int y = tile->getY();
-    window->fillRectangle(x * 20 + x + deltaX, (y * 20) + y + deltaY, 20, 20, colour);
+    window->fillRectangle((x * 20) + x + deltaX, (y * 20) + y + deltaY, 20, 20, colour);
 }
