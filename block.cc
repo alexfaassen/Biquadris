@@ -99,7 +99,7 @@ void Block::clockwise() {
 
 	cout << "before clockwise: ";
 	for(auto &t :tiles) {
-		cout << "(" << t->getX() << ", " << t->getY() <<endl;
+		cout << "(" << t->getX() << ", " << t->getY() << ") ";
 	}
 	cout <<endl;
 
@@ -123,7 +123,7 @@ void Block::clockwise() {
 
 	cout << "after invert: ";
 	for(auto &t :tiles) {
-		cout << "(" << t->getX() << ", " << t->getY() <<endl;
+		cout << "(" << t->getX() << ", " << t->getY() << ") ";
 	}
 	cout <<endl;
 
@@ -147,7 +147,7 @@ void Block::clockwise() {
 
 	cout << "after clockwise: ";
 	for(auto &t :tiles) {
-		cout << "(" << t->getX() << ", " << t->getY() <<endl;
+		cout << "(" << t->getX() << ", " << t->getY() << ") ";
 	}
 	cout <<endl;
 
