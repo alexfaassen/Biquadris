@@ -153,7 +153,7 @@ bool Board::changeCurrent(char newType) {
 
 int Board::moveCurrent(Direction dir, int amount, bool redraw) {
 	if(amount == 0) return 0;
-	if(redraw) currentBlock->undraw();
+	//if(redraw) currentBlock->undraw();
 	int deltaX = 0, deltaY = 0;
 	if (dir == Left) deltaX = -1;
 	else if (dir == Right) deltaX = 1;
@@ -165,12 +165,14 @@ int Board::moveCurrent(Direction dir, int amount, bool redraw) {
 		if(isMoveBlocked(deltaX, deltaY)){
 			break;
 		}
+		if(redraw) currentBlock->undraw();
 		//cout << "test: currentBlock->move(deltaX, deltaY) called" << endl;
 		currentBlock->move(deltaX, deltaY);
+		if(redraw) currentBlock->draw();
 		moveCount++;
 	}
 	//cout << "test: ENDING WHILE (moveCount < amount) LOOP" << endl;
-	if(redraw) currentBlock->draw();
+	//if(redraw) currentBlock->draw();
 	return moveCount;	
 }
 
@@ -207,11 +209,11 @@ int Board::counterClockwiseCurrent(int amount, bool redraw) {
 }
 
 void Board::dropCurrent(bool redraw) {
-	if(redraw) currentBlock->undraw();
-	while(moveCurrent(Down, 1, false) && !isCurrentBlocked()){
+	//if(redraw) currentBlock->undraw();
+	while(moveCurrent(Down, 1, true) && !isCurrentBlocked()){
 		//cout << "test: dropping..." <<endl;
 	}
-	if(redraw) currentBlock->draw();
+	//if(redraw) currentBlock->draw();
 	//cout << "test: before placeCurrent()" << endl;
 }
 

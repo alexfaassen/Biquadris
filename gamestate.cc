@@ -73,7 +73,7 @@ bool GameState::beginGameOverLoop(){
 GameState::GameState(bool hasWindow, string scriptFile1, string scriptFile2, int startlevel, bool simul)
 : scriptFile1{scriptFile1}, scriptFile2{scriptFile2}, startlevel{startlevel}, simul{simul} {
     if(hasWindow){
-        window = new Xwindow(windowHeight, windowWidth);
+        window = new Xwindow(windowWidth, windowHeight);
     }
     //cout << "test: before restart" << endl;
     restart();
@@ -279,7 +279,7 @@ void GameState::printGame(){
 void GameState::restart(){
     if(activePlayer) delete activePlayer;
     if(nonActivePlayer) delete nonActivePlayer;
-    if(window) window->fillRectangle(0, 0, windowWidth, windowHeight, Xwindow::White);
+    if(window) window->fillRectangle(0, 0, windowWidth, windowHeight);
     //cout << "test : before createPlayers" << endl;
     createPlayers();
     //cout << "test : activePlayer->startTurn" << endl;

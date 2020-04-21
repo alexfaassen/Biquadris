@@ -27,13 +27,13 @@ void Player::initGraphicsObservers(){
 }
 
 void Player::initDrawWindow(){
-    window->drawBigString(5, 10, "Level:", PlayerWindow::Black);
-	window->drawBigString(221, 10, "0", PlayerWindow::Black);
-	window->drawBigString(5, 30, "Score:", PlayerWindow::Black);
-	window->drawBigString(221, 30, "0", PlayerWindow::Black);
-	window->drawLine(0, 35, 231, 35);
-	window->drawLine(0, 422, 231, 422);
-	window->drawBigString(5, 437, "Next:", PlayerWindow::Black);
+	window->drawBigString(5, 10, "Level:");
+	window->drawBigString(221, 10, "0");
+	window->drawBigString(5, 30, "Score:");
+	window->drawBigString(221, 30, "0");
+	window->fillRectangle(0, 35, 231, 3, PlayerWindow::White);
+	window->fillRectangle(0, 422, 231, 3, PlayerWindow::White);
+	window->drawBigString(5, 437, "Next:");
 }
 
 int Player::cleanObservers(){
