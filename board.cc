@@ -218,7 +218,7 @@ void Board::weighDownCurrent(){
 
 bool Board::isBlocked(Block* b, bool allowtop){
 	for(auto &t : b->getTiles()){
-		if(!isEmpty(t->getX(), t->getY()), allowtop){ 
+		if(!isEmpty(t->getX(), t->getY(), allowtop)){ 
 			cout << "test: isBlocked returns true" << endl;
 			return true;
 		}
