@@ -6,7 +6,7 @@ using namespace std;
 
 void CentreDropEffect::notify(const Event currEvent, const Move currMove) {
 	if (currEvent == onTurnEnd) {
-		cout << "test: blocksSinceClear: " << blocksSinceClear << endl;
+		//cout << "test: blocksSinceClear: " << blocksSinceClear << endl;
 		if (blocksSinceClear == 2) {
 			player->forceTopTile('*', 5);
 			blocksSinceClear = 0;

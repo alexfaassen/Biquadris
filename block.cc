@@ -17,7 +17,7 @@ void Block::IBlock(int initX, int initY) {
 
 void Block::JBlock(int initX, int initY) {
 	deleteTiles();
-	cout << "in JBlock ctor, initX = " << initX << ", initY = " << initY << endl;
+	//cout << "in JBlock ctor, initX = " << initX << ", initY = " << initY << endl;
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('J', initX + 0, initY - 1)));
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('J', initX + 0, initY - 0)));
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('J', initX + 1, initY - 0)));
