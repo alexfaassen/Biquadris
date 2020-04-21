@@ -1,5 +1,6 @@
 #include "forceeffect.h"
 #include "player.h"
+#include <stdio.h>
 
 using namespace std;
 
