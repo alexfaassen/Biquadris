@@ -14,7 +14,7 @@ class Tilewrapper {
 
     virtual void drawAt(int x, int y);
     virtual void drawEmptyAt(int x, int y);
-    virtual void drawTileAt(int x, int y); 
+    virtual void drawTileAt(int x, int y, int deltaX = 0, int deltaY = 0); 
 
     public:
 

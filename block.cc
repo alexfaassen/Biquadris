@@ -184,9 +184,11 @@ bool Block::deleteTiles(){
 		//cout << "test: deleteTiles is empty" << endl; 
 		return false;
 	}
-	undraw();
-	//cout << "test: deleteTiles with n = " << tiles.size() << endl;
-	tiles.clear();
+	if(curr){
+		cout << "test: block dtor" << endl;
+		undraw();
+		tiles.clear();
+	}
 	return true;
 }
 
