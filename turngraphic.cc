@@ -7,5 +7,10 @@ void TurnGraphic::notify(const Event currEvent, int active){
     
     if(currEvent == beforeTextDisplay){
         //TODO: draw turngraphic
+        if(active){
+            window->fillRectangle(200, 482,  20,  20, PlayerWindow::Yellow);
+        } else {
+            window->fillRectangle(200, 482,  20,  20, PlayerWindow::Black);
+        }
     }
 }
