@@ -37,7 +37,7 @@ void BlindEffect::notify(const Event currEvent, PlayerWindow& window){
 		window.fillRectangle(188, 82, 44, 293, PlayerWindow::White);
 	} else if(currEvent == onDrop){
 		window.fillRectangle(42, 40, 147, 383, PlayerWindow::Black);
-		window.fillRectangle(0, 82, 44, 293), PlayerWindow::Black;
+		window.fillRectangle(0, 82, 44, 293, PlayerWindow::Black);
 		window.fillRectangle(188, 82, 44, 293, PlayerWindow::Black);
 		player->redrawBoard();
 		kill();
