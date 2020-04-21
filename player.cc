@@ -32,8 +32,8 @@ void Player::initDrawWindow(){
 	window->drawBigString(5, 30, "Score:");
 	window->drawBigString(221, 30, "0");
 	window->fillRectangle(0, 35, 231, 3, PlayerWindow::White);
-	window->fillRectangle(0, 422, 231, 3, PlayerWindow::White);
-	window->drawBigString(5, 437, "Next:");
+	window->fillRectangle(0, 425, 231, 3, PlayerWindow::White);
+	window->drawBigString(5, 442, "Next:");
 }
 
 int Player::cleanObservers(){
@@ -44,28 +44,24 @@ int Player::cleanObservers(){
             observers.erase(observers.begin()+i);
             ++cleaned;
             i--;
-            //cout << "test: cleaned!" << endl;
         }
     }
     return cleaned;
 }
 
 void Player::notifyObservers(Event ev, int i){
-    //cout << "test: observers.size = " <<observers.size() << endl;
     for(auto p : observers){
         if (p->isAlive()) p->notify(ev, i);
     }
 }
 
 void Player::notifyObservers(Event ev, Move m){
-    //cout << "test: observers.size = " <<observers.size() << endl;
     for(auto p : observers){
         if (p->isAlive()) p->notify(ev, m);
     }
 }
 
 void Player::notifyObservers(Event ev, const char c){
-    //cout << "test: observers.size = " <<observers.size() << endl;
     for(auto p : observers){
         if (p->isAlive()) p->notify(ev, c);
     }
@@ -102,18 +98,15 @@ Player::Player(){}
 
 Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptFile, int startlevel)
 : side{side}, scriptFile {scriptFile} {
-    //cout << "test: if(window.hasWindow())" <<endl;
     if(w){
         window = new PlayerWindow(w, offsetX, offsetY);
         initDrawWindow();
         initGraphicsObservers();
     }
-    //cout << "test: if(!setLevel(startlevel))" <<endl;
     if(!setLevel(startlevel)){
         cout << "Error: invalid startlevel. Using Level 0 instead" << endl;
         setLevel(0);
     }
-    //cout << "test: constructing board" <<endl;
     board = new Board(level, window);
     notifyObservers(onNextBlockChange, board->getNextBlockType());
 }
@@ -135,13 +128,9 @@ int Player::isLevel() {
 }
 
 int Player::moveBlock(Direction dir, int times, bool isInput){
-    if(isInput){
-	//cout << "preMove() called" << endl;
-        preMove();
-    }
+    if(isInput) preMove();
     int moves = board->moveCurrent(dir, times);
     if(isInput) {
-	    //cout << "test: postMove() called" << endl;
 	    Move m = mLeft;
 	    if (dir == Right) m = mRight;
 	    else if (dir == Down) m = mDown;
@@ -175,9 +164,7 @@ int Player::rotateCounterClockwise(int times, bool isInput){
 }
 
 void Player::drop(int times, bool isInput){
-
     if(isInput) preMove();
-    //cout << "test: before dropCurrent()" << endl;
 
     // handles everything except the last drop in a multi drop
     for(int i = 1; i < times; ++i){
@@ -198,11 +185,9 @@ void Player::drop(int times, bool isInput){
         notifyObservers(onDrop);
         checkEndTurn();
     }
-    //cout << "test: after endTurn()" << endl;
 }
 
 int Player::incLevel(int n){
-    //cout << "test: incLevel()" << endl;
     if (!level) return setLevel(n);
     int successes = 0;
     if(n < 0){ 
@@ -214,7 +199,6 @@ int Player::incLevel(int n){
             successes += setLevel(level->getIdentifier() + 1);
         }
     } 
-    //cout << "test: about to finish incLevel()" << endl;
     return successes;
 }
 
@@ -230,9 +214,7 @@ bool Player::pushNextBlockAndCheck(){
 
 void Player::startTurn(){
     setInputState(NORMAL);
-    //cout << "test: pushNextBlock" << endl;
     pushNextBlockAndCheck();
-    //cout << "test: notifyObservers(OnTurnStart)" << endl;
     if (!board->isAlive()) kill();
 }
 
@@ -271,7 +253,6 @@ bool Player::setLevel(int n){
 		    return false;
     	    }
      } else {
-	     //cout << "test: in setLevel(), level exists, setting it to " << n << endl;
 	     if (n < 0 || n > 4) {
 		     // Error, Invalid Input
 	             return false;
@@ -284,7 +265,6 @@ bool Player::setLevel(int n){
 	             } else if (n == 1) {
 	                level = new Level1(*temp);
 	     	     } else if (n == 2) {
-			        //cout << "test: in setLevel(), level2 copy ctor" << endl;
 	     		    level = new Level2(*temp);
 	     	     } else if (n == 3) {
 		   	        level = new Level3(*temp);
@@ -293,14 +273,11 @@ bool Player::setLevel(int n){
 		  	        level = new Level4(*temp);
 		   	        level->generateEffects(*this);
 	    	     }
-		     //cout << "test: pre delete temp" << endl;
                      delete temp;
-		     //cout << "test: post delete temp" << endl;
 	             temp = NULL;
 	     }
     }
     cleanObservers();
-    //cout << "test: in setLevel(), about to call board->setNewLevel()" << endl;
     if(board) board->setNewLevel(level);
     notifyObservers(onLevelChange);
     return true;
@@ -344,7 +321,6 @@ string charArrToString(const vector<vector<char>>& arr){
 
 string Player::printToString(bool active){
     stringstream ss;
-    //cout << "test: before level->getIdentifier" << endl;
     ss << "Level:" << setw(5) << level->getIdentifier() << '\n';
     ss << "Score:" << setw(5) << score << '\n';
     if(active){ 
@@ -352,9 +328,7 @@ string Player::printToString(bool active){
     } else { 
         ss << "-----------" << '\n';
     }
-    //cout << "test: before board.renderCharArray" << endl;
     vector<vector<char>> boardarr = board->renderCharArray();
-    //cout << "test: before notifyObservers(boardarr)" << endl;
     notifyObservers(beforeTextDisplay, boardarr);
     notifyObservers(beforeTextDisplay, active);
     if(window) notifyObservers(beforeTextDisplay, *window); //random graphicdisplay code here
@@ -365,7 +339,6 @@ string Player::printToString(bool active){
         ss << "-----------" << '\n';
     }
     ss << "Next:      " << '\n';
-    //cout << "test: before printNextBlock()" << endl;
     ss << board->printNextBlock();
     return ss.str();
 }
