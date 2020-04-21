@@ -136,6 +136,7 @@ int Player::moveBlock(Direction dir, int times, bool isInput){
 	    else if (dir == Down) m = mDown;
 	    postMoveClean(m);
     }
+    if(window) notifyObservers(afterMove, *window);
     return moves;
 }
 
@@ -148,6 +149,7 @@ int Player::rotateClockwise(int times, bool isInput){
 	    if (board->clockwiseCurrent()) ++successes;
     }
     if(isInput) postMoveClean(mClockwise);
+    if(window) notifyObservers(afterMove, *window);
     return successes;
 }
 
@@ -160,6 +162,7 @@ int Player::rotateCounterClockwise(int times, bool isInput){
 	    if (board->counterClockwiseCurrent()) ++successes;
     }
     if(isInput) postMoveClean(mCounterClockwise);
+    if(window) notifyObservers(afterMove, *window);
     return successes;
 }
 
