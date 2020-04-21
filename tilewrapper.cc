@@ -16,7 +16,7 @@ void Tilewrapper::drawAt(int x, int y){
 
 void Tilewrapper::drawEmptyAt(int x, int y){
     if(!window) return;
-    window->fillRectangle(x * 20 + x - 1, (y * 20) + 100 + y - 1, 22, 22, PlayerWindow::White);
+    window->fillRectangle(x * 20 + x - 1, (y * 20) + 100 + y - 1, 22, 22, PlayerWindow::Brown);
 }
 
 void Tilewrapper::drawTileAt(int x, int y){
@@ -36,9 +36,28 @@ void Tilewrapper::drawTileAt(int x, int y){
 }
 
 void Tilewrapper::draw(){
+	std::cout << "test: in draw() method, tile->getX() =" << tile->getX() << std::endl;
     drawAt(tile->getX(), tile->getY());
 }
 
 void Tilewrapper::undraw(){
     drawEmptyAt(tile->getX(), tile->getY());
+}
+
+void Tilewrapper::customDraw(int deltaX, int deltaY){
+    int colour = PlayerWindow::White;
+    if (tile->getLetter() == 'I') colour = PlayerWindow::Yellow;
+    else if (tile->getLetter() == 'J') colour = PlayerWindow::Magenta;
+    else if (tile->getLetter() == 'L') colour = PlayerWindow::Brown;
+    else if (tile->getLetter() == 'O') colour = PlayerWindow::Green;
+    else if (tile->getLetter() == 'S') colour = PlayerWindow::Cyan;
+    else if (tile->getLetter() == 'Z') colour = PlayerWindow::Orange;
+    else if (tile->getLetter() == '*') colour = PlayerWindow::Black;
+    int x = tile->getX();
+    int y = tile->getY();
+    window->fillRectangle(x * 20 + x + deltaX, (y * 20) + y + deltaY, 20, 20, colour);
+    window->drawLine(x * 20 + x + deltaX, (y * 20) + y + deltaY, (x * 20) + 20 + x + deltaX, (y * 20) + y + deltaY);
+    window->drawLine(x * 20 + x + deltaX, (y * 20) + y + deltaY, (x * 20) + 20 + x + deltaX, (y * 20) + y + deltaY);
+    window->drawLine(x * 20 + x + deltaX, (y * 20) + y + deltaY, x * 20 + x + deltaX, (y * 20) + y + deltaY);
+    window->drawLine((x * 20) + 20 + x + deltaX, (y * 20) + y + deltaY, (x * 20) + 20 + x + deltaX, (y * 20) + y + deltaY);
 }

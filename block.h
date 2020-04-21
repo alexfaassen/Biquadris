@@ -50,6 +50,7 @@ class Block {
 	//drawing
 	void draw();
 	void undraw();
+	void customDraw(int deltaX, int deltaY);
 };
 
 

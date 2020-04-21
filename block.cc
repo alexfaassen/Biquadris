@@ -240,3 +240,9 @@ void Block::undraw(){
 		t.undraw();
 	}
 }
+
+void Block::customDraw(int deltaX, int deltaY){
+	for(auto &t : tiles){
+		t.customDraw(deltaX, deltaY);
+	}
+}

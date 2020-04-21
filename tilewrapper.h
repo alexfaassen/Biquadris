@@ -14,9 +14,7 @@ class Tilewrapper {
 
     virtual void drawAt(int x, int y);
     virtual void drawEmptyAt(int x, int y);
-    virtual void drawTileAt(int x, int y);
-
-    
+    virtual void drawTileAt(int x, int y); 
 
     public:
 
@@ -45,6 +43,7 @@ class Tilewrapper {
     //draws to screen
     virtual void draw();
     virtual void undraw();   //erases the current spot
+    void customDraw(int deltaX, int deltaY);
 };
 
 
