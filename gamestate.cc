@@ -40,7 +40,6 @@ int GameState::getLoser(){
 }
 
 bool GameState::handleGameOver(){
-	cout << "in handleGameOver()" << endl;
     int loser = getLoser();
     if(loser == 0) return true;     //if nobody loses, return true
     int winner = (loser == -1 ? 2 : 1);
@@ -153,8 +152,7 @@ bool GameState::beginReadLoop(){
         if(activePlayer->getInputState() == SA){
 		int i = 0;
 		for(auto c : "Special Action"){
-			//string s(1, c);
-			window->drawBigString(80 + i + 3, 70, string(1, c), Xwindow::White);
+			window->drawBigString(60 + (i * 8), 70, string(1, c), Xwindow::White);
 			++i;
 		}
 		cout << "Choose a Special Action!" << endl;
@@ -224,7 +222,7 @@ void GameState::cleanup(){
     //update highscore
     updateHighscore(activePlayer->getScore());
 
-    if(window) window->fillRectangle(95, 40, 200, 70, Xwindow::Black);
+    if(window) window->fillRectangle(60, 40, 140, 35, Xwindow::Black);
     
     if(simul){
         switchActive();

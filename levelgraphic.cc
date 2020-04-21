@@ -4,7 +4,7 @@
 
 void LevelGraphic::notify(const Event currEvent, Move m){
        if(currEvent == onLevelChange){
-              window->fillRectangle(220, 9, 12, 12, PlayerWindow::Black);
+              window->fillRectangle(210, 1, 20, 20);
               window->drawString(221, 10, std::to_string(player->isLevel()));
        }
 }
