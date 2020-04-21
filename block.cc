@@ -110,13 +110,6 @@ void Block::clockwise() {
 		if(t->getX() < minX)minX = t->getX();
 		if(t->getY() < minY)minY = t->getY();
 	}
-
-	cout << "after flip: ";
-	for(auto &t :tiles) {
-		cout << "(" << t->getX() << ", " << t->getY() << ") ";
-	}
-	cout <<endl;
-
 	
 	cout << "Bottom left: " << minX << ", " << maxY <<endl;
 
@@ -160,6 +153,12 @@ void Block::clockwise() {
         }
 		count++;
 	}
+
+	cout << "after flip: ";
+	for(auto &t :tiles) {
+		cout << "(" << t->getX() << ", " << t->getY() << ") ";
+	}
+	cout <<endl;
 
 
 	int distX = minX - minInvertX;
