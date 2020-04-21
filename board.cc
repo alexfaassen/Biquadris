@@ -152,6 +152,7 @@ bool Board::changeCurrent(char newType) {
 }
 
 int Board::moveCurrent(Direction dir, int amount, bool redraw) {
+	if(amount == 0) return 0;
 	if(redraw) currentBlock->undraw();
 	int deltaX = 0, deltaY = 0;
 	if (dir == Left) deltaX = -1;
@@ -173,28 +174,36 @@ int Board::moveCurrent(Direction dir, int amount, bool redraw) {
 	return moveCount;	
 }
 
-bool Board::clockwiseCurrent(bool redraw) {
+int Board::clockwiseCurrent(int amount, bool redraw) {
+	if(amount == 0) return 0;
 	if(redraw) currentBlock->undraw();
-	currentBlock->clockwise();
-	if(isCurrentBlocked()) {
-		currentBlock->counterClockwise();
-		if(redraw) currentBlock->draw();
-		return false;
+	int moveCount = 0;
+	while(moveCount < amount){
+		currentBlock->clockwise();
+		if(isCurrentBlocked()) {
+			currentBlock->counterClockwise();
+			break;
+		}
+		moveCount++;
 	}
 	if(redraw) currentBlock->draw();
-	return true;
+	return moveCount;
 }
 
-bool Board::counterClockwiseCurrent(bool redraw) {
+int Board::counterClockwiseCurrent(int amount, bool redraw) {
+	if(amount == 0) return 0;
 	if(redraw) currentBlock->undraw();
-	currentBlock->counterClockwise();
-	if(isCurrentBlocked()) {
-		currentBlock->clockwise();
-		if(redraw) currentBlock->draw();
-		return false;
+	int moveCount = 0;
+	while(moveCount < amount){
+		currentBlock->counterClockwise();
+		if(isCurrentBlocked()) {
+			currentBlock->clockwise();
+			break;
+		}
+		moveCount++;
 	}
 	if(redraw) currentBlock->draw();
-	return true;
+	return moveCount;
 }
 
 void Board::dropCurrent(bool redraw) {

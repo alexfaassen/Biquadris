@@ -59,8 +59,8 @@ class Board {
 	bool changeCurrent(char newType);
 	void setNext(Block *nex);
 	int moveCurrent(Direction, int amount, bool redraw = true);
-	bool clockwiseCurrent(bool redraw = true);
-	bool counterClockwiseCurrent(bool redraw = true);
+	int clockwiseCurrent(int amount = 1, bool redraw = true);
+	int counterClockwiseCurrent(int amount = 1, bool redraw = true);
 	void dropCurrent(bool redraw = true);
 
 	// deals with the heaviness stuff
