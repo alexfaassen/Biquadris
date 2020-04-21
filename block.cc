@@ -184,9 +184,11 @@ bool Block::deleteTiles(){
 		//cout << "test: deleteTiles is empty" << endl; 
 		return false;
 	}
-	undraw();
-	//cout << "test: deleteTiles with n = " << tiles.size() << endl;
-	tiles.clear();
+	if(curr){
+		cout << "test: block dtor" << endl;
+		undraw();
+		tiles.clear();
+	}
 	return true;
 }
 
@@ -220,5 +222,11 @@ void Block::draw(){
 void Block::undraw(){
 	for(auto &t : tiles){
 		t.undraw();
+	}
+}
+
+void Block::customDraw(int deltaX, int deltaY){
+	for(auto &t : tiles){
+		t.customDraw(deltaX, deltaY);
 	}
 }
