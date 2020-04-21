@@ -15,7 +15,6 @@ class Tile {
 	void setLetter(char newLetter);
 	int getX() ;
 	int getY() ;
-	void kill();
 	void setX(const int newX);
 	void setY(const int newY);
 	void setXY(const int newX, const int newY);
