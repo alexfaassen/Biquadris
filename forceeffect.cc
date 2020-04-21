@@ -1,6 +1,6 @@
 #include "forceeffect.h"
 #include "player.h"
-#include <iostream.h>
+#include <ostream.h>
 
 using namespace std;
 
