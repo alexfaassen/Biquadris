@@ -103,6 +103,7 @@ Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptFile
     }
     //cout << "test: constructing board" <<endl;
     board = new Board(level, window);
+    notifyObservers(onNextBlockChange, board->getNextBlockType());
 }
 
 Player::~Player(){
