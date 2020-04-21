@@ -42,8 +42,9 @@ int Player::cleanObservers(){
         if(!observers.at(i)->isAlive()){
             delete observers.at(i);
             observers.erase(observers.begin()+i);
-            cleaned = 0;
+            ++cleaned;
             i--;
+            cout << "test: cleaned!" << endl;
         }
     }
     return cleaned;
