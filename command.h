@@ -12,6 +12,8 @@ class Command {
 
 	Command(const std::string name, const bool needClean = 1) : name{name}, needClean{needClean} {}
 
+	virtual void run(GameState &game, const int times = 1) const = 0;
+
 	public:
 	virtual ~Command();
 
@@ -22,9 +24,6 @@ class Command {
 	bool hasSubstring(const std::string playerInput) const;
 
 	virtual void execute(GameState &game, const int times) const;
-
-	private:
-	virtual void run(GameState &game, const int times = 1) const = 0;
 };
 
 #endif
