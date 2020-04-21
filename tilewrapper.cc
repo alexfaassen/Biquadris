@@ -41,7 +41,7 @@ void Tilewrapper::drawTileAt(int x, int y, int deltaX, int deltaY){
 }
 
 void Tilewrapper::draw(){
-	std::cout << "test: in draw() method, tile->getX() =" << tile->getX() << std::endl;
+	//std::cout << "test: in draw() method, tile->getX() =" << tile->getX() << std::endl;
     drawAt(tile->getX(), tile->getY());
 }
 
