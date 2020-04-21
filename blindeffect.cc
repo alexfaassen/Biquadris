@@ -33,19 +33,19 @@ void BlindEffect::notify(const Event currEvent, PlayerWindow& window){
 	//graphicsDisplay stuff
 	if(currEvent == beforeTextDisplay || currEvent == afterMove){
 		window.fillRectangle(42, 40, 147, 383, PlayerWindow::White);
-		window.fillRectangle(0, 83, 44, 292, PlayerWindow::White);
-		window.fillRectangle(188, 83, 44, 292, PlayerWindow::White);
+		window.fillRectangle(0, 82, 44, 293, PlayerWindow::White);
+		window.fillRectangle(188, 82, 44, 293, PlayerWindow::White);
 	} else if(currEvent == onDrop){
 		window.fillRectangle(42, 40, 147, 383);
-		window.fillRectangle(0, 83, 44, 292);
-		window.fillRectangle(188, 83, 44, 292);
+		window.fillRectangle(0, 82, 44, 293);
+		window.fillRectangle(188, 82, 44, 293);
 		player->redrawBoard();
 		kill();
 	}
 }
 
 void BlindEffect::notify(const Event currEvent, const Move m){
-	if (currEvent == beforeTextDisplay){
+	if (currEvent == onDrop){
 		player->redrawBoard();
 		kill();
 	}
