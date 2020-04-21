@@ -69,7 +69,7 @@ Board::~Board(){
 
 bool Board::pushNextBlock(bool safe){
 	//cout << "test: in pushNextBlock(), current nextblock type is " << nextBlock->getType() << endl;
-	if(safe && currentBlock) return false;
+	if(safe && currentBlock) return true;
 	if(!nextBlock)nextBlock = CreateBlock();
 	//cout << "test: nextBlock type (before switch): " << string(1, nextBlock->getType()) << endl;
 	currentBlock = nextBlock;
@@ -81,24 +81,31 @@ bool Board::pushNextBlock(bool safe){
 	//cout << "test: Attempting to create next block" << endl;
 	nextBlock = CreateBlock();
 	//cout << "test: after second createBlock" <<endl;
-	if (isCurrentBlocked()) kill();
+	if (isCurrentBlocked()){
+		 kill();
+		 return false;
+	}
 	return true;
 }
 
-void Board::placeCurrent(){
+bool Board::placeCurrent(){
 	//cout << "test: in placeCurrent()" << endl;
+	if(isCurrentBlocked()) return false; 
 	placeBlock(currentBlock);
 	currentBlock = nullptr;
+	return true;
 }
 
-void Board::placeBlock(Block* b){
-	if(!b) return;
+bool Board::placeBlock(Block* b){
+	if(!b) return false;
+	if(isBlocked(b)) return false;
 	//cout << "test: in placeBlock(b)" << endl;
 	placed.emplace_back(b);
 	//cout << "test: for (auto p : b->getTiles())" << endl;
 	for (Tilewrapper &p : b->getTiles()){
 		immobileTiles[p->getX()][p->getY()] = p;
 	}
+	return true;
 }
 
 int Board::eotClean(int *score) {
@@ -129,13 +136,17 @@ int Board::eotClean(int *score) {
 	return rowsRemoved;
 }
 
-void Board::changeCurrent(char newType) {
+bool Board::changeCurrent(char newType) {
 	//cout << "test: in board, changeCurrent()" << endl;
 	Block *newBlock = new Block(newType, level->getIdentifier());
 	Block *oldCurrBlock = currentBlock;
 	currentBlock = newBlock;
 	if(oldCurrBlock) delete oldCurrBlock;
-	if (isCurrentBlocked()) kill();
+	if (isCurrentBlocked()){
+		kill();
+		return false;
+	}
+	return true;
 	//cout << "test: end of changeCurrent()" << endl;
 }
 
@@ -178,7 +189,7 @@ bool Board::counterClockwiseCurrent() {
 }
 
 void Board::dropCurrent() {
-	while(moveCurrent(Down, 1)){
+	while(moveCurrent(Down, 1) && !isCurrentBlocked()){
 		//cout << "test: dropping..." <<endl;
 	}
 	//cout << "test: before placeCurrent()" << endl;
@@ -188,11 +199,15 @@ void Board::weighDownCurrent(){
 	moveCurrent(Down, currentBlock->getHeaviness());
 }
 
-bool Board::isCurrentBlocked(){
-	for(auto &t : currentBlock->getTiles()){
+bool Board::isBlocked(Block* b){
+	for(auto &t : b->getTiles()){
 		if(!isEmpty(t->getX(), t->getY())) return true;
 	}
 	return false;
+}
+
+bool Board::isCurrentBlocked(){
+	return isBlocked(currentBlock);
 }
 
 bool Board::isMoveBlocked(int deltaX, int deltaY){

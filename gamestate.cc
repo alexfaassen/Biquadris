@@ -37,8 +37,8 @@ int GameState::cleanStreams(){
 }
 
 int GameState::getLoser(){
-    if(activePlayer->getInputState() == LOSS) return activePlayer->getSide();
-    if(nonActivePlayer->getInputState() == LOSS) return nonActivePlayer->getSide();
+    if(activePlayer->isDead()) return activePlayer->getSide();
+    if(nonActivePlayer->isDead()) return nonActivePlayer->getSide();
     return 0;
 }
 

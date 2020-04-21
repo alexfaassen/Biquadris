@@ -24,6 +24,7 @@ class Player {
     std::vector<Observer*> observers;
     InputState inputState = END_TURN;
     std::string scriptFile;
+    bool alive = true;
 
     void initGraphicsObservers();   //creates and attaches all of the graphicObserver objects
     int cleanObservers();           //removes all dead observers from the vector
@@ -52,6 +53,8 @@ class Player {
     InputState getInputState() {return inputState;};
     std::string getScriptFile() {return scriptFile;};
     void setScriptFile(std::string s) {scriptFile = s;};
+    bool isDead() const {return !alive;};
+    void kill(){alive = false;};
 
     //movement commands
     int moveBlock(Direction dir, int times, bool isInput = true);

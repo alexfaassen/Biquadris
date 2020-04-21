@@ -40,7 +40,7 @@ class Board {
 	char getNextBlockType() const {return nextBlock->getType();};
 
 	// moves currentBlock into placed, nextBlock into currentBlock, and generates nextBlock. 
-	// Returns if successful. If safe, will not do anything if currentBlock is not nullptr
+	// Return false if isBlocked
 	bool pushNextBlock(bool safe = true);
 
 	// moves currentBlock into placed and its tiles into immobileTiles. Sets currentBlock to nullptr
@@ -52,7 +52,9 @@ class Board {
 	// handles everything that needs to be called at end of turn
 	int eotClean(int *score);
 
-	void changeCurrent(char newType);
+	// changes the current block
+	// Returns false if isBlocked
+	bool changeCurrent(char newType);
 	void setNext(Block *nex);
 	int moveCurrent(Direction, int amount);
 	bool clockwiseCurrent();
@@ -62,7 +64,8 @@ class Board {
 	// deals with the heaviness stuff
 	void weighDownCurrent();
 
-	// are any of currentBlock's tiles on an occupied tile?
+	// are any of block's tiles on an occupied tile?
+	bool isBlocked(Block* b);
 	bool isCurrentBlocked();
 
 	//will moving currentBlock by the given coords cause it to collide with a tile?
