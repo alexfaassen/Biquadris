@@ -139,7 +139,7 @@ bool GameState::beginReadLoop(){
 
             // clear all digits from front of string
             while(isdigit(s[0])){
-		s = s.erase(0, 1);
+		        s = s.erase(0, 1);
             }
         }
         runInput(s, multiplier);
@@ -154,6 +154,8 @@ bool GameState::beginReadLoop(){
 		int i = 0;
         cout << Xwindow::White <<endl;
 		for(auto c : "Special Action"){
+            cout << "Before string: " << c <<endl;
+            string strC = string(1,c);
             cout << "Special Action: " << c <<endl;
 			window->drawBigString(60 + (i * 8), 70, string(1, c), Xwindow::White);
             cout << "Adter drawBigString" <<endl;
