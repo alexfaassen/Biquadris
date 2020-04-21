@@ -63,7 +63,6 @@ class GameState {
     
     // compares score to highscore and updates highscore if needed; returns if update happened
     bool updateHighscore(int score);    
-
 };
 
 

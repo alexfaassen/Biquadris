@@ -32,7 +32,7 @@ void BlindEffect::notify(const Event currEvent, vector<vector<char>> &boardPrint
 void BlindEffect::notify(const Event currEvent, PlayerWindow& window){
 	//graphicsDisplay stuff
 	if(currEvent == beforeTextDisplay){
-		//TODO: draw blind effect
+		window->fillRectangle(60,
 	}
 }
 
