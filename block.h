@@ -12,6 +12,7 @@ class Block {
 	int initLevel, heaviness = 0;
 	std::vector<BlockTilewrapper> tiles;
 	PlayerWindow* window = nullptr;
+	bool curr = true;
 
 	//set block types
 	void IBlock(int x, int y);
@@ -40,6 +41,7 @@ class Block {
 	int getHeaviness() const {return heaviness;};
 	void makeHeavy(int x) { heaviness = x; };
 	void attachWindow(PlayerWindow* w = nullptr);
+	void nowNotCurr() {curr = false;};
 
 	//maintainence
 	bool alive();
