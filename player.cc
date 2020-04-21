@@ -168,18 +168,17 @@ void Player::drop(int times, bool isInput){
         board->dropCurrent();
         board->placeCurrent();
         //if dead, break out of loop and ignore everything else
+        cout << "Drop death" <<endl;
         if(!pushNextBlockAndCheck()) break;
     }
+    
     // handles the final drop
     if(times > 0){ 
         board->dropCurrent();
 	    board->placeCurrent();
        	endTurn();
-        if(!board->isAlive()){
-		    setInputState(LOSS);
-		    kill();
-	    }
     }
+
     if(isInput && times > 0){
         notifyObservers(onDrop, *window);
         checkEndTurn();
