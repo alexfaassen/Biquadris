@@ -83,7 +83,7 @@ bool Board::pushNextBlock(bool safe){
 
 bool Board::placeCurrent(){
 	if(isCurrentBlocked()){
-		kill();
+		
 		return false;
 	}
 	placeBlock(currentBlock);
