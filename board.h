@@ -49,7 +49,7 @@ class Board {
 
 	//moves the given block into placed and its tiles into immobileTiles
 	// fails if isBlocked
-	bool placeBlock(Block*);
+	bool placeBlock(Block*, bool draw = false);
 
 	// handles everything that needs to be called at end of turn
 	int eotClean(int *score);

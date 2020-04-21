@@ -95,7 +95,7 @@ bool Board::placeCurrent(){
 	return true;
 }
 
-bool Board::placeBlock(Block* b){
+bool Board::placeBlock(Block* b, bool draw){
 	if(!b) return false;
 	if(isBlocked(b)) return false;
 	//cout << "test: in placeBlock(b)" << endl;
@@ -103,6 +103,7 @@ bool Board::placeBlock(Block* b){
 	//cout << "test: for (auto p : b->getTiles())" << endl;
 	for (Tilewrapper &p : b->getTiles()){
 		immobileTiles[p->getX()][p->getY()] = p;
+		if(draw) p.draw();
 	}
 	return true;
 }
