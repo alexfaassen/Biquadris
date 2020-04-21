@@ -1,7 +1,6 @@
 #ifndef LEVEL4_H
 #define LEVEL4_H
 #include "level.h"
-#include "heavyeffect.h"
 #include "centredropeffect.h"
 
 class Player;

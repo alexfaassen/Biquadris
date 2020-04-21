@@ -5,6 +5,7 @@
 class JCmd : public Command {
 	public:
 	JCmd(const std::string name = "J", bool needClean = 1) : Command(name, needClean) {}
+
 	private:
 	void run(GameState &game, const int times = 1) const override;
 };

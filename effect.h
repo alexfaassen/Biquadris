@@ -10,6 +10,7 @@ class Effect : public Observer {
 
 	Effect(bool temp = true, int duration = 1) : Observer(), temp{temp}, duration{duration} {}
 
+	public:
 	void update();
 };
 

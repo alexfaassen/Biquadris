@@ -1,7 +1,6 @@
 #ifndef LEVEL3_H
 #define LEVEL3_H
 #include "level.h"
-#include "heavyeffect.h"
 
 class Player;
 

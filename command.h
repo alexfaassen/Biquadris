@@ -6,7 +6,6 @@
 class GameState;
 
 class Command {
-	protected:
 	std::string name;
 	bool needClean;
 
@@ -17,9 +16,10 @@ class Command {
 	public:
 	virtual ~Command();
 
+	//accessor
 	std::string getName() const;
 
-	 // returns whether playerInput is a substring of name
+	//returns whether playerInput is a substring of name
 	bool hasSubstring(const std::string playerInput) const;
 
 	virtual void execute(GameState &game, const int times) const;
