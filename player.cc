@@ -107,7 +107,7 @@ Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptFile
         cout << "Error: invalid startlevel. Using Level 0 instead" << endl;
         setLevel(0);
     }
-    board = new Board(level, window);
+    board = new Board(level, window, fastmode);
     notifyObservers(onNextBlockChange, board->getNextBlockType());
 }
 

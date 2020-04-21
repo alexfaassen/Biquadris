@@ -58,7 +58,6 @@ Board::Board(Level* level, PlayerWindow* w, bool fastmode)
 : level{level}, window{w}, fastmode{fastmode} {
 	initImmobileTiles(w);
 	nextBlock = CreateBlock();
-	cout << "test: fastmode " << fastmode << endl;
 }
 
 Board::~Board(){
