@@ -127,6 +127,13 @@ void Block::clockwise() {
         }
 		count++;
 	}
+
+	cout << "after flip: ";
+	for(auto &t :tiles) {
+		cout << "(" << t->getX() << ", " << t->getY() << ") ";
+	}
+	cout <<endl;
+
 	
 	cout << "Bottom left: " << minX << ", " << maxY <<endl;
 
