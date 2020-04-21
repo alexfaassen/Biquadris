@@ -57,7 +57,7 @@ class Player {
     std::string getScriptFile() {return scriptFile;};
     void setScriptFile(std::string s) {scriptFile = s;};
     bool isDead() const {return !alive;};
-    void kill(){alive = false;};
+    void kill(){std::cout << "test: player got killed" << std::endl ;alive = false;};
 
     //movement commands
     int moveBlock(Direction dir, int times, bool isInput = true);
