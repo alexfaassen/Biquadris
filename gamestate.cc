@@ -17,11 +17,8 @@ void GameState::switchActive(){
 }
 
 void GameState::createPlayers(){
-    //cout << "test: constructing player 1" << endl;
     activePlayer = new Player(window, loffsetX, loffsetY, -1, scriptFile1, startlevel);
-    //cout << "test: constructing player 2" << endl;
     nonActivePlayer = new Player(window, roffsetX, roffsetY, 1, scriptFile2, startlevel);
-    //cout << "test: finished constructing players" << endl;
 }
 
 int GameState::cleanStreams(){
@@ -43,11 +40,20 @@ int GameState::getLoser(){
 }
 
 bool GameState::handleGameOver(){
+	cout << "in handleGameOver()" << endl;
     int loser = getLoser();
     if(loser == 0) return true;     //if nobody loses, return true
     int winner = (loser == -1 ? 2 : 1);
     cout << "Player" << winner << " wins!" << endl;
     cout << "The highscore is " << highscore << endl;
+    if(window){
+	    window->fillRectangle(windowWidth/2 - 30, windowHeight/2 - 20, 60, 40, Xwindow::Black);
+	    window->fillRectangle(windowWidth/2 - 31, windowHeight/2 - 21, 3, 42, Xwindow::White);
+	    window->fillRectangle(windowWidth/2 + 28, windowHeight/2 - 21, 3, 42, Xwindow::White);
+	    window->fillRectangle(windowWidth/2 - 31, windowHeight/2 - 21, 62, 3, Xwindow::White);
+	    window->fillRectangle(windowWidth/2 - 31, windowHeight/2 + 18, 62, 3, Xwindow::White);
+	    window->drawBigString(windowWidth/2 - 20, windowHeight/2, "GAMEOVER", Xwindow::White);
+    }
     return beginGameOverLoop();
 }
 
@@ -75,7 +81,6 @@ GameState::GameState(bool hasWindow, string scriptFile1, string scriptFile2, int
     if(hasWindow){
         window = new Xwindow(windowWidth, windowHeight);
     }
-    //cout << "test: before restart" << endl;
     restart();
 }
 
@@ -98,13 +103,10 @@ bool GameState::pushToStreams(const string file){
 }
 
 istream& GameState::getStream(){
-    //cout  << "test : before CleanStreams()" << endl;
     cleanStreams();
     if(ifstreams.empty()){
-        //cout  << "test : returning cin" << endl;
         return cin;
     } else {
-        //cout  << "test : ifstreams.back" << endl;
         return ifstreams.back();
     }
 }
@@ -113,12 +115,9 @@ bool GameState::readFromStream(string &str){
     while(!ifstreams.empty()){
         if(getStream() >> str) {
             cout << str << endl;
-            //cout << "test: file read success" << endl;
             return true;
         }
-        //cout << "test: file read fail" << endl;
     }
-    //cout << "test: reading from cin" << endl;
     return bool(cin >> str);
 }
 
@@ -135,7 +134,6 @@ bool GameState::readFromStream(char &c){
 bool GameState::beginReadLoop(){
     string s;
     while (readFromStream(s)) {
-        //cout << "test: passed getStream" << endl;     
         int multiplier = 1;
         if(isdigit(s[0])){          // test if s starts with an int
             multiplier = atoi(s.c_str());   // http://www.cplusplus.com/reference/cstdlib/atoi/
@@ -145,7 +143,6 @@ bool GameState::beginReadLoop(){
 		s = s.erase(0, 1);
             }
         }
-	//cout << "test: in beingReadLoop(), multiplier = " << multiplier << endl;
         runInput(s, multiplier);
 
         //game over stuff
@@ -216,7 +213,6 @@ bool GameState::runInputOnBoth(string input, int multiplier){
 }
 
 void GameState::cleanup(){
-
     //update highscore
     updateHighscore(activePlayer->getScore());
     
@@ -248,7 +244,6 @@ bool printAndRemoveLine(string &str){
 }
 
 void GameState::printGame(){
-    //cout << "test: before player.printToString" << endl;
     string lp, rp;
     if(activePlayer->getSide() == -1){
         lp = activePlayer->printToString(true);
@@ -257,10 +252,6 @@ void GameState::printGame(){
         lp = nonActivePlayer->printToString(false);
         rp = activePlayer->printToString(true);
     }
-    //cout << "test: after player.printToString" << endl;
-
-    //cout << "lp size: " << lp.size() << endl;
-    //cout << "rp size: " << rp.size() << endl;
 
     while(true){
         if(!printAndRemoveLine(lp)){    //breaks out of loop once either string runs out of lines
@@ -272,8 +263,6 @@ void GameState::printGame(){
         }
         cout << endl;
     }
-
-    //cout << "test: after printing" << endl;
 }
 
 void GameState::restart(){
@@ -282,9 +271,7 @@ void GameState::restart(){
     if(window) window->fillRectangle(0, 0, windowWidth, windowHeight);
     cout << "test: to_string() = " << to_string(4) << endl;
     createPlayers();
-    //cout << "test : activePlayer->startTurn" << endl;
     activePlayer->startTurn();
-    //cout << "test : printgame" << endl;
     printGame();
 }
 

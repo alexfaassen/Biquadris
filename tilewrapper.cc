@@ -16,7 +16,7 @@ void Tilewrapper::drawAt(int x, int y){
 
 void Tilewrapper::drawEmptyAt(int x, int y){
     if(!window) return;
-    window->fillRectangle(x * 20 + x - 1, (y * 20) + 100 + y - 1, 22, 22);
+    window->fillRectangle(x * 20 + x - 1, (y * 20) + 103 + y - 1, 22, 22);
 }
 
 void Tilewrapper::drawTileAt(int x, int y, int deltaX, int deltaY){
@@ -28,7 +28,7 @@ void Tilewrapper::drawTileAt(int x, int y, int deltaX, int deltaY){
     else if (tile->getLetter() == 'S') colour = PlayerWindow::Cyan;
     else if (tile->getLetter() == 'Z') colour = PlayerWindow::Orange;
     else if (tile->getLetter() == '*') colour = PlayerWindow::Black;
-    window->fillRectangle(x * 20 + x, (y * 20) + 100 + y, 20, 20, colour);
+    window->fillRectangle(x * 20 + x, (y * 20) + 103 + y, 20, 20, colour);
 }
 
 void Tilewrapper::draw(){
