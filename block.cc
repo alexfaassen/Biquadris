@@ -110,6 +110,23 @@ void Block::clockwise() {
 		if(t->getX() < minX)minX = t->getX();
 		if(t->getY() < minY)minY = t->getY();
 	}
+
+	int upperMid, lowerMid;
+    upperMid = (maxY + 1) / 2;
+    if((maxY + 1) % 2 == 0) lowerMid = (maxY + 1) / 2 - 1;
+    else lowerMid = upperMid;
+	int newX, count = 0;
+	for(auto &t : tiles) {
+        if(count > upperMid) {
+            newX = lowerMid - t->getY() + upperMid;
+			t->setY(newX);
+        }
+        else if(count < lowerMid) {
+            newX = upperMid + t->getY() - upperMid;
+			t->setY(newX);
+        }
+		count++;
+	}
 	
 	cout << "Bottom left: " << minX << ", " << maxY <<endl;
 
