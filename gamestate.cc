@@ -143,7 +143,7 @@ bool GameState::beginReadLoop(){
             }
         }
         runInput(s, multiplier);
-	cout << "test: back in read loop" << endl;
+	    cout << "test: back in read loop" << endl;
 
         //game over stuff
         if(!handleGameOver()){
@@ -156,8 +156,8 @@ bool GameState::beginReadLoop(){
 			window->drawBigString(60 + (i * 8), 70, string(1, c), Xwindow::White);
 			++i;
 		}
-		cout << "Choose a Special Action!" << endl;
-	}
+		    cout << "Choose a Special Action!" << endl;
+	    }
     } 
     return true;
 }
