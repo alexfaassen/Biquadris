@@ -3,5 +3,5 @@
 #include "playerwindow.h"
 
 void LevelGraphic::notify(const Event currEvent, Move m){
-       window->drawString(window->getOffsetX() + 205, 10, std::to_string(player->isLevel()), PlayerWindow::Black);
+       window->drawString(window->getOffsetX() + 221, 10, std::to_string(player->isLevel()), PlayerWindow::Black);
 }

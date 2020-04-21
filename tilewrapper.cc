@@ -16,7 +16,7 @@ void Tilewrapper::drawAt(int x, int y){
 
 void Tilewrapper::drawEmptyAt(int x, int y){
     if(!window) return;
-    window->fillRectangle(x * 20, (y * 20) + 100, 20, 20, PlayerWindow::White);
+    window->fillRectangle(x * 20 + x, (y * 20) + 100 + y, 20, 20, PlayerWindow::White);
 }
 
 void Tilewrapper::drawTileAt(int x, int y){
@@ -29,11 +29,11 @@ void Tilewrapper::drawTileAt(int x, int y){
     else if (tile->getLetter() == 'Z') colour = PlayerWindow::Orange;
     else if (tile->getLetter() == '*') colour = PlayerWindow::Black;
     cout << "test: x = " << x << ", y = " << y << endl;
-    window->fillRectangle(x * 20, (y * 20) + 100, 20, 20, colour);
-    window->drawLine(x * 20, (y * 20) + 100, (x * 20) + 20, (y * 20) + 100);
-    window->drawLine(x * 20, (y * 20) + 120, (x * 20) + 20, (y * 20) + 120);
-    window->drawLine(x * 20, (y * 20) + 100, x * 20, (y * 20) + 120);
-    window->drawLine((x * 20) + 20, (y * 20) + 100, (x * 20) + 20, (y * 20) + 120);
+    window->fillRectangle(x * 20 + x, (y * 20) + 100 + y, 20, 20, colour);
+    window->drawLine(x * 20 + x, (y * 20) + 100 + y, (x * 20) + 20 + x, (y * 20) + 100 + y);
+    window->drawLine(x * 20 + x, (y * 20) + 120 + y, (x * 20) + 20 + x, (y * 20) + 120 + y);
+    window->drawLine(x * 20 + x, (y * 20) + 100 + y, x * 20 + x, (y * 20) + 120 + y);
+    window->drawLine((x * 20) + 20 + x, (y * 20) + 100 + y, (x * 20) + 20 + x, (y * 20) + 120 + y);
 }
 
 void Tilewrapper::draw(){

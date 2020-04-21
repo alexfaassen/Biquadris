@@ -9,9 +9,9 @@ PlayerWindow::PlayerWindow(Xwindow* window, int offsetX, int offsetY, int width,
 : window{window}, offsetX{offsetX}, offsetY{offsetY}, width{width}, height{height} {
 	window->drawBigString(offsetX + 5, 10, "Level:", Black);
 	window->drawBigString(offsetX + 5, 30, "Score:", Black);
-	window->drawLine(offsetX, 35, offsetX + 220, 35);
-	window->drawLine(offsetX, 405, offsetX + 220, 405);
-	window->drawBigString(offsetX + 5, 420, "Next:", Black);
+	window->drawLine(offsetX, 35, offsetX + 231, 35);
+	window->drawLine(offsetX, 423, offsetX + 231, 423);
+	window->drawBigString(offsetX + 5, 438, "Next:", Black);
 }
 
 PlayerWindow::~PlayerWindow(){}
