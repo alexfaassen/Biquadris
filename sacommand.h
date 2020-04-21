@@ -3,6 +3,7 @@
 #include "command.h"
 
 class SACommand : public Command {
+	protected:
 	SACommand(const std::string name, const bool needClean = 1) : Command(name, needClean) {}
 
 	public:
