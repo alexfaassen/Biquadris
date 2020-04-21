@@ -1,6 +1,8 @@
 #include "observer.h"
 #include "player.h"
 
+#include <stdio.h>
+
 Observer::~Observer() {}
 
 bool Observer::isAlive() const { return alive; }
