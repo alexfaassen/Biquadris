@@ -44,10 +44,12 @@ class Board {
 	bool pushNextBlock(bool safe = true);
 
 	// moves currentBlock into placed and its tiles into immobileTiles. Sets currentBlock to nullptr
-	void placeCurrent();
+	// fails if isBlocked
+	bool placeCurrent();
 
 	//moves the given block into placed and its tiles into immobileTiles
-	void placeBlock(Block*);
+	// fails if isBlocked
+	bool placeBlock(Block*);
 
 	// handles everything that needs to be called at end of turn
 	int eotClean(int *score);
