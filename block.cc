@@ -95,7 +95,7 @@ void Block::move(int deltaX, int deltaY) {
 }
 
 void Block::clockwise() {
-  undraw();
+ 	undraw();
 	cout << "before clockwise" <<endl;
 	for(auto &t : tiles) {
 		cout << "(" << t->getX() << ", " << t->getY() << ") ";
@@ -110,70 +110,22 @@ void Block::clockwise() {
 		if(t->getY() < minY)minY = t->getY();
 	}
 
-	cout << "Bottom Left: " << maxY << ", " << minX <<endl;
-	Block rotateBlock = Block(type, 0, 0, 0, 0);
-	int maxRotateX = 0, maxRotateY = -3;
-	for(auto t : rotateBlock.tiles) {
-		if(t->getX() > maxRotateX)maxRotateX = t->getX();
-		if(t->getY() > maxRotateY)maxRotateY = t->getY();
-	}
-	int distUp;
-	for(auto &t : rotateBlock.tiles) {
-		distUp = maxRotateY - t->getY();
-		// t->setX(t->getX() - minX);
-		// t->setX(t->getY() - minY);
-		t->setY(maxRotateY + distUp);
+	for(auto &t : tiles) {
+		t->setX(t->getX() - minX);
+		t->setX(t->getY() - minY);
+		cout << "Min: " <<  t->getX() << ", " << t->getY() <<endl;
 		t->invert();
-		t->setY(t->getY() - maxRotateX + maxY);
+		t->setY(t->getY() - maxX + maxY);
 		t->setX(t->getX() + minX);
+		cout << "After invert: " <<  t->getX() << ", " << t->getY() <<endl;
 	}
-
-	// for(auto t : tiles) {
-	// 	t->setX(t->getX() - minX);
-	// 	t->setX(t->getY() - minY);
-	// }
-
-	// cout << "after min clockwise" <<endl;
-	// for(auto t : tiles) {
-	// 	cout << "(" << t->getX() << ", " << t->getY() << ") ";
-	// }
-	// cout <<endl;
-
-	// for(auto t : tiles) {
-	// 	t->setX(t->getX() - minX);
-	// 	t->setX(t->getY() - minY);
-	// 	t->invert();
-	// 	t->setY(-t->getY());
-	// 	t->setX(t->getX() - minX);
-	// 	t->setX(t->getY() - minY);
-	// }
-	
-	// for(auto t : tiles) {
-	// 	distUp = maxY - t->getY();
-	// 	t->setX(t->getX() - minX);
-	// 	t->setX(t->getY() - minY);
-	// 	t->setY(maxY + distUp);
-	// 	t->invert();
-	// 	t->setY(t->getY() - maxX + minX);
-	// }
-
-	// cout << "after invert clockwise" <<endl;
-	// for(auto t : tiles) {
-	// 	cout << "(" << t->getX() << ", " << t->getY() << ") ";
-	// }
-	// cout <<endl;
-
-	// for(auto t : tiles) {
-	// 	t->setX(t->getX() + minX);
-	// 	t->setX(t->getY() + minY);
-	// }
 
 	cout << "after clockwise" <<endl;
 	for(auto &t : tiles) {
 		cout << "(" << t->getX() << ", " << t->getY() << ") ";
 	}
-	draw();
 	cout <<endl;
+	draw();
 }
 
 void Block::counterClockwise() {
