@@ -20,12 +20,17 @@ bool Board::rowIsFull(int row){
 void Board::clearRow(int row){
 	//kill every tile on that row
 	for(int x = 0; x < 11; ++x){
-		if(immobileTiles[x][row]) immobileTiles[x][row]->kill();
+		if(immobileTiles[x][row]){
+			immobileTiles[x][row]->kill();
+			immobileTiles[x][row]->undraw();
+		}
 	}
 	//move everything above it down
 	for(int y = row; y > 0; --y){
 		for(int x = 0; x < 11; ++x){
+			immobileTiles[x][y]->undraw();
 			immobileTiles[x][y] = immobileTiles[x][y - 1];
+			immobileTiles[x][y]->draw();
 		}
 	}
 	//make top row empty
