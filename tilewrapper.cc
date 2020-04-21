@@ -28,6 +28,10 @@ void Tilewrapper::drawTileAt(int x, int y){
     else if (tile->getLetter() == 'Z') colour = PlayerWindow::Orange;
     else if (tile->getLetter() == '*') colour = PlayerWindow::Black;
     window->fillRectangle(x, y, 20, 20, colour);
+    window->drawLine(x, y, x + 20, y);
+    window->drawLine(x, y + 20, x + 20, y + 20);
+    window->drawLine(x, y, x, y + 20);
+    window->drawLine(x + 20, y, x + 20, y + 20);
 }
 
 void Tilewrapper::draw(){
