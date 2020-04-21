@@ -141,7 +141,11 @@ bool Board::changeCurrent(char newType) {
 	Block *newBlock = new Block(newType, level->getIdentifier());
 	Block *oldCurrBlock = currentBlock;
 	currentBlock = newBlock;
-	if(oldCurrBlock) delete oldCurrBlock;
+	if(oldCurrBlock){
+		oldCurrBlock->undraw();
+		delete oldCurrBlock;
+	}
+	cout << "test: currentBlock->draw()" << endl;
 	currentBlock->draw();
 	if (isCurrentBlocked()){
 		kill();

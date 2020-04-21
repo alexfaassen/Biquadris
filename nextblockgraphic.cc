@@ -5,7 +5,7 @@
 
 void NextBlockGraphic::notify(const Event currEvent, const char c){	
 	if(currEvent == onNextBlockChange){
-		window->fillRectangle(1, 442, 84, 483);
+		window->fillRectangle(1, 441, 84, 483);
 		Block tempBlock(c, -1);
 		tempBlock.nowNotCurr();
 		tempBlock.attachWindow(window);

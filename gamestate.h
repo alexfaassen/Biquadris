@@ -21,8 +21,8 @@ class GameState {
     CommandList *commandList = new CommandList();
     std::vector<std::ifstream> ifstreams;
 
-    const int loffsetX = 0, loffsetY = 0, roffsetX = 270, roffsetY = 0;
-    const int windowHeight = 482, windowWidth = 502;
+    const int loffsetX = 1, loffsetY = 1, roffsetX = 271, roffsetY = 1;
+    const int windowHeight = 483, windowWidth = 503;
     const std::string scriptFile1 = "biquadris_sequence1.txt", scriptFile2 ="biquadris_sequence2.txt";
     const int startlevel = 0;
     bool running = true, simul = false;

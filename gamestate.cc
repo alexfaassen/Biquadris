@@ -280,7 +280,7 @@ void GameState::restart(){
     if(activePlayer) delete activePlayer;
     if(nonActivePlayer) delete nonActivePlayer;
     if(window) window->fillRectangle(0, 0, windowWidth, windowHeight);
-    //cout << "test : before createPlayers" << endl;
+    cout << "test: to_string() = " << to_string(4) << endl;
     createPlayers();
     //cout << "test : activePlayer->startTurn" << endl;
     activePlayer->startTurn();
