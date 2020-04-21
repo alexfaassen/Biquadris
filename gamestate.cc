@@ -80,10 +80,10 @@ GameState::GameState(bool hasWindow, string scriptFile1, string scriptFile2, int
 }
 
 GameState::~GameState(){
-    if(window) delete window;
+    if(commandList) delete commandList;
     if(activePlayer) delete activePlayer;
     if(nonActivePlayer) delete nonActivePlayer;
-    if(commandList) delete commandList;
+    if(window) delete window;
 }
 
 bool GameState::pushToStreams(const string file){
