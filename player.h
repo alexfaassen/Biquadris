@@ -25,6 +25,7 @@ class Player {
     InputState inputState = END_TURN;
     std::string scriptFile;
     bool alive = true;
+    bool fastmode = false;
 
     void initGraphicsObservers();   //creates and attaches all of the graphicObserver objects
     void initDrawWindow();          //draws the starting window
@@ -36,7 +37,7 @@ class Player {
 
     public:
     Player();
-    Player(Xwindow*, int offsetX, int offsetY, int side, std::string scriptFile, int startlevel);
+    Player(Xwindow*, int offsetX, int offsetY, int side, std::string scriptFile, int startlevel, bool fastmode);
     ~Player();
 
     //calls notify() with the given parameters on all observers

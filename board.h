@@ -27,13 +27,14 @@ class Board {
 	void clearRow(int row);		//kills all the tiles in the row drops everything down
 
 	bool alive = 1;
+	bool fastmode = false;
 
 	void initImmobileTiles(PlayerWindow* = nullptr);
 	Block* CreateBlock();
 	
 	public:
 	//constructor and destructor
-	Board(Level*, PlayerWindow* = nullptr);
+	Board(Level*, PlayerWindow* = nullptr, bool fastmode = false);
 	~Board();
 
 	bool isAlive() const{return alive;};

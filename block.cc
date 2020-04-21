@@ -171,8 +171,8 @@ bool Block::deleteTiles(){
 	if(tiles.empty())return false;
 	if(curr){
 		undraw();
-		tiles.clear();
 	}
+	tiles.clear();
 	return true;
 }
 
