@@ -150,8 +150,15 @@ bool GameState::beginReadLoop(){
             break;
         }
 
-        if(activePlayer->getInputState() == SA) cout << "Choose a Special Action!" << endl;
-    }
+        if(activePlayer->getInputState() == SA){
+		int i = 0;
+		for(auto c : "Special Action"){
+			string s(1, c);
+			window->drawBigString(95 + i + 3, 40, s, Xwindow::White);
+			++i;
+		}
+		cout << "Choose a Special Action!" << endl;
+        }
     return true;
 }
 
