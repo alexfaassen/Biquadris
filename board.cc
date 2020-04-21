@@ -74,7 +74,6 @@ bool Board::pushNextBlock(bool safe){
 	//cout << "test: nextBlock type (before switch): " << string(1, nextBlock->getType()) << endl;
 	currentBlock = nextBlock;
 	if (window) currentBlock->draw();
-	currentBlock->nowCurr();
 	//cout << "test: currentBlock type: " << string(1, currentBlock->getType()) << endl;
 	//cout << "test: second createBlock" <<endl;
 	//cout << "level: " << level->getIdentifier() << endl;

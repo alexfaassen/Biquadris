@@ -10,7 +10,7 @@ class BlockTilewrapper;
 class Block {
 	char type;
 	int initLevel, heaviness = 0;
-	bool curr = false;
+	bool curr = true;
 	std::vector<BlockTilewrapper> tiles;
 	PlayerWindow* window = nullptr;
 
@@ -40,7 +40,7 @@ class Block {
 	std::vector<BlockTilewrapper>& getTiles() {return tiles;};
 	int getHeaviness() const {return heaviness;};
 	void attachWindow(PlayerWindow* w = nullptr);
-	void nowCurr() {curr = true;};
+	void nowNotCurr() {curr = false;};
 
 	//maintainence
 	bool alive();
