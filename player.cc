@@ -162,7 +162,6 @@ int Player::rotateCounterClockwise(int times, bool isInput){
 
 void Player::drop(int times, bool isInput){
     if(isInput) preMove();
-    cout << "in drop(), after preMove()" << endl;
 
     // handles everything except the last drop in a multi drop
     for(int i = 1; i < times; ++i){
@@ -171,12 +170,9 @@ void Player::drop(int times, bool isInput){
         //if dead, break out of loop and ignore everything else
         if(!pushNextBlockAndCheck()) break;
     }
-    cout << "after drop() loop" << endl;
     // handles the final drop
     if(times > 0){ 
-	cout << "in loop" << endl;
         board->dropCurrent();
-	cout << "before place current" << endl;
 	board->placeCurrent();
        	endTurn();
         if(!board->isAlive()){
@@ -184,7 +180,6 @@ void Player::drop(int times, bool isInput){
 		kill();
 	}
     }
-    cout << "after second drop() loop"<< endl;
     if(isInput && times > 0){
         notifyObservers(onDrop);
         checkEndTurn();

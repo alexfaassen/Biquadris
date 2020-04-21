@@ -82,13 +82,10 @@ bool Board::pushNextBlock(bool safe){
 }
 
 bool Board::placeCurrent(){
-	cout << "in placeCurrent()" << endl;
 	if(isCurrentBlocked()){
 		kill();
-		cout << "after isCurrentBlocked()" << endl;
 		return false;
 	}
-	cout << "ignored block" << endl;
 	placeBlock(currentBlock);
 	currentBlock = nullptr;
 	return true;
@@ -219,7 +216,6 @@ void Board::weighDownCurrent(){
 }
 
 bool Board::isBlocked(Block* b){
-	cout << "in isBlocked" << endl;
 	for(auto &t : b->getTiles()){
 		if(!isEmpty(t->getX(), t->getY())) return true;
 	}
