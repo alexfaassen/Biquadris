@@ -21,7 +21,6 @@ class Board {
 	std::vector<std::vector<ImmTilewrapper>> immobileTiles;
 	Level* level = nullptr;
 	PlayerWindow* window = nullptr;
-
 	
 	bool rowIsFull(int row);	//checks if the given row is complete
 	void clearRow(int row);		//kills all the tiles in the row drops everything down
