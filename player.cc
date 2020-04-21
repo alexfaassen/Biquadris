@@ -171,10 +171,7 @@ void Player::drop(int times, bool isInput){
         board->dropCurrent();
         board->placeCurrent();
         //if dead, break out of loop and ignore everything else
-        if(!board->pushNextBlock()){
-            kill();
-            break;
-        }
+        if(!pushNextBlockAndCheck()) break;
     }
 
     // handles the final drop
@@ -221,7 +218,7 @@ bool Player::pushNextBlockAndCheck(){
 void Player::startTurn(){
     setInputState(NORMAL);
     //cout << "test: pushNextBlock" << endl;
-    board->pushNextBlock();
+    pushNextBlockAndCheck();
     cout << "test: notifyObservers(OnTurnStart)" << endl;
     if (!board->isAlive()) kill();
 }
