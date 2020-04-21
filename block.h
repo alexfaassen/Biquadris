@@ -39,6 +39,7 @@ class Block {
 	int getInitLevel() const {return initLevel;};
 	std::vector<BlockTilewrapper>& getTiles() {return tiles;};
 	int getHeaviness() const {return heaviness;};
+	void makeHeavy(int x) { heaviness = x; };
 	void attachWindow(PlayerWindow* w = nullptr);
 	void nowNotCurr() {curr = false;};
 

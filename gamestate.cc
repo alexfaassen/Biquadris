@@ -40,7 +40,6 @@ int GameState::getLoser(){
 }
 
 bool GameState::handleGameOver(){
-	cout << "in handleGameOver()" << endl;
     int loser = getLoser();
     if(loser == 0) return true;     //if nobody loses, return true
     int winner = (loser == -1 ? 2 : 1);
@@ -223,7 +222,7 @@ void GameState::cleanup(){
     //update highscore
     updateHighscore(activePlayer->getScore());
 
-    if(window) window->fillRectangle(60, 40, 140, 95, Xwindow::Black);
+    if(window) window->fillRectangle(60, 40, 140, 35, Xwindow::Black);
     
     if(simul){
         switchActive();
