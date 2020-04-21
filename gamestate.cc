@@ -150,8 +150,16 @@ bool GameState::beginReadLoop(){
             break;
         }
 
-        if(activePlayer->getInputState() == SA) cout << "Choose a Special Action!" << endl;
-    }
+        if(activePlayer->getInputState() == SA){
+		int i = 0;
+		for(auto c : "Special Action"){
+			//string s(1, c);
+			window->drawBigString(80 + i + 3, 70, string(1, c), Xwindow::White);
+			++i;
+		}
+		cout << "Choose a Special Action!" << endl;
+	}
+    } 
     return true;
 }
 
@@ -215,6 +223,8 @@ bool GameState::runInputOnBoth(string input, int multiplier){
 void GameState::cleanup(){
     //update highscore
     updateHighscore(activePlayer->getScore());
+
+    if(window) window->fillRectangle(95, 40, 200, 70, Xwindow::Black);
     
     if(simul){
         switchActive();
