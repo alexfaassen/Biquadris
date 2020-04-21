@@ -26,6 +26,16 @@ void Player::initGraphicsObservers(){
     pushToObservers(new TurnGraphic(window));
 }
 
+void Player::initDrawWindow(){
+    window->drawBigString(5, 10, "Level:", PlayerWindow::Black);
+	window->drawBigString(221, 10, "0", PlayerWindow::Black);
+	window->drawBigString(5, 30, "Score:", PlayerWindow::Black);
+	window->drawBigString(221, 30, "0", PlayerWindow::Black);
+	window->drawLine(0, 35, 231, 35);
+	window->drawLine(0, 422, 231, 422);
+	window->drawBigString(5, 437, "Next:", PlayerWindow::Black);
+}
+
 int Player::cleanObservers(){
     int cleaned = 0;
     for(size_t i = 0; i < observers.size(); i++){
@@ -94,6 +104,7 @@ Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptFile
     //cout << "test: if(window.hasWindow())" <<endl;
     if(w){
         window = new PlayerWindow(w, offsetX, offsetY);
+        initDrawWindow();
         initGraphicsObservers();
     }
     //cout << "test: if(!setLevel(startlevel))" <<endl;

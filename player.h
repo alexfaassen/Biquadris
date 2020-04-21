@@ -27,6 +27,7 @@ class Player {
     bool alive = true;
 
     void initGraphicsObservers();   //creates and attaches all of the graphicObserver objects
+    void initDrawWindow();          //draws the starting window
     int cleanObservers();           //removes all dead observers from the vector
     //calls notify() with the given parameters on all observers
     void notifyObservers(Event, Move);   
