@@ -213,7 +213,7 @@ std::string Block::printBlock() const {
 }
 
 void Block::draw(){
-	cout << type << "Block drawing" << endl;
+	//cout << type << "Block drawing" << endl;
 	for(auto &t : tiles){
 		t.draw();
 	}
