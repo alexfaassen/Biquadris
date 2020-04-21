@@ -98,9 +98,9 @@ bool Board::placeCurrent(){
 bool Board::placeBlock(Block* b){
 	if(!b) return false;
 	if(isBlocked(b)) return false;
-	//cout << "test: in placeBlock(b)" << endl;
+	cout << "test: in placeBlock(b)" << endl;
 	placed.emplace_back(b);
-	//cout << "test: for (auto p : b->getTiles())" << endl;
+	cout << "test: for (auto p : b->getTiles())" << endl;
 	for (Tilewrapper &p : b->getTiles()){
 		immobileTiles[p->getX()][p->getY()] = p;
 	}
