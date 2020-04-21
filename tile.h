@@ -11,10 +11,10 @@ class Tile {
 	Tile(char letter = ' ', int x = 0, int y = 0) : letter{letter}, x{x}, y{y} {};
 	Tile(Tile& other) : Tile(other.letter, other.x, other.y) {};
 	~Tile();
-	char getLetter() const;
+	char getLetter() ;
 	void setLetter(char newLetter);
-	int getX() const;
-	int getY() const;
+	int getX() ;
+	int getY() ;
 	bool isAlive() const {return alive;};
 	void kill();
 	void setX(const int newX);
