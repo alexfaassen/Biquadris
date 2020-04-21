@@ -111,23 +111,6 @@ void Block::clockwise() {
 		if(t->getY() < minY)minY = t->getY();
 	}
 
-	int upperMid, lowerMid;
-    upperMid = (maxY + 1) / 2;
-    if((maxY + 1) % 2 == 0) lowerMid = (maxY + 1) / 2 - 1;
-    else lowerMid = upperMid;
-	int newX, count = 0;
-	for(auto &t : tiles) {
-        if(count > upperMid) {
-            newX = lowerMid - t->getY() + upperMid;
-			t->setY(newX);
-        }
-        else if(count < lowerMid) {
-            newX = upperMid + t->getY() - upperMid;
-			t->setY(newX);
-        }
-		count++;
-	}
-
 	cout << "after flip: ";
 	for(auto &t :tiles) {
 		cout << "(" << t->getX() << ", " << t->getY() << ") ";
@@ -160,6 +143,24 @@ void Block::clockwise() {
 	}
 
 	cout << "invert values: " << minInvertX << ", " << maxInvertY <<endl;
+
+	int upperMid, lowerMid;
+    upperMid = (maxY + 1) / 2;
+    if((maxY + 1) % 2 == 0) lowerMid = (maxY + 1) / 2 - 1;
+    else lowerMid = upperMid;
+	int newX, count = 0;
+	for(auto &t : tiles) {
+        if(count > upperMid) {
+            newX = lowerMid - t->getY() + upperMid;
+			t->setY(newX);
+        }
+        else if(count < lowerMid) {
+            newX = upperMid + t->getY() - upperMid;
+			t->setY(newX);
+        }
+		count++;
+	}
+
 
 	int distX = minX - minInvertX;
 	int distY = maxY - maxInvertY;
