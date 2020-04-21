@@ -11,7 +11,7 @@
 #include "scoregraphic.h"
 #include "levelgraphic.h"
 #include "nextblockgraphic.h"
-//#include "turngraphic.h"
+#include "turngraphic.h"
 #include <sstream>
 #include <iostream>
 #include <iomanip>
