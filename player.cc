@@ -168,6 +168,7 @@ void Player::drop(int times, bool isInput){
         board->dropCurrent();
         board->placeCurrent();
         //if dead, break out of loop and ignore everything else
+        cout << "Drop death" <<endl;
         if(!pushNextBlockAndCheck()) break;
     }
     
