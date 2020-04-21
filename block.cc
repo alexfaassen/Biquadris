@@ -118,7 +118,9 @@ void Block::clockwise() {
 		t->setY(t->getY() - minY);
 		cout << "min: " << t->getX() << ", " << t->getY() <<endl;
 		t->invert();
+		t->setX(-t->getX());
 		t->setY(-t->getY());
+
 	}
 
 	cout << "after invert: ";
