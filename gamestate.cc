@@ -45,6 +45,14 @@ bool GameState::handleGameOver(){
     int winner = (loser == -1 ? 2 : 1);
     cout << "Player" << winner << " wins!" << endl;
     cout << "The highscore is " << highscore << endl;
+    if(window){
+	    window->fillRectangle(windowWidth/2 - 30, windowHeight/2 - 20, 60, 40, Xwindow::Black);
+	    window->fillRectangle(windowWidth/2 - 31, windowHeight/2 - 21, 3, 42, Xwindow::White);
+	    window->fillRectangle(windowWidth/2 + 28, windowHeight/2 - 21, 3, 42, Xwindow::White);
+	    window->fillRectangle(windowWidth/2 - 31, windowHeight/2 - 21, 62, 3, Xwindow::White);
+	    window->fillRectangle(windowWidth/2 - 31, windowHeight/2 + 18, 62, 3, Xwindow::White);
+	    window->drawBigString(windowWidth/2 - 20, windowHeight/2, "GAMEOVER", Xwindow::White);
+    }
     return beginGameOverLoop();
 }
 
@@ -204,7 +212,6 @@ bool GameState::runInputOnBoth(string input, int multiplier){
 }
 
 void GameState::cleanup(){
-
     //update highscore
     updateHighscore(activePlayer->getScore());
     
