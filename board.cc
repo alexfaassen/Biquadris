@@ -82,7 +82,7 @@ bool Board::pushNextBlock(bool safe){
 }
 
 bool Board::placeCurrent(){
-	if(isCurrentBlocked()){
+	if(isCurrentBlocked(false)){
 		return false;
 	}
 	placeBlock(currentBlock);
@@ -223,13 +223,6 @@ bool Board::isBlocked(Block* b, bool allowtop){
 
 bool Board::isCurrentBlocked(bool allowtop){
 	return isBlocked(currentBlock, allowtop);
-}
-
-bool Board::isPlaceBlocked(){
-	for(auto &t : currentBlock->getTiles()){
-		if(t->getX() < 0 || t->getY() > 10 || t->getY() > 14 || t->getY() < 0) return true;
-	}
-	return false;
 }
 
 bool Board::isMoveBlocked(int deltaX, int deltaY){
