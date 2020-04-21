@@ -155,7 +155,63 @@ void Block::clockwise() {
 }
 
 void Block::counterClockwise() {
-	for(int i = 0; i < 3; i++)clockwise();
+	undraw();
+
+	// cout << "before clockwise: ";
+	// for(auto &t :tiles) {
+	// 	cout << "(" << t->getX() << ", " << t->getY() << ") ";
+	// }
+	// cout <<endl;
+
+	int maxX = 0, maxY = -3, minX = 11, minY = 18;
+	for(auto &t : tiles) {
+		if(t->getX() > maxX)maxX = t->getX();
+		if(t->getY() > maxY)maxY = t->getY();
+		if(t->getX() < minX)minX = t->getX();
+		if(t->getY() < minY)minY = t->getY();
+	}
+	
+	// cout << "Bottom left: " << minX << ", " << maxY <<endl;
+
+	for(auto &t : tiles) {
+		t->setX(t->getX() - minX);
+		t->setY(t->getY() - maxY);
+		// cout << "min: " << t->getX() << ", " << t->getY() <<endl;
+		t->invert();
+		t->setY(-t->getY());
+	}
+
+	// cout << "after invert: ";
+	// for(auto &t :tiles) {
+	// 	cout << "(" << t->getX() << ", " << t->getY() << ") ";
+	// }
+	// cout <<endl;
+
+	int minInvertX = 11, maxInvertY = 0;
+	for(auto &t : tiles) {
+		if(t->getX() < minInvertX)minInvertX = t->getX();
+		if(t->getY() > maxInvertY)maxInvertY = t->getY();
+	}
+
+	// cout << "invert values: " << minInvertX << ", " << maxInvertY <<endl
+
+	int distX = minX - minInvertX;
+	int distY = maxY - maxInvertY;
+
+	// cout << "dists: " << distX << ", " << distY <<endl;
+	
+	for(auto &t : tiles) {
+		t->setX(t->getX() + distX);
+		t->setY(t->getY() + distY);
+	}
+
+	// cout << "after clockwise: ";
+	// for(auto &t :tiles) {
+	// 	cout << "(" << t->getX() << ", " << t->getY() << ") ";
+	// }
+	// cout <<endl;
+
+	draw();
 }
 
 void Block::attachWindow(PlayerWindow* w) {
