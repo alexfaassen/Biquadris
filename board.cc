@@ -287,7 +287,7 @@ void Board::forceTopColumnTile(const char b, const int col) {
 			}
 		}
 		//cout << "test: !isEmpty() at row = " << row << endl;
-		placeBlock(new Block(b, -1, 0, col, row));
+		placeBlock(new Block(b, -1, 0, col, row), true);
 	}
 }
 
