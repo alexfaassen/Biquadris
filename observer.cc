@@ -9,6 +9,8 @@ void Observer::kill() { alive = false; }
 
 void Observer::attach(Player* const newPlayer) { player = newPlayer; }
 
+void Observer::notify(const Event currEvent, const int i) {}
+
 void Observer::notify(const Event currEvent, const Move currMove) {}
 
 void Observer::notify(const Event currEvent, const char c) {}

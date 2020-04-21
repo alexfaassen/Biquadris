@@ -11,6 +11,7 @@
 #include "scoregraphic.h"
 #include "levelgraphic.h"
 #include "nextblockgraphic.h"
+#include "turngraphic.h"
 #include <sstream>
 #include <iostream>
 #include <iomanip>
@@ -22,6 +23,7 @@ void Player::initGraphicsObservers(){
     pushToObservers(new ScoreGraphic(window));
     pushToObservers(new LevelGraphic(window));
     pushToObservers(new NextBlockGraphic(window));
+    pushToObservers(new TurnGraphic(window));
 }
 
 int Player::cleanObservers(){
@@ -35,6 +37,13 @@ int Player::cleanObservers(){
         }
     }
     return cleaned;
+}
+
+void Player::notifyObservers(Event ev, int i){
+    //cout << "test: observers.size = " <<observers.size() << endl;
+    for(auto p : observers){
+        if (p->isAlive()) p->notify(ev, i);
+    }
 }
 
 void Player::notifyObservers(Event ev, Move m = mLeft){
@@ -325,6 +334,7 @@ string Player::printToString(bool active){
     vector<vector<char>> boardarr = board->renderCharArray();
     //cout << "test: before notifyObservers(boardarr)" << endl;
     notifyObservers(beforeTextDisplay, boardarr);
+    notifyObservers(beforeTextDisplay, active);
     if(window) notifyObservers(beforeTextDisplay, *window); //random graphicdisplay code here
     ss << charArrToString(boardarr) << endl;
     if(active){ 
