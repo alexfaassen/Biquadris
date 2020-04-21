@@ -143,7 +143,7 @@ bool GameState::beginReadLoop(){
             }
         }
         runInput(s, multiplier);
-	    cout << "test: back in read loop" << endl;
+	    //cout << "test: back in read loop" << endl;
 
         //game over stuff
         if(!handleGameOver()){

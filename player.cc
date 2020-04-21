@@ -92,7 +92,7 @@ void Player::postMoveClean(Move m = mLeft){
 void Player::checkEndTurn(){
     if (inputState == END_TURN) handleEndTurn();
     
-    if (!board->isAlive()){ cout << "test: killed by checkEndTurn" << endl; kill();}
+    if (!board->isAlive()) kill();
 }
 
 Player::Player(){}
@@ -216,7 +216,7 @@ void Player::startTurn(){
     pushNextBlockAndCheck();
     notifyObservers(onTurnStart);
     
-    if (!board->isAlive()){cout << "test: killed by startTurn" << endl; kill();}
+    if (!board->isAlive()) kill();
 }
 
 void Player::endTurn(){
@@ -232,8 +232,8 @@ void Player::handleEndTurn(){
     
     notifyObservers(onTurnEnd);
     cleanObservers();
-    cout << "test: killed by handleEndTurn" << endl;
-    if (!board->isAlive()){cout << "test: killed by endTurn" << endl; kill();}
+    //cout << "test: killed by handleEndTurn" << endl;
+    if (!board->isAlive()) kill();
 }
 
 bool Player::setLevel(int n){
@@ -305,7 +305,7 @@ void Player::pushToObservers(Observer* obs){
 
 void Player::changeCurrentBlock(char c){
     board->changeCurrent(c);
-    if (!board->isAlive()){cout << "test: killed by changeCurrentBlock" << endl; kill();}
+    if (!board->isAlive()) kill();
 }
 
 string charArrToString(const vector<vector<char>>& arr){

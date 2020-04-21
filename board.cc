@@ -75,7 +75,7 @@ bool Board::pushNextBlock(bool safe){
 	if (window) currentBlock->draw();
 	nextBlock = CreateBlock();
 	if (isCurrentBlocked()){
-		cout << "test: block killed by pushNextBlock" << endl;
+		//cout << "test: block killed by pushNextBlock" << endl;
 		 kill();
 		 return false;
 	}
@@ -142,7 +142,7 @@ bool Board::changeCurrent(char newType) {
 	currentBlock->attachWindow(window);
 	currentBlock->draw();
 	if (isCurrentBlocked()){
-		cout << "test: block killed by changeCurrent" << endl;
+		//cout << "test: block killed by changeCurrent" << endl;
 		kill();
 		return false;
 	}
@@ -219,11 +219,11 @@ void Board::weighDownCurrent(){
 bool Board::isBlocked(Block* b, bool allowtop){
 	for(auto &t : b->getTiles()){
 		if(!isEmpty(t->getX(), t->getY(), allowtop)){ 
-			cout << "test: isBlocked returns true" << endl;
+			// isBlocked returns true" << endl;
 			return true;
 		}
 	}
-	cout << "test: isBlocked returns false" << endl;
+	//cout << "test: isBlocked returns false" << endl;
 	return false;
 }
 
@@ -239,10 +239,10 @@ bool Board::isMoveBlocked(int deltaX, int deltaY){
 }
 
 bool Board::isEmpty(int x, int y, bool allowtop) {
-	cout << "test: isEmpty with " << x << " " << y << " " << allowtop << endl;
-	if(x < 0 || x > 10 || y > 14 || y < -3){ cout << "test: first isEmpty test" << endl; return false;	}	//bounds checking sides
-	if(allowtop && y >= -3 && y < 0){cout << "test: second isEmpty test" << endl; return true;}				//exception for the 3 extra lines on top
-	if(!immobileTiles[x][y]){cout << "test: third isEmpty test" << endl; return true;}				//checking for empty tile within bounds
+	//cout << "test: isEmpty with " << x << " " << y << " " << allowtop << endl;
+	if(x < 0 || x > 10 || y > 14 || y < -3) return false;	//bounds checking sides
+	if(allowtop && y >= -3 && y < 0) return true;			//exception for the 3 extra lines on top
+	if(!immobileTiles[x][y]) return true;				//checking for empty tile within bounds
 	return false;							//otherwise fail
 }
 
@@ -275,7 +275,7 @@ vector<vector<char>> Board::renderCharArray() {
 
 void Board::forceTopColumnTile(const char b, const int col) {
 	if (!isEmpty(col, 0)) {
-		cout << "test: block killed by forceTopColumnTile" << endl;
+		//cout << "test: block killed by forceTopColumnTile" << endl;
 		kill();
 	} else {
 		int row = 14;
