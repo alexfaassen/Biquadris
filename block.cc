@@ -8,7 +8,6 @@ using namespace std;
 
 void Block::IBlock(int initX, int initY) {
 	deleteTiles();
-	//cout << "test: in iBlock ctor, initX = "<< initX << ", initY = " << initY << endl;
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('I', initX + 0, initY - 0)));
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('I', initX + 1, initY - 0)));
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('I', initX + 2, initY - 0)));
@@ -17,7 +16,6 @@ void Block::IBlock(int initX, int initY) {
 
 void Block::JBlock(int initX, int initY) {
 	deleteTiles();
-	//cout << "in JBlock ctor, initX = " << initX << ", initY = " << initY << endl;
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('J', initX + 0, initY - 1)));
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('J', initX + 0, initY - 0)));
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('J', initX + 1, initY - 0)));
@@ -71,7 +69,6 @@ void Block::tileDropBlock(int initX, int initY) {
 
 Block::Block(char type, int initLevel, int heavy, int x, int y):
 type{type}, initLevel{initLevel}, heaviness{heavy} {
-	//cout << "Block ctor is run with " << string(1,type) << endl;
 	if(type == '*') tileDropBlock(x, y);
 	else if(type == 'I') IBlock(x, y);
 	else if(type == 'J') JBlock(x, y);
@@ -80,7 +77,6 @@ type{type}, initLevel{initLevel}, heaviness{heavy} {
 	else if(type == 'S') SBlock(x, y);
 	else if(type == 'Z') ZBlock(x, y);
 	else TBlock(x, y);
-	// Block constructed with tile size = " << tiles.size() << endl;
 }
 
 Block::~Block(){
@@ -172,12 +168,8 @@ bool Block::alive() {
 }
 
 bool Block::deleteTiles(){
-	if(tiles.empty()){
-		//cout << "test: deleteTiles is empty" << endl; 
-		return false;
-	}
+	if(tiles.empty())return false;
 	if(curr){
-		//cout << "test: block dtor" << endl;
 		undraw();
 		tiles.clear();
 	}
@@ -205,7 +197,6 @@ std::string Block::printBlock() const {
 }
 
 void Block::draw(){
-	//cout << type << "Block drawing" << endl;
 	for(auto &t : tiles){
 		t.draw();
 	}
