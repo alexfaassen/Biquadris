@@ -173,15 +173,15 @@ void Player::drop(int times, bool isInput){
     // handles the final drop
     if(times > 0){ 
         board->dropCurrent();
-	board->placeCurrent();
+	    board->placeCurrent();
        	endTurn();
         if(!board->isAlive()){
-		setInputState(LOSS);
-		kill();
-	}
+		    setInputState(LOSS);
+		    kill();
+	    }
     }
     if(isInput && times > 0){
-        notifyObservers(onDrop);
+        notifyObservers(onDrop, *window);
         checkEndTurn();
     }
 }
