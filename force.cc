@@ -6,6 +6,8 @@
 #include <fstream>
 #include <stdio.h>
 
+using namespace std;
+
 void Force::run(GameState &game, const int times) const {
 	char b;
 	game.readFromStream(b);
