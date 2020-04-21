@@ -279,7 +279,7 @@ void GameState::printGame(){
 void GameState::restart(){
     if(activePlayer) delete activePlayer;
     if(nonActivePlayer) delete nonActivePlayer;
-    window->fillRectangle(0, 0, windowWidth, windowHeight, Xwindow::White);
+    if(window) window->fillRectangle(0, 0, windowWidth, windowHeight, Xwindow::White);
     //cout << "test : before createPlayers" << endl;
     createPlayers();
     //cout << "test : activePlayer->startTurn" << endl;
