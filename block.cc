@@ -88,16 +88,12 @@ Block::~Block(){
 }
 
 void Block::move(int deltaX, int deltaY) {
-	undraw();
 	for(auto &t : tiles) {
 		t->setXY(t->getX() + deltaX, t->getY() + deltaY);
 	}
-	draw();
 }
 
 void Block::clockwise() {
- 	undraw();
-
 	int maxX = 0, maxY = -3, minX = 11, minY = 18;
 	for(auto &t : tiles) {
 		if(t->getX() > maxX)maxX = t->getX();
@@ -125,12 +121,9 @@ void Block::clockwise() {
 		t->setX(t->getX() + distX);
 		t->setY(t->getY() + distY);
 	}
-
-	draw();
 }
 
 void Block::counterClockwise() {
-	undraw();
 
 	int maxX = 0, maxY = -3, minX = 11, minY = 18;
 	for(auto &t : tiles) {
@@ -160,7 +153,6 @@ void Block::counterClockwise() {
 		t->setY(t->getY() + distY);
 	}
 
-	draw();
 }
 
 void Block::attachWindow(PlayerWindow* w) {

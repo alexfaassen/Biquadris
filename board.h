@@ -58,10 +58,10 @@ class Board {
 	// Returns false if isBlocked
 	bool changeCurrent(char newType);
 	void setNext(Block *nex);
-	int moveCurrent(Direction, int amount);
-	bool clockwiseCurrent();
-	bool counterClockwiseCurrent();
-	void dropCurrent();
+	int moveCurrent(Direction, int amount, bool redraw = true);
+	bool clockwiseCurrent(bool redraw = true);
+	bool counterClockwiseCurrent(bool redraw = true);
+	void dropCurrent(bool redraw = true);
 
 	// deals with the heaviness stuff
 	void weighDownCurrent();

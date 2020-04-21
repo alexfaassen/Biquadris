@@ -151,7 +151,8 @@ bool Board::changeCurrent(char newType) {
 	//cout << "test: end of changeCurrent()" << endl;
 }
 
-int Board::moveCurrent(Direction dir, int amount) {
+int Board::moveCurrent(Direction dir, int amount, bool redraw) {
+	if(redraw) currentBlock->undraw();
 	int deltaX = 0, deltaY = 0;
 	if (dir == Left) deltaX = -1;
 	else if (dir == Right) deltaX = 1;
@@ -168,36 +169,45 @@ int Board::moveCurrent(Direction dir, int amount) {
 		moveCount++;
 	}
 	//cout << "test: ENDING WHILE (moveCount < amount) LOOP" << endl;
+	if(redraw) currentBlock->draw();
 	return moveCount;	
 }
 
-bool Board::clockwiseCurrent() {
+bool Board::clockwiseCurrent(bool redraw) {
+	if(redraw) currentBlock->undraw();
 	currentBlock->clockwise();
 	if(isCurrentBlocked()) {
 		currentBlock->counterClockwise();
+		if(redraw) currentBlock->draw();
 		return false;
 	}
+	if(redraw) currentBlock->draw();
 	return true;
 }
 
-bool Board::counterClockwiseCurrent() {
+bool Board::counterClockwiseCurrent(bool redraw) {
+	if(redraw) currentBlock->undraw();
 	currentBlock->counterClockwise();
 	if(isCurrentBlocked()) {
 		currentBlock->clockwise();
+		if(redraw) currentBlock->draw();
 		return false;
 	}
+	if(redraw) currentBlock->draw();
 	return true;
 }
 
-void Board::dropCurrent() {
-	while(moveCurrent(Down, 1) && !isCurrentBlocked()){
+void Board::dropCurrent(bool redraw) {
+	if(redraw) currentBlock->undraw();
+	while(moveCurrent(Down, 1, false) && !isCurrentBlocked()){
 		//cout << "test: dropping..." <<endl;
 	}
+	if(redraw) currentBlock->draw();
 	//cout << "test: before placeCurrent()" << endl;
 }
 
 void Board::weighDownCurrent(){
-	moveCurrent(Down, currentBlock->getHeaviness());
+	moveCurrent(Down, currentBlock->getHeaviness(), true);
 }
 
 bool Board::isBlocked(Block* b){
