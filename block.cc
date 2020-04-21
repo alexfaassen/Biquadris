@@ -186,7 +186,6 @@ void Block::attachWindow(PlayerWindow* w) {
 	for(auto &t : tiles){
 		t.setWindow(window);
 	}
-	//draw();
 }
 
 bool Block::alive() {
