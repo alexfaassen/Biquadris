@@ -57,7 +57,7 @@ void Player::notifyObservers(Event ev, int i){
     }
 }
 
-void Player::notifyObservers(Event ev, Move m = mLeft){
+void Player::notifyObservers(Event ev, Move m){
     //cout << "test: observers.size = " <<observers.size() << endl;
     for(auto p : observers){
         if (p->isAlive()) p->notify(ev, m);

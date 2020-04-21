@@ -29,12 +29,6 @@ class Player {
     void initGraphicsObservers();   //creates and attaches all of the graphicObserver objects
     void initDrawWindow();          //draws the starting window
     int cleanObservers();           //removes all dead observers from the vector
-    //calls notify() with the given parameters on all observers
-    void notifyObservers(Event, Move);   
-    void notifyObservers(Event, int);      
-    void notifyObservers(Event, char);
-    void notifyObservers(Event, std::vector<std::vector<char>>&);
-    void notifyObservers(Event, PlayerWindow&);
 
     void preMove();     //called right before movement
     void postMoveClean(Move);    //called after movement. Handles cleaning and stuff
@@ -44,6 +38,13 @@ class Player {
     Player();
     Player(Xwindow*, int offsetX, int offsetY, int side, std::string scriptFile, int startlevel);
     ~Player();
+
+    //calls notify() with the given parameters on all observers
+    void notifyObservers(Event, Move = mLeft);   
+    void notifyObservers(Event, int);      
+    void notifyObservers(Event, char);
+    void notifyObservers(Event, std::vector<std::vector<char>>&);
+    void notifyObservers(Event, PlayerWindow&);
 
     //accessors
     int isLevel();
