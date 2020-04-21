@@ -10,9 +10,9 @@ void TurnGraphic::notify(const Event currEvent, int active){
         //TODO: draw turngraphic
         if(active){
             //window->fillRectangle(180, 442,  30,  30, PlayerWindow::Yellow);
-            window->fillPolygon(180, 442, 3, 40, 0 , PlayerWindow::White);
+            window->fillPolygon(220, 472, 3, 40, M_PI, PlayerWindow::White);
         } else {
-            window->fillRectangle(160, 435,  40,  40, PlayerWindow::Black);
+            window->fillRectangle(180, 435,  40,  40, PlayerWindow::Black);
         }
     }
 }

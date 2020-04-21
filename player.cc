@@ -219,6 +219,7 @@ bool Player::pushNextBlockAndCheck(){
 void Player::startTurn(){
     setInputState(NORMAL);
     pushNextBlockAndCheck();
+    notifyObservers(onTurnStart);
     if (!board->isAlive()) kill();
 }
 
