@@ -15,7 +15,6 @@ class Tile {
 	void setLetter(char newLetter);
 	int getX() ;
 	int getY() ;
-	bool isAlive() const {return alive;};
 	void kill();
 	void setX(const int newX);
 	void setY(const int newY);
