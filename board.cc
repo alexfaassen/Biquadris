@@ -103,7 +103,7 @@ bool Board::placeBlock(Block* b, bool draw){
 	//cout << "test: for (auto p : b->getTiles())" << endl;
 	for (Tilewrapper &p : b->getTiles()){
 		immobileTiles[p->getX()][p->getY()] = p;
-		if(draw) p.draw();
+		if(draw) immobileTiles[p->getX()][p->getY()].draw();
 	}
 	return true;
 }
