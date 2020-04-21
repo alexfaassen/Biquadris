@@ -45,6 +45,7 @@ void Tilewrapper::undraw(){
 }
 
 void Tilewrapper::customDraw(int deltaX, int deltaY){
+    if(!window) return;
     int colour = PlayerWindow::White;
     if (tile->getLetter() == 'I') colour = PlayerWindow::Yellow;
     else if (tile->getLetter() == 'J') colour = PlayerWindow::Magenta;
