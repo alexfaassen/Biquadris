@@ -130,7 +130,7 @@ void Block::clockwise() {
 	cout << "distances : " << distX << ", " << distY <<endl;
 	for(auto &t : tiles) {
 		t->setX(t->getX() + distX);
-		t->setY(t->getY() + distY);
+		t->setY(t->getY() + distY + 1);
 	}
 	cout << "after clockwise" <<endl;
 	for(auto &t : tiles) {
