@@ -1,5 +1,6 @@
 #ifndef GRAPHICSOBSERVER_H
 #define GRAPHICSOBSERVER_H
+#include <string>
 
 #include "observer.h"
 

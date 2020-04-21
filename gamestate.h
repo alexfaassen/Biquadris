@@ -21,7 +21,7 @@ class GameState {
     CommandList *commandList = new CommandList();
     std::vector<std::ifstream> ifstreams;
 
-    const int loffsetX = 0, loffsetY = 0, roffsetX = 0, roffsetY = 0;
+    const int loffsetX = 0, loffsetY = 0, roffsetX = 251, roffsetY = 0;
     const std::string scriptFile1 = "biquadris_sequence1.txt", scriptFile2 ="biquadris_sequence2.txt";
     const int startlevel = 0;
     bool running = true, simul = false;
@@ -63,7 +63,6 @@ class GameState {
     
     // compares score to highscore and updates highscore if needed; returns if update happened
     bool updateHighscore(int score);    
-
 };
 
 

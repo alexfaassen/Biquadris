@@ -4,7 +4,6 @@
 #include "block.h"
 
 #include <fstream>
-#include <vector>
 
 class Level {
 	protected:
@@ -18,12 +17,15 @@ class Level {
 	public:
 	virtual ~Level();
 	
-	// accessors
+	//accessors
 	int getIdentifier() const;
 	bool setFile(std::ifstream *newFile);
 	void deleteFile() {if(file) delete file;};
 
+	//level effects
 	virtual void generateEffects(Player &p) const;
+
+	//block factory
 	virtual Block *CreateBlock() = 0;
 };
 

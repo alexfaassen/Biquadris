@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void Block::iBlock(int initX, int initY) {
+void Block::IBlock(int initX, int initY) {
 	deleteTiles();
 	//cout << "test: in iBlock ctor, initX = "<< initX << ", initY = " << initY << endl;
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('I', initX + 0, initY - 0)));
@@ -15,15 +15,16 @@ void Block::iBlock(int initX, int initY) {
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('I', initX + 3, initY - 0)));
 }
 
-void Block::jBlock(int initX, int initY) {
+void Block::JBlock(int initX, int initY) {
 	deleteTiles();
+	cout << "in JBlock ctor, initX = " << initX << ", initY = " << initY << endl;
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('J', initX + 0, initY - 1)));
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('J', initX + 0, initY - 0)));
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('J', initX + 1, initY - 0)));
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('J', initX + 2, initY - 0)));
 }
 
-void Block::lBlock(int initX, int initY) {
+void Block::LBlock(int initX, int initY) {
 	deleteTiles();
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('L', initX + 0, initY - 0)));
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('L', initX + 1, initY - 0)));
@@ -31,7 +32,7 @@ void Block::lBlock(int initX, int initY) {
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('L', initX + 2, initY - 1)));
 }
 
-void Block::oBlock(int initX, int initY) {
+void Block::OBlock(int initX, int initY) {
 	deleteTiles();
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('O', initX + 0, initY - 0)));
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('O', initX + 0, initY - 1)));
@@ -39,7 +40,7 @@ void Block::oBlock(int initX, int initY) {
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('O', initX + 1, initY - 1)));
 }
 
-void Block::sBlock(int initX, int initY) {
+void Block::SBlock(int initX, int initY) {
 	deleteTiles();
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('S', initX + 0, initY - 0)));
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('S', initX + 1, initY - 0)));
@@ -47,7 +48,7 @@ void Block::sBlock(int initX, int initY) {
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('S', initX + 2, initY - 1)));
 }
 
-void Block::zBlock(int initX, int initY) {
+void Block::ZBlock(int initX, int initY) {
 	deleteTiles();
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('Z', initX + 0, initY - 1)));
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('Z', initX + 1, initY - 1)));
@@ -55,7 +56,7 @@ void Block::zBlock(int initX, int initY) {
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('Z', initX + 2, initY - 0)));
 }
 
-void Block::tBlock(int initX, int initY) {
+void Block::TBlock(int initX, int initY) {
 	deleteTiles();
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('T', initX + 0, initY - 1)));
 	tiles.emplace_back(BlockTilewrapper(window, new Tile('T', initX + 1, initY - 1)));
@@ -70,16 +71,16 @@ void Block::tileDropBlock(int initX, int initY) {
 
 Block::Block(char type, int initLevel, int heavy, int x, int y):
 type{type}, initLevel{initLevel}, heaviness{heavy} {
-	cout << "Block ctor is run with " << string(1,type) << endl;
+	//cout << "Block ctor is run with " << string(1,type) << endl;
 	if(type == '*') tileDropBlock(x, y);
-	else if(type == 'I') iBlock(x, y);
-	else if(type == 'J') jBlock(x, y);
-	else if(type == 'L') lBlock(x, y);
-	else if(type == 'O') oBlock(x, y);
-	else if(type == 'S') sBlock(x, y);
-	else if(type == 'Z') zBlock(x, y);
-	else tBlock(x, y);
-	cout << "test: Block constructed with tile size = " << tiles.size() << endl;
+	else if(type == 'I') IBlock(x, y);
+	else if(type == 'J') JBlock(x, y);
+	else if(type == 'L') LBlock(x, y);
+	else if(type == 'O') OBlock(x, y);
+	else if(type == 'S') SBlock(x, y);
+	else if(type == 'Z') ZBlock(x, y);
+	else TBlock(x, y);
+	// Block constructed with tile size = " << tiles.size() << endl;
 }
 
 Block::~Block(){
@@ -167,7 +168,6 @@ void Block::attachWindow(PlayerWindow* w) {
 	for(auto &t : tiles){
 		t.setWindow(window);
 	}
-	draw();
 }
 
 bool Block::alive() {
@@ -211,6 +211,7 @@ std::string Block::printBlock() const {
 }
 
 void Block::draw(){
+	cout << type << "Block drawing" << endl;
 	for(auto &t : tiles){
 		t.draw();
 	}

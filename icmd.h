@@ -5,6 +5,7 @@
 class ICmd : public Command {
 	public:
 	ICmd(const std::string name = "I", bool needClean = 1) : Command(name, needClean) {}
+
 	private:
 	void run(GameState &game, const int times = 1) const override;
 };

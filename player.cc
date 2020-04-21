@@ -11,6 +11,7 @@
 #include "scoregraphic.h"
 #include "levelgraphic.h"
 #include "nextblockgraphic.h"
+#include "turngraphic.h"
 #include <sstream>
 #include <iostream>
 #include <iomanip>
@@ -22,6 +23,7 @@ void Player::initGraphicsObservers(){
     pushToObservers(new ScoreGraphic(window));
     pushToObservers(new LevelGraphic(window));
     pushToObservers(new NextBlockGraphic(window));
+    pushToObservers(new TurnGraphic(window));
 }
 
 int Player::cleanObservers(){
@@ -35,6 +37,13 @@ int Player::cleanObservers(){
         }
     }
     return cleaned;
+}
+
+void Player::notifyObservers(Event ev, int i){
+    //cout << "test: observers.size = " <<observers.size() << endl;
+    for(auto p : observers){
+        if (p->isAlive()) p->notify(ev, i);
+    }
 }
 
 void Player::notifyObservers(Event ev, Move m = mLeft){
@@ -82,17 +91,17 @@ Player::Player(){}
 
 Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptFile, int startlevel)
 : side{side}, scriptFile {scriptFile} {
-    cout << "test: if(window.hasWindow())" <<endl;
+    //cout << "test: if(window.hasWindow())" <<endl;
     if(w){
         window = new PlayerWindow(w, offsetX, offsetY);
         initGraphicsObservers();
     }
-    cout << "test: if(!setLevel(startlevel))" <<endl;
+    //cout << "test: if(!setLevel(startlevel))" <<endl;
     if(!setLevel(startlevel)){
         cout << "Error: invalid startlevel. Using Level 0 instead" << endl;
         setLevel(0);
     }
-    cout << "test: constructing board" <<endl;
+    //cout << "test: constructing board" <<endl;
     board = new Board(level, window);
 }
 
@@ -114,12 +123,12 @@ int Player::isLevel() {
 
 int Player::moveBlock(Direction dir, int times, bool isInput){
     if(isInput){
-	cout << "preMove() called" << endl;
+	//cout << "preMove() called" << endl;
         preMove();
     }
     int moves = board->moveCurrent(dir, times);
     if(isInput) {
-	    cout << "test: postMove() called" << endl;
+	    //cout << "test: postMove() called" << endl;
 	    Move m = mLeft;
 	    if (dir == Right) m = mRight;
 	    else if (dir == Down) m = mDown;
@@ -200,7 +209,7 @@ void Player::startTurn(){
     //cout << "test: pushNextBlock" << endl;
     board->pushNextBlock();
     notifyObservers(onNextBlockChange);
-    //cout << "test: notifyObservers(OnTurnStart)" << endl;
+    cout << "test: notifyObservers(OnTurnStart)" << endl;
     notifyObservers(onTurnStart, board->getNextBlockType());
     if (!board->isAlive()) setInputState(LOSS);
 }
@@ -325,6 +334,7 @@ string Player::printToString(bool active){
     vector<vector<char>> boardarr = board->renderCharArray();
     //cout << "test: before notifyObservers(boardarr)" << endl;
     notifyObservers(beforeTextDisplay, boardarr);
+    notifyObservers(beforeTextDisplay, active);
     if(window) notifyObservers(beforeTextDisplay, *window); //random graphicdisplay code here
     ss << charArrToString(boardarr) << endl;
     if(active){ 
