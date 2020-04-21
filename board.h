@@ -70,7 +70,6 @@ class Board {
 	// are any of block's tiles on an occupied tile?
 	bool isBlocked(Block* b, bool allowtop = true);
 	bool isCurrentBlocked(bool allowtop = true);
-	bool isPlaceBlocked();
 
 	//will moving currentBlock by the given coords cause it to collide with a tile?
 	bool isMoveBlocked(int deltaY, int deltaX);	
