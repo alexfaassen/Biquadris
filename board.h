@@ -68,15 +68,15 @@ class Board {
 	void weighDownCurrent();
 
 	// are any of block's tiles on an occupied tile?
-	bool isBlocked(Block* b);
-	bool isCurrentBlocked();
+	bool isBlocked(Block* b, bool allowtop = true);
+	bool isCurrentBlocked(bool allowtop = true);
 	bool isPlaceBlocked();
 
 	//will moving currentBlock by the given coords cause it to collide with a tile?
 	bool isMoveBlocked(int deltaY, int deltaX);	
 
 	// returns if the given coord isn't occupied by a tile and isn't out of bounds
-	bool isEmpty(int y, int x);
+	bool isEmpty(int y, int x, bool allowtop = true);
 
 	std::vector<std::vector<char>> renderCharArray();
 	void forceTopColumnTile(const char b, const int col);

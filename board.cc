@@ -83,7 +83,6 @@ bool Board::pushNextBlock(bool safe){
 
 bool Board::placeCurrent(){
 	if(isCurrentBlocked()){
-		
 		return false;
 	}
 	placeBlock(currentBlock);
@@ -93,7 +92,7 @@ bool Board::placeCurrent(){
 
 bool Board::placeBlock(Block* b, bool draw){
 	if(!b) return false;
-	if(isBlocked(b)) return false;
+	if(isBlocked(b, false)) return false;
 	placed.emplace_back(b);
 	for (Tilewrapper &p : b->getTiles()){
 		immobileTiles[p->getX()][p->getY()] = p;
@@ -215,15 +214,15 @@ void Board::weighDownCurrent(){
 	moveCurrent(Down, currentBlock->getHeaviness(), true);
 }
 
-bool Board::isBlocked(Block* b){
+bool Board::isBlocked(Block* b, bool allowtop){
 	for(auto &t : b->getTiles()){
-		if(!isEmpty(t->getX(), t->getY())) return true;
+		if(!isEmpty(t->getX(), t->getY()), allowtop) return true;
 	}
 	return false;
 }
 
-bool Board::isCurrentBlocked(){
-	return isBlocked(currentBlock);
+bool Board::isCurrentBlocked(bool allowtop){
+	return isBlocked(currentBlock, allowtop);
 }
 
 bool Board::isPlaceBlocked(){
@@ -240,9 +239,9 @@ bool Board::isMoveBlocked(int deltaX, int deltaY){
 	return false;
 }
 
-bool Board::isEmpty(int x, int y) {
+bool Board::isEmpty(int x, int y, bool allowtop) {
 	if(x < 0 || x > 10 || y > 14 || y < -3) return false;		//bounds checking sides
-	if(y >= -3 && y < 0) return true;				//exception for the 3 extra lines on top
+	if(allowtop && y >= -3 && y < 0) return true;				//exception for the 3 extra lines on top
 	if(!immobileTiles[x][y])return true;				//checking for empty tile within bounds
 	return false;							//otherwise fail
 }
