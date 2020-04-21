@@ -254,7 +254,7 @@ void Player::handleEndTurn(){
 bool Player::setLevel(int n){
     if (!level) {
 	    if (n == 0) {
-		level = new Level0(side);
+		level = new Level0(side, scriptFile);
 	    } else if (n == 1) {
         	level = new Level1(side);
 	    } else if (n == 2) {
@@ -279,7 +279,7 @@ bool Player::setLevel(int n){
  	     } else {
 		     Level *temp = level;
 	     	     if (n == 0) {
-			        level = new Level0(*temp);
+			        level = new Level0(*temp, scriptFile);
 	             } else if (n == 1) {
 	                level = new Level1(*temp);
 	     	     } else if (n == 2) {
