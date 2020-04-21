@@ -185,7 +185,7 @@ bool Block::deleteTiles(){
 		return false;
 	}
 	if(curr){
-		cout << "test: block dtor" << endl;
+		//cout << "test: block dtor" << endl;
 		undraw();
 		tiles.clear();
 	}

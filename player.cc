@@ -220,7 +220,7 @@ void Player::startTurn(){
     setInputState(NORMAL);
     //cout << "test: pushNextBlock" << endl;
     pushNextBlockAndCheck();
-    cout << "test: notifyObservers(OnTurnStart)" << endl;
+    //cout << "test: notifyObservers(OnTurnStart)" << endl;
     if (!board->isAlive()) kill();
 }
 
