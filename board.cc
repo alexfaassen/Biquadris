@@ -223,6 +223,10 @@ bool Board::isBlocked(Block* b){
 }
 
 bool Board::isCurrentBlocked(){
+	return isBlocked(currentBlock);
+}
+
+bool Board::isPlaceBlocked(){
 	for(auto &t : currentBlock->getTiles()){
 		if(t->getX() < 0 || t->getY() > 10 || t->getY() > 14 || t->getY() < 0) return true;
 	}
