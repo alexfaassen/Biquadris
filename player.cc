@@ -44,7 +44,7 @@ int Player::cleanObservers(){
             observers.erase(observers.begin()+i);
             ++cleaned;
             i--;
-            cout << "test: cleaned!" << endl;
+            //cout << "test: cleaned!" << endl;
         }
     }
     return cleaned;

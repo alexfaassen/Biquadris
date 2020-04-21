@@ -20,6 +20,6 @@ void HeavyEffect::notify(const Event currEvent, const Move currMove) {
 			player->drop(1, false);
 		}
 	} else if (currEvent == onTurnEnd) {
-		update();
+		kill();
 	}
 }
