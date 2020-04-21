@@ -115,10 +115,10 @@ void Block::clockwise() {
 
 	for(auto &t : tiles) {
 		t->setX(t->getX() - minX);
-		t->setY(t->getY() - minY);
+		t->setY(t->getY() - maxY);
 		cout << "min: " << t->getX() << ", " << t->getY() <<endl;
 		t->invert();
-		t->setX(-t->getX());
+		// t->setX(-t->getX());
 		t->setY(-t->getY());
 
 	}
@@ -195,7 +195,6 @@ void Block::counterClockwise() {
 		t->setX(t->getX() - minX);
 		t->setY(t->getY() - maxY);
 		t->invert();
-		t->setY(-t->getY());
 	}
 
 	int minInvertX = 11, maxInvertY = 0;
