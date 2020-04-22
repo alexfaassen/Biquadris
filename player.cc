@@ -176,7 +176,7 @@ void Player::drop(int times, bool isInput){
     // handles the final drop
     if(times > 0){ 
         board->dropCurrent();
-	    board->placeCurrent();
+	if(!board->placeCurrent()) kill();
        	endTurn();
     }
 
@@ -184,6 +184,7 @@ void Player::drop(int times, bool isInput){
         notifyObservers(onDrop, *window);
         checkEndTurn();
     }
+    cout << "input state = " << inputState << endl;
 }
 
 int Player::incLevel(int n){

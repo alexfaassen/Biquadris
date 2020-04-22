@@ -239,9 +239,11 @@ bool Board::isMoveBlocked(int deltaX, int deltaY){
 }
 
 bool Board::isEmpty(int x, int y, bool allowtop) {
-	//cout << "test: isEmpty with " << x << " " << y << " " << allowtop << endl;
-	if(x < 0 || x > 10 || y > 14 || y < -3) return false;	//bounds checking sides
-	if(allowtop && y >= -3 && y < 0) return true;			//exception for the 3 extra lines on top
+	cout << "test: isEmpty with " << x << " " << y << " " << allowtop << endl;
+	if(x < 0 || x > 10 || y > 14 || y < -3) return false;		//bounds checking sides
+	cout << "test: is Empty" << endl;
+	if(y >= -3 && y < 0) return allowtop;				//exception for the 3 extra lines on top
+	cout << "test: isEmpty didn't catch" << endl;
 	if(!immobileTiles[x][y]) return true;				//checking for empty tile within bounds
 	return false;							//otherwise fail
 }
