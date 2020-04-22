@@ -78,6 +78,7 @@ bool GameState::beginGameOverLoop(){
 GameState::GameState(bool hasWindow, string scriptFile1, string scriptFile2, int startlevel, bool simul, bool fastmode)
 : scriptFile1{scriptFile1}, scriptFile2{scriptFile2}, startlevel{startlevel}, simul{simul}, fastmode{fastmode} {
     if(hasWindow){
+        cout << "window dimensions: " << windowWidth << ", " << windowHeight <<endl;
         window = new Xwindow(windowWidth, windowHeight);
     }
     restart();
