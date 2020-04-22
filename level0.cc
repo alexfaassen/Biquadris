@@ -39,3 +39,4 @@ Block *Level0::CreateBlock() {
 		return new Block(b, identifier);
 	}
 }
+

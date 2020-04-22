@@ -14,3 +14,4 @@ void ScoreGraphic::notify(const Event currEvent, Move m){
               window->drawString(216 - (i * 4), 29, std::to_string(player->getScore())); 
        }
 }
+
