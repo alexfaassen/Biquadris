@@ -12,3 +12,4 @@ void NextBlockGraphic::notify(const Event currEvent, const char c){
 		tempBlock.customDraw(1, 464);
 	}
 }
+

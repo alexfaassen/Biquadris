@@ -15,3 +15,4 @@ void ForceEffect::notify(const Event currEvent, const Move currMove) {
 		kill();
 	}
 }
+

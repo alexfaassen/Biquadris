@@ -11,3 +11,4 @@ class Sequence : public Command {
 };
 
 #endif
+

@@ -13,3 +13,4 @@ class LevelGraphic : public GraphicsObserver {
 };
 
 #endif
+

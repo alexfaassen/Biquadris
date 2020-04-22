@@ -13,3 +13,4 @@ class NextBlockGraphic : public GraphicsObserver {
 };
 
 #endif
+

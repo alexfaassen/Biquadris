@@ -4,3 +4,4 @@
 enum InputState {NORMAL, END_TURN, SA, LOSS};
 
 #endif
+

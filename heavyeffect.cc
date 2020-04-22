@@ -23,3 +23,4 @@ void HeavyEffect::notify(const Event currEvent, const Move currMove) {
 		kill();
 	}
 }
+

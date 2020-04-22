@@ -28,3 +28,4 @@ Block *Level2::CreateBlock() {
 		return new Block('T', identifier);
 	}
 }
+
