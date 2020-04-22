@@ -28,9 +28,9 @@ void Player::initGraphicsObservers(){
 
 void Player::initDrawWindow(){
 	window->drawBigString(5, 10, "Level:");
-	window->drawBigString(221, 10, "0");
+	window->drawBigString(216, 10, "0");
 	window->drawBigString(5, 29, "Score:");
-	window->drawBigString(221, 29, "0");
+	window->drawBigString(216, 29, "0");
 	window->fillRectangle(0, 35, 231, 3, PlayerWindow::White);
 	window->fillRectangle(0, 419, 231, 3, PlayerWindow::White);
 	window->drawBigString(5, 435, "Next:");

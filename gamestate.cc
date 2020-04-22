@@ -143,6 +143,7 @@ bool GameState::beginReadLoop(){
 		        s = s.erase(0, 1);
             }
         }
+	if(window) window->fillRectangle(60, 40, 140, 35, Xwindow::Black);
         runInput(s, multiplier);
 	    //cout << "test: back in read loop" << endl;
 
@@ -226,8 +227,6 @@ bool GameState::runInputOnBoth(string input, int multiplier){
 void GameState::cleanup(){
     //update highscore
     updateHighscore(activePlayer->getScore());
-
-    if(window) window->fillRectangle(60, 40, 140, 35, Xwindow::Black);
     
     if(simul){
         switchActive();

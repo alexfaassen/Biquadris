@@ -32,11 +32,11 @@ void BlindEffect::notify(const Event currEvent, vector<vector<char>> &boardPrint
 void BlindEffect::notify(const Event currEvent, PlayerWindow& window){
 	//graphicsDisplay stuff
 	if(currEvent == beforeTextDisplay || currEvent == afterMove){
-		window.fillRectangle(42, 40, 147, 383, PlayerWindow::White);
+		window.fillRectangle(42, 40, 147, 377, PlayerWindow::White);
 		window.fillRectangle(0, 82, 44, 293, PlayerWindow::White);
 		window.fillRectangle(188, 82, 44, 293, PlayerWindow::White);
 	} else if(currEvent == onDrop){
-		window.fillRectangle(42, 40, 147, 383, PlayerWindow::Black);
+		window.fillRectangle(42, 40, 147, 377, PlayerWindow::Black);
 		window.fillRectangle(0, 82, 44, 293, PlayerWindow::Black);
 		window.fillRectangle(188, 82, 44, 293, PlayerWindow::Black);
 		player->redrawBoard();
