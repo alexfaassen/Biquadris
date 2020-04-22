@@ -13,3 +13,4 @@ class TurnGraphic : public GraphicsObserver {
 };
 
 #endif
+
