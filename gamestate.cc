@@ -78,7 +78,7 @@ bool GameState::beginGameOverLoop(){
 GameState::GameState(bool hasWindow, string scriptFile1, string scriptFile2, int startlevel, bool simul, bool fastmode)
 : scriptFile1{scriptFile1}, scriptFile2{scriptFile2}, startlevel{startlevel}, simul{simul}, fastmode{fastmode} {
     if(hasWindow){
-        cout << "window dimensions: " << windowWidth << ", " << windowHeight <<endl;
+        //cout << "window dimensions: " << windowWidth << ", " << windowHeight <<endl;
         window = new Xwindow(windowWidth, windowHeight);
     }
     restart();
@@ -155,9 +155,9 @@ bool GameState::beginReadLoop(){
 		int i = 0;
 		for(auto c : "Special Action"){
 			if(i == 14) break;
-            		cout << "Special Action: " << c <<endl;
+            		//cout << "Special Action: " << c <<endl;
 			window->drawBigString(60 + (i * 8), 70, string(1, c), Xwindow::White);
-            		cout << "Adter drawBigString" <<endl;
+            		//cout << "Adter drawBigString" <<endl;
 			++i;
 		}
 		    cout << "Choose a Special Action!" << endl;

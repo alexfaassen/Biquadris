@@ -6,7 +6,7 @@ using namespace std;
 
 void ForceEffect::notify(const Event currEvent, const Move currMove) {
 	if (currEvent == onTurnStart || currEvent == beforeMove || currEvent == onSAapplied) {
-		cout << "forceeffect notifioed" << endl;
+		//cout << "forceeffect notifioed" << endl;
 		player->changeCurrentBlock(newBlock);
 		kill();
 	}
