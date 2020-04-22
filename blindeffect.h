@@ -12,3 +12,4 @@ class BlindEffect : public Effect {
 };
 
 #endif
+

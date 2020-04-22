@@ -13,3 +13,4 @@ class ForceEffect : public Effect {
 };
 
 #endif
+

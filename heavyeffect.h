@@ -15,3 +15,4 @@ class HeavyEffect : public Effect {
 };
 
 #endif
+

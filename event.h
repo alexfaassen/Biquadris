@@ -5,3 +5,4 @@ enum Event {beforeMove, afterMove, onTurnStart, onTurnEnd, beforeTextDisplay, on
             onLinesCleared, onDrop, onScoreChange, onLevelChange, onNextBlockChange};
 
 #endif
+
