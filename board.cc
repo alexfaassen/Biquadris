@@ -309,3 +309,4 @@ void Board::kill() {
 }
 
 void Board::setNewLevel(Level *newLevel) { level = newLevel; }
+

@@ -20,3 +20,4 @@ BlockTilewrapper::BlockTilewrapper(const BlockTilewrapper &&other)
 BlockTilewrapper::~BlockTilewrapper(){
     if(tile) delete tile;
 }
+

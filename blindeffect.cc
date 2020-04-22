@@ -47,3 +47,4 @@ void BlindEffect::notify(const Event currEvent, PlayerWindow& window){
 void BlindEffect::notify(const Event currEvent, const Move m){
 	if(currEvent == onDrop) kill();
 }
+

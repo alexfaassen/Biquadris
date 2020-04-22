@@ -54,3 +54,4 @@ void Tilewrapper::customDraw(int deltaX, int deltaY){
     int y = tile->getY();
     window->fillRectangle((x * 20) + x + deltaX, (y * 20) + y + deltaY, 20, 20, colour);
 }
+

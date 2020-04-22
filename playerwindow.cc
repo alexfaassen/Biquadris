@@ -50,3 +50,4 @@ void PlayerWindow::fillCircle(int x, int y, int d, int colour){
 void PlayerWindow::showAvailableFonts(){
     if(window) window->showAvailableFonts();
 }
+

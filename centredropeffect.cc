@@ -17,3 +17,4 @@ void CentreDropEffect::notify(const Event currEvent, const Move currMove) {
 		blocksSinceClear = 0;
 	}
 }
+

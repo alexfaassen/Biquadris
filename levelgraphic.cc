@@ -8,3 +8,4 @@ void LevelGraphic::notify(const Event currEvent, Move m){
               window->drawString(216, 10, std::to_string(player->isLevel()));
        }
 }
+

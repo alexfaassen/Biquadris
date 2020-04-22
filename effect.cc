@@ -11,3 +11,4 @@ void Effect::update() {
 		}
 	}
 }
+
