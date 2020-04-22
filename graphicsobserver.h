@@ -15,3 +15,4 @@ class GraphicsObserver : public Observer {
 };
 
 #endif
+
