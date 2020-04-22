@@ -20,3 +20,4 @@ void Observer::notify(const Event currEvent, const char c) {}
 void Observer::notify(const Event currEvent, std::vector<std::vector<char>> &boardPrint) {}
 
 void Observer::notify(const Event currEvent, PlayerWindow&) {};
+

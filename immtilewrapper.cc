@@ -32,3 +32,4 @@ void ImmTilewrapper::draw(){
 void ImmTilewrapper::undraw(){
     drawEmptyAt(x, y);
 }
+

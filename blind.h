@@ -11,3 +11,4 @@ class Blind : public SACommand {
 };
 
 #endif
+

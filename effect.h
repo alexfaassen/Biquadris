@@ -15,3 +15,4 @@ class Effect : public Observer {
 };
 
 #endif
+
