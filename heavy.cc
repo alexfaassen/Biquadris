@@ -5,3 +5,4 @@
 void Heavy::run(GameState &game, const int times) const {
     game.getNAP().pushToObservers(new HeavyEffect(true, 2));
 }
+

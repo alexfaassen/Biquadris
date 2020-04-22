@@ -11,3 +11,4 @@ class RightCmd : public Command {
 };
 
 #endif
+

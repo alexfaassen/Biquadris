@@ -12,3 +12,4 @@ void Sequence::run(GameState &game, const int times) const {
 	game.readFromStream(s);
 	game.pushToStreams(s);
 }
+

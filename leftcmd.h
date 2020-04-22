@@ -11,3 +11,4 @@ class LeftCmd : public Command {
 };
 
 #endif
+

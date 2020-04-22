@@ -17,3 +17,4 @@ void NoRandom::run(GameState &game, const int times) const {
 		cout << "Error: " << s << " is missing or unreadable" << endl;
 	}
 }
+

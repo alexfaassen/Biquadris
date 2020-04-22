@@ -13,3 +13,4 @@ bool Level::setFile(std::ifstream *newFile) {
 }
 
 void Level::generateEffects(Player &p) const {}
+

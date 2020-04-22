@@ -16,3 +16,4 @@ void Force::run(GameState &game, const int times) const {
 	game.getNAP().pushToObservers(new ForceEffect(b));
 	if(game.getNAP().getInputState() != END_TURN) game.getNAP().notifyObservers(onSAapplied);
 }
+

@@ -86,3 +86,4 @@ vector<Command*>& CommandList::selectVector(InputState inputState){
         return normalCommands;
     }
 }
+

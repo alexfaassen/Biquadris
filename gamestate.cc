@@ -293,3 +293,4 @@ bool GameState::updateHighscore(int score){
     }
     return false;
 }
+

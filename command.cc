@@ -11,3 +11,4 @@ void Command::execute(GameState &game, const int times) const {
 	run(game, times);
 	if (needClean) game.cleanup();
 }
+

@@ -353,3 +353,4 @@ void Player::forceTopTile(const char b, const int col){
 void Player::redrawBoard(){
     board->redrawBoard();
 }
+
