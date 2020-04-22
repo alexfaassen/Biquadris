@@ -184,7 +184,7 @@ void Player::drop(int times, bool isInput){
         notifyObservers(onDrop, *window);
         checkEndTurn();
     }
-    cout << "input state = " << inputState << endl;
+    //cout << "input state = " << inputState << endl;
 }
 
 int Player::incLevel(int n){
