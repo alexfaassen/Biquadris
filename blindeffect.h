@@ -8,6 +8,7 @@ class BlindEffect : public Effect {
 
 	void notify(const Event currEvent, std::vector<std::vector<char>> &boardPrint) override;
 	void notify(const Event currEvent, PlayerWindow&) override;
+	void notify(const Event currEvent, Move) override;
 };
 
 #endif
