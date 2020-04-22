@@ -4,6 +4,10 @@
 
 using namespace std;
 
+#include <stdio.h>
+
+using namespace std;
+
 void ForceEffect::notify(const Event currEvent, const Move currMove) {
 	if (currEvent == onTurnStart || currEvent == beforeMove || currEvent == onSAapplied) {
 		//cout << "forceeffect notifioed" << endl;

@@ -1,6 +1,7 @@
 #ifndef FORCEEFT_H
 #define FORCEEFT_H
 #include "effect.h"
+#include <stdio.h>
 
 class ForceEffect : public Effect {
 	char newBlock;
