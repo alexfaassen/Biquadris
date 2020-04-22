@@ -6,3 +6,4 @@
 10levelup seq test_inputRefresh.txt 4levelup seq test_inputRefresh.txt restart
 =============================================================================test_input-4
 0levelup norandom biquadris_mysequence.txt seq test_inputRefresh.txt 3leveldown seq test_inputRefresh.txt
+
