@@ -153,9 +153,10 @@ bool GameState::beginReadLoop(){
         if(activePlayer->getInputState() == SA){
 		int i = 0;
 		for(auto c : "Special Action"){
-            cout << "Special Action: " << c <<endl;
-			window->drawBigString(60 + (i * 8), 70, string(4, c), Xwindow::White);
-            cout << "Adter drawBigString" <<endl;
+			if(i == 13) break;
+            		cout << "Special Action: " << c <<endl;
+			window->drawBigString(60 + (i * 8), 70, string(1, c), Xwindow::White);
+            		cout << "Adter drawBigString" <<endl;
 			++i;
 		}
 		    cout << "Choose a Special Action!" << endl;
