@@ -4,3 +4,4 @@ levelup I seq test_inputRefresh.txt restart
 4levelup J norandom biquadris_mysequence.txt L seq test_inputRefresh.txt restart
 =============================================================================test_blockGen-3
 4levelup J drop I 12right L 0down -1right 0drop 1drop L restart
+
