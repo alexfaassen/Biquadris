@@ -27,7 +27,7 @@ void Tilewrapper::drawTileAt(int x, int y, int deltaX, int deltaY){
     else if (tile->getLetter() == 'O') colour = PlayerWindow::Green;
     else if (tile->getLetter() == 'S') colour = PlayerWindow::Cyan;
     else if (tile->getLetter() == 'Z') colour = PlayerWindow::Orange;
-    else if (tile->getLetter() == 'T') colour = PlayerWindow::Red
+    else if (tile->getLetter() == 'T') colour = PlayerWindow::Red;
     else if (tile->getLetter() == '*') colour = PlayerWindow::White;
     window->fillRectangle(x * 20 + x, (y * 20) + 103 + y, 20, 20, colour);
 }
