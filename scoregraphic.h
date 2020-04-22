@@ -13,3 +13,4 @@ class ScoreGraphic : public GraphicsObserver {
 };
 
 #endif
+

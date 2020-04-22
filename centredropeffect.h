@@ -12,3 +12,4 @@ class CentreDropEffect : public Effect {
 };
 
 #endif
+

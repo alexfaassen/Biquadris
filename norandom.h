@@ -11,3 +11,4 @@ class NoRandom : public Command {
 };
 
 #endif
+
