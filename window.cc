@@ -163,6 +163,7 @@ void Xwindow::drawBigString(int x, int y, string msg, int colour) {
   	// Font f = XLoadFont(d, "-*-helvetica-bold-r-normal--*-240-*-*-*-*-*");
 	cout << "begin draw big string" <<endl;
   	ostringstream name;
+	cout << "Before name set" <<endl;
   	name << "-*-helvetica-bold-r-*-*-*-240-" << width/5 << "-" << height/5 << "-*-*-*-*";
 
 	cout << "Before drawStringFont" << endl; 
