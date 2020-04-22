@@ -27,13 +27,14 @@ class Board {
 	void clearRow(int row);		//kills all the tiles in the row drops everything down
 
 	bool alive = 1;
+	bool fastmode = false;
 
 	void initImmobileTiles(PlayerWindow* = nullptr);
 	Block* CreateBlock();
 	
 	public:
 	//constructor and destructor
-	Board(Level*, PlayerWindow* = nullptr);
+	Board(Level*, PlayerWindow* = nullptr, bool fastmode = false);
 	~Board();
 
 	bool isAlive() const{return alive;};
@@ -67,14 +68,14 @@ class Board {
 	void weighDownCurrent();
 
 	// are any of block's tiles on an occupied tile?
-	bool isBlocked(Block* b);
-	bool isCurrentBlocked();
+	bool isBlocked(Block* b, bool allowtop = true);
+	bool isCurrentBlocked(bool allowtop = true);
 
 	//will moving currentBlock by the given coords cause it to collide with a tile?
 	bool isMoveBlocked(int deltaY, int deltaX);	
 
 	// returns if the given coord isn't occupied by a tile and isn't out of bounds
-	bool isEmpty(int y, int x);
+	bool isEmpty(int y, int x, bool allowtop = true);
 
 	std::vector<std::vector<char>> renderCharArray();
 	void forceTopColumnTile(const char b, const int col);

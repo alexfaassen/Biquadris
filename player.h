@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 #include "inputstate.h"
 #include "direction.h"
@@ -25,6 +26,7 @@ class Player {
     InputState inputState = END_TURN;
     std::string scriptFile;
     bool alive = true;
+    bool fastmode = false;
 
     void initGraphicsObservers();   //creates and attaches all of the graphicObserver objects
     void initDrawWindow();          //draws the starting window
@@ -36,7 +38,7 @@ class Player {
 
     public:
     Player();
-    Player(Xwindow*, int offsetX, int offsetY, int side, std::string scriptFile, int startlevel);
+    Player(Xwindow*, int offsetX, int offsetY, int side, std::string scriptFile, int startlevel, bool fastmode);
     ~Player();
 
     //calls notify() with the given parameters on all observers
@@ -56,7 +58,7 @@ class Player {
     std::string getScriptFile() {return scriptFile;};
     void setScriptFile(std::string s) {scriptFile = s;};
     bool isDead() const {return !alive;};
-    void kill(){alive = false;};
+    void kill() {alive = false;};
 
     //movement commands
     int moveBlock(Direction dir, int times, bool isInput = true);

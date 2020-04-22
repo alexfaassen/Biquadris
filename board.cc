@@ -54,8 +54,8 @@ void Board::initImmobileTiles(PlayerWindow* w){
 	}
 }
 
-Board::Board(Level* level, PlayerWindow* w)
-: level{level}, window{w} {
+Board::Board(Level* level, PlayerWindow* w, bool fastmode)
+: level{level}, window{w}, fastmode{fastmode} {
 	initImmobileTiles(w);
 	nextBlock = CreateBlock();
 }
@@ -75,6 +75,7 @@ bool Board::pushNextBlock(bool safe){
 	if (window) currentBlock->draw();
 	nextBlock = CreateBlock();
 	if (isCurrentBlocked()){
+		//cout << "test: block killed by pushNextBlock" << endl;
 		 kill();
 		 return false;
 	}
@@ -82,7 +83,9 @@ bool Board::pushNextBlock(bool safe){
 }
 
 bool Board::placeCurrent(){
-	if(isCurrentBlocked()) return false; 
+	if(isCurrentBlocked(false)){
+		return false;
+	}
 	placeBlock(currentBlock);
 	currentBlock = nullptr;
 	return true;
@@ -90,12 +93,13 @@ bool Board::placeCurrent(){
 
 bool Board::placeBlock(Block* b, bool draw){
 	if(!b) return false;
-	if(isBlocked(b)) return false;
+	if(isBlocked(b, false)) return false;
 	placed.emplace_back(b);
 	for (Tilewrapper &p : b->getTiles()){
 		immobileTiles[p->getX()][p->getY()] = p;
 		if(draw) immobileTiles[p->getX()][p->getY()].draw();
 	}
+	b->nowNotCurr();
 	return true;
 }
 
@@ -138,6 +142,7 @@ bool Board::changeCurrent(char newType) {
 	currentBlock->attachWindow(window);
 	currentBlock->draw();
 	if (isCurrentBlocked()){
+		//cout << "test: block killed by changeCurrent" << endl;
 		kill();
 		return false;
 	}
@@ -146,6 +151,7 @@ bool Board::changeCurrent(char newType) {
 
 int Board::moveCurrent(Direction dir, int amount, bool redraw) {
 	if(amount == 0) return 0;
+	if(redraw && fastmode) currentBlock->undraw();
 	int deltaX = 0, deltaY = 0;
 	if (dir == Left) deltaX = -1;
 	else if (dir == Right) deltaX = 1;
@@ -155,63 +161,74 @@ int Board::moveCurrent(Direction dir, int amount, bool redraw) {
 		if(isMoveBlocked(deltaX, deltaY)){
 			break;
 		}
-		if(redraw) currentBlock->undraw();
+		if(redraw && !fastmode) currentBlock->undraw();
 		currentBlock->move(deltaX, deltaY);
-		if(redraw) currentBlock->draw();
+		if(redraw && !fastmode) currentBlock->draw();
 		moveCount++;
 	}
+	if(redraw && fastmode) currentBlock->draw();
 	return moveCount;	
 }
 
 int Board::clockwiseCurrent(int amount, bool redraw) {
 	if(amount == 0) return 0;
-	if(redraw) currentBlock->undraw();
+	if(redraw && fastmode) currentBlock->undraw();
 	int moveCount = 0;
 	while(moveCount < amount){
+		if(redraw && !fastmode) currentBlock->undraw();
 		currentBlock->clockwise();
 		if(isCurrentBlocked()) {
 			currentBlock->counterClockwise();
 			break;
 		}
+		if(redraw && !fastmode) currentBlock->draw();
 		moveCount++;
 	}
-	if(redraw) currentBlock->draw();
+	if(redraw && fastmode) currentBlock->draw();
 	return moveCount;
 }
 
 int Board::counterClockwiseCurrent(int amount, bool redraw) {
 	if(amount == 0) return 0;
-	if(redraw) currentBlock->undraw();
+	if(redraw && fastmode) currentBlock->undraw();
 	int moveCount = 0;
 	while(moveCount < amount){
+		if(redraw && !fastmode) currentBlock->undraw();
 		currentBlock->counterClockwise();
 		if(isCurrentBlocked()) {
 			currentBlock->clockwise();
 			break;
 		}
+		if(redraw && !fastmode) currentBlock->draw();
 		moveCount++;
 	}
-	if(redraw) currentBlock->draw();
+	if(redraw && fastmode) currentBlock->draw();
 	return moveCount;
 }
 
 void Board::dropCurrent(bool redraw) {
-	while(moveCurrent(Down, 1, true) && !isCurrentBlocked());	
+	if (redraw && fastmode) currentBlock->undraw();
+	while(moveCurrent(Down, 1, !fastmode) && !isCurrentBlocked());
+	if (redraw && fastmode) currentBlock->draw();	
 }
 
 void Board::weighDownCurrent(){
 	moveCurrent(Down, currentBlock->getHeaviness(), true);
 }
 
-bool Board::isBlocked(Block* b){
+bool Board::isBlocked(Block* b, bool allowtop){
 	for(auto &t : b->getTiles()){
-		if(!isEmpty(t->getX(), t->getY())) return true;
+		if(!isEmpty(t->getX(), t->getY(), allowtop)){ 
+			// isBlocked returns true" << endl;
+			return true;
+		}
 	}
+	//cout << "test: isBlocked returns false" << endl;
 	return false;
 }
 
-bool Board::isCurrentBlocked(){
-	return isBlocked(currentBlock);
+bool Board::isCurrentBlocked(bool allowtop){
+	return isBlocked(currentBlock, allowtop);
 }
 
 bool Board::isMoveBlocked(int deltaX, int deltaY){
@@ -221,10 +238,13 @@ bool Board::isMoveBlocked(int deltaX, int deltaY){
 	return false;
 }
 
-bool Board::isEmpty(int x, int y) {
+bool Board::isEmpty(int x, int y, bool allowtop) {
+	//cout << "test: isEmpty with " << x << " " << y << " " << allowtop << endl;
 	if(x < 0 || x > 10 || y > 14 || y < -3) return false;		//bounds checking sides
-	if(y >= -3 && y < 0) return true;				//exception for the 3 extra lines on top
-	if(!immobileTiles[x][y])return true;				//checking for empty tile within bounds
+	//cout << "test: is Empty" << endl;
+	if(y >= -3 && y < 0) return allowtop;				//exception for the 3 extra lines on top
+	//cout << "test: isEmpty didn't catch" << endl;
+	if(!immobileTiles[x][y]) return true;				//checking for empty tile within bounds
 	return false;							//otherwise fail
 }
 
@@ -257,6 +277,7 @@ vector<vector<char>> Board::renderCharArray() {
 
 void Board::forceTopColumnTile(const char b, const int col) {
 	if (!isEmpty(col, 0)) {
+		//cout << "test: block killed by forceTopColumnTile" << endl;
 		kill();
 	} else {
 		int row = 14;

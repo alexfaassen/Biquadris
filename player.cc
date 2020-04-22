@@ -28,12 +28,12 @@ void Player::initGraphicsObservers(){
 
 void Player::initDrawWindow(){
 	window->drawBigString(5, 10, "Level:");
-	window->drawBigString(221, 10, "0");
-	window->drawBigString(5, 30, "Score:");
-	window->drawBigString(221, 30, "0");
+	window->drawBigString(216, 10, "0");
+	window->drawBigString(5, 29, "Score:");
+	window->drawBigString(216, 29, "0");
 	window->fillRectangle(0, 35, 231, 3, PlayerWindow::White);
-	window->fillRectangle(0, 425, 231, 3, PlayerWindow::White);
-	window->drawBigString(5, 442, "Next:");
+	window->fillRectangle(0, 419, 231, 3, PlayerWindow::White);
+	window->drawBigString(5, 435, "Next:");
 }
 
 int Player::cleanObservers(){
@@ -91,13 +91,14 @@ void Player::postMoveClean(Move m = mLeft){
 
 void Player::checkEndTurn(){
     if (inputState == END_TURN) handleEndTurn();
+    
     if (!board->isAlive()) kill();
 }
 
 Player::Player(){}
 
-Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptFile, int startlevel)
-: side{side}, scriptFile {scriptFile} {
+Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptFile, int startlevel, bool fastmode)
+: side{side}, scriptFile {scriptFile}, fastmode{fastmode} {
     if(w){
         window = new PlayerWindow(w, offsetX, offsetY);
         initDrawWindow();
@@ -107,7 +108,7 @@ Player::Player(Xwindow* w, int offsetX, int offsetY, int side, string scriptFile
         cout << "Error: invalid startlevel. Using Level 0 instead" << endl;
         setLevel(0);
     }
-    board = new Board(level, window);
+    board = new Board(level, window, fastmode);
     notifyObservers(onNextBlockChange, board->getNextBlockType());
 }
 
@@ -136,6 +137,7 @@ int Player::moveBlock(Direction dir, int times, bool isInput){
 	    else if (dir == Down) m = mDown;
 	    postMoveClean(m);
     }
+    if(window) notifyObservers(afterMove, *window);
     return moves;
 }
 
@@ -143,11 +145,9 @@ int Player::rotateClockwise(int times, bool isInput){
     if(isInput){
         preMove();
     }
-    int successes = 0;
-    for (int i = 0; i < times; ++i) {
-	    if (board->clockwiseCurrent()) ++successes;
-    }
+    int successes = board->clockwiseCurrent(times);
     if(isInput) postMoveClean(mClockwise);
+    if(window) notifyObservers(afterMove, *window);
     return successes;
 }
 
@@ -155,11 +155,9 @@ int Player::rotateCounterClockwise(int times, bool isInput){
     if(isInput){
         preMove();
     }
-    int successes = 0;
-    for (int i = 0; i < times; ++i) {
-	    if (board->counterClockwiseCurrent()) ++successes;
-    }
+    int successes = board->counterClockwiseCurrent(times);
     if(isInput) postMoveClean(mCounterClockwise);
+    if(window) notifyObservers(afterMove, *window);
     return successes;
 }
 
@@ -171,20 +169,22 @@ void Player::drop(int times, bool isInput){
         board->dropCurrent();
         board->placeCurrent();
         //if dead, break out of loop and ignore everything else
+        //cout << "Drop death" <<endl;
         if(!pushNextBlockAndCheck()) break;
     }
 
     // handles the final drop
     if(times > 0){ 
         board->dropCurrent();
-        board->placeCurrent();
-        endTurn();
+	if(!board->placeCurrent()) kill();
+       	endTurn();
     }
 
     if(isInput && times > 0){
-        notifyObservers(onDrop);
+        notifyObservers(onDrop, *window);
         checkEndTurn();
     }
+    //cout << "input state = " << inputState << endl;
 }
 
 int Player::incLevel(int n){
@@ -215,6 +215,8 @@ bool Player::pushNextBlockAndCheck(){
 void Player::startTurn(){
     setInputState(NORMAL);
     pushNextBlockAndCheck();
+    notifyObservers(onTurnStart);
+    
     if (!board->isAlive()) kill();
 }
 
@@ -231,6 +233,7 @@ void Player::handleEndTurn(){
     
     notifyObservers(onTurnEnd);
     cleanObservers();
+    //cout << "test: killed by handleEndTurn" << endl;
     if (!board->isAlive()) kill();
 }
 

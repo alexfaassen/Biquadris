@@ -17,6 +17,7 @@ int main(int argc, char *argv[]) {
     string scriptfile2 = "sequence2.txt";
     int startlevel = 0;
     bool simul = false;
+    bool fastmode = false;
 
     //command line inputs
     for(int i = 1; i < argc; i++){
@@ -25,6 +26,8 @@ int main(int argc, char *argv[]) {
 
         } else if (strcmp(argv[i], "-simul") == 0){
             simul = true;
+        } else if (strcmp(argv[i], "-fast") == 0){
+            fastmode = true;
         } else if (strcmp(argv[i], "-seed") == 0){
 
             //error handling out of range
@@ -89,7 +92,7 @@ int main(int argc, char *argv[]) {
 
     //cout << "test: before gamestate" << endl;
 
-    GameState gamestate(hasWindow, scriptfile1, scriptfile2, startlevel, simul);
+    GameState gamestate(hasWindow, scriptfile1, scriptfile2, startlevel, simul, fastmode);
 
     //cout << "test: before beginReadLoop" << endl;
     

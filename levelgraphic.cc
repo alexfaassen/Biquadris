@@ -4,7 +4,7 @@
 
 void LevelGraphic::notify(const Event currEvent, Move m){
        if(currEvent == onLevelChange){
-              //TODO: fill the area with white first!
-              window->drawString(221, 10, std::to_string(player->isLevel()));
+              window->fillRectangle(211, 1, 15, 10);
+              window->drawString(216, 10, std::to_string(player->isLevel()));
        }
 }

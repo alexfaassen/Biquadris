@@ -10,6 +10,7 @@ using namespace std;
 
 void Force::run(GameState &game, const int times) const {
 	char b;
+	//std::cout << "Force run: " << b <<std::endl;
 	game.readFromStream(b);
 	cout << "force::run New Block: " << b <<endl;
 	game.getNAP().pushToObservers(new ForceEffect(b));

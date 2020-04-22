@@ -4,7 +4,13 @@
 
 void ScoreGraphic::notify(const Event currEvent, Move m){
        if(currEvent == onScoreChange){
-              //TODO: draw white square over old score
-              window->drawString(221, 30, std::to_string(player->getScore())); 
+              window->fillRectangle(211, 19, 15, 10);
+	      int over = player->getScore() / 10;
+	      int i = 0;
+	      while(over != 0){
+		      over /= 10;
+		      ++i;
+	      }
+              window->drawString(216 - (i * 4), 29, std::to_string(player->getScore())); 
        }
 }

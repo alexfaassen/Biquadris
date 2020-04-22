@@ -17,8 +17,8 @@ void GameState::switchActive(){
 }
 
 void GameState::createPlayers(){
-    activePlayer = new Player(window, loffsetX, loffsetY, -1, scriptFile1, startlevel);
-    nonActivePlayer = new Player(window, roffsetX, roffsetY, 1, scriptFile2, startlevel);
+    activePlayer = new Player(window, loffsetX, loffsetY, -1, scriptFile1, startlevel, fastmode);
+    nonActivePlayer = new Player(window, roffsetX, roffsetY, 1, scriptFile2, startlevel, fastmode);
 }
 
 int GameState::cleanStreams(){
@@ -40,19 +40,18 @@ int GameState::getLoser(){
 }
 
 bool GameState::handleGameOver(){
-	cout << "in handleGameOver()" << endl;
     int loser = getLoser();
     if(loser == 0) return true;     //if nobody loses, return true
     int winner = (loser == -1 ? 2 : 1);
     cout << "Player" << winner << " wins!" << endl;
     cout << "The highscore is " << highscore << endl;
     if(window){
-	    window->fillRectangle(windowWidth/2 - 30, windowHeight/2 - 20, 60, 40, Xwindow::Black);
-	    window->fillRectangle(windowWidth/2 - 31, windowHeight/2 - 21, 3, 42, Xwindow::White);
-	    window->fillRectangle(windowWidth/2 + 28, windowHeight/2 - 21, 3, 42, Xwindow::White);
-	    window->fillRectangle(windowWidth/2 - 31, windowHeight/2 - 21, 62, 3, Xwindow::White);
-	    window->fillRectangle(windowWidth/2 - 31, windowHeight/2 + 18, 62, 3, Xwindow::White);
-	    window->drawBigString(windowWidth/2 - 20, windowHeight/2, "GAMEOVER", Xwindow::White);
+	    window->fillRectangle(windowWidth/2 - 36, windowHeight/2 - 20, 70, 40, Xwindow::Black);
+	    window->fillRectangle(windowWidth/2 - 36, windowHeight/2 - 21, 3, 42, Xwindow::White);
+	    window->fillRectangle(windowWidth/2 + 33, windowHeight/2 - 21, 3, 42, Xwindow::White);
+	    window->fillRectangle(windowWidth/2 - 36, windowHeight/2 - 21, 72, 3, Xwindow::White);
+	    window->fillRectangle(windowWidth/2 - 36, windowHeight/2 + 18, 72, 3, Xwindow::White);
+	    window->drawBigString(windowWidth/2 - 24, windowHeight/2 + 6, "GAMEOVER", Xwindow::White);
     }
     return beginGameOverLoop();
 }
@@ -76,9 +75,10 @@ bool GameState::beginGameOverLoop(){
     return false;
 }
 
-GameState::GameState(bool hasWindow, string scriptFile1, string scriptFile2, int startlevel, bool simul)
-: scriptFile1{scriptFile1}, scriptFile2{scriptFile2}, startlevel{startlevel}, simul{simul} {
+GameState::GameState(bool hasWindow, string scriptFile1, string scriptFile2, int startlevel, bool simul, bool fastmode)
+: scriptFile1{scriptFile1}, scriptFile2{scriptFile2}, startlevel{startlevel}, simul{simul}, fastmode{fastmode} {
     if(hasWindow){
+        //cout << "window dimensions: " << windowWidth << ", " << windowHeight <<endl;
         window = new Xwindow(windowWidth, windowHeight);
     }
     restart();
@@ -140,18 +140,30 @@ bool GameState::beginReadLoop(){
 
             // clear all digits from front of string
             while(isdigit(s[0])){
-		s = s.erase(0, 1);
+		        s = s.erase(0, 1);
             }
         }
+	if(window) window->fillRectangle(60, 40, 140, 35, Xwindow::Black);
         runInput(s, multiplier);
+	    //cout << "test: back in read loop" << endl;
 
         //game over stuff
         if(!handleGameOver()){
             break;
         }
 
-        if(activePlayer->getInputState() == SA) cout << "Choose a Special Action!" << endl;
-    }
+        if(activePlayer->getInputState() == SA){
+		int i = 0;
+		for(auto c : "Special Action"){
+			if(i == 14) break;
+            		//cout << "Special Action: " << c <<endl;
+			window->drawBigString(60 + (i * 8), 70, string(1, c), Xwindow::White);
+            		//cout << "Adter drawBigString" <<endl;
+			++i;
+		}
+		    cout << "Choose a Special Action!" << endl;
+	    }
+    } 
     return true;
 }
 
@@ -269,7 +281,6 @@ void GameState::restart(){
     if(activePlayer) delete activePlayer;
     if(nonActivePlayer) delete nonActivePlayer;
     if(window) window->fillRectangle(0, 0, windowWidth, windowHeight);
-    cout << "test: to_string() = " << to_string(4) << endl;
     createPlayers();
     activePlayer->startTurn();
     printGame();

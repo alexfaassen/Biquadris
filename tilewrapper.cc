@@ -20,19 +20,19 @@ void Tilewrapper::drawEmptyAt(int x, int y){
 }
 
 void Tilewrapper::drawTileAt(int x, int y, int deltaX, int deltaY){
-    int colour = PlayerWindow::White;
+    int colour = PlayerWindow::Black;
     if (tile->getLetter() == 'I') colour = PlayerWindow::Yellow;
     else if (tile->getLetter() == 'J') colour = PlayerWindow::Magenta;
     else if (tile->getLetter() == 'L') colour = PlayerWindow::Brown;
     else if (tile->getLetter() == 'O') colour = PlayerWindow::Green;
     else if (tile->getLetter() == 'S') colour = PlayerWindow::Cyan;
     else if (tile->getLetter() == 'Z') colour = PlayerWindow::Orange;
-    else if (tile->getLetter() == '*') colour = PlayerWindow::Black;
+    else if (tile->getLetter() == 'T') colour = PlayerWindow::Red;
+    else if (tile->getLetter() == '*') colour = PlayerWindow::White;
     window->fillRectangle(x * 20 + x, (y * 20) + 103 + y, 20, 20, colour);
 }
 
 void Tilewrapper::draw(){
-	//std::cout << "test: in draw() method, tile->getX() =" << tile->getX() << std::endl;
     drawAt(tile->getX(), tile->getY());
 }
 
